@@ -14,4 +14,17 @@ describe('SearchBox', () => {
 
     instance.unmount();
   });
+
+  describe('Event tests', () => {
+    it('should change state on default onChange', () => {
+      const component = shallow(<SearchBox />);
+      const onChangeValue = 'test';
+
+      component
+        .find('input')
+        .simulate('change', { target: { value: onChangeValue } });
+
+      expect(component.state().query).toEqual(onChangeValue);
+    });
+  });
 });
