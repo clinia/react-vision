@@ -1,0 +1,23 @@
+
+node_modules/
+dist/
+build/
+*.log
+.DS_Store
+.env
+.eslintcache
+.idea/
+*.iml
+preview.zip
+.happypack/
+
+# Generated files
+/website/examples
+/website/storybook
+
+# Argos CI screenshots
+integration/screenshots/
+
+# Editors
+.vscode
+.idea

@@ -1,0 +1,29 @@
+{
+  "extends": [
+    "config:js-lib",
+    ":automergeMinor",
+    ":automergePr"
+  ],
+  "ignorePresets": [
+    ":ignoreModulesAndTests"
+  ],
+  "packageRules": [
+    {
+      "packagePatterns": [
+        "^@types"
+      ],
+      "depTypeList": [
+        "devDependencies"
+      ],
+      "rangeStrategy": "replace"
+    },
+    {
+      "paths": [
+        "examples/react-router-v3"
+      ],
+      "ignoreDeps": [
+        "react-router"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "name": "react-vision-dom",
+  "version": "1.0.0-beta.1",
+  "description": "",
+  "main": "dist/cjs/index.js",
+  "module": "dist/es/index.js",
+  "sideEffects": false,
+  "license": "MIT",
+  "homepage": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/clinia/react-vision"
+  },
+  "author": {
+    "name": "Clinia Health, Inc.",
+    "url": "https://www.algolia.com"
+  },
+  "keywords": [
+    "clinia",
+    "components",
+    "fast",
+    "vision",
+    "react",
+    "react-dom",
+    "search"
+  ],
+  "files": [
+    "README.md",
+    "server.js",
+    "dist"
+  ],
+  "scripts": {
+    "clean": "rm -rf dist",
+    "watch": "yarn build:cjs --watch",
+    "build": "yarn build:cjs && yarn build:es && yarn build:umd",
+    "build:cjs": "babel src --root-mode upward --extensions '.js,.ts,.tsx' --out-dir dist/cjs --ignore '**/__tests__/**/*','**/__mocks__/**/*' --quiet",
+    "build:es": "BABEL_ENV=es babel src --root-mode upward --extensions '.js,.ts,.tsx' --out-dir dist/es --ignore '**/__tests__/**/*','**/__mocks__/**/*' --quiet",
+    "build:umd": "BABEL_ENV=rollup rollup -c rollup.config.js",
+    "release": "yarn clean && yarn build && yarn publish --non-interactive",
+    "release:beta": "yarn clean && yarn build && yarn publish --tag beta --non-interactive"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.6.3",
+    "classnames": "^2.2.6",
+    "prop-types": "^15.7.2",
+    "react-vision-core": "1.0.0-beta.1"
+  },
+  "peerDependencies": {
+    "react": ">= 16.3.0 < 17",
+    "react-dom": ">= 16.3.0 < 17"
+  }
+}
