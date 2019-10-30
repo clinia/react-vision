@@ -5,12 +5,29 @@ exports[`SearchBox applies its default props 1`] = `
   <form
     onSubmit={[Function]}
   >
-    <input
-      onChange={[Function]}
-    />
-    <button
-      type="submit"
-    />
+    <div>
+      <div
+        className="search-box-input"
+      >
+        <input
+          id="search-box-input"
+          onInput={[Function]}
+        />
+        <div>
+          <span
+            className=""
+          />
+        </div>
+        <span
+          className="clearSearch"
+          onClick={[Function]}
+        />
+      </div>
+      <button
+        className="search-box-button"
+        type="submit"
+      />
+    </div>
   </form>
 </div>
 `;
