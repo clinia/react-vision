@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HitsComponent applies its default props 1`] = `
+<div
+  className="hit-no-results-found-component"
+/>
+`;
