@@ -79,7 +79,6 @@ describe('createConnector', () => {
         {
           results: state.results,
           searching: state.searching,
-          searchingForFacetValues: state.searchingForFacetValues,
           isSearchStalled: state.isSearchStalled,
           error: state.error,
         },
@@ -1296,71 +1295,6 @@ describe('createConnector', () => {
         },
         next: {
           query: 'hello world',
-        },
-      });
-    });
-  });
-
-  describe('searchForFacetValues', () => {
-    it('passes a searchForItems method to the component', () => {
-      const searchForFacetValues = (props, searchState, next) => ({
-        props,
-        searchState,
-        next,
-      });
-
-      const Dummy = () => null;
-      const Connected = createConnectorWithoutContext({
-        displayName: 'Connector',
-        getProvidedProps: () => {},
-        searchForFacetValues,
-      })(Dummy);
-
-      const onSearchForFacetValues = jest.fn();
-
-      const props = {
-        hello: 'there',
-      };
-
-      const state = createFakeState({
-        widgets: {
-          query: 'hello',
-        },
-      });
-
-      const context = createFakeContext({
-        store: createFakeStore({
-          getState: () => state,
-        }),
-        onSearchForFacetValues,
-      });
-
-      const wrapper = shallow(<Connected {...props} contextValue={context} />);
-
-      expect(onSearchForFacetValues).toHaveBeenCalledTimes(0);
-
-      wrapper
-        .find(Dummy)
-        .props()
-        .searchForItems({
-          facetName: 'brand',
-          query: 'apple',
-          maxFacetHits: 10,
-        });
-
-      expect(onSearchForFacetValues).toHaveBeenCalledTimes(1);
-      expect(onSearchForFacetValues).toHaveBeenCalledWith({
-        props: {
-          hello: 'there',
-          contextValue: context,
-        },
-        searchState: {
-          query: 'hello',
-        },
-        next: {
-          facetName: 'brand',
-          query: 'apple',
-          maxFacetHits: 10,
         },
       });
     });

@@ -1,5 +1,17 @@
 // Core
-export { default as creatConnector } from './core/createConnector';
+export { default as createConnector } from './core/createConnector';
+
+// Utils
+export { HIGHLIGHT_TAGS } from './core/highlight';
+export { default as version } from './core/version';
+export { default as translatable } from './core/translatable';
+
+// Widgets
+export { default as Vision } from './widgets/Vision';
+
+// Connectors
+export { default as connectHits } from './connectors/connectHits';
+export { default as connectSearchBox } from './connectors/connectSearchBox';
 
 // Types
 export * from './types';
