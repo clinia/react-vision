@@ -2,7 +2,7 @@ import React from 'react';
 import { SearchResult } from './HitsComponent';
 
 type Props = {
-  searchResult: SearchResult;
+  searchResult?: SearchResult;
 };
 
 const DefaultHitComponent: React.FunctionComponent<Props> = ({
@@ -11,7 +11,9 @@ const DefaultHitComponent: React.FunctionComponent<Props> = ({
   return (
     <div className="default-hit-card">
       <div className="default-hit-container">
-        <h4 className="default-hit-title">{searchResult.resourceName}</h4>
+        <h4 className="default-hit-title">
+          {searchResult && searchResult.resourceName}
+        </h4>
         <div className="card-body">{JSON.stringify(searchResult, null, 2)}</div>
       </div>
     </div>

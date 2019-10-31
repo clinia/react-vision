@@ -3,15 +3,21 @@ import renderer from 'react-test-renderer';
 import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import DefaultHitComponent from '../DefaultHitComponent';
+import { SearchResult } from '../HitsComponent';
 
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('DefaultHitComponent', () => {
-  const searchResult = { id: '1', resourceName: 'Test', note: 'test' };
+  const searchResult: SearchResult = {
+    resourceId: '1',
+    resourceName: 'Test',
+    note: 'test',
+  };
 
   it('applies its default props', () => {
     const instance = renderer.create(
-      <DefaultHitComponent searchResult={searchResult} refine={() => null} />
+      //@ts-ignore
+      <DefaultHitComponent refine={() => null} />
     );
 
     expect(instance.toJSON()).toMatchSnapshot();
