@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchBox applies its default props 1`] = `
+<div
+  className="cvi-SearchBox"
+>
+  <form
+    onSubmit={[Function]}
+  >
+    <div>
+      <input
+        autoCapitalize="off"
+        autoComplete="off"
+        autoCorrect="off"
+        className="cvi-SearchBox-input"
+        id="search-box-input"
+        onInput={[Function]}
+        spellCheck={false}
+        type="search"
+      />
+      <div>
+        <span
+          className=""
+        />
+      </div>
+      <span
+        className="cvi-SearchBox-clear"
+        id="search-box-clear"
+        onClick={[Function]}
+      />
+      <button
+        className="cvi-SearchBox-submit"
+        type="submit"
+      />
+    </div>
+  </form>
+</div>
+`;
