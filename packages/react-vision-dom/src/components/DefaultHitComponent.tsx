@@ -1,3 +1,4 @@
+import React from 'react';
 import { SearchResult } from './HitsComponent';
 
 type Props = {

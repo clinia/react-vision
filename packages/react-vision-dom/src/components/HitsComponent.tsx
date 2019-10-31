@@ -20,8 +20,8 @@ type Props = {
   results: SearchResult[];
   className?: string;
   style?: React.CSSProperties;
-  noResultsFound: React.ReactNode;
-  hit: (result: SearchResult) => React.ReactNode;
+  noResultsFound?: React.ReactNode;
+  hit?: (result: SearchResult) => React.ReactNode;
 };
 
 const HitsComponent: React.FunctionComponent<Props> = ({
@@ -31,20 +31,29 @@ const HitsComponent: React.FunctionComponent<Props> = ({
   hit,
   noResultsFound,
 }) => {
-  return Array.isArray(results) && results.length > 0 ? (
+  return (
     <div className={className} style={style}>
-      {results.map(searchResult => {
-        hit ? (
-          hit(searchResult)
-        ) : (
-          <DefaultHitComponent searchResult={searchResult} />
-        );
-      })}
+      {Array.isArray(results) && results.length > 0 ? (
+        results.map(searchResult => (
+          <div key={searchResult.resourceId}>
+            {hit ? (
+              hit(searchResult)
+            ) : (
+              <>
+                <DefaultHitComponent searchResult={searchResult} />
+              </>
+            )}
+          </div>
+        ))
+      ) : (
+        <>
+          {noResultsFound || (
+            <div className="default-hit-no-results-found"></div>
+          )}
+        </>
+      )}
+      ;
     </div>
-  ) : (
-    <>
-      {noResultsFound || <div className="hit-no-results-found-component"></div>}
-    </>
   );
 };
 
