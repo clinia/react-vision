@@ -9,10 +9,18 @@ exports[`DefaultHitComponent applies its default props 1`] = `
   >
     <h4
       className="default-hit-title"
-    />
+    >
+      Test
+    </h4>
     <div
       className="card-body"
-    />
+    >
+      {
+  "id": "1",
+  "resourceName": "Test",
+  "note": "test"
+}
+    </div>
   </div>
 </div>
 `;

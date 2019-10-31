@@ -11,7 +11,6 @@ describe('HitsComponent', () => {
   const results = [{ resourceId: '123', resourceName: 'test' }];
 
   it('applies its default props', () => {
-    //@ts-ignore
     const instance = renderer.create(<HitsComponent refine={() => null} />);
 
     expect(instance.toJSON()).toMatchSnapshot();
@@ -21,16 +20,14 @@ describe('HitsComponent', () => {
 
   it('should render with default hit component', () => {
     const wrapper = shallow(<HitsComponent results={results} />);
-    const defaultHitComponent = (
-      <DefaultHitComponent searchResult={results[0]} />
-    );
+    const defaultHitComponent = <DefaultHitComponent />;
 
     expect(wrapper.containsMatchingElement(defaultHitComponent)).toBeTruthy();
     expect(wrapper.exists('.default-hit-no-results-found')).toBeFalsy();
   });
 
   it('should render with default no results found', () => {
-    const wrapper = shallow(<HitsComponent results={[]} />);
+    const wrapper = shallow(<HitsComponent />);
 
     expect(wrapper.exists('.default-hit-no-results-found')).toBeTruthy();
   });
@@ -38,16 +35,14 @@ describe('HitsComponent', () => {
   describe('Style tests', () => {
     it('should render main div with className props ', () => {
       const classNameTest = 'class-test';
-      const wrapper = shallow(
-        <HitsComponent className={classNameTest} results={[]} />
-      );
+      const wrapper = shallow(<HitsComponent className={classNameTest} />);
 
       expect(wrapper.first('div').hasClass(classNameTest)).toBeTruthy();
     });
 
     it('should render main div with style props ', () => {
       const styleTest = { top: 0 };
-      const wrapper = shallow(<HitsComponent style={styleTest} results={[]} />);
+      const wrapper = shallow(<HitsComponent style={styleTest} />);
 
       expect(wrapper.first('div').props().style).toEqual(styleTest);
     });
@@ -57,7 +52,7 @@ describe('HitsComponent', () => {
     it('should render with custom hit component', () => {
       const customHitComponent = <h1>Test</h1>;
       const wrapper = shallow(
-        <HitsComponent results={results} hit={_ => customHitComponent} />
+        <HitsComponent results={results} hit={result => customHitComponent} />
       );
 
       expect(wrapper.contains(customHitComponent)).toBeTruthy();
@@ -68,7 +63,7 @@ describe('HitsComponent', () => {
       const customNoResultsFound = <h1>Test</h1>;
 
       const wrapper = shallow(
-        <HitsComponent noResultsFound={customNoResultsFound} results={[]} />
+        <HitsComponent noResultsFound={customNoResultsFound} />
       );
 
       expect(wrapper.contains(customNoResultsFound)).toBeTruthy();

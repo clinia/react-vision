@@ -3,17 +3,17 @@ import DefaultHitComponent from './DefaultHitComponent';
 
 export type SearchResult = {
   resourceId: string;
-  resourceName: string;
-  address?: any;
-  distance?: number;
-  geoPoint?: {
+  address: any;
+  distance: number;
+  geoPoint: {
     lat: number;
     lng: number;
   };
-  note?: string;
-  onlineBookingUrl?: string;
-  phones?: any;
-  type?: string;
+  resourceName: string;
+  note: string;
+  onlineBookingUrl: string;
+  phones: any;
+  type: string;
 };
 
 type Props = {
