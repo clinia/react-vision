@@ -67,7 +67,7 @@ describe('SearchBox', () => {
       const wrapper = shallow(<SearchBox clearButton={customClearButton} />);
 
       expect(wrapper.contains(customClearButton)).toBeTruthy();
-      expect(wrapper.exists('.clearSearch')).toBeFalsy();
+      expect(wrapper.exists('#search-box-clear')).toBeFalsy();
     });
 
     it('should render with custom submit button', () => {
@@ -135,7 +135,7 @@ describe('SearchBox', () => {
           .simulate('input', { target: { value: enteredInputValue } });
 
         expect(wrapper.state().query).toEqual(enteredInputValue);
-        wrapper.find('.clearSearch').simulate('click');
+        wrapper.find('#search-box-clear').simulate('click');
         expect(wrapper.state().query).toEqual('');
       });
     });
@@ -161,7 +161,7 @@ describe('SearchBox', () => {
         const onClear = jest.fn();
 
         const wrapper = shallow(<SearchBox onClear={onClear} />);
-        wrapper.find('.clearSearch').simulate('click');
+        wrapper.find('#search-box-clear').simulate('click');
 
         expect(onClear).toHaveBeenCalled();
       });

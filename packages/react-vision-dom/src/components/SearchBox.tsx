@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import LoadingIndicator from './LoadingIndicator';
+import { createClassNames } from '../core/utils';
+import classnames from 'classnames';
 
 type Props = {
   currentRefinement?: string;
@@ -25,13 +27,13 @@ type Props = {
 
 type State = {
   query: string;
-  isLoading: boolean;
 };
+
+const cx = createClassNames('SearchBox');
 
 class SearchBox extends Component<Props, State> {
   state = {
     query: '',
-    isLoading: false,
   };
 
   constructor(props) {
@@ -83,43 +85,43 @@ class SearchBox extends Component<Props, State> {
       submitButton,
     } = this.props;
 
-    const { isLoading: internalStateLoading } = this.state;
-
-    //If loading is not controlled by the user, uses the internal state loading
-    const isSearchLoading = !loading ? internalStateLoading : loading;
-
     return (
-      <div className={className} style={style}>
+      <div className={classnames(cx(''), className)} style={style}>
         <form onSubmit={onSubmit ? onSubmit : this.onSubmit}>
           <div>
-            <div className="search-box-input">
-              <input
-                id="search-box-input"
-                onInput={onInput ? onInput : this.onInput}
-                onChange={onChange}
-                onKeyPress={onKeyPress}
-                onBlur={onBlur}
-                autoFocus={autoFocus}
-                onFocus={onFocus}
+            <input
+              id="search-box-input"
+              type="search"
+              autoComplete="off"
+              autoCorrect="off"
+              autoCapitalize="off"
+              spellCheck={false}
+              className={cx('input')}
+              onInput={onInput ? onInput : this.onInput}
+              onChange={onChange}
+              onKeyPress={onKeyPress}
+              onBlur={onBlur}
+              autoFocus={autoFocus}
+              onFocus={onFocus}
+            />
+            {loadingIndicator ? (
+              loadingIndicator
+            ) : (
+              <LoadingIndicator isLoading={loading} />
+            )}
+            {clearButton ? (
+              clearButton
+            ) : (
+              <span
+                id="search-box-clear"
+                className={cx('clear')}
+                onClick={onClear ? onClear : this.onClear}
               />
-              {loadingIndicator ? (
-                loadingIndicator
-              ) : (
-                <LoadingIndicator isLoading={isSearchLoading} />
-              )}
-              {clearButton ? (
-                clearButton
-              ) : (
-                <span
-                  className="clearSearch"
-                  onClick={onClear ? onClear : this.onClear}
-                />
-              )}
-            </div>
+            )}
             {submitButton ? (
               submitButton
             ) : (
-              <button className="search-box-button" type="submit" />
+              <button className={cx('submit')} type="submit" />
             )}
           </div>
         </form>

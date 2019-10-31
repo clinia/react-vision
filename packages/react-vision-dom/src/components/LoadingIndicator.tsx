@@ -2,7 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 
 type Props = {
-  isLoading: boolean;
+  isLoading?: boolean;
 };
 
 const LoadingIndicator: React.FunctionComponent<Props> = ({ isLoading }) => {
