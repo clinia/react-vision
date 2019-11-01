@@ -1,22 +1,10 @@
 import React from 'react';
-import DefaultHitComponent from './DefaultHitComponent';
 
 export type SearchResult = {
-  resourceId: string;
-  address: any;
-  distance: number;
-  geoPoint: {
-    lat: number;
-    lng: number;
-  };
-  resourceName: string;
-  note: string;
-  onlineBookingUrl: string;
-  phones: any;
-  type: string;
+  id: string;
 };
 
-type Props = {
+type HitComponentProps = {
   results: SearchResult[];
   className?: string;
   style?: React.CSSProperties;
@@ -24,7 +12,24 @@ type Props = {
   hit?: (result: SearchResult) => React.ReactNode;
 };
 
-const HitsComponent: React.FunctionComponent<Props> = ({
+type DefaultHitComponentProps = {
+  searchResult: SearchResult;
+};
+
+const DefaultHitComponent: React.FunctionComponent<
+  DefaultHitComponentProps
+> = ({ searchResult }) => {
+  return (
+    <div className="default-hit-card">
+      <div className="default-hit-container">
+        <h4 className="default-hit-title">{searchResult.id}</h4>
+        <div className="card-body">{JSON.stringify(searchResult, null, 2)}</div>
+      </div>
+    </div>
+  );
+};
+
+const HitsComponent: React.FunctionComponent<HitComponentProps> = ({
   results,
   className,
   style,
@@ -35,7 +40,7 @@ const HitsComponent: React.FunctionComponent<Props> = ({
     <div className={className} style={style}>
       {Array.isArray(results) && results.length > 0 ? (
         results.map(searchResult => (
-          <div key={searchResult.resourceId}>
+          <div key={searchResult.id}>
             {hit ? (
               hit(searchResult)
             ) : (
