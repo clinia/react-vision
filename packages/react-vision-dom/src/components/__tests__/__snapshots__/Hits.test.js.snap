@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Hits applies its default props 1`] = `
+<div
+  className="cvi-Hits-hits"
+>
+  <div
+    className="cvi-Hits-hits-list"
+  >
+    <div
+      className="cvi-Hits-empty"
+    />
+    ;
+  </div>
+</div>
+`;
