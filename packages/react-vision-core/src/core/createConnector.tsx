@@ -39,7 +39,6 @@ export type ConnectorDescription = {
    * hook when the widget will unmount. Receives (props, searchState) and return a cleaned state.
    */
   cleanUp?: (...args: any[]) => any;
-  searchForFacetValues?: (...args: any[]) => any;
   shouldComponentUpdate?: (...args: any[]) => boolean;
   /**
    * PropTypes forwarded to the wrapped component.
@@ -216,9 +215,7 @@ export function createConnectorWithoutContext(
         const {
           widgets,
           results,
-          resultsFacetValues,
           searching,
-          searchingForFacetValues,
           isSearchStalled,
           metadata,
           error,
@@ -227,7 +224,6 @@ export function createConnectorWithoutContext(
         const searchResults = {
           results,
           searching,
-          searchingForFacetValues,
           isSearchStalled,
           error,
         };
@@ -237,11 +233,7 @@ export function createConnectorWithoutContext(
           props,
           widgets,
           searchResults,
-          metadata,
-          // @MAJOR: move this attribute on the `searchResults` it doesn't
-          // makes sense to have it into a separate argument. The search
-          // flags are on the object why not the results?
-          resultsFacetValues
+          metadata
         );
       }
 
@@ -306,18 +298,6 @@ export function createConnectorWithoutContext(
           )
         );
 
-      searchForFacetValues = (...args) => {
-        this.props.contextValue.onSearchForFacetValues(
-          // searchForFacetValues will always be defined here because the prop is only given conditionally
-          connectorDesc.searchForFacetValues!.call(
-            this,
-            this.props,
-            this.props.contextValue.store.getState().widgets,
-            ...args
-          )
-        );
-      };
-
       render() {
         const { contextValue, ...props } = this.props;
         const { providedProps } = this.state;
@@ -331,19 +311,7 @@ export function createConnectorWithoutContext(
             ? { refine: this.refine, createURL: this.createURL }
             : {};
 
-        const searchForFacetValuesProps =
-          typeof connectorDesc.searchForFacetValues === 'function'
-            ? { searchForItems: this.searchForFacetValues }
-            : {};
-
-        return (
-          <Composed
-            {...props}
-            {...providedProps}
-            {...refineProps}
-            {...searchForFacetValuesProps}
-          />
-        );
+        return <Composed {...props} {...providedProps} {...refineProps} />;
       }
     }
 

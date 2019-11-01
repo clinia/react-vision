@@ -4,7 +4,6 @@ import { Store } from '../core/createStore';
 export type VisionContext = {
   onInternalStateUpdate: (...args: any[]) => any;
   createHrefForState: (...args: any[]) => string;
-  onSearchForFacetValues: (...args: any[]) => any;
   onSearchStateChange: (...args: any[]) => any;
   onSearchParameters: (...args: any[]) => any;
   store: Store;
@@ -18,7 +17,6 @@ export const {
 } = createContext<VisionContext>({
   onInternalStateUpdate: () => undefined,
   createHrefForState: () => '#',
-  onSearchForFacetValues: () => undefined,
   onSearchStateChange: () => undefined,
   onSearchParameters: () => undefined,
   store: {} as Store,
