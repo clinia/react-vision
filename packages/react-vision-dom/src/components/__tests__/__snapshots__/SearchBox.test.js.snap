@@ -17,6 +17,7 @@ exports[`SearchBox applies its default props 1`] = `
         onInput={[Function]}
         spellCheck={false}
         type="search"
+        value=""
       />
       <div>
         <span
@@ -31,7 +32,9 @@ exports[`SearchBox applies its default props 1`] = `
       <button
         className="cvi-SearchBox-submit"
         type="submit"
-      />
+      >
+        Search
+      </button>
     </div>
   </form>
 </div>
