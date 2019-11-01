@@ -1,4 +1,4 @@
-import { SearchParameters } from 'algoliasearch-helper';
+import { SearchParameters } from 'cliniasearch-helper';
 import connect from '../connectSearchBox';
 
 jest.mock('../../core/createConnector', () => x => x);

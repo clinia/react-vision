@@ -1,4 +1,4 @@
-import algoliasearchHelper from 'algoliasearch-helper';
+import cliniasearchHelper from 'cliniasearch-helper';
 import createWidgetsManager from './createWidgetsManager';
 import createStore from './createStore';
 import { HIGHLIGHT_TAGS } from './highlight';
@@ -51,7 +51,7 @@ export default function createVisionManager({
   resultsState,
   stalledSearchDelay,
 }) {
-  const helper = algoliasearchHelper(searchClient, indexName, {
+  const helper = cliniasearchHelper(searchClient, indexName, {
     ...HIGHLIGHT_TAGS,
   });
 
@@ -316,8 +316,8 @@ export default function createVisionManager({
       return results.reduce(
         (acc, result) => ({
           ...acc,
-          [result._internalIndexId]: new algoliasearchHelper.SearchResults(
-            new algoliasearchHelper.SearchParameters(result.state),
+          [result._internalIndexId]: new cliniasearchHelper.SearchResults(
+            new cliniasearchHelper.SearchParameters(result.state),
             result.rawResults
           ),
         }),
@@ -325,8 +325,8 @@ export default function createVisionManager({
       );
     }
 
-    return new algoliasearchHelper.SearchResults(
-      new algoliasearchHelper.SearchParameters(results.state),
+    return new cliniasearchHelper.SearchResults(
+      new cliniasearchHelper.SearchParameters(results.state),
       results.rawResults
     );
   }

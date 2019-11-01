@@ -2,7 +2,7 @@ import React from 'react';
 import Adapter from 'enzyme-adapter-react-16';
 import Enzyme, { mount } from 'enzyme';
 import cliniasearch from 'cliniasearch/lite';
-import { SearchResults } from 'algoliasearch-helper';
+import { SearchResults } from 'cliniasearch-helper';
 import createVisionManager from '../createVisionManager';
 import { Vision, Index, SortBy, Configure } from 'react-vision-dom';
 

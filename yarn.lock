@@ -3505,13 +3505,6 @@ ajv@^6.1.0, ajv@^6.10.0, ajv@^6.10.2, ajv@^6.5.5:
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
 
-algoliasearch-helper@0.0.0-6ac260d:
-  version "0.0.0-6ac260d"
-  resolved "https://registry.yarnpkg.com/algoliasearch-helper/-/algoliasearch-helper-0.0.0-6ac260d.tgz#9f4a0f2c8f89eafe23559375907b4070afa4cbb1"
-  integrity sha512-wG1oVPEq4bXmNUeF2voio+0UpNRtDLTG7+OPCvTxMDIQvD2Exc0s2UsWl5fh6/Dc7O++b8Ic2g+YSVo5l+nBFg==
-  dependencies:
-    events "^1.1.1"
-
 ansi-align@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ansi-align/-/ansi-align-2.0.0.tgz#c36aeccba563b89ceb556f3690f0b1d9e3547f7f"
@@ -5271,6 +5264,15 @@ cli-width@^2.0.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/cli-width/-/cli-width-2.2.0.tgz#ff19ede8a9a5e579324147b0c11f0fbcbabed639"
   integrity sha1-/xnt6Kml5XkyQUewwR8PvLq+1jk=
+
+cliniasearch-helper@^1.0.0-beta.1:
+  version "1.0.0-beta.1"
+  resolved "https://registry.yarnpkg.com/cliniasearch-helper/-/cliniasearch-helper-1.0.0-beta.1.tgz#631c1abb0322c10f48e2b135350bab2f97ba0af7"
+  integrity sha512-wsVpKil0TVBpv/EY3iBeI+u2XcQi31DBeKL/09KCfsPouwZDo0nOulKv47/Gxdz700sIBGiIuTAzFwVFw+39Qg==
+  dependencies:
+    events "^1.1.1"
+    lodash "^4.17.5"
+    qs "^6.5.1"
 
 cliniasearch@^1.0.0-beta.1:
   version "1.0.0-beta.1"
@@ -12903,7 +12905,7 @@ qs@6.7.0:
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.7.0.tgz#41dc1a015e3d581f1621776be31afb2876a9b1bc"
   integrity sha512-VCdBRNFTX1fyE7Nb6FYoURo/SPe62QCaAyzJvUjwRaIsc+NePBEniHlvxFmmX56+HZphIGtV0XeCirBtpDrTyQ==
 
-qs@^6.6.0:
+qs@^6.5.1, qs@^6.6.0:
   version "6.9.0"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.9.0.tgz#d1297e2a049c53119cb49cca366adbbacc80b409"
   integrity sha512-27RP4UotQORTpmNQDX8BHPukOnBP3p1uUJY5UnDhaJB+rMt9iMsok724XL+UHU23bEFOHRMQ2ZhI99qOWUMGFA==

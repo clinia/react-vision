@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import createVisionManager from '../core/createVisionManager';
 import { VisionProvider, VisionContext } from '../core/context';
 import { Store } from '../core/createStore';
-import { PlainSearchParameters, SearchParameters } from 'algoliasearch-helper';
+import { PlainSearchParameters, SearchParameters } from 'cliniasearch-helper';
 import { MultiResponse } from 'cliniasearch';
 
 type ResultsState = {

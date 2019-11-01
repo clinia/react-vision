@@ -1,6 +1,6 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import algoliasearchHelper from 'algoliasearch-helper';
+import cliniasearchHelper from 'cliniasearch-helper';
 import { version, HIGHLIGHT_TAGS } from 'react-vision-core';
 
 const hasMultipleIndices = context => context && context.multiIndexContext;
@@ -8,7 +8,7 @@ const hasMultipleIndices = context => context && context.multiIndexContext;
 const getIndexId = context =>
   hasMultipleIndices(context)
     ? context.multiIndexContext.targetedIndex
-    : context.ais.mainTargetedIndex;
+    : context.cvi.mainTargetedIndex;
 
 const createSearchParametersCollector = accumulator => {
   return (getWidgetSearchParameters, context, props, searchState) => {
@@ -32,7 +32,7 @@ const getSearchParameters = (indexName, searchParameters) => {
           searchParameter.props,
           searchParameter.searchState
         ),
-      new algoliasearchHelper.SearchParameters({
+      new cliniasearchHelper.SearchParameters({
         ...HIGHLIGHT_TAGS,
         index: indexName,
       })
@@ -82,7 +82,7 @@ const multiIndexSearch = (
     ...indexIds.map(indexId => {
       const parameters = derivedParameters[indexId];
 
-      return algoliasearchHelper(client, parameters.index).searchOnce(
+      return cliniasearchHelper(client, parameters.index).searchOnce(
         parameters
       );
     }),
@@ -135,9 +135,9 @@ export const findResultsState = function(App, props) {
     searchParameters
   );
 
-  const helper = algoliasearchHelper(searchClient, sharedParameters.index);
+  const helper = cliniasearchHelper(searchClient, sharedParameters.index);
 
-  if (typeof searchClient.addAlgoliaAgent === 'function') {
+  if (typeof searchClient.addCliniaAgent === 'function') {
     searchClient.addCliniaAgent(`react-vision-server (${version})`);
   }
 
