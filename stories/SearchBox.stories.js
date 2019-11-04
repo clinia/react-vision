@@ -7,7 +7,7 @@ import { WrapWithHits } from './utils';
 
 const stories = storiesOf('SearchBox', module);
 
-stories.add('Default SearchBox', () => (
+stories.addParameters({ jest: ['SearchBox'] }).add('Default SearchBox', () => (
   <WrapWithHits
     searchBox={false}
     hasPlayground={true}
