@@ -65,18 +65,16 @@ class SearchBox extends Component<Props, State> {
   }
 
   onSubmit(event) {
+    event.preventDefault();
     const { query } = this.state;
 
     const fetchedData = mockData.filter(data =>
       data.name.toLowerCase().includes(query.toLowerCase())
     );
 
-    console.log('SUBMIT', fetchedData, query);
-
     this.setState({ data: fetchedData });
 
     if (this.props.onSubmit) this.props.onSubmit(event);
-    event.preventDefault();
   }
 
   onInput(event: React.ChangeEvent<HTMLInputElement>) {
@@ -89,7 +87,6 @@ class SearchBox extends Component<Props, State> {
       }
     });
 
-    console.log('VALUE', event.target.value);
     if (this.props.onInput) this.props.onInput(event);
   }
 
