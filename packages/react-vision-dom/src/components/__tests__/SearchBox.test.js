@@ -34,6 +34,11 @@ describe('SearchBox', () => {
     expect(wrapper.state('query')).toEqual('');
   });
 
+  it('should render input disabled when "disabled" props is true', () => {
+    const wrapper = shallow(<SearchBox disabled={true} />);
+    expect(wrapper.find('input').props('disabled')).toBeTruthy();
+  });
+
   describe('Style tests', () => {
     it('should render main div with className props', () => {
       const classNameTest = 'class-test';
@@ -63,6 +68,36 @@ describe('SearchBox', () => {
       const defaultLoadingIndicator = <LoadingIndicator />;
 
       expect(wrapper.contains(customLoadingIndicator)).toBeTruthy();
+      expect(wrapper.contains(defaultLoadingIndicator)).toBeFalsy();
+    });
+
+    it('should not render with custom loading indicator when "showLoadingIndicator" props is false', () => {
+      const customLoadingIndicator = <span>Loading</span>;
+      const wrapper = shallow(
+        <SearchBox
+          loadingIndicator={customLoadingIndicator}
+          showLoadingIndicator={false}
+          loading={true}
+        />
+      );
+      const defaultLoadingIndicator = <LoadingIndicator />;
+
+      expect(wrapper.contains(customLoadingIndicator)).toBeFalsy();
+      expect(wrapper.contains(defaultLoadingIndicator)).toBeFalsy();
+    });
+
+    it('should not render with custom loading indicator when "loading" props is false', () => {
+      const customLoadingIndicator = <span>Loading</span>;
+      const wrapper = shallow(
+        <SearchBox
+          loadingIndicator={customLoadingIndicator}
+          loading={false}
+          showLoadingIndicator={true}
+        />
+      );
+      const defaultLoadingIndicator = <LoadingIndicator />;
+
+      expect(wrapper.contains(customLoadingIndicator)).toBeFalsy();
       expect(wrapper.contains(defaultLoadingIndicator)).toBeFalsy();
     });
 
