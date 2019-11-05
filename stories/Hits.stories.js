@@ -5,6 +5,7 @@ import { object } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 
 const stories = storiesOf('Hits', module);
+
 const mockResult = [
   {
     data: {
