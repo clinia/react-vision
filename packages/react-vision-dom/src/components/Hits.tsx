@@ -12,6 +12,7 @@ type HitProps = {
   style?: React.CSSProperties;
   noResultsFound?: React.ReactNode;
   hit?: (result: SearchResult) => React.ReactNode;
+  onClick?: (event?: React.MouseEvent) => void;
 };
 
 type DefaultHitProps = {
@@ -39,13 +40,14 @@ const Hits: React.FunctionComponent<HitProps> = ({
   style,
   hit,
   noResultsFound,
+  onClick,
 }) => {
   return (
     <div className={classnames(cx('hits'), className)} style={style}>
       <div className={cx('hits-list')}>
         {Array.isArray(results) && results.length > 0
           ? results.map(searchResult => (
-              <div key={searchResult.id}>
+              <div key={searchResult.id} onClick={onClick}>
                 {hit ? (
                   hit(searchResult)
                 ) : (
@@ -55,8 +57,10 @@ const Hits: React.FunctionComponent<HitProps> = ({
                 )}
               </div>
             ))
-          : noResultsFound || <div className={cx('empty')}></div>}
-        ;
+          : noResultsFound || (
+              //Temporarily until we have the styles decided
+              <div className={cx('empty')}>No results were found</div>
+            )}
       </div>
     </div>
   );

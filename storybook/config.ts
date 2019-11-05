@@ -5,7 +5,7 @@ import { create } from '@storybook/theming';
 
 addParameters({
   options: {
-    panelPosition: 'right',
+    panelPosition: 'bottom',
     theme: create({
       base: 'light',
       brandTitle: 'react-vision',
