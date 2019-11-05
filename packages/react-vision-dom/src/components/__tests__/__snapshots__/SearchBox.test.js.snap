@@ -7,7 +7,13 @@ exports[`SearchBox applies its default props 1`] = `
   <form
     onSubmit={[Function]}
   >
-    <div>
+    <div
+      style={
+        Object {
+          "display": "flex",
+        }
+      }
+    >
       <input
         autoCapitalize="off"
         autoComplete="off"
@@ -15,14 +21,11 @@ exports[`SearchBox applies its default props 1`] = `
         className="cvi-SearchBox-input"
         id="search-box-input"
         onInput={[Function]}
+        placeholder="Search"
         spellCheck={false}
         type="search"
+        value=""
       />
-      <div>
-        <span
-          className=""
-        />
-      </div>
       <span
         className="cvi-SearchBox-clear"
         id="search-box-clear"
@@ -31,7 +34,9 @@ exports[`SearchBox applies its default props 1`] = `
       <button
         className="cvi-SearchBox-submit"
         type="submit"
-      />
+      >
+        Search
+      </button>
     </div>
   </form>
 </div>
