@@ -17,7 +17,7 @@ stories.addParameters({ jest: ['SearchBox'] }).add('Default SearchBox', () => (
       showLoadingIndicator={boolean('showLoadingIndicator', true)}
       loading={boolean('loading', true)}
       searchAsYouType={boolean('searchAsYouType', true)}
-      placeholder={text('placeholder', '')}
+      placeholder={text('placeholder', 'Default')}
       onInput={action('onInput')}
       onSubmit={action('onSubmit')}
     />

@@ -1,6 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import { createClassNames } from '../core/utils';
+import { translatable } from 'react-vision-core';
 
 export type SearchResult = {
   id: string;
@@ -13,6 +14,7 @@ type HitProps = {
   noResultsFound?: React.ReactNode;
   hit?: (result: SearchResult) => React.ReactNode;
   onClick?: (event?: React.MouseEvent) => void;
+  translate: any;
 };
 
 type DefaultHitProps = {
@@ -41,6 +43,7 @@ const Hits: React.FunctionComponent<HitProps> = ({
   hit,
   noResultsFound,
   onClick,
+  translate,
 }) => {
   return (
     <div className={classnames(cx('hits'), className)} style={style}>
@@ -59,11 +62,13 @@ const Hits: React.FunctionComponent<HitProps> = ({
             ))
           : noResultsFound || (
               //Temporarily until we have the styles decided
-              <div className={cx('empty')}>No results were found</div>
+              <div className={cx('empty')}>{translate('emptySearch')}</div>
             )}
       </div>
     </div>
   );
 };
 
-export default Hits;
+export default translatable({
+  emptySearch: 'No results were found',
+})(Hits);

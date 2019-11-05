@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import LoadingIndicator from './LoadingIndicator';
 import { createClassNames } from '../core/utils';
 import classnames from 'classnames';
+import { translatable } from 'react-vision-core';
 
 type Props = {
   currentRefinement?: string;
@@ -26,6 +27,7 @@ type Props = {
   clearButton?: (clearSearch: () => void) => React.ReactNode;
   submitButton?: React.ReactNode;
   loadingIndicator?: React.ReactNode;
+  translate: any;
 };
 
 type State = {
@@ -112,6 +114,7 @@ class SearchBox extends Component<Props, State> {
       placeholder,
       style,
       submitButton,
+      translate,
     } = this.props;
 
     const { query } = this.state;
@@ -136,7 +139,9 @@ class SearchBox extends Component<Props, State> {
               autoFocus={autoFocus}
               onFocus={onFocus}
               value={query}
-              placeholder={placeholder ? placeholder : 'Search'}
+              placeholder={
+                placeholder ? placeholder : translatable('placeholder')
+              }
             />
             {showLoadingIndicator &&
               loading &&
@@ -148,17 +153,19 @@ class SearchBox extends Component<Props, State> {
             {clearButton ? (
               clearButton(this.onClear)
             ) : (
-              <span
+              <button
                 id="search-box-clear"
                 className={cx('clear')}
                 onClick={onClear ? onClear : this.onClear}
-              />
+              >
+                {translate('clearText')}
+              </button>
             )}
             {submitButton ? (
               submitButton
             ) : (
               <button className={cx('submit')} type="submit">
-                Search
+                {translate('searchText')}
               </button>
             )}
           </div>
@@ -168,4 +175,8 @@ class SearchBox extends Component<Props, State> {
   }
 }
 
-export default SearchBox;
+export default translatable({
+  placeholder: 'Default',
+  searchText: 'Search',
+  clearText: 'Clear',
+})(SearchBox);
