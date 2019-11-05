@@ -35,7 +35,7 @@ const mockResult = [
   },
 ];
 
-stories.add('Default Hits', () => (
+stories.addParameters({ jest: ['Hits'] }).add('Default Hits', () => (
   <Vision
     indexName="health_facility"
     searchClient={{
