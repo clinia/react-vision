@@ -11,6 +11,7 @@
     "start": "yarn storybook",
     "build": "lerna run build --scope react-*",
     "watch": "lerna run watch --scope react-vision-* --parallel",
+    "release": "scripts/release.sh",
     "lint": "eslint --ext .js,.ts,.tsx .",
     "lint:fix": "eslint --ext .js,.ts,.tsx --fix .",
     "type-check": "tsc",
