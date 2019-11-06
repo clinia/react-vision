@@ -4,6 +4,7 @@ import Enzyme, { shallow, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import SearchBox from '../SearchBox';
 import LoadingIndicator from '../LoadingIndicator';
+import { createClassNames } from '../../core/utils';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -12,6 +13,7 @@ Tests that uses .dive() do that to get the inner component inside the hoc
 To our tests it's necessary to retrieve the inner component to simulate events and etc
 */
 describe('SearchBox', () => {
+  const cx = createClassNames('SearchBox');
   it('applies its default props', () => {
     const instance = renderer.create(<SearchBox refine={() => null} />);
 
@@ -29,8 +31,8 @@ describe('SearchBox', () => {
       attachTo: document.getElementsByName('div')[0],
     });
 
-    const element = wrapper.find('input');
-    expect(element.props().id).toEqual(document.activeElement.id);
+    const elementInstance = wrapper.find('input').instance();
+    expect(elementInstance).toEqual(document.activeElement);
   });
 
   it('should initialize state with empty query', () => {
@@ -187,7 +189,10 @@ describe('SearchBox', () => {
           .simulate('input', { target: { value: enteredInputValue } });
 
         expect(wrapper.state().query).toEqual(enteredInputValue);
-        wrapper.find('#search-box-clear').simulate('click');
+
+        const clearElement = wrapper.find(`.${cx('clear')}`);
+        clearElement.simulate('click');
+
         expect(wrapper.state().query).toEqual('');
       });
     });
@@ -213,7 +218,8 @@ describe('SearchBox', () => {
         const onClear = jest.fn();
 
         const wrapper = shallow(<SearchBox onClear={onClear} />).dive();
-        wrapper.find('#search-box-clear').simulate('click');
+        const clearElement = wrapper.find(`.${cx('clear')}`);
+        clearElement.simulate('click');
 
         expect(onClear).toHaveBeenCalled();
       });
