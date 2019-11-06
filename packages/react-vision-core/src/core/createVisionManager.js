@@ -7,7 +7,7 @@ import { version as ReactVersion } from 'react';
 import version from './version';
 
 function addCliniaAgents(searchClient) {
-  if (typeof searchClient.addAlgoliaAgent === 'function') {
+  if (typeof searchClient.addCliniaAgent === 'function') {
     searchClient.addCliniaAgent(`react (${ReactVersion})`);
     searchClient.addCliniaAgent(`react-vision (${version})`);
   }
@@ -199,7 +199,7 @@ export default function createVisionManager({
       if (!isDerivedHelperEmpty) {
         results[indexId] = event.results;
       } else {
-        results = event.results;
+        results = event;
       }
 
       const currentState = store.getState();
@@ -210,7 +210,7 @@ export default function createVisionManager({
         nextIsSearchStalled = false;
       }
 
-      const { resultsFacetsValues, ...partialState } = currentState;
+      const { ...partialState } = currentState;
 
       store.setState({
         ...partialState,

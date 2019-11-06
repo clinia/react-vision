@@ -1,61 +1,59 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { createClassNames } from '../core/utils';
 import { translatable } from 'react-vision-core';
 
-export type SearchResult = {
+export type Record = {
   id: string;
 };
 
 type HitProps = {
-  results: SearchResult[];
+  record: Record;
+};
+
+type Props = {
+  records: Record[];
   className?: string;
   style?: React.CSSProperties;
   noResultsFound?: React.ReactNode;
-  hit?: (result: SearchResult) => React.ReactNode;
-  onClick?: (event?: React.MouseEvent) => void;
-  translate: any;
+  hit?: React.FunctionComponent<HitProps>;
+  translate?: any;
 };
 
-type DefaultHitProps = {
-  searchResult: SearchResult;
-};
-
-const DefaultHit: React.FunctionComponent<DefaultHitProps> = ({
-  searchResult,
-}) => {
+const DefaultHit: React.FC<HitProps> = ({ record }) => {
   return (
-    <div className="default-hit-card">
-      <div className="default-hit-container">
-        <h4 className="default-hit-title">{searchResult.id}</h4>
-        <div className="card-body">{JSON.stringify(searchResult, null, 2)}</div>
-      </div>
+    <div
+      style={{
+        borderBottom: '1px solid #bbb',
+        paddingBottom: '5px',
+        marginBottom: '5px',
+        wordBreak: 'break-all',
+      }}
+    >
+      <h4>{record.id}</h4>
+      <code>{JSON.stringify(record, null, 2)}</code>
     </div>
   );
 };
 
 const cx = createClassNames('Hits');
 
-const Hits: React.FunctionComponent<HitProps> = ({
-  results,
-  className,
-  style,
-  hit,
+const Hits: React.FunctionComponent<Props> = ({
+  records,
+  className = '',
+  style = {},
+  hit: HitComponent = DefaultHit,
   noResultsFound,
-  onClick,
   translate,
 }) => {
   return (
-    <div className={classnames(cx('hits'), className)} style={style}>
-      <div className={cx('hits-list')}>
-        {Array.isArray(results) && results.length > 0
-          ? results.map(searchResult => (
-              <div key={searchResult.id} onClick={onClick}>
-                {hit ? (
-                  hit(searchResult)
-                ) : (
-                  <DefaultHit searchResult={searchResult} />
-                )}
+    <div className={classnames(cx(''), className)} style={style}>
+      <div className={cx('list')}>
+        {Array.isArray(records) && records.length > 0
+          ? records.map(record => (
+              <div className={cx('item')} key={record.id}>
+                <HitComponent record={record} />
               </div>
             ))
           : noResultsFound || (
@@ -65,6 +63,16 @@ const Hits: React.FunctionComponent<HitProps> = ({
       </div>
     </div>
   );
+};
+
+const HitPropTypes = PropTypes.shape({
+  id: PropTypes.string.isRequired,
+});
+
+Hits.propTypes = {
+  records: PropTypes.arrayOf(HitPropTypes.isRequired).isRequired,
+  className: PropTypes.string,
+  hit: PropTypes.func,
 };
 
 export default translatable({

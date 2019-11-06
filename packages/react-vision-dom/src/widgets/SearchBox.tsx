@@ -9,10 +9,10 @@ import SearchBox from '../components/SearchBox';
  * @propType {boolean} [autoFocus=false] - Should the search box be focused on render?
  * @propType {boolean} [searchAsYouType=true] - Should we search on every change to the query? If you disable this option, new searches will only be triggered by clicking the search button or by pressing the enter key while the search box is focused.
  * @propType {function} [onSubmit] - Intercept submit event sent from the SearchBox form container.
- * @propType {function} [onReset] - Listen to `reset` event sent from the SearchBox form container.
+ * @propType {function} [onClear] - Listen to `reset` event sent from the SearchBox form container.
  * @propType {function} [on*] - Listen to any events sent from the search input itself.
  * @propType {node} [submit] - Change the apparence of the default submit button (magnifying glass).
- * @propType {node} [reset] - Change the apparence of the default reset button (cross).
+ * @propType {node} [clear] - Change the apparence of the default reset button (cross).
  * @propType {node} [loadingIndicator] - Change the apparence of the default loading indicator (spinning circle).
  * @propType {string} [defaultRefinement] - Provide default refinement value when component is mounted.
  * @propType {boolean} [showLoadingIndicator=false] - Display that the search is loading. This only happens after a certain amount of time to avoid a blinking effect. This timer can be configured with `stalledSearchDelay` props on <InstantSearch>. By default, the value is 200ms.
@@ -21,12 +21,12 @@ import SearchBox from '../components/SearchBox';
  * @themeKey cvi-SearchBox-input - the search input
  * @themeKey cvi-SearchBox-submit - the submit button
  * @themeKey cvi-SearchBox-submitIcon - the default magnifier icon used with the search input
- * @themeKey cvi-SearchBox-reset - the reset button used to clear the content of the input
- * @themeKey cvi-SearchBox-resetIcon - the default reset icon used inside the reset button
+ * @themeKey cvi-SearchBox-clear - the reset button used to clear the content of the input
+ * @themeKey cvi-SearchBox-clearIcon - the default reset icon used inside the reset button
  * @themeKey cvi-SearchBox-loadingIndicator - the loading indicator container
  * @themeKey cvi-SearchBox-loadingIcon - the default loading icon
- * @translationkey submitTitle - The submit button title
- * @translationkey resetTitle - The reset button title
+ * @translationkey searchText - The submit button title
+ * @translationkey clearText - The reset button title
  * @translationkey placeholder - The label of the input placeholder
  * @example
  * import React from 'react';

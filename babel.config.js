@@ -47,7 +47,7 @@ module.exports = api => {
         ],
       },
       {
-        test: 'packages/react-instantsearch-dom-maps',
+        test: 'packages/react-vision-dom-maps',
         plugins: clean([
           '@babel/plugin-syntax-dynamic-import',
           !isRollup && 'babel-plugin-dynamic-import-node',
