@@ -5,33 +5,47 @@ exports[`SearchBox applies its default props 1`] = `
   className="cvi-SearchBox"
 >
   <form
+    action=""
+    className="cvi-SearchBox-form cvi-SearchBox"
+    noValidate={true}
+    onReset={[Function]}
     onSubmit={[Function]}
+    role="search"
   >
-    <div>
-      <input
-        autoCapitalize="off"
-        autoComplete="off"
-        autoCorrect="off"
-        className="cvi-SearchBox-input"
-        onInput={[Function]}
-        placeholder={[Function]}
-        spellCheck={false}
-        type="search"
-        value=""
-      />
-      <button
-        className="cvi-SearchBox-clear"
-        onClick={[Function]}
-      >
-        Clear
-      </button>
+    <input
+      autoCapitalize="off"
+      autoComplete="off"
+      autoCorrect="off"
+      autoFocus={false}
+      className="cvi-SearchBox-input"
+      maxLength={512}
+      onChange={[Function]}
+      placeholder="Default"
+      required={true}
+      spellCheck={false}
+      type="search"
+      value=""
+    />
+    <button
+      className="cvi-SearchBox-submit"
+      title="Search"
+      type="submit"
+    >
       <button
         className="cvi-SearchBox-submit"
         type="submit"
-      >
-        Search
-      </button>
-    </div>
+      />
+    </button>
+    <button
+      className="cvi-SearchBox-reset"
+      hidden={true}
+      title="Clear"
+      type="reset"
+    >
+      <button
+        className="cvi-SearchBox-clear"
+      />
+    </button>
   </form>
 </div>
 `;

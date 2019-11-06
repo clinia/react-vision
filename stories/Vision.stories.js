@@ -13,25 +13,9 @@ const searchClient = cliniasearch('TODO', 'test', {
   },
 });
 
-stories
-  .add('default', () => (
-    <Vision searchClient={searchClient} indexName="health_facility">
-      <SearchBox />
-      <Hits />
-    </Vision>
-  ))
-  .add('with custom search client', () => (
-    <Vision
-      indexName="health_facility"
-      searchClient={{
-        search() {
-          return Promise.resolve({
-            results: [{ records: [{ id: '1', name: 'Fake result' }] }],
-          });
-        },
-      }}
-    >
-      <SearchBox />
-      <Hits />
-    </Vision>
-  ));
+stories.add('default', () => (
+  <Vision searchClient={searchClient} indexName="health_facility">
+    <SearchBox />
+    <Hits />
+  </Vision>
+));

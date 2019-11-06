@@ -7,10 +7,11 @@ import { createClassNames } from '../../core/utils';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-/*NOTES:
-Tests that uses .dive() do that to get the inner component inside the hoc
-To our tests it's necessary to retrieve the inner component to simulate events and etc
-*/
+/**
+ * NOTES:
+ * Tests that uses .dive() do that to get the inner component inside the hoc
+ * To our tests it's necessary to retrieve the inner component to simulate events and etc
+ */
 describe('Hits', () => {
   const cx = createClassNames('Hits');
   it('applies its default props', () => {
@@ -51,10 +52,10 @@ describe('Hits', () => {
 
   describe('Custom inner components', () => {
     it('should render with custom hit component', () => {
-      const results = [{ id: '123', name: 'test' }];
+      const records = [{ id: '123', name: 'test' }];
       const customHitComponent = <h1>Test</h1>;
       const wrapper = shallow(
-        <Hits results={results} hit={_ => customHitComponent} />
+        <Hits records={records} hit={_ => customHitComponent} />
       ).dive();
 
       expect(wrapper.contains(customHitComponent)).toBeTruthy();
@@ -73,20 +74,20 @@ describe('Hits', () => {
 
   describe('DefaultHit', () => {
     it('should render with DefaultHit with resource id in the title', () => {
-      const results = [{ id: '123', name: 'test' }];
-      const wrapper = mount(<Hits results={results} />);
-      const titleElement = wrapper.find('.default-hit-title');
+      const records = [{ id: '123', name: 'test' }];
+      const wrapper = mount(<Hits records={records} />);
+      const titleElement = wrapper.find('h4');
 
-      expect(titleElement.text()).toEqual(results[0].id);
+      expect(titleElement.text()).toEqual(records[0].id);
     });
 
     it('should render DefaultHit with the resource as a JSON in the card body', () => {
-      const results = [{ id: '123', name: 'test' }];
-      const wrapper = mount(<Hits results={results} />);
+      const records = [{ id: '123', name: 'test' }];
+      const wrapper = mount(<Hits records={records} />);
 
-      const cardBodyElement = wrapper.find('.card-body');
+      const cardBodyElement = wrapper.find('code');
 
-      const expectedResult = JSON.stringify(results[0], null, 2);
+      const expectedResult = JSON.stringify(records[0], null, 2);
 
       expect(cardBodyElement.text()).toEqual(expectedResult);
     });
