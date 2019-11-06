@@ -13,25 +13,22 @@ exports[`SearchBox applies its default props 1`] = `
         autoComplete="off"
         autoCorrect="off"
         className="cvi-SearchBox-input"
-        id="search-box-input"
         onInput={[Function]}
+        placeholder="Search"
         spellCheck={false}
         type="search"
+        value=""
       />
-      <div>
-        <span
-          className=""
-        />
-      </div>
       <span
         className="cvi-SearchBox-clear"
-        id="search-box-clear"
         onClick={[Function]}
       />
       <button
         className="cvi-SearchBox-submit"
         type="submit"
-      />
+      >
+        Search
+      </button>
     </div>
   </form>
 </div>

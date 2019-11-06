@@ -4,10 +4,12 @@ import Enzyme, { shallow, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import SearchBox from '../SearchBox';
 import LoadingIndicator from '../LoadingIndicator';
+import { createClassNames } from '../../core/utils';
 
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('SearchBox', () => {
+  const cx = createClassNames('SearchBox');
   it('applies its default props', () => {
     const instance = renderer.create(<SearchBox refine={() => null} />);
 
@@ -25,13 +27,18 @@ describe('SearchBox', () => {
       attachTo: document.getElementsByName('div')[0],
     });
 
-    const element = wrapper.find('input');
-    expect(element.props().id).toEqual(document.activeElement.id);
+    const elementInstance = wrapper.find('input').instance();
+    expect(elementInstance).toEqual(document.activeElement);
   });
 
   it('should initialize state with empty query', () => {
     const wrapper = shallow(<SearchBox />);
     expect(wrapper.state('query')).toEqual('');
+  });
+
+  it('should render input disabled when "disabled" props is true', () => {
+    const wrapper = shallow(<SearchBox disabled={true} />);
+    expect(wrapper.find('input').props('disabled')).toBeTruthy();
   });
 
   describe('Style tests', () => {
@@ -54,7 +61,11 @@ describe('SearchBox', () => {
     it('should render with custom loading indicator', () => {
       const customLoadingIndicator = <span>Loading</span>;
       const wrapper = shallow(
-        <SearchBox loadingIndicator={customLoadingIndicator} />
+        <SearchBox
+          loadingIndicator={customLoadingIndicator}
+          showLoadingIndicator={true}
+          loading={true}
+        />
       );
       const defaultLoadingIndicator = <LoadingIndicator />;
 
@@ -62,9 +73,41 @@ describe('SearchBox', () => {
       expect(wrapper.contains(defaultLoadingIndicator)).toBeFalsy();
     });
 
+    it('should not render with custom loading indicator when "showLoadingIndicator" props is false', () => {
+      const customLoadingIndicator = <span>Loading</span>;
+      const wrapper = shallow(
+        <SearchBox
+          loadingIndicator={customLoadingIndicator}
+          showLoadingIndicator={false}
+          loading={true}
+        />
+      );
+      const defaultLoadingIndicator = <LoadingIndicator />;
+
+      expect(wrapper.contains(customLoadingIndicator)).toBeFalsy();
+      expect(wrapper.contains(defaultLoadingIndicator)).toBeFalsy();
+    });
+
+    it('should not render with custom loading indicator when "loading" props is false', () => {
+      const customLoadingIndicator = <span>Loading</span>;
+      const wrapper = shallow(
+        <SearchBox
+          loadingIndicator={customLoadingIndicator}
+          loading={false}
+          showLoadingIndicator={true}
+        />
+      );
+      const defaultLoadingIndicator = <LoadingIndicator />;
+
+      expect(wrapper.contains(customLoadingIndicator)).toBeFalsy();
+      expect(wrapper.contains(defaultLoadingIndicator)).toBeFalsy();
+    });
+
     it('should render with custom clear button', () => {
       const customClearButton = <button>Test</button>;
-      const wrapper = shallow(<SearchBox clearButton={customClearButton} />);
+      const wrapper = shallow(
+        <SearchBox clearButton={_ => customClearButton} />
+      );
 
       expect(wrapper.contains(customClearButton)).toBeTruthy();
       expect(wrapper.exists('#search-box-clear')).toBeFalsy();
@@ -106,7 +149,7 @@ describe('SearchBox', () => {
       });
 
       it('should submit on default input change when "searchAsYouType" prop is true ', () => {
-        const wrapper = shallow(<SearchBox searchAsYouType={true} />);
+        const wrapper = mount(<SearchBox searchAsYouType={true} />);
         const enteredInputValue = 'a';
         const spyOnSubmit = spyOn(wrapper.instance(), 'onSubmit');
 
@@ -135,7 +178,10 @@ describe('SearchBox', () => {
           .simulate('input', { target: { value: enteredInputValue } });
 
         expect(wrapper.state().query).toEqual(enteredInputValue);
-        wrapper.find('#search-box-clear').simulate('click');
+
+        const clearElement = wrapper.find(`.${cx('clear')}`);
+        clearElement.simulate('click');
+
         expect(wrapper.state().query).toEqual('');
       });
     });
@@ -161,7 +207,8 @@ describe('SearchBox', () => {
         const onClear = jest.fn();
 
         const wrapper = shallow(<SearchBox onClear={onClear} />);
-        wrapper.find('#search-box-clear').simulate('click');
+        const clearElement = wrapper.find(`.${cx('clear')}`);
+        clearElement.simulate('click');
 
         expect(onClear).toHaveBeenCalled();
       });
@@ -175,9 +222,11 @@ describe('SearchBox', () => {
       });
       it('should trigger onInput on input change', () => {
         const onInput = jest.fn();
-
+        const enteredInputValue = 'a';
         const wrapper = shallow(<SearchBox onInput={onInput} />);
-        wrapper.find('input').simulate('input');
+        wrapper
+          .find('input')
+          .simulate('input', { target: { value: enteredInputValue } });
 
         expect(onInput).toHaveBeenCalled();
       });
@@ -193,7 +242,7 @@ describe('SearchBox', () => {
         const onSubmit = jest.fn();
 
         const wrapper = shallow(<SearchBox onSubmit={onSubmit} />);
-        wrapper.find('form').simulate('submit');
+        wrapper.find('form').simulate('submit', { preventDefault: () => {} });
 
         expect(onSubmit).toHaveBeenCalled();
       });

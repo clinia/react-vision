@@ -7,10 +7,13 @@ type Props = {
   currentRefinement?: string;
   searchAsYouType?: boolean;
   className?: string;
+  placeholder?: string;
   style?: React.CSSProperties;
 
   autoFocus?: boolean;
   loading?: boolean;
+  showLoadingIndicator?: boolean;
+  disabled?: boolean;
 
   onClear?: (event: any) => void;
   onFocus?: (event: React.FocusEvent) => void;
@@ -18,9 +21,9 @@ type Props = {
   onInput?: (event: React.FormEvent<HTMLInputElement>) => void;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onKeyPress?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
-  onSubmit?: (event: React.FormEvent<HTMLFormElement>) => void;
+  onSubmit?: (event: any) => void;
 
-  clearButton?: React.ReactNode;
+  clearButton?: (clearSearch: () => void) => React.ReactNode;
   submitButton?: React.ReactNode;
   loadingIndicator?: React.ReactNode;
 };
@@ -32,6 +35,7 @@ type State = {
 const cx = createClassNames('SearchBox');
 
 class SearchBox extends Component<Props, State> {
+  formRef;
   state = {
     query: '',
   };
@@ -42,28 +46,29 @@ class SearchBox extends Component<Props, State> {
     this.onSubmit = this.onSubmit.bind(this);
     this.onInput = this.onInput.bind(this);
     this.onClear = this.onClear.bind(this);
+    this.formRef = React.createRef();
   }
 
-  onSubmit() {
-    const { query } = this.state;
-
-    console.log(query);
+  onSubmit(event) {
+    event.preventDefault();
+    if (this.props.onSubmit) this.props.onSubmit(event);
   }
 
   onInput(event: React.ChangeEvent<HTMLInputElement>) {
     const query = event.target.value;
     const { searchAsYouType } = this.props;
 
-    this.setState({ query });
+    this.setState({ query }, () => {
+      if (searchAsYouType) {
+        this.formRef.dispatchEvent(new Event('submit'));
+      }
+    });
 
-    if (searchAsYouType) {
-      this.onSubmit();
-    }
+    if (this.props.onInput) this.props.onInput(event);
   }
 
   onClear() {
     const query = '';
-
     this.setState({ query });
   }
 
@@ -72,48 +77,54 @@ class SearchBox extends Component<Props, State> {
       autoFocus,
       className,
       clearButton,
+      disabled,
       loading,
       loadingIndicator,
+      showLoadingIndicator,
       onBlur,
       onChange,
       onClear,
       onFocus,
-      onInput,
       onKeyPress,
-      onSubmit,
+      placeholder,
       style,
       submitButton,
     } = this.props;
 
+    const { query } = this.state;
+
     return (
       <div className={classnames(cx(''), className)} style={style}>
-        <form onSubmit={onSubmit ? onSubmit : this.onSubmit}>
+        <form onSubmit={this.onSubmit} ref={ref => (this.formRef = ref)}>
           <div>
             <input
-              id="search-box-input"
               type="search"
               autoComplete="off"
               autoCorrect="off"
               autoCapitalize="off"
+              disabled={disabled}
               spellCheck={false}
               className={cx('input')}
-              onInput={onInput ? onInput : this.onInput}
+              onInput={this.onInput}
               onChange={onChange}
               onKeyPress={onKeyPress}
               onBlur={onBlur}
               autoFocus={autoFocus}
               onFocus={onFocus}
+              value={query}
+              placeholder={placeholder ? placeholder : 'Search'}
             />
-            {loadingIndicator ? (
-              loadingIndicator
-            ) : (
-              <LoadingIndicator isLoading={loading} />
-            )}
+            {showLoadingIndicator &&
+              loading &&
+              (loadingIndicator ? (
+                loadingIndicator
+              ) : (
+                <LoadingIndicator isLoading={loading} />
+              ))}
             {clearButton ? (
-              clearButton
+              clearButton(this.onClear)
             ) : (
               <span
-                id="search-box-clear"
                 className={cx('clear')}
                 onClick={onClear ? onClear : this.onClear}
               />
@@ -121,7 +132,9 @@ class SearchBox extends Component<Props, State> {
             {submitButton ? (
               submitButton
             ) : (
-              <button className={cx('submit')} type="submit" />
+              <button className={cx('submit')} type="submit">
+                Search
+              </button>
             )}
           </div>
         </form>
