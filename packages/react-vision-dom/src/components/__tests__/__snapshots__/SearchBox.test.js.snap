@@ -37,7 +37,7 @@ exports[`SearchBox applies its default props 1`] = `
       />
     </button>
     <button
-      className="cvi-SearchBox-reset"
+      className="cvi-SearchBox-clear"
       hidden={true}
       title="Clear"
       type="reset"

@@ -1,4 +1,4 @@
-import React, { Component, RefObject } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import LoadingIndicator from './LoadingIndicator';
 import { createClassNames } from '../core/utils';
