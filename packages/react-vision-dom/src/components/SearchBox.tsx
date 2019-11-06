@@ -15,12 +15,12 @@ type Props = {
   showLoadingIndicator?: boolean;
   disabled?: boolean;
 
-  onClear?: (event?: any) => void;
-  onFocus?: (event?: React.FocusEvent) => void;
-  onBlur?: (event?: React.FocusEvent) => void;
+  onClear?: (event: any) => void;
+  onFocus?: (event: React.FocusEvent) => void;
+  onBlur?: (event: React.FocusEvent) => void;
   onInput?: (event: React.FormEvent<HTMLInputElement>) => void;
-  onChange?: (event?: React.ChangeEvent<HTMLInputElement>) => void;
-  onKeyPress?: (event?: React.KeyboardEvent<HTMLInputElement>) => void;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onKeyPress?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
   onSubmit?: (event: any) => void;
 
   clearButton?: (clearSearch: () => void) => React.ReactNode;
@@ -96,9 +96,8 @@ class SearchBox extends Component<Props, State> {
     return (
       <div className={classnames(cx(''), className)} style={style}>
         <form onSubmit={this.onSubmit} ref={ref => (this.formRef = ref)}>
-          <div style={{ display: 'flex' }}>
+          <div>
             <input
-              id="search-box-input"
               type="search"
               autoComplete="off"
               autoCorrect="off"
@@ -126,7 +125,6 @@ class SearchBox extends Component<Props, State> {
               clearButton(this.onClear)
             ) : (
               <span
-                id="search-box-clear"
                 className={cx('clear')}
                 onClick={onClear ? onClear : this.onClear}
               />
