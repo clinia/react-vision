@@ -15,12 +15,12 @@ type Props = {
   showLoadingIndicator?: boolean;
   disabled?: boolean;
 
-  onClear?: (event?: any) => void;
-  onFocus?: (event?: React.FocusEvent) => void;
-  onBlur?: (event?: React.FocusEvent) => void;
+  onClear?: (event: any) => void;
+  onFocus?: (event: React.FocusEvent) => void;
+  onBlur?: (event: React.FocusEvent) => void;
   onInput?: (event: React.FormEvent<HTMLInputElement>) => void;
-  onChange?: (event?: React.ChangeEvent<HTMLInputElement>) => void;
-  onKeyPress?: (event?: React.KeyboardEvent<HTMLInputElement>) => void;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onKeyPress?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
   onSubmit?: (event: any) => void;
 
   clearButton?: (clearSearch: () => void) => React.ReactNode;
@@ -30,29 +30,14 @@ type Props = {
 
 type State = {
   query: string;
-  data: any[];
 };
 
 const cx = createClassNames('SearchBox');
-
-const mockData = [
-  { id: '1', name: 'Clinic 1' },
-  { id: '2', name: 'Clinic 2' },
-  { id: '3', name: 'Clinic 3' },
-  { id: '4', name: 'Clinic 4' },
-  { id: '5', name: 'Clinic 5' },
-  { id: '6', name: 'Clinic 6' },
-  { id: '7', name: 'Clinic 7' },
-  { id: '8', name: 'Clinic 8' },
-  { id: '9', name: 'Clinic 9' },
-  { id: '10', name: 'Clinic 10' },
-];
 
 class SearchBox extends Component<Props, State> {
   formRef;
   state = {
     query: '',
-    data: [],
   };
 
   constructor(props) {
@@ -66,14 +51,6 @@ class SearchBox extends Component<Props, State> {
 
   onSubmit(event) {
     event.preventDefault();
-    const { query } = this.state;
-
-    const fetchedData = mockData.filter(data =>
-      data.name.toLowerCase().includes(query.toLowerCase())
-    );
-
-    this.setState({ data: fetchedData });
-
     if (this.props.onSubmit) this.props.onSubmit(event);
   }
 
@@ -119,9 +96,8 @@ class SearchBox extends Component<Props, State> {
     return (
       <div className={classnames(cx(''), className)} style={style}>
         <form onSubmit={this.onSubmit} ref={ref => (this.formRef = ref)}>
-          <div style={{ display: 'flex' }}>
+          <div>
             <input
-              id="search-box-input"
               type="search"
               autoComplete="off"
               autoCorrect="off"
@@ -149,7 +125,6 @@ class SearchBox extends Component<Props, State> {
               clearButton(this.onClear)
             ) : (
               <span
-                id="search-box-clear"
                 className={cx('clear')}
                 onClick={onClear ? onClear : this.onClear}
               />
