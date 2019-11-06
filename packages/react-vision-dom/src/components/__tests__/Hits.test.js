@@ -7,6 +7,10 @@ import { createClassNames } from '../../core/utils';
 
 Enzyme.configure({ adapter: new Adapter() });
 
+/*NOTES:
+Tests that uses .dive() do that to get the inner component inside the hoc
+To our tests it's necessary to retrieve the inner component to simulate events and etc
+*/
 describe('Hits', () => {
   const cx = createClassNames('Hits');
   it('applies its default props', () => {
@@ -51,7 +55,7 @@ describe('Hits', () => {
       const customHitComponent = <h1>Test</h1>;
       const wrapper = shallow(
         <Hits results={results} hit={_ => customHitComponent} />
-      );
+      ).dive();
 
       expect(wrapper.contains(customHitComponent)).toBeTruthy();
       expect(wrapper.exists('.default-hit-no-results-found')).toBeFalsy();
@@ -59,8 +63,9 @@ describe('Hits', () => {
 
     it('should render with custom noResultsFound component', () => {
       const customNoResultsFound = <h1>Test</h1>;
-
-      const wrapper = shallow(<Hits noResultsFound={customNoResultsFound} />);
+      const wrapper = shallow(
+        <Hits noResultsFound={customNoResultsFound} />
+      ).dive();
 
       expect(wrapper.contains(customNoResultsFound)).toBeTruthy();
     });

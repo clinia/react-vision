@@ -8,6 +8,10 @@ import { createClassNames } from '../../core/utils';
 
 Enzyme.configure({ adapter: new Adapter() });
 
+/*NOTES:
+Tests that uses .dive() do that to get the inner component inside the hoc
+To our tests it's necessary to retrieve the inner component to simulate events and etc
+*/
 describe('SearchBox', () => {
   const cx = createClassNames('SearchBox');
   it('applies its default props', () => {
@@ -32,12 +36,12 @@ describe('SearchBox', () => {
   });
 
   it('should initialize state with empty query', () => {
-    const wrapper = shallow(<SearchBox />);
+    const wrapper = shallow(<SearchBox />).dive();
     expect(wrapper.state('query')).toEqual('');
   });
 
   it('should render input disabled when "disabled" props is true', () => {
-    const wrapper = shallow(<SearchBox disabled={true} />);
+    const wrapper = shallow(<SearchBox disabled={true} />).dive();
     expect(wrapper.find('input').props('disabled')).toBeTruthy();
   });
 
@@ -66,7 +70,7 @@ describe('SearchBox', () => {
           showLoadingIndicator={true}
           loading={true}
         />
-      );
+      ).dive();
       const defaultLoadingIndicator = <LoadingIndicator />;
 
       expect(wrapper.contains(customLoadingIndicator)).toBeTruthy();
@@ -107,7 +111,7 @@ describe('SearchBox', () => {
       const customClearButton = <button>Test</button>;
       const wrapper = shallow(
         <SearchBox clearButton={_ => customClearButton} />
-      );
+      ).dive();
 
       expect(wrapper.contains(customClearButton)).toBeTruthy();
       expect(wrapper.exists('#search-box-clear')).toBeFalsy();
@@ -115,7 +119,10 @@ describe('SearchBox', () => {
 
     it('should render with custom submit button', () => {
       const customSubmitButton = <button>Test</button>;
-      const wrapper = shallow(<SearchBox submitButton={customSubmitButton} />);
+
+      const wrapper = shallow(
+        <SearchBox submitButton={customSubmitButton} />
+      ).dive();
 
       expect(wrapper.contains(customSubmitButton)).toBeTruthy();
       expect(wrapper.exists('.search-box-button')).toBeFalsy();
@@ -125,7 +132,7 @@ describe('SearchBox', () => {
   describe('Event tests', () => {
     describe('Default events', () => {
       it('should update state on default input change', () => {
-        const wrapper = shallow(<SearchBox />);
+        const wrapper = shallow(<SearchBox />).dive();
         const enteredInputValue = 'a';
 
         wrapper
@@ -136,7 +143,7 @@ describe('SearchBox', () => {
       });
 
       it('should not submit on default input change when "searchAsYouType" prop is not valid ', () => {
-        const wrapper = shallow(<SearchBox />);
+        const wrapper = shallow(<SearchBox />).dive();
         const enteredInputValue = 'a';
         const spyOnSubmit = spyOn(wrapper.instance(), 'onSubmit');
 
@@ -149,7 +156,10 @@ describe('SearchBox', () => {
       });
 
       it('should submit on default input change when "searchAsYouType" prop is true ', () => {
-        const wrapper = mount(<SearchBox searchAsYouType={true} />);
+        //Mounts the inner component inside the hoc
+        const wrapper = mount(
+          shallow(<SearchBox searchAsYouType={true} />).get(0)
+        );
         const enteredInputValue = 'a';
         const spyOnSubmit = spyOn(wrapper.instance(), 'onSubmit');
 
@@ -160,16 +170,17 @@ describe('SearchBox', () => {
         expect(wrapper.state().query).toEqual(enteredInputValue);
         expect(spyOnSubmit).toHaveBeenCalled();
       });
-      it('should submit on button submit', () => {
-        const spyOnSubmit = spyOn(SearchBox.prototype, 'onSubmit');
-        const wrapper = mount(<SearchBox />);
+      it('should call submit on form submit', () => {
+        const wrapper = shallow(<SearchBox />).dive();
+        const spyOnSubmit = spyOn(wrapper.instance(), 'onSubmit');
+        wrapper.instance().forceUpdate();
 
-        wrapper.find('button').simulate('submit');
+        wrapper.find('form').simulate('submit', { preventDefault: () => {} });
 
         expect(spyOnSubmit).toHaveBeenCalled();
       });
       it('should clear state on default clear search click', () => {
-        const wrapper = shallow(<SearchBox />);
+        const wrapper = shallow(<SearchBox />).dive();
         const enteredInputValue = 'a';
 
         //Simulate input to change the default state query value
@@ -190,7 +201,7 @@ describe('SearchBox', () => {
       it('should trigger onBlur on input blur', () => {
         const onBlur = jest.fn();
 
-        const wrapper = shallow(<SearchBox onBlur={onBlur} />);
+        const wrapper = shallow(<SearchBox onBlur={onBlur} />).dive();
         wrapper.find('input').simulate('blur');
 
         expect(onBlur).toHaveBeenCalled();
@@ -198,7 +209,7 @@ describe('SearchBox', () => {
       it('should trigger onChange on input change', () => {
         const onChange = jest.fn();
 
-        const wrapper = shallow(<SearchBox onChange={onChange} />);
+        const wrapper = shallow(<SearchBox onChange={onChange} />).dive();
         wrapper.find('input').simulate('change');
 
         expect(onChange).toHaveBeenCalled();
@@ -206,7 +217,7 @@ describe('SearchBox', () => {
       it('should trigger onClear on input change', () => {
         const onClear = jest.fn();
 
-        const wrapper = shallow(<SearchBox onClear={onClear} />);
+        const wrapper = shallow(<SearchBox onClear={onClear} />).dive();
         const clearElement = wrapper.find(`.${cx('clear')}`);
         clearElement.simulate('click');
 
@@ -215,7 +226,7 @@ describe('SearchBox', () => {
       it('should trigger onFocus on input focus', () => {
         const onFocus = jest.fn();
 
-        const wrapper = shallow(<SearchBox onFocus={onFocus} />);
+        const wrapper = shallow(<SearchBox onFocus={onFocus} />).dive();
         wrapper.find('input').simulate('focus');
 
         expect(onFocus).toHaveBeenCalled();
@@ -223,7 +234,7 @@ describe('SearchBox', () => {
       it('should trigger onInput on input change', () => {
         const onInput = jest.fn();
         const enteredInputValue = 'a';
-        const wrapper = shallow(<SearchBox onInput={onInput} />);
+        const wrapper = shallow(<SearchBox onInput={onInput} />).dive();
         wrapper
           .find('input')
           .simulate('input', { target: { value: enteredInputValue } });
@@ -233,7 +244,7 @@ describe('SearchBox', () => {
       it('should trigger onKeyPress on input change', () => {
         const onKeyPress = jest.fn();
 
-        const wrapper = shallow(<SearchBox onKeyPress={onKeyPress} />);
+        const wrapper = shallow(<SearchBox onKeyPress={onKeyPress} />).dive();
         wrapper.find('input').simulate('keyPress');
 
         expect(onKeyPress).toHaveBeenCalled();
@@ -241,7 +252,7 @@ describe('SearchBox', () => {
       it('should trigger onSubmit on input change', () => {
         const onSubmit = jest.fn();
 
-        const wrapper = shallow(<SearchBox onSubmit={onSubmit} />);
+        const wrapper = shallow(<SearchBox onSubmit={onSubmit} />).dive();
         wrapper.find('form').simulate('submit', { preventDefault: () => {} });
 
         expect(onSubmit).toHaveBeenCalled();
