@@ -2,31 +2,27 @@ import React from 'react';
 import classnames from 'classnames';
 import { createClassNames } from '../core/utils';
 
-export type SearchResult = {
+export type Record = {
   id: string;
 };
 
 type HitProps = {
-  results: SearchResult[];
+  records: Record[];
   className?: string;
   style?: React.CSSProperties;
   noResultsFound?: React.ReactNode;
-  hit?: (result: SearchResult) => React.ReactNode;
+  hit?: (record: Record) => React.ReactNode;
 };
 
 type DefaultHitProps = {
-  searchResult: SearchResult;
+  record: Record;
 };
 
-const DefaultHit: React.FunctionComponent<DefaultHitProps> = ({
-  searchResult,
-}) => {
+const DefaultHit: React.FunctionComponent<DefaultHitProps> = ({ record }) => {
   return (
     <div className="default-hit-card">
-      <div className="default-hit-container">
-        <h4 className="default-hit-title">{searchResult.id}</h4>
-        <div className="card-body">{JSON.stringify(searchResult, null, 2)}</div>
-      </div>
+      <h4 className="default-hit-title">{record.id}</h4>
+      <div className="card-body">{JSON.stringify(record, null, 2)}</div>
     </div>
   );
 };
@@ -34,29 +30,28 @@ const DefaultHit: React.FunctionComponent<DefaultHitProps> = ({
 const cx = createClassNames('Hits');
 
 const Hits: React.FunctionComponent<HitProps> = ({
-  results,
+  records,
   className,
   style,
   hit,
   noResultsFound,
 }) => {
   return (
-    <div className={classnames(cx('hits'), className)} style={style}>
-      <div className={cx('hits-list')}>
-        {Array.isArray(results) && results.length > 0
-          ? results.map(searchResult => (
-              <div key={searchResult.id}>
+    <div className={classnames(cx(''), className)} style={style}>
+      <div className={cx('list')}>
+        {Array.isArray(records) && records.length > 0
+          ? records.map(record => (
+              <div key={record.id}>
                 {hit ? (
-                  hit(searchResult)
+                  hit(record)
                 ) : (
                   <>
-                    <DefaultHit searchResult={searchResult} />
+                    <DefaultHit record={record} />
                   </>
                 )}
               </div>
             ))
           : noResultsFound || <div className={cx('empty')}></div>}
-        ;
       </div>
     </div>
   );

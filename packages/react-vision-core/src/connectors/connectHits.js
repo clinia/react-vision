@@ -1,15 +1,11 @@
 import createConnector from '../core/createConnector';
 import { getResults } from '../core/indexUtils';
-import { addAbsolutePositions, addQueryID } from '../core/utils';
+import { addAbsolutePositions } from '../core/utils';
 
 /**
  * connectHits connector provides the logic to create connected
  * components that will render the results retrieved from
  * Clinia.
- *
- * To configure the number of hits retrieved, use [HitsPerPage widget](widgets/HitsPerPage.html),
- * [connectHitsPerPage connector](connectors/connectHitsPerPage.html) or pass the hitsPerPage
- * prop to a [Configure](guide/Search_parameters.html) widget.
  *
  * **Warning:** you will need to use the **id** property available on every hit as a key
  * when iterating over them. This will ensure you have the best possible UI experience
@@ -23,14 +19,14 @@ import { addAbsolutePositions, addQueryID } from '../core/utils';
  * import { Vision, Highlight, connectHits } from 'react-vision-dom';
  *
  * const searchClient = cliniasearch(
- *   'latency',
- *   '6be0576ff61c053d5f9a3225e2a90f76'
+ *   'TODO',
+ *   'test'
  * );
- * const CustomHits = connectHits(({ hits }) => (
+ * const CustomHits = connectHits(({ records }) => (
  *   <div>
- *     {hits.map(hit =>
- *       <p key={hit.objectID}>
- *         <Highlight attribute="name" hit={hit} />
+ *     {records.map(record =>
+ *       <p key={record.id}>
+ *         {record.name}
  *       </p>
  *     )}
  *   </div>
@@ -55,18 +51,14 @@ export default createConnector({
     });
 
     if (!results) {
-      return { hits: [] };
+      return { records: [] };
     }
-    const hitsWithPositions = addAbsolutePositions(
-      results.hits,
-      results.hitsPerPage,
-      results.page
+    const recordsWithPositions = addAbsolutePositions(
+      results.records,
+      results.perPage,
+      results.currentPage
     );
-    const hitsWithPositionsAndQueryID = addQueryID(
-      hitsWithPositions,
-      results.queryID
-    );
-    return { hits: hitsWithPositionsAndQueryID };
+    return { records: recordsWithPositions };
   },
 
   /**

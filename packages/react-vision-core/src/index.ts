@@ -11,6 +11,10 @@ export { default as Vision } from './widgets/Vision';
 
 // Connectors
 export { default as connectHits } from './connectors/connectHits';
+export { default as connectHitsPerPage } from './connectors/connectHitsPerPage';
+export {
+  default as connectInfiniteHits,
+} from './connectors/connectInfiniteHits';
 export { default as connectSearchBox } from './connectors/connectSearchBox';
 
 // Types

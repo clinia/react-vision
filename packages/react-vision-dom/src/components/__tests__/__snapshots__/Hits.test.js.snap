@@ -2,15 +2,14 @@
 
 exports[`Hits applies its default props 1`] = `
 <div
-  className="cvi-Hits-hits"
+  className="cvi-Hits"
 >
   <div
-    className="cvi-Hits-hits-list"
+    className="cvi-Hits-list"
   >
     <div
       className="cvi-Hits-empty"
     />
-    ;
   </div>
 </div>
 `;

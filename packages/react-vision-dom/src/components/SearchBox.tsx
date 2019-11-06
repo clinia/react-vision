@@ -1,133 +1,294 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import LoadingIndicator from './LoadingIndicator';
 import { createClassNames } from '../core/utils';
+import { translatable } from 'react-vision-core';
 import classnames from 'classnames';
 
-type Props = {
+const cx = createClassNames('SearchBox');
+
+interface Props {
   currentRefinement?: string;
-  searchAsYouType?: boolean;
   className?: string;
   style?: React.CSSProperties;
+  refine: Function;
+  translate: Function;
+
+  loadingIndicator?: React.ReactNode;
+  reset?: React.ReactNode;
+  submit?: React.ReactNode;
+
+  focusShortcuts: (string | number)[];
 
   autoFocus?: boolean;
   loading?: boolean;
 
-  onClear?: (event: any) => void;
+  searchAsYouType: boolean;
+  onSubmit?: (event: React.FormEvent<HTMLFormElement>) => void;
+  onReset?: (event: React.SyntheticEvent) => void;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+
   onFocus?: (event: React.FocusEvent) => void;
   onBlur?: (event: React.FocusEvent) => void;
   onInput?: (event: React.FormEvent<HTMLInputElement>) => void;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onKeyPress?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
-  onSubmit?: (event: React.FormEvent<HTMLFormElement>) => void;
 
-  clearButton?: React.ReactNode;
-  submitButton?: React.ReactNode;
-  loadingIndicator?: React.ReactNode;
-};
+  isSearchStalled?: boolean;
+  showLoadingIndicator?: boolean;
+
+  __inputRef?: Function;
+}
+
+interface DefaultProps {}
+
+type PropsWithDefaults = Props & DefaultProps;
 
 type State = {
   query: string;
 };
 
-const cx = createClassNames('SearchBox');
-
 class SearchBox extends Component<Props, State> {
-  state = {
-    query: '',
+  static propTypes = {
+    currentRefinement: PropTypes.string,
+    className: PropTypes.string,
+    refine: PropTypes.func.isRequired,
+    translate: PropTypes.func.isRequired,
+
+    loadingIndicator: PropTypes.node,
+    reset: PropTypes.node,
+    submit: PropTypes.node,
+
+    focusShortcuts: PropTypes.arrayOf(
+      PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+    ),
+
+    autoFocus: PropTypes.bool,
+
+    searchAsYouType: PropTypes.bool,
+    onSubmit: PropTypes.func,
+    onReset: PropTypes.func,
+    onChange: PropTypes.func,
+
+    isSearchStalled: PropTypes.bool,
+    showLoadingIndicator: PropTypes.bool,
+
+    // For testing purposes
+    __inputRef: PropTypes.func,
+  };
+
+  static defaultProps = {
+    currentRefinement: '',
+    className: '',
+    autoFocus: false,
+    searchAsYouType: true,
+    showLoadingIndicator: false,
+    isSearchStalled: false,
+    // loadingIndicator: defaultLoadingIndicator,
+    // reset: defaultReset,
+    // submit: defaultSubmit,
   };
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      query: props.searchAsYouType ? null : props.currentRefinement,
+    };
+
     // We bind functions for test purposes instead of using arrow functions
     this.onSubmit = this.onSubmit.bind(this);
-    this.onInput = this.onInput.bind(this);
-    this.onClear = this.onClear.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.onReset = this.onReset.bind(this);
   }
 
-  onSubmit() {
-    const { query } = this.state;
+  input!: HTMLInputElement;
 
-    console.log(query);
+  componentDidMount() {
+    document.addEventListener('keydown', this.onKeyDown);
   }
 
-  onInput(event: React.ChangeEvent<HTMLInputElement>) {
-    const query = event.target.value;
-    const { searchAsYouType } = this.props;
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.onKeyDown);
+  }
 
-    this.setState({ query });
-
-    if (searchAsYouType) {
-      this.onSubmit();
+  componentDidUpdate(prevProps) {
+    if (
+      !this.props.searchAsYouType &&
+      prevProps.currentRefinement !== this.props.currentRefinement
+    ) {
+      this.setState({
+        query: this.props.currentRefinement!,
+      });
     }
   }
 
-  onClear() {
-    const query = '';
+  getQuery = () =>
+    this.props.searchAsYouType
+      ? this.props.currentRefinement
+      : this.state.query;
 
-    this.setState({ query });
-  }
+  onInputMount = input => {
+    this.input = input;
+    if (this.props.__inputRef) {
+      this.props.__inputRef(input);
+    }
+  };
+
+  onKeyDown = event => {
+    if (!this.props.focusShortcuts) {
+      return;
+    }
+
+    const shortcuts = this.props.focusShortcuts.map(key =>
+      typeof key === 'string' ? key.toUpperCase().charCodeAt(0) : key
+    );
+
+    const elt = event.target || event.srcElement;
+    const tagName = elt.tagName;
+    if (
+      elt.isContentEditable ||
+      tagName === 'INPUT' ||
+      tagName === 'SELECT' ||
+      tagName === 'TEXTAREA'
+    ) {
+      // already in an input
+      return;
+    }
+
+    const which = event.which || event.keyCode;
+    if (shortcuts.indexOf(which) === -1) {
+      // not the right shortcut
+      return;
+    }
+
+    this.input.focus();
+    event.stopPropagation();
+    event.preventDefault();
+  };
+
+  onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    event.stopPropagation();
+    this.input.blur();
+
+    const { refine, searchAsYouType } = this.props;
+    if (!searchAsYouType) {
+      refine(this.getQuery());
+    }
+    return false;
+  };
+
+  onChange = event => {
+    const { searchAsYouType, refine, onChange } = this.props;
+    const value = event.target.value;
+
+    if (searchAsYouType) {
+      refine(value);
+    } else {
+      this.setState({ query: value });
+    }
+
+    if (onChange) {
+      onChange(event);
+    }
+  };
+
+  onReset = event => {
+    const { searchAsYouType, refine, onReset } = this.props;
+
+    refine('');
+    this.input.focus();
+
+    if (!searchAsYouType) {
+      this.setState({ query: '' });
+    }
+
+    if (onReset) {
+      onReset(event);
+    }
+  };
 
   render() {
     const {
-      autoFocus,
       className,
-      clearButton,
-      loading,
-      loadingIndicator,
-      onBlur,
-      onChange,
-      onClear,
-      onFocus,
-      onInput,
-      onKeyPress,
-      onSubmit,
       style,
-      submitButton,
-    } = this.props;
+      translate,
+      autoFocus,
+      loadingIndicator,
+      submit,
+      reset,
+    } = this.props as PropsWithDefaults;
+    const query = this.getQuery();
+
+    const searchInputEvents = Object.keys(this.props).reduce((props, prop) => {
+      if (
+        ['onsubmit', 'onreset', 'onchange'].indexOf(prop.toLowerCase()) ===
+          -1 &&
+        prop.indexOf('on') === 0
+      ) {
+        return { ...props, [prop]: this.props[prop] };
+      }
+
+      return props;
+    }, {});
+
+    const isSearchStalled =
+      this.props.showLoadingIndicator! && this.props.isSearchStalled!;
 
     return (
       <div className={classnames(cx(''), className)} style={style}>
-        <form onSubmit={onSubmit ? onSubmit : this.onSubmit}>
-          <div>
-            <input
-              id="search-box-input"
-              type="search"
-              autoComplete="off"
-              autoCorrect="off"
-              autoCapitalize="off"
-              spellCheck={false}
-              className={cx('input')}
-              onInput={onInput ? onInput : this.onInput}
-              onChange={onChange}
-              onKeyPress={onKeyPress}
-              onBlur={onBlur}
-              autoFocus={autoFocus}
-              onFocus={onFocus}
-            />
-            {loadingIndicator ? (
-              loadingIndicator
-            ) : (
-              <LoadingIndicator isLoading={loading} />
-            )}
-            {clearButton ? (
-              clearButton
-            ) : (
-              <span
-                id="search-box-clear"
-                className={cx('clear')}
-                onClick={onClear ? onClear : this.onClear}
-              />
-            )}
-            {submitButton ? (
-              submitButton
-            ) : (
-              <button className={cx('submit')} type="submit" />
-            )}
-          </div>
+        <form
+          noValidate
+          onSubmit={this.props.onSubmit ? this.props.onSubmit : this.onSubmit}
+          onReset={this.onReset}
+          className={cx('form', isSearchStalled && 'form--stalledSearch')}
+          action=""
+          role="search"
+        >
+          <input
+            ref={this.onInputMount}
+            type="search"
+            placeholder={translate('placeholder')}
+            autoFocus={autoFocus}
+            autoComplete="off"
+            autoCorrect="off"
+            autoCapitalize="off"
+            spellCheck={false}
+            required
+            maxLength={512}
+            value={query}
+            onChange={this.onChange}
+            {...searchInputEvents}
+            className={cx('input')}
+          />
+          <button
+            type="submit"
+            title={translate('submitTitle')}
+            className={cx('submit')}
+          >
+            {submit}
+          </button>
+          <button
+            type="reset"
+            title={translate('resetTitle')}
+            className={cx('reset')}
+            hidden={!query || isSearchStalled}
+          >
+            {reset}
+          </button>
+          {this.props.showLoadingIndicator && (
+            <span hidden={!isSearchStalled} className={cx('loadingIndicator')}>
+              {loadingIndicator}
+            </span>
+          )}
         </form>
       </div>
     );
   }
 }
 
-export default SearchBox;
+export default translatable({
+  resetTitle: 'Clear the search query.',
+  submitTitle: 'Submit your search query.',
+  placeholder: 'Search here…',
+})(SearchBox);
