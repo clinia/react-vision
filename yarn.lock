@@ -5440,10 +5440,10 @@ cliniasearch-helper@^1.0.0-beta.3:
     lodash "^4.17.5"
     qs "^6.5.1"
 
-cliniasearch@^1.0.0-beta.5:
-  version "1.0.0-beta.5"
-  resolved "https://registry.yarnpkg.com/cliniasearch/-/cliniasearch-1.0.0-beta.5.tgz#965f3adeea44840625d210fb5448a043eb2c4f81"
-  integrity sha512-5R7i4qjQEeFwr4pZBxb+i6M3B2bYbgWuBTr3tMsE6srXdut6H9Z87b71+HUhZiewwSYSXSKsF08XVGgZ5xe3mA==
+cliniasearch@1.0.0-beta.4:
+  version "1.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/cliniasearch/-/cliniasearch-1.0.0-beta.4.tgz#1f29cc7eab20d6a89c094935b502bda94e29313b"
+  integrity sha512-ot3din7TZxA0fdKBqtBgUy3I1//3wZ7CkUuhQwbokAfRXwrqdtu1uM8z0r3DnL7JyAK8wTXuJibuRV+ubeP/yw==
   dependencies:
     agentkeepalive "^2.2.0"
     debug "^2.6.9"
