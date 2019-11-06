@@ -11,7 +11,7 @@ describe('connectHits', () => {
     it('provides the current records to the component', () => {
       const records = [{}];
       const props = connect.getProvidedProps({ contextValue }, null, {
-        results: { records, meta: { perPage: 2, currentPage: 2 } },
+        results: { records, meta: { perPage: 2, page: 2 } },
       });
 
       expect(props).toEqual({
@@ -22,7 +22,7 @@ describe('connectHits', () => {
     it('adds positions to the records provided to the component', () => {
       const records = [{}];
       const props = connect.getProvidedProps({ contextValue }, null, {
-        results: { records, meta: { perPage: 2, currentPage: 2 } },
+        results: { records, meta: { perPage: 2, page: 2 } },
       });
       expect(props).toEqual({
         records: [{ __position: 5 }],
@@ -53,7 +53,7 @@ describe('connectHits', () => {
         null,
         {
           results: {
-            second: { records, meta: { perPage: 2, currentPage: 2 } },
+            second: { records, meta: { perPage: 2, page: 2 } },
           },
         }
       );
@@ -69,7 +69,7 @@ describe('connectHits', () => {
         null,
         {
           results: {
-            second: { records, meta: { perPage: 2, currentPage: 2 } },
+            second: { records, meta: { perPage: 2, page: 2 } },
           },
         }
       );

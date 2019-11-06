@@ -56,7 +56,7 @@ export default createConnector({
     const recordsWithPositions = addAbsolutePositions(
       results.records,
       results.perPage,
-      results.currentPage
+      results.page
     );
     return { records: recordsWithPositions };
   },

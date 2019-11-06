@@ -15,7 +15,7 @@ const createSearchClient = () => ({
           records: [],
           meta: {
             query: '',
-            currentPage: 0,
+            page: 0,
             numPages: 0,
             perPage: 10,
             total: 0,

@@ -51,10 +51,10 @@ export const removeEmptyKey = (obj: object) => {
   return obj;
 };
 
-export function addAbsolutePositions(records, perPage, currentPage) {
+export function addAbsolutePositions(records, perPage, page) {
   return records.map((record, index) => ({
     ...record,
-    __position: perPage * currentPage + index + 1,
+    __position: perPage * page + index + 1,
   }));
 }
 

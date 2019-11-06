@@ -279,7 +279,7 @@ class SearchBox extends Component<PropsWithDefaults, State> {
           <button
             type="reset"
             title={translate('clearText')}
-            className={cx('reset')}
+            className={cx('clear')}
             hidden={!query || isSearchStalled}
           >
             {clear}
