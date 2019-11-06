@@ -38,7 +38,21 @@ const App = () => {
     <Vision searchClient={searchClient} indexName="health_facility">
       <div className="example-header">
         <img src={logo} />
-        <SearchBox />
+        <SearchBox
+          submit={
+            <svg height="30" width="40">
+              <circle
+                cx="50"
+                cy="50"
+                r="40"
+                stroke="black"
+                stroke-width="3"
+                fill="red"
+              />
+              Sorry, your browser does not support inline SVG.
+            </svg>
+          }
+        />
       </div>
       <div className="hits-body">
         <Hits hit={result => <ExampleHitComponent searchResult={result} />} />

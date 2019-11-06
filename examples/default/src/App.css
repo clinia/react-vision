@@ -19,7 +19,7 @@
   box-shadow: 0 0 5px 0 rgba(72, 89, 104, 0.23);
 }
 
-.cvi-SearchBox-submit {
+/* .cvi-SearchBox-submit {
   position: absolute;
   left: calc(361px - 52px);
   top: 10px;
@@ -28,7 +28,7 @@
   border-radius: 8px;
   background-color: #2dcebf;
   color: white;
-}
+} */
 
 .cvi-SearchBox-clear {
   position: absolute;
