@@ -51,9 +51,7 @@ const Hits: React.FunctionComponent<HitProps> = ({
                 {hit ? (
                   hit(searchResult)
                 ) : (
-                  <>
-                    <DefaultHit searchResult={searchResult} />
-                  </>
+                  <DefaultHit searchResult={searchResult} />
                 )}
               </div>
             ))
