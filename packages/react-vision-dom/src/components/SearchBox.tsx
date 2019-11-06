@@ -30,29 +30,14 @@ type Props = {
 
 type State = {
   query: string;
-  data: any[];
 };
 
 const cx = createClassNames('SearchBox');
-
-const mockData = [
-  { id: '1', name: 'Clinic 1' },
-  { id: '2', name: 'Clinic 2' },
-  { id: '3', name: 'Clinic 3' },
-  { id: '4', name: 'Clinic 4' },
-  { id: '5', name: 'Clinic 5' },
-  { id: '6', name: 'Clinic 6' },
-  { id: '7', name: 'Clinic 7' },
-  { id: '8', name: 'Clinic 8' },
-  { id: '9', name: 'Clinic 9' },
-  { id: '10', name: 'Clinic 10' },
-];
 
 class SearchBox extends Component<Props, State> {
   formRef;
   state = {
     query: '',
-    data: [],
   };
 
   constructor(props) {
@@ -66,14 +51,6 @@ class SearchBox extends Component<Props, State> {
 
   onSubmit(event) {
     event.preventDefault();
-    const { query } = this.state;
-
-    const fetchedData = mockData.filter(data =>
-      data.name.toLowerCase().includes(query.toLowerCase())
-    );
-
-    this.setState({ data: fetchedData });
-
     if (this.props.onSubmit) this.props.onSubmit(event);
   }
 
