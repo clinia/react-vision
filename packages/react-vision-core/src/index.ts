@@ -7,9 +7,11 @@ export { default as version } from './core/version';
 export { default as translatable } from './core/translatable';
 
 // Widgets
+export { default as Configure } from './widgets/Configure';
 export { default as Vision } from './widgets/Vision';
 
 // Connectors
+export { default as connectConfigure } from './connectors/connectConfigure';
 export { default as connectHits } from './connectors/connectHits';
 export { default as connectHitsPerPage } from './connectors/connectHitsPerPage';
 export {
