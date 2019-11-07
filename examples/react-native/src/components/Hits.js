@@ -27,46 +27,6 @@ const styles = StyleSheet.create({
 });
 
 class Hits extends React.Component {
-  state = {
-    records: [
-      {
-        documentType: 'health_facility',
-        type: 'CLINIC',
-        address: {
-          streetAddress: '1533 Sporer Terrace',
-          suiteNumber: null,
-          postalCode: 'W6B3R0',
-          neighborhood: null,
-          locality: null,
-          place: 'Port Irving',
-          region: 'Quebec',
-          regionCode: 'QC',
-          country: 'Canada',
-          countryCode: 'CA',
-        },
-        geoPoint: {
-          lat: 81.4272,
-          lng: -171.0446,
-        },
-        onlineBookingUrl: null,
-        distance: null,
-        openingHours: null,
-        id: '4981c3f3-49d0-426d-a363-42752ca15eab',
-        name: 'Boyle and Sons',
-        note: null,
-        phones: [
-          {
-            countryCode: '+1',
-            number: '9061145232',
-            extension: null,
-            type: 'HOME',
-          },
-        ],
-        owner: 'CLINIA',
-      },
-    ],
-  };
-
   tag = type => (
     <View style={styles.tag}>
       <Text style={styles.tagText}>{type}</Text>
@@ -87,7 +47,7 @@ class Hits extends React.Component {
     return (
       <View style={Container.hits}>
         <FlatList
-          data={this.state.records}
+          data={this.props.records}
           keyExtractor={record => record.id}
           renderItem={record => this.hit(record.item)}
         />
