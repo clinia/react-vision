@@ -36,4 +36,15 @@ export default StyleSheet.create({
     padding: Margin.normal,
     backgroundColor: 'white',
   },
+  suggestions: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+  },
+  suggestion: {
+    paddingTop: Margin.normal,
+    paddingLeft: Margin.normal,
+    paddingBottom: Margin.normal,
+    backgroundColor: 'white',
+  },
 });

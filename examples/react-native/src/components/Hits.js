@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React from 'react';
 import { View, FlatList, Text, StyleSheet } from 'react-native';
 import { connectHits } from 'react-vision-native';
