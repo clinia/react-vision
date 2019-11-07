@@ -5,6 +5,7 @@ import cliniasearch from 'cliniasearch/lite';
 import logo from './static/images/logo.svg';
 import notFound from './static/images/empty-search@2x.png';
 import { OpeningHours } from './components/OpeningHours';
+import AutoComplete from './components/AutoSuggest';
 
 const searchClient = cliniasearch('TODO', 'ClM5vDTmS4GWEL0aS7osJaRkowV8McuP', {
   hosts: {
@@ -14,9 +15,6 @@ const searchClient = cliniasearch('TODO', 'ClM5vDTmS4GWEL0aS7osJaRkowV8McuP', {
 });
 
 const index = searchClient.initIndex('health_facility');
-
-// index.search('query', { queryType: 'prefix_last' }).then().catch();
-index.search('query', { queryType: 'prefix_last' }, function(err, results) {});
 
 const ExampleHitComponent = ({ searchResult }) => {
   const {
@@ -47,14 +45,14 @@ const ExampleHitComponent = ({ searchResult }) => {
       <div className="card-footer">
         {Array.isArray(phones) && phones.length > 0 && (
           <span>
-            <i class="fa fa-phone" style={{ color: '#5B81FF' }} />
+            <i className="fa fa-phone" style={{ color: '#5B81FF' }} />
             <a href={`tel://${phones[0].countryCode}${phones[0].number}`}>
               Call
             </a>
           </span>
         )}
         <span>
-          <i class="fa fa-map-marker" style={{ color: '#2DCEBF' }} />
+          <i className="fa fa-map-marker" style={{ color: '#2DCEBF' }} />
           <a href={mapLink} target="_blank">
             Direction
           </a>
@@ -65,7 +63,7 @@ const ExampleHitComponent = ({ searchResult }) => {
 };
 
 const ExampleNotFoundComponent = () => (
-  <div class="notFound">
+  <div className="notFound">
     <img src={notFound} alt="Content not found" />
     <div>
       <h3>No results found</h3>
@@ -82,7 +80,8 @@ const App = () => {
     <Vision searchClient={searchClient} indexName="health_facility">
       <div className="example-header">
         <img src={logo} />
-        <SearchBox submit={<i class="fa fa-search"></i>} />
+        <SearchBox submit={<i className="fa fa-search"></i>} />
+        <AutoComplete client={index} />
       </div>
       <div className="hits-body">
         <Hits

@@ -10,6 +10,7 @@
   line-height: 20px;
   border-radius: 8px;
   background-color: #ffffff;
+  outline: none;
 }
 
 .cvi-SearchBox-clear {
@@ -159,4 +160,20 @@
 
 .open {
   color: #2dcebf;
+}
+
+.react-autosuggest__suggestions-container {
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.react-autosuggest__suggestions-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.react-autosuggest__suggestion {
+  padding: 5px 12px;
+  cursor: pointer;
 }
