@@ -2868,11 +2868,6 @@
   dependencies:
     defer-to-connect "^1.0.1"
 
-"@types/algoliasearch@^3.30.16":
-  version "3.34.5"
-  resolved "https://registry.yarnpkg.com/@types/algoliasearch/-/algoliasearch-3.34.5.tgz#c40e346a6c5526f9b27af7863117d1200456e7d2"
-  integrity sha512-JS+5KT9SfwzGIkoCsj7EyYHzhrsagj321BEPH3oroHYnuKUfPVoei58qLsBPo9RRa27Vb79WJssSSPBicnaAng==
-
 "@types/babel__core@^7.1.0":
   version "7.1.3"
   resolved "https://registry.yarnpkg.com/@types/babel__core/-/babel__core-7.1.3.tgz#e441ea7df63cd080dfcd02ab199e6d16a735fc30"
@@ -5436,19 +5431,19 @@ cli-width@^2.0.0:
   resolved "https://registry.yarnpkg.com/cli-width/-/cli-width-2.2.0.tgz#ff19ede8a9a5e579324147b0c11f0fbcbabed639"
   integrity sha1-/xnt6Kml5XkyQUewwR8PvLq+1jk=
 
-cliniasearch-helper@^1.0.0-beta.1:
-  version "1.0.0-beta.1"
-  resolved "https://registry.yarnpkg.com/cliniasearch-helper/-/cliniasearch-helper-1.0.0-beta.1.tgz#631c1abb0322c10f48e2b135350bab2f97ba0af7"
-  integrity sha512-wsVpKil0TVBpv/EY3iBeI+u2XcQi31DBeKL/09KCfsPouwZDo0nOulKv47/Gxdz700sIBGiIuTAzFwVFw+39Qg==
+cliniasearch-helper@^1.0.0-beta.3:
+  version "1.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/cliniasearch-helper/-/cliniasearch-helper-1.0.0-beta.3.tgz#8cd7f140cf4470af1c26f9dfc2526c8c1589accd"
+  integrity sha512-W4R0qAxGwKzoDEFTNfrSbh29gobaC2i3IWy3aSASrSLrAOlTh8FQP901aMkVvtEyr0uRiXlfMTCMQzGUS5A8HQ==
   dependencies:
     events "^1.1.1"
     lodash "^4.17.5"
     qs "^6.5.1"
 
-cliniasearch@^1.0.0-beta.1:
-  version "1.0.0-beta.1"
-  resolved "https://registry.yarnpkg.com/cliniasearch/-/cliniasearch-1.0.0-beta.1.tgz#670a88ee7f861c9b993f15d5f18d5bf8be017796"
-  integrity sha512-LjjuTVBsxr79syxveM3vywtYl8kpHSolQ+iot/WXx5i5nGyjj3UvWqi1d5pirAgo79jX+2LADt6BaxpMcy1vqA==
+cliniasearch@1.0.0-beta.4:
+  version "1.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/cliniasearch/-/cliniasearch-1.0.0-beta.4.tgz#1f29cc7eab20d6a89c094935b502bda94e29313b"
+  integrity sha512-ot3din7TZxA0fdKBqtBgUy3I1//3wZ7CkUuhQwbokAfRXwrqdtu1uM8z0r3DnL7JyAK8wTXuJibuRV+ubeP/yw==
   dependencies:
     agentkeepalive "^2.2.0"
     debug "^2.6.9"

@@ -87,8 +87,8 @@ function isControlled(props: Props) {
  * import { Vision, SearchBox, Hits } from 'react-vision-dom';
  *
  * const searchClient = cliniasearch(
- *   'latency',
- *   '6be0576ff61c053d5f9a3225e2a90f76'
+ *   'TODO',
+ *   'test'
  * );
  *
  * const App = () => (
@@ -113,8 +113,7 @@ class Vision extends Component<Props, State> {
 
     searchClient: PropTypes.shape({
       search: PropTypes.func.isRequired,
-      searchForFacetValues: PropTypes.func,
-      addAlgoliaAgent: PropTypes.func,
+      addCliniaAgent: PropTypes.func,
       clearCache: PropTypes.func,
     }).isRequired,
 

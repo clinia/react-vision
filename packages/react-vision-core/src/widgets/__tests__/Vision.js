@@ -169,7 +169,7 @@ describe('Vision', () => {
   describe('createHrefForState', () => {
     it('passes through to createURL when it is defined', () => {
       const widgetsIds = [];
-      const vm = createVisionManager({
+      const vm = createFakeVisionManager({
         transitionState: searchState => ({
           ...searchState,
           transitioned: true,

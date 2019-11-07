@@ -8,7 +8,7 @@ export function getIndexId(context) {
 
 export function getResults(searchResults, context) {
   if (searchResults.results) {
-    if (searchResults.results.hits) {
+    if (searchResults.results.records) {
       return searchResults.results;
     }
 
@@ -25,7 +25,6 @@ export function hasMultipleIndices(context) {
   return context && context.multiIndexContext;
 }
 
-// eslint-disable-next-line max-params
 export function refineValue(
   searchState,
   nextRefinement,
@@ -48,8 +47,6 @@ export function refineValue(
     // When we have a multi index page with shared widgets we should also
     // reset their page to 1 if the resetPage is provided. Otherwise the
     // indices will always be reset
-    // see: https://github.com/algolia/react-instantsearch/issues/310
-    // see: https://github.com/algolia/react-instantsearch/issues/637
     if (searchState.indices && resetPage) {
       Object.keys(searchState.indices).forEach(targetedIndex => {
         searchState = refineValue(
@@ -103,7 +100,6 @@ function refineSingleIndex(searchState, nextRefinement, resetPage) {
   return { ...searchState, ...nextRefinement, ...page };
 }
 
-// eslint-disable-next-line max-params
 function refineMultiIndexWithNamespace(
   searchState,
   nextRefinement,

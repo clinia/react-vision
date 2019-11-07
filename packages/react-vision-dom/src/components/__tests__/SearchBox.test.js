@@ -37,7 +37,7 @@ describe('SearchBox', () => {
 
   it('should initialize state with empty query', () => {
     const wrapper = shallow(<SearchBox />).dive();
-    expect(wrapper.state('query')).toEqual('');
+    expect(wrapper.state('query')).toEqual(null);
   });
 
   it('should render input disabled when "disabled" props is true', () => {
@@ -108,13 +108,12 @@ describe('SearchBox', () => {
     });
 
     it('should render with custom clear button', () => {
-      const customClearButton = <button>Test</button>;
+      const customClearButton = <div>Test</div>;
       const wrapper = shallow(
-        <SearchBox clearButton={_ => customClearButton} />
+        <SearchBox clear={_ => customClearButton} />
       ).dive();
 
       expect(wrapper.contains(customClearButton)).toBeTruthy();
-      expect(wrapper.exists('#search-box-clear')).toBeFalsy();
     });
 
     it('should render with custom submit button', () => {
