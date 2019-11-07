@@ -13,9 +13,20 @@ const searchClient = cliniasearch('TODO', 'test', {
   },
 });
 
+const customHit = record => {
+  return (
+    <div>
+      <h4>{record.name}</h4>
+    </div>
+  );
+};
+
 stories.add('default', () => (
   <Vision searchClient={searchClient} indexName="health_facility">
     <SearchBox />
-    <Hits />
+    <Hits hit={customHit} />
   </Vision>
 ));
+
+// visionManager ->
+// widgetsManager ->

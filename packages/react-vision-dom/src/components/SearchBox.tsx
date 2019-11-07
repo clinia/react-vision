@@ -13,8 +13,8 @@ interface Props {
   translate?: any;
 
   loadingIndicator?: React.ReactNode;
-  clear?: React.ReactNode;
-  submit?: React.ReactNode;
+  clearButton?: React.ReactNode;
+  submitButton?: React.ReactNode;
 
   autoFocus?: boolean;
 
@@ -39,8 +39,6 @@ interface DefaultProps {
   showLoadingIndicator: boolean;
   isSearchStalled: boolean;
   loadingIndicator: React.ReactNode;
-  clear: React.ReactNode;
-  submit: React.ReactNode;
 }
 
 type PropsWithDefaults = Props & DefaultProps;
@@ -50,10 +48,6 @@ type State = {
 };
 
 const cx = createClassNames('SearchBox');
-
-const defaultClear = <button className={cx('clear')}></button>;
-
-const defaultSubmit = <button className={cx('submit')} type="submit"></button>;
 
 class SearchBox extends Component<PropsWithDefaults, State> {
   input!: HTMLInputElement;
@@ -65,8 +59,8 @@ class SearchBox extends Component<PropsWithDefaults, State> {
     translate: PropTypes.func.isRequired,
 
     loadingIndicator: PropTypes.node,
-    clear: PropTypes.node,
-    submit: PropTypes.node,
+    clearButton: PropTypes.node,
+    submitButton: PropTypes.node,
 
     focusShortcuts: PropTypes.arrayOf(
       PropTypes.oneOfType([PropTypes.string, PropTypes.number])
@@ -93,8 +87,6 @@ class SearchBox extends Component<PropsWithDefaults, State> {
     showLoadingIndicator: false,
     isSearchStalled: false,
     loadingIndicator: <LoadingIndicator />,
-    clear: defaultClear,
-    submit: defaultSubmit,
   };
 
   constructor(props: PropsWithDefaults) {
@@ -219,8 +211,8 @@ class SearchBox extends Component<PropsWithDefaults, State> {
       translate,
       autoFocus,
       loadingIndicator,
-      submit,
-      clear,
+      submitButton,
+      clearButton,
       disabled,
     } = this.props;
     const query = this.getQuery();

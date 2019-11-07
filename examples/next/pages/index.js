@@ -7,11 +7,10 @@ import cliniasearch from 'cliniasearch/lite';
 import { findResultsState } from 'react-vision-dom/server';
 import { App } from '../components';
 
-const searchClient = cliniasearch('TODO', 'test', {
-  protocol: 'http',
+const searchClient = cliniasearch('TODO', 'ClM5vDTmS4GWEL0aS7osJaRkowV8McuP', {
   hosts: {
-    read: ['localhost:5000'],
-    write: ['localhost:5000'],
+    write: ['api.partner.staging.clinia.ca'],
+    read: ['api.partner.staging.clinia.ca'],
   },
 });
 
