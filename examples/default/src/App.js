@@ -4,7 +4,7 @@ import { Vision, SearchBox, Hits } from 'react-vision-dom';
 import cliniasearch from 'cliniasearch/lite';
 import logo from './static/images/logo.svg';
 import notFound from './static/images/empty-search@2x.png';
-import moment from 'moment';
+import { OpeningHours } from './components/OpeningHours';
 
 const searchClient = cliniasearch('TODO', 'ClM5vDTmS4GWEL0aS7osJaRkowV8McuP', {
   hosts: {
@@ -17,62 +17,6 @@ const index = searchClient.initIndex('health_facility');
 
 // index.search('query', { queryType: 'prefix_last' }).then().catch();
 index.search('query', { queryType: 'prefix_last' }, function(err, results) {});
-
-const OpeningHours = ({ openingHours }) => {
-  let openingHoursText;
-
-  if (!openingHours) {
-    openingHoursText = <span>No opening hours specified</span>;
-  } else {
-    const now = moment();
-
-    const todayOpeningHourIntervals = openingHours[now.isoWeekday()];
-
-    // No opening hours for today (null)
-    if (!todayOpeningHourIntervals)
-      openingHoursText = <span>No opening hours specified</span>;
-
-    // Closed today
-    if (todayOpeningHourIntervals.length === 0) {
-      openingHoursText = <span>Closed today</span>;
-    }
-
-    // Opened today in one intervals
-    else if (todayOpeningHourIntervals.length === 1) {
-      var firstInterval = todayOpeningHourIntervals[0];
-
-      const startHour = moment(firstInterval.start, 'HH:mm');
-      const endHour = moment(firstInterval.end, 'HH:mm');
-
-      if (firstInterval.start === '00:00' && firstInterval.end === '00:00') {
-        openingHoursText = <span className="open">Open 24 hours today</span>;
-      } else if (now.isBefore(startHour)) {
-        openingHoursText = (
-          <>
-            <span className="open">Open today: </span>
-            <span>
-              {startHour.format('LT')} - {endHour.format('LT')}
-            </span>
-          </>
-        );
-      } else {
-        openingHoursText = (
-          <>
-            <span className="open">Open now </span>
-            <span>until {endHour.format('LT')}</span>
-          </>
-        );
-      }
-    }
-  }
-
-  return (
-    <p>
-      <span className="dot" />
-      <span>{openingHoursText}</span>
-    </p>
-  );
-};
 
 const ExampleHitComponent = ({ searchResult }) => {
   const {
@@ -120,6 +64,19 @@ const ExampleHitComponent = ({ searchResult }) => {
   );
 };
 
+const ExampleNotFoundComponent = () => (
+  <div class="notFound">
+    <img src={notFound} alt="Content not found" />
+    <div>
+      <h3>No results found</h3>
+      <p>
+        Here are a couple solutions : check your spelling, remove filters or add
+        more data to your workspace!
+      </p>
+    </div>
+  </div>
+);
+
 const App = () => {
   return (
     <Vision searchClient={searchClient} indexName="health_facility">
@@ -130,33 +87,10 @@ const App = () => {
       <div className="hits-body">
         <Hits
           hit={result => <ExampleHitComponent searchResult={result.record} />}
-          noResultsFound={
-            <div class="notFound">
-              <img src={notFound} alt="Content not found" />
-              <div>
-                <h3>No results found</h3>
-                <p>
-                  Here are a couple solutions : check your spelling, remove
-                  filters or add more data to your workspace!
-                </p>
-              </div>
-            </div>
-          }
+          noResultsFound={<ExampleNotFoundComponent />}
         />
       </div>
     </Vision>
-    // <div className="cvi-SearchBox">
-    //   <div className="buttonInside">
-    //     <input className="cvi-SearchBox-input" />
-    //     <span className="cvi-SearchBox-header-span">WHAT</span>
-    //     <button className="cvi-SearchBox-submit">Clear</button>
-    //     <button className="cvi-SearchBox-clear">Search</button>
-    //     <span className="loading" />
-    //   </div>
-    //   {mockResult.map((data: any) => (
-    //     <CustomHitComponent searchResult={data} />
-    //   ))}
-    // </div>
   );
 };
 
