@@ -594,7 +594,7 @@ describe('createConnector', () => {
       expect(onSearchParameters).toHaveBeenCalledTimes(1);
       expect(onSearchParameters).toHaveBeenCalledWith(
         expect.any(Function),
-        { ais: context },
+        { cvi: context },
         { ...props, contextValue: context }
       );
     });

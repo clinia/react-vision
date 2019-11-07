@@ -5,11 +5,10 @@ import { Vision, SearchBox, Hits } from 'react-vision-dom';
 
 const stories = storiesOf('<Vision>', module);
 
-const searchClient = cliniasearch('TODO', 'test', {
-  protocol: 'http',
+const searchClient = cliniasearch('TODO', 'ClM5vDTmS4GWEL0aS7osJaRkowV8McuP', {
   hosts: {
-    read: ['localhost:5000'],
-    write: ['localhost:5000'],
+    read: ['api.partner.staging.clinia.ca'],
+    write: ['api.partner.staging.clinia.ca'],
   },
 });
 
