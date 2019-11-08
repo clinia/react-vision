@@ -36,6 +36,11 @@ export default StyleSheet.create({
     padding: Margin.normal,
     backgroundColor: 'white',
   },
+  map: {
+    flex: 1,
+    height: '100%',
+    width: '100%',
+  },
   suggestions: {
     flex: 1,
     width: '100%',
