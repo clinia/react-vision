@@ -1,5 +1,6 @@
 import React from 'react';
 import Autosuggest from 'react-autosuggest';
+import { escapeRegExp } from '../utils';
 
 export default class AutoComplete extends React.Component {
   constructor() {
@@ -37,7 +38,7 @@ export default class AutoComplete extends React.Component {
     const { value } = this.state;
 
     const highlightedSuggestion = suggestion.name.replace(
-      new RegExp(value, 'gi'),
+      new RegExp(escapeRegExp(value), 'gi'),
       match => {
         return `<strong>${match}</strong>`;
       }

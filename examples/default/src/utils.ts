@@ -17,3 +17,7 @@ export const phoneFormatter = (phone: string) => {
 
   return formattedValue;
 };
+
+export const escapeRegExp = (text: string) => {
+  return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+};
