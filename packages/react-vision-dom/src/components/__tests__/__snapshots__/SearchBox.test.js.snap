@@ -49,3 +49,582 @@ exports[`SearchBox applies its default props 1`] = `
   </form>
 </div>
 `;
+
+exports[`SearchBox applies its default props wuth custom className 1`] = `
+<div
+  className="cvi-SearchBox custom"
+>
+  <form
+    action=""
+    className="cvi-SearchBox-form cvi-SearchBox"
+    noValidate={true}
+    onReset={[Function]}
+    onSubmit={[Function]}
+    role="search"
+  >
+    <input
+      autoCapitalize="off"
+      autoComplete="off"
+      autoCorrect="off"
+      autoFocus={false}
+      className="cvi-SearchBox-input"
+      maxLength={512}
+      onChange={[Function]}
+      placeholder="Default"
+      required={true}
+      spellCheck={false}
+      type="search"
+      value=""
+    />
+    <button
+      className="cvi-SearchBox-submit"
+      title="Search"
+      type="submit"
+    >
+      <button
+        className="cvi-SearchBox-submit"
+        type="submit"
+      />
+    </button>
+    <button
+      className="cvi-SearchBox-clear"
+      hidden={true}
+      title="Clear"
+      type="reset"
+    >
+      <button
+        className="cvi-SearchBox-clear"
+      />
+    </button>
+  </form>
+</div>
+`;
+
+exports[`SearchBox applies its default props wuth custom style 1`] = `
+<div
+  className="cvi-SearchBox"
+  style={
+    Object {
+      "color": "lightgray",
+    }
+  }
+>
+  <form
+    action=""
+    className="cvi-SearchBox-form cvi-SearchBox"
+    noValidate={true}
+    onReset={[Function]}
+    onSubmit={[Function]}
+    role="search"
+  >
+    <input
+      autoCapitalize="off"
+      autoComplete="off"
+      autoCorrect="off"
+      autoFocus={false}
+      className="cvi-SearchBox-input"
+      maxLength={512}
+      onChange={[Function]}
+      placeholder="Default"
+      required={true}
+      spellCheck={false}
+      type="search"
+      value=""
+    />
+    <button
+      className="cvi-SearchBox-submit"
+      title="Search"
+      type="submit"
+    >
+      <button
+        className="cvi-SearchBox-submit"
+        type="submit"
+      />
+    </button>
+    <button
+      className="cvi-SearchBox-clear"
+      hidden={true}
+      title="Clear"
+      type="reset"
+    >
+      <button
+        className="cvi-SearchBox-clear"
+      />
+    </button>
+  </form>
+</div>
+`;
+
+exports[`SearchBox lets you customize its theme 1`] = `
+<div
+  className="cvi-SearchBox"
+>
+  <form
+    action=""
+    className="cvi-SearchBox-form cvi-SearchBox"
+    noValidate={true}
+    onReset={[Function]}
+    onSubmit={[Function]}
+    role="search"
+  >
+    <input
+      autoCapitalize="off"
+      autoComplete="off"
+      autoCorrect="off"
+      autoFocus={false}
+      className="cvi-SearchBox-input"
+      maxLength={512}
+      onChange={[Function]}
+      placeholder="Default"
+      required={true}
+      spellCheck={false}
+      type="search"
+      value=""
+    />
+    <button
+      className="cvi-SearchBox-submit"
+      title="Search"
+      type="submit"
+    >
+      <button
+        className="cvi-SearchBox-submit"
+        type="submit"
+      />
+    </button>
+    <button
+      className="cvi-SearchBox-clear"
+      hidden={true}
+      title="Clear"
+      type="reset"
+    >
+      <button
+        className="cvi-SearchBox-clear"
+      />
+    </button>
+  </form>
+</div>
+`;
+
+exports[`SearchBox lets you customize its translations 1`] = `
+<div
+  className="cvi-SearchBox"
+>
+  <form
+    action=""
+    className="cvi-SearchBox-form cvi-SearchBox"
+    noValidate={true}
+    onReset={[Function]}
+    onSubmit={[Function]}
+    role="search"
+  >
+    <input
+      autoCapitalize="off"
+      autoComplete="off"
+      autoCorrect="off"
+      autoFocus={false}
+      className="cvi-SearchBox-input"
+      maxLength={512}
+      onChange={[Function]}
+      placeholder="PLACEHOLDER"
+      required={true}
+      spellCheck={false}
+      type="search"
+      value=""
+    />
+    <button
+      className="cvi-SearchBox-submit"
+      title="Search"
+      type="submit"
+    >
+      <button
+        className="cvi-SearchBox-submit"
+        type="submit"
+      />
+    </button>
+    <button
+      className="cvi-SearchBox-clear"
+      hidden={true}
+      title="CLEAR_TITLE"
+      type="reset"
+    >
+      <button
+        className="cvi-SearchBox-clear"
+      />
+    </button>
+  </form>
+</div>
+`;
+
+exports[`SearchBox lets you give custom components for clear and submit 1`] = `
+<div
+  className="cvi-SearchBox"
+>
+  <form
+    action=""
+    className="cvi-SearchBox-form cvi-SearchBox"
+    noValidate={true}
+    onReset={[Function]}
+    onSubmit={[Function]}
+    role="search"
+  >
+    <input
+      autoCapitalize="off"
+      autoComplete="off"
+      autoCorrect="off"
+      autoFocus={false}
+      className="cvi-SearchBox-input"
+      maxLength={512}
+      onChange={[Function]}
+      placeholder="Default"
+      required={true}
+      spellCheck={false}
+      type="search"
+      value=""
+    />
+    <button
+      className="cvi-SearchBox-submit"
+      title="Search"
+      type="submit"
+    >
+      <span>
+        🔍
+      </span>
+    </button>
+    <button
+      className="cvi-SearchBox-clear"
+      hidden={true}
+      title="Clear"
+      type="reset"
+    >
+      <svg
+        viewBox="200 198 108 122"
+      >
+        <path
+          d="M200.8 220l45 46.7-20 47.4 31.7-34 50.4 39.3-34.3-52.6 30.2-68.3-49.7 51.7"
+        />
+      </svg>
+    </button>
+  </form>
+</div>
+`;
+
+exports[`SearchBox should render the loader if showLoadingIndicator is true 1`] = `
+<div
+  className="cvi-SearchBox"
+>
+  <form
+    action=""
+    className="cvi-SearchBox-form cvi-SearchBox"
+    noValidate={true}
+    onReset={[Function]}
+    onSubmit={[Function]}
+    role="search"
+  >
+    <input
+      autoCapitalize="off"
+      autoComplete="off"
+      autoCorrect="off"
+      autoFocus={false}
+      className="cvi-SearchBox-input"
+      maxLength={512}
+      onChange={[Function]}
+      placeholder="Default"
+      required={true}
+      spellCheck={false}
+      type="search"
+      value=""
+    />
+    <button
+      className="cvi-SearchBox-submit"
+      title="Search"
+      type="submit"
+    >
+      <button
+        className="cvi-SearchBox-submit"
+        type="submit"
+      />
+    </button>
+    <button
+      className="cvi-SearchBox-clear"
+      hidden={true}
+      title="Clear"
+      type="reset"
+    >
+      <button
+        className="cvi-SearchBox-clear"
+      />
+    </button>
+    <span
+      className="cvi-SearchBox-loadingIndicator"
+      hidden={true}
+    >
+      <div>
+        <span
+          className=""
+        />
+      </div>
+    </span>
+  </form>
+</div>
+`;
+
+exports[`SearchBox should render the loader if showLoadingIndicator is true 2`] = `
+<div
+  className="cvi-SearchBox"
+>
+  <form
+    action=""
+    className="cvi-SearchBox-form cvi-SearchBox-form--stalledSearch"
+    noValidate={true}
+    onReset={[Function]}
+    onSubmit={[Function]}
+    role="search"
+  >
+    <input
+      autoCapitalize="off"
+      autoComplete="off"
+      autoCorrect="off"
+      autoFocus={false}
+      className="cvi-SearchBox-input"
+      maxLength={512}
+      onChange={[Function]}
+      placeholder="Default"
+      required={true}
+      spellCheck={false}
+      type="search"
+      value=""
+    />
+    <button
+      className="cvi-SearchBox-submit"
+      title="Search"
+      type="submit"
+    >
+      <button
+        className="cvi-SearchBox-submit"
+        type="submit"
+      />
+    </button>
+    <button
+      className="cvi-SearchBox-clear"
+      hidden={true}
+      title="Clear"
+      type="reset"
+    >
+      <button
+        className="cvi-SearchBox-clear"
+      />
+    </button>
+    <span
+      className="cvi-SearchBox-loadingIndicator"
+      hidden={false}
+    >
+      <div>
+        <span
+          className=""
+        />
+      </div>
+    </span>
+  </form>
+</div>
+`;
+
+exports[`SearchBox transfers the autoFocus prop to the underlying input element 1`] = `
+<div
+  className="cvi-SearchBox"
+>
+  <form
+    action=""
+    className="cvi-SearchBox-form cvi-SearchBox"
+    noValidate={true}
+    onReset={[Function]}
+    onSubmit={[Function]}
+    role="search"
+  >
+    <input
+      autoCapitalize="off"
+      autoComplete="off"
+      autoCorrect="off"
+      autoFocus={true}
+      className="cvi-SearchBox-input"
+      maxLength={512}
+      onChange={[Function]}
+      placeholder="Default"
+      required={true}
+      spellCheck={false}
+      type="search"
+      value=""
+    />
+    <button
+      className="cvi-SearchBox-submit"
+      title="Search"
+      type="submit"
+    >
+      <button
+        className="cvi-SearchBox-submit"
+        type="submit"
+      />
+    </button>
+    <button
+      className="cvi-SearchBox-clear"
+      hidden={true}
+      title="Clear"
+      type="reset"
+    >
+      <button
+        className="cvi-SearchBox-clear"
+      />
+    </button>
+  </form>
+</div>
+`;
+
+exports[`SearchBox transfers the disabled prop to the underlying input element 1`] = `
+<div
+  className="cvi-SearchBox"
+>
+  <form
+    action=""
+    className="cvi-SearchBox-form cvi-SearchBox"
+    noValidate={true}
+    onReset={[Function]}
+    onSubmit={[Function]}
+    role="search"
+  >
+    <input
+      autoCapitalize="off"
+      autoComplete="off"
+      autoCorrect="off"
+      autoFocus={false}
+      className="cvi-SearchBox-input"
+      disabled={true}
+      maxLength={512}
+      onChange={[Function]}
+      placeholder="Default"
+      required={true}
+      spellCheck={false}
+      type="search"
+      value=""
+    />
+    <button
+      className="cvi-SearchBox-submit"
+      title="Search"
+      type="submit"
+    >
+      <button
+        className="cvi-SearchBox-submit"
+        type="submit"
+      />
+    </button>
+    <button
+      className="cvi-SearchBox-clear"
+      hidden={true}
+      title="Clear"
+      type="reset"
+    >
+      <button
+        className="cvi-SearchBox-clear"
+      />
+    </button>
+  </form>
+</div>
+`;
+
+exports[`SearchBox treats its query prop as its input value 1`] = `
+<div
+  className="cvi-SearchBox"
+>
+  <form
+    action=""
+    className="cvi-SearchBox-form cvi-SearchBox"
+    noValidate={true}
+    onReset={[Function]}
+    onSubmit={[Function]}
+    role="search"
+  >
+    <input
+      autoCapitalize="off"
+      autoComplete="off"
+      autoCorrect="off"
+      autoFocus={false}
+      className="cvi-SearchBox-input"
+      maxLength={512}
+      onChange={[Function]}
+      placeholder="Default"
+      required={true}
+      spellCheck={false}
+      type="search"
+      value="QUERY1"
+    />
+    <button
+      className="cvi-SearchBox-submit"
+      title="Search"
+      type="submit"
+    >
+      <button
+        className="cvi-SearchBox-submit"
+        type="submit"
+      />
+    </button>
+    <button
+      className="cvi-SearchBox-clear"
+      hidden={false}
+      title="Clear"
+      type="reset"
+    >
+      <button
+        className="cvi-SearchBox-clear"
+      />
+    </button>
+  </form>
+</div>
+`;
+
+exports[`SearchBox treats its query prop as its input value 2`] = `
+<div
+  className="cvi-SearchBox"
+>
+  <form
+    action=""
+    className="cvi-SearchBox-form cvi-SearchBox"
+    noValidate={true}
+    onReset={[Function]}
+    onSubmit={[Function]}
+    role="search"
+  >
+    <input
+      autoCapitalize="off"
+      autoComplete="off"
+      autoCorrect="off"
+      autoFocus={false}
+      className="cvi-SearchBox-input"
+      maxLength={512}
+      onChange={[Function]}
+      placeholder="Default"
+      required={true}
+      spellCheck={false}
+      type="search"
+      value="QUERY2"
+    />
+    <button
+      className="cvi-SearchBox-submit"
+      title="Search"
+      type="submit"
+    >
+      <button
+        className="cvi-SearchBox-submit"
+        type="submit"
+      />
+    </button>
+    <button
+      className="cvi-SearchBox-clear"
+      hidden={false}
+      title="Clear"
+      type="reset"
+    >
+      <button
+        className="cvi-SearchBox-clear"
+      />
+    </button>
+  </form>
+</div>
+`;

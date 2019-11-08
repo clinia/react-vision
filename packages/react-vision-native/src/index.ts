@@ -5,6 +5,7 @@ export { translatable } from 'react-vision-core';
 
 // Widget
 export { Configure } from 'react-vision-core';
+export { Index } from 'react-vision-core';
 export { Vision } from 'react-vision-core';
 
 // Connectors

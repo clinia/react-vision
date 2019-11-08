@@ -28,6 +28,8 @@ interface Props {
   isSearchStalled: boolean;
   showLoadingIndicator?: boolean;
   disabled?: boolean;
+
+  __inputRef: (el: any) => void;
 }
 
 interface DefaultProps {
@@ -82,6 +84,8 @@ class SearchBox extends Component<PropsWithDefaults, State> {
     isSearchStalled: PropTypes.bool,
     showLoadingIndicator: PropTypes.bool,
     disabled: PropTypes.bool,
+
+    __inputRef: PropTypes.func,
   };
 
   static defaultProps = {
@@ -136,6 +140,9 @@ class SearchBox extends Component<PropsWithDefaults, State> {
 
   onInputMount = input => {
     this.input = input;
+    if (this.props.__inputRef) {
+      this.props.__inputRef(input);
+    }
   };
 
   onKeyDown = event => {
@@ -271,14 +278,14 @@ class SearchBox extends Component<PropsWithDefaults, State> {
           />
           <button
             type="submit"
-            title={translate('searchText')}
+            title={translate('searchTitle')}
             className={cx('submit')}
           >
             {submit}
           </button>
           <button
             type="reset"
-            title={translate('clearText')}
+            title={translate('clearTitle')}
             className={cx('clear')}
             hidden={!query || isSearchStalled}
           >
@@ -297,6 +304,6 @@ class SearchBox extends Component<PropsWithDefaults, State> {
 
 export default translatable({
   placeholder: 'Default',
-  searchText: 'Search',
-  clearText: 'Clear',
+  searchTitle: 'Search',
+  clearTitle: 'Clear',
 })(SearchBox);
