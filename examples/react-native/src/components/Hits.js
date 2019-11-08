@@ -2,18 +2,18 @@ import React from 'react';
 import { View, FlatList, Text, StyleSheet } from 'react-native';
 import { connectHits } from 'react-vision-native';
 
-import { Container, Typography, Margin } from '../styles';
+import { Container, Typography, Margin, Color } from '../styles';
 
 const styles = StyleSheet.create({
   tag: {
     borderRadius: 5,
-    backgroundColor: '#007AFF',
+    backgroundColor: Color.primary,
     alignSelf: 'flex-start',
   },
   tagText: {
     ...Typography.subText,
     padding: Margin.smaller,
-    color: '#FFFFFF',
+    color: 'white',
   },
   title: {
     ...Typography.title,

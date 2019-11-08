@@ -8,6 +8,7 @@ import { Vision } from 'react-vision-dom';
 
 import List from './src/pages/List';
 import Map from './src/pages/Map';
+import { Color } from './src/styles';
 
 const searchClient = cliniasearch('TODO', 'ClM5vDTmS4GWEL0aS7osJaRkowV8McuP', {
   hosts: {
@@ -33,20 +34,24 @@ const TabNavigator = createBottomTabNavigator(
     defaultNavigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ tintColor }) => {
         const { routeName } = navigation.state;
+        let icon;
+        switch (routeName) {
+          case 'Map':
+            icon = require('./assets/map.png');
+            break;
+          case 'List':
+            icon = require('./assets/list.png');
+            break;
+          default:
+            break;
+        }
         return (
-          <Image
-            style={{ width: 20, height: 20, tintColor }}
-            source={
-              routeName === 'List'
-                ? require('./assets/list.png')
-                : require('./assets/map.png')
-            }
-          />
+          <Image style={{ width: 20, height: 20, tintColor }} source={icon} />
         );
       },
     }),
     tabBarOptions: {
-      activeTintColor: '#007AFF',
+      activeTintColor: Color.primary,
       inactiveTintColor: 'gray',
     },
   }

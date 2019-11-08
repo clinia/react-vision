@@ -26,10 +26,7 @@ class Map extends React.Component {
 
   render() {
     return (
-      <Search
-        navigation={this.props.navigation}
-        isSearching={this.state.isSearching}
-      >
+      <Search isSearching={this.state.isSearching}>
         <Text
           style={[Typography.title, { alignSelf: 'center', marginTop: 100 }]}
         >

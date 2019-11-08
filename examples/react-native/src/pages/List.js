@@ -25,11 +25,7 @@ class List extends React.Component {
 
   render() {
     return (
-      <Search
-        navigation={this.props.navigation}
-        isSearching={this.state.isSearching}
-        toggleSearch={this.toggleSearch}
-      >
+      <Search isSearching={this.state.isSearching}>
         <Hits />
       </Search>
     );

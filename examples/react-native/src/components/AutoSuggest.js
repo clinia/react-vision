@@ -7,8 +7,21 @@ import {
   StyleSheet,
   Keyboard,
 } from 'react-native';
+import { withNavigation } from 'react-navigation';
 
-import { Container, Typography, Margin } from '../styles';
+import { Container, Typography, Margin, Color } from '../styles';
+
+const styles = StyleSheet.create({
+  separator: {
+    paddingBottom: Margin.normal,
+    borderBottomColor: Color.separator,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+  },
+  suggestion: {
+    ...Container.suggestion,
+    paddingBottom: 0,
+  },
+});
 
 class AutoSuggest extends React.Component {
   state = {
@@ -20,10 +33,11 @@ class AutoSuggest extends React.Component {
   };
 
   onPress = record => {
-    const { toggleSearch } = this.props;
+    const { navigation } = this.props;
 
     console.log(record.suggestion);
 
+    const toggleSearch = navigation.getParam('toggleSearch');
     if (toggleSearch) {
       toggleSearch(false);
     }
@@ -34,15 +48,9 @@ class AutoSuggest extends React.Component {
   suggestion = record => (
     <TouchableOpacity
       onPress={() => this.onPress(record)}
-      style={[Container.suggestion, { paddingBottom: 0 }]}
+      style={styles.suggestion}
     >
-      <View
-        style={{
-          paddingBottom: Margin.normal,
-          borderBottomColor: '#E0E0E0',
-          borderBottomWidth: StyleSheet.hairlineWidth,
-        }}
-      >
+      <View style={styles.separator}>
         <Text style={Typography.Text}>{record.suggestion}</Text>
       </View>
     </TouchableOpacity>
@@ -62,4 +70,4 @@ class AutoSuggest extends React.Component {
   }
 }
 
-export default AutoSuggest;
+export default withNavigation(AutoSuggest);

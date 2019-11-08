@@ -1,6 +1,5 @@
 const background = '#EFEFF4';
-const navigationBarBackground = '#F9F9F9';
-const navigationBarAccent = '#D7D7DB';
+const separator = '#E0E0E0';
 
 const primary = '#9BD8D8';
 const primaryAccent = '#1DA89F';
@@ -11,8 +10,7 @@ const placeholder = '#8E8E93';
 
 export default {
   background,
-  navigationBarBackground,
-  navigationBarAccent,
+  separator,
   primary,
   primaryAccent,
   placeholder,

@@ -1,6 +1,7 @@
 import React from 'react';
 import { TextInput, StyleSheet } from 'react-native';
 import { connectSearchBox } from 'react-vision-native';
+import { withNavigation } from 'react-navigation';
 
 import { Input, Color, Margin } from '../styles';
 
@@ -53,7 +54,8 @@ class SearchBox extends React.Component {
   };
 
   toggleSearch = isSearching => {
-    const { toggleSearch } = this.props;
+    const { navigation } = this.props;
+    const toggleSearch = navigation.getParam('toggleSearch');
     if (toggleSearch) {
       toggleSearch(isSearching);
     }
@@ -80,4 +82,4 @@ class SearchBox extends React.Component {
   }
 }
 
-export default connectSearchBox(SearchBox);
+export default withNavigation(connectSearchBox(SearchBox));
