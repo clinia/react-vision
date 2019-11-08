@@ -1542,10 +1542,10 @@ cliniasearch-helper@^1.0.0-beta.3:
     lodash "^4.17.5"
     qs "^6.5.1"
 
-cliniasearch@1.0.0-beta.4:
-  version "1.0.0-beta.4"
-  resolved "https://registry.yarnpkg.com/cliniasearch/-/cliniasearch-1.0.0-beta.4.tgz#1f29cc7eab20d6a89c094935b502bda94e29313b"
-  integrity sha512-ot3din7TZxA0fdKBqtBgUy3I1//3wZ7CkUuhQwbokAfRXwrqdtu1uM8z0r3DnL7JyAK8wTXuJibuRV+ubeP/yw==
+cliniasearch@1.0.0-beta.8:
+  version "1.0.0-beta.8"
+  resolved "https://registry.yarnpkg.com/cliniasearch/-/cliniasearch-1.0.0-beta.8.tgz#dad1cc7c74ff4bf34bf614fbdf97d96c3252c435"
+  integrity sha512-HgivVgbFSmw1Tp0gnZOu7GD32MWAAlN+vI/xluXd7n7Ip5PCAjDZ5O+46U79k4rq81BADHhqCFCYv+6wQ4BmEQ==
   dependencies:
     agentkeepalive "^2.2.0"
     debug "^2.6.9"
@@ -4436,6 +4436,13 @@ react-native-web@^0.11.7:
     ws "^1.1.5"
     xmldoc "^0.4.0"
     yargs "^9.0.0"
+
+react-navigation-stack@^1.10.3:
+  version "1.10.3"
+  resolved "https://registry.yarnpkg.com/react-navigation-stack/-/react-navigation-stack-1.10.3.tgz#e714e442b20427f0d2d3c18fce1f9e8cfe69be0b"
+  integrity sha512-1gksFi/g/Lg9sBhgLlD0OiEB5xnatHb4C0eNMA5tli9cTVlhq375XNPIqOiTyftibBmjdApAsZFj5srUCoOu/w==
+  dependencies:
+    prop-types "^15.7.2"
 
 react-navigation-tabs@^2.5.6:
   version "2.5.6"

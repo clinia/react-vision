@@ -23,6 +23,12 @@ const styles = StyleSheet.create({
     ...Typography.text,
     marginTop: Margin.small,
   },
+  noContentFound: {
+    ...Typography.text,
+    marginTop: Margin.big,
+    textAlign: 'center',
+    width: '100%',
+  },
 });
 
 class Hits extends React.Component {
@@ -32,8 +38,10 @@ class Hits extends React.Component {
     </View>
   );
 
-  hit = record => (
-    <View style={Container.hit}>
+  hit = (record, isLast) => (
+    <View
+      style={[Container.hit, isLast ? { marginBottom: Margin.normal } : {}]}
+    >
       {this.tag(record.type)}
       <Text style={styles.title}>{record.name}</Text>
       <Text style={styles.text}>
@@ -43,12 +51,18 @@ class Hits extends React.Component {
   );
 
   render() {
+    const { records } = this.props;
     return (
       <View style={Container.hits}>
         <FlatList
-          data={this.props.records}
+          data={records}
           keyExtractor={record => record.id}
-          renderItem={record => this.hit(record.item)}
+          renderItem={record =>
+            this.hit(record.item, record.index === records.length - 1)
+          }
+          ListEmptyComponent={
+            <Text style={styles.noContentFound}>No results found</Text>
+          }
         />
       </View>
     );

@@ -1,14 +1,16 @@
 import React from 'react';
-import { View, TextInput, Button, StyleSheet } from 'react-native';
+import { TextInput, StyleSheet } from 'react-native';
 import { connectSearchBox } from 'react-vision-native';
 
-import { Container, Buttons, Input, Color, Margin } from '../styles';
+import { Input, Color, Margin } from '../styles';
 
 const styles = StyleSheet.create({
   input: {
     ...Input.input,
     flexGrow: 1,
+    marginLeft: Margin.normal,
     marginRight: Margin.normal,
+    marginBottom: Margin.small,
   },
 });
 
@@ -46,35 +48,34 @@ class SearchBox extends React.Component {
 
     this.props.refine(query);
     this.input.blur();
+
+    this.toggleSearch(false);
+  };
+
+  toggleSearch = isSearching => {
+    const { toggleSearch } = this.props;
+    if (toggleSearch) {
+      toggleSearch(isSearching);
+    }
   };
 
   render() {
-    const { toggleSearch } = this.props;
     return (
-      <View style={Container.searchBox}>
-        <TextInput
-          value={this.state.query}
-          style={styles.input}
-          placeholder="Search a clinic, a speciality..."
-          placeholderColor={Color.placeholder}
-          blurOnSubmit={true}
-          autoCorrect={false}
-          returnKeyType="search"
-          onChangeText={this.onTextChange}
-          onFocus={() => toggleSearch(true)}
-          onBlur={() => toggleSearch(false)}
-          onSubmitEditing={this.onPress}
-          ref={ref => {
-            this.input = ref;
-          }}
-        />
-        <Button
-          onPress={this.onPress}
-          title="Search"
-          accessibilityLabel="Search"
-          style={Buttons.primary}
-        />
-      </View>
+      <TextInput
+        value={this.state.query}
+        style={styles.input}
+        placeholder="Search a clinic, a speciality..."
+        placeholderColor={Color.placeholder}
+        autoCorrect={false}
+        returnKeyType="search"
+        onChangeText={this.onTextChange}
+        onFocus={() => this.toggleSearch(true)}
+        onBlur={() => this.toggleSearch(false)}
+        onSubmitEditing={this.onPress}
+        ref={ref => {
+          this.input = ref;
+        }}
+      />
     );
   }
 }

@@ -24,13 +24,13 @@ export default StyleSheet.create({
     paddingBottom: Margin.normal,
   },
   hits: {
-    paddingLeft: Margin.normal,
-    paddingRight: Margin.normal,
     flex: 1,
     height: '100%',
     width: '100%',
   },
   hit: {
+    marginLeft: Margin.normal,
+    marginRight: Margin.normal,
     borderRadius: Radius.normal,
     marginTop: Margin.normal,
     padding: Margin.normal,
