@@ -38,6 +38,12 @@ export const OpeningHours = ({ openingHours }) => {
             </span>
           </>
         );
+      } else if (now.isAfter(startHour) && now.isAfter(endHour)) {
+        openingHoursText = (
+          <>
+            <span className="open">Closed now</span>
+          </>
+        );
       } else {
         openingHoursText = (
           <>

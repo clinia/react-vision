@@ -80,8 +80,8 @@ const App = () => {
     <Vision searchClient={searchClient} indexName="health_facility">
       <div className="example-header">
         <img src={logo} />
-        <SearchBox submit={<i className="fa fa-search"></i>} />
         <AutoComplete client={index} />
+        <SearchBox submit={<i className="fa fa-search"></i>} />
       </div>
       <div className="hits-body">
         <Hits

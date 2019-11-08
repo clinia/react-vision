@@ -8,13 +8,42 @@
   font-weight: 300;
   letter-spacing: 0.16px;
   line-height: 20px;
-  border-radius: 8px;
+  border-radius: 0px 8px 8px 0px;
   background-color: #ffffff;
   outline: none;
+  padding-left: 10px;
+  border: none;
+  box-shadow: 0 0 5px 0 rgba(72, 89, 104, 0.23);
+}
+
+.cvi-AutoComplete-input {
+  height: 48px;
+  width: 361px;
+  font-family: 'CircularStd';
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: 0.16px;
+  line-height: 20px;
+  border-radius: 8px 0px 0px 8px;
+  background-color: #ffffff;
+  outline: none;
+  padding-left: 10px;
+  border: none;
+  box-shadow: 0 0 5px 0 rgba(72, 89, 104, 0.23);
 }
 
 .cvi-SearchBox-clear {
   display: none;
+}
+
+.cvi-SearchBox-submit {
+  margin-right: 10px;
+  height: 38px;
+  width: 52px;
+  border-radius: 8px;
+  background-color: #2dcebf;
+  color: white;
+  outline: none;
 }
 
 /* EXAMPLES */

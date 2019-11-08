@@ -52,7 +52,8 @@ export default class AutoComplete extends React.Component {
       placeholder: 'Search',
       value,
       onChange: this.onChange,
-      className: 'cvi-SearchBox-input',
+      className: 'cvi-AutoComplete-input',
+      type: 'search',
     };
 
     return (
