@@ -1,5 +1,5 @@
 import { SearchParameters } from 'cliniasearch-helper';
-import connect from '../connectSearchBox';
+import connect from '../connectAutoComplete';
 
 jest.mock('../../core/createConnector', () => x => x);
 
@@ -7,15 +7,52 @@ let props;
 let params;
 
 describe('connectAutoComplete', () => {
+  describe('suggestions', () => {
+    const contextValue = { mainTargetedIndex: 'index' };
+
+    it('provides the current suggestions to the component', () => {
+      const suggestions = [{}];
+      const providedProps = connect.getProvidedProps(
+        { contextValue },
+        {},
+        {},
+        {},
+        {
+          results: { suggestions },
+        }
+      );
+
+      expect(providedProps).toEqual({
+        suggestions: suggestions.map(suggestion =>
+          expect.objectContaining(suggestion)
+        ),
+        currentRefinement: '',
+      });
+    });
+
+    it("doesn't render when no suggestions are available", () => {
+      const providedProps = connect.getProvidedProps(
+        { contextValue },
+        {},
+        {},
+        {},
+        {
+          results: null,
+        }
+      );
+      expect(providedProps).toEqual({ suggestions: [], currentRefinement: '' });
+    });
+  });
+
   describe('single index', () => {
     const contextValue = { mainTargetedIndex: 'index' };
 
     it('provides the correct props to the component', () => {
       props = connect.getProvidedProps({ contextValue }, {}, {});
-      expect(props).toEqual({ currentRefinement: '' });
+      expect(props).toEqual({ currentRefinement: '', suggestions: [] });
 
       props = connect.getProvidedProps({ contextValue }, { query: 'yep' }, {});
-      expect(props).toEqual({ currentRefinement: 'yep' });
+      expect(props).toEqual({ currentRefinement: 'yep', suggestions: [] });
     });
 
     it("calling refine updates the widget's search state", () => {
@@ -40,6 +77,7 @@ describe('connectAutoComplete', () => {
         )
       ).toEqual({
         currentRefinement: 'yaw',
+        suggestions: [],
       });
     });
 
@@ -74,14 +112,14 @@ describe('connectAutoComplete', () => {
         {},
         {}
       );
-      expect(props).toEqual({ currentRefinement: '' });
+      expect(props).toEqual({ currentRefinement: '', suggestions: [] });
 
       props = connect.getProvidedProps(
         { contextValue, indexContextValue },
         { indices: { second: { query: 'yep' } } },
         {}
       );
-      expect(props).toEqual({ currentRefinement: 'yep' });
+      expect(props).toEqual({ currentRefinement: 'yep', suggestions: [] });
     });
 
     it("calling refine updates the widget's search state", () => {
@@ -125,6 +163,7 @@ describe('connectAutoComplete', () => {
         )
       ).toEqual({
         currentRefinement: 'yaw',
+        suggestions: [],
       });
     });
 

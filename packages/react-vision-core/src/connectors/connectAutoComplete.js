@@ -36,10 +36,12 @@ function cleanUp(props, searchState, context) {
 }
 
 function getResults(searchForSuggestionsResults) {
-  if (searchForSuggestionsResults.results) {
-    if (searchForSuggestionsResults.results.suggestions) {
-      return searchForSuggestionsResults.results;
-    }
+  if (
+    searchForSuggestionsResults &&
+    searchForSuggestionsResults.results &&
+    searchForSuggestionsResults.results.suggestions
+  ) {
+    return searchForSuggestionsResults.results;
   }
 
   return null;
@@ -61,7 +63,6 @@ export default createConnector({
 
   propTypes: {
     defaultRefinement: PropTypes.string,
-    types: PropTypes.arrayOf(PropTypes.string),
   },
 
   getProvidedProps(
@@ -117,7 +118,6 @@ export default createConnector({
 
   searchForSuggestions(props, searchState, nextRefinement) {
     return {
-      types: props.types,
       query: nextRefinement,
     };
   },
