@@ -38,7 +38,9 @@ describe('createVisionManager', () => {
       isSearchStalled: true,
       metadata: [],
       results: null,
+      resultsSuggestions: null,
       searching: false,
+      searchingForSuggestions: false,
       widgets: {},
     });
 

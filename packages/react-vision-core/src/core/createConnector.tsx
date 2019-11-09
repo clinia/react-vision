@@ -39,6 +39,7 @@ export type ConnectorDescription = {
    * hook when the widget will unmount. Receives (props, searchState) and return a cleaned state.
    */
   cleanUp?: (...args: any[]) => any;
+  searchForSuggestions?: (...args: any[]) => any;
   shouldComponentUpdate?: (...args: any[]) => boolean;
   /**
    * PropTypes forwarded to the wrapped component.
@@ -215,7 +216,9 @@ export function createConnectorWithoutContext(
         const {
           widgets,
           results,
+          resultsSuggestions,
           searching,
+          searchingForSuggestions,
           isSearchStalled,
           metadata,
           error,
@@ -228,12 +231,18 @@ export function createConnectorWithoutContext(
           error,
         };
 
+        const searchForSuggestionsResults = {
+          results: resultsSuggestions,
+          searching: searchingForSuggestions,
+        };
+
         return connectorDesc.getProvidedProps.call(
           this,
           props,
           widgets,
           searchResults,
-          metadata
+          metadata,
+          searchForSuggestionsResults
         );
       }
 
@@ -287,6 +296,18 @@ export function createConnectorWithoutContext(
         );
       };
 
+      searchForSuggestions = (...args) => {
+        // searchForSuggestions will always be defined here because the prop is only given conditionally
+        this.props.contextValue.onSearchForSuggestions(
+          connectorDesc.searchForSuggestions!.call(
+            this,
+            this.props,
+            this.props.contextValue.store.getState().widgets,
+            ...args
+          )
+        );
+      };
+
       createURL = (...args) =>
         this.props.contextValue.createHrefForState(
           // refine will always be defined here because the prop is only given conditionally
@@ -311,7 +332,19 @@ export function createConnectorWithoutContext(
             ? { refine: this.refine, createURL: this.createURL }
             : {};
 
-        return <Composed {...props} {...providedProps} {...refineProps} />;
+        const searchForSuggestionsProps =
+          typeof connectorDesc.searchForSuggestions === 'function'
+            ? { searchForSuggestions: this.searchForSuggestions }
+            : {};
+
+        return (
+          <Composed
+            {...props}
+            {...providedProps}
+            {...refineProps}
+            {...searchForSuggestionsProps}
+          />
+        );
       }
     }
 

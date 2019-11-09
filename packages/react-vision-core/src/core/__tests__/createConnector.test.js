@@ -12,7 +12,9 @@ describe('createConnector', () => {
   const createFakeState = props => ({
     widgets: {},
     results: {},
+    resultsSuggestions: {},
     searching: false,
+    searchForSuggestions: false,
     isSearchStalled: false,
     metadata: {},
     error: {},
@@ -36,6 +38,7 @@ describe('createConnector', () => {
   const createFakeContext = props => ({
     onInternalStateUpdate() {},
     createHrefForState() {},
+    onSearchForSuggestions() {},
     onSearchStateChange() {},
     onSearchParameters() {},
     store: createFakeStore(),
@@ -79,7 +82,11 @@ describe('createConnector', () => {
           isSearchStalled: state.isSearchStalled,
           error: state.error,
         },
-        state.metadata
+        state.metadata,
+        {
+          results: state.resultsSuggestions,
+          searching: state.searchingSuggestions,
+        }
       );
 
       expect(wrapper.find(Fake).props()).toEqual({

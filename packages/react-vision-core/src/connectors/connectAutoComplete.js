@@ -4,7 +4,6 @@ import {
   cleanUpValue,
   refineValue,
   getCurrentRefinementValue,
-  getIndexId,
 } from '../core/indexUtils';
 
 const getId = () => 'query';
@@ -36,29 +35,59 @@ function cleanUp(props, searchState, context) {
   return cleanUpValue(searchState, context, getId());
 }
 
+function getResults(searchForSuggestionsResults) {
+  if (searchForSuggestionsResults.results) {
+    if (searchForSuggestionsResults.results.suggestions) {
+      return searchForSuggestionsResults.results;
+    }
+  }
+
+  return null;
+}
+
 /**
- * connectSearchBox connector provides the logic to build a widget that will
+ * connectAutoComplete connector provides the logic to build a widget that will
  * let the user search for a query
- * @name connectSearchBox
+ * @name connectAutoComplete
  * @kind connector
  * @propType {string} [defaultRefinement] - Provide a default value for the query
  * @providedPropType {function} refine - a function to change the current query
+ * @providedPropType {function} searchForSuggestions - a function to search for suggestions
  * @providedPropType {string} currentRefinement - the current query used
  * @providedPropType {boolean} isSearchStalled - a flag that indicates if Vision has detected that searches are stalled
  */
 export default createConnector({
-  displayName: 'CliniaSearchBox',
+  displayName: 'CliniaAutoComplete',
 
   propTypes: {
     defaultRefinement: PropTypes.string,
+    types: PropTypes.arrayOf(PropTypes.string),
   },
 
-  getProvidedProps(props, searchState, searchResults) {
+  getProvidedProps(
+    props,
+    searchState,
+    searchResults,
+    _meta,
+    searchForSuggestionsResults
+  ) {
+    const results = getResults(searchForSuggestionsResults);
+    const currentRefinement = getCurrentRefinement(props, searchState, {
+      cvi: props.contextValue,
+      multiIndexContext: props.indexContextValue,
+    });
+
+    if (!results) {
+      return {
+        currentRefinement,
+        suggestions: [],
+        isSearchStalled: searchResults.isSearchStalled,
+      };
+    }
+
     return {
-      currentRefinement: getCurrentRefinement(props, searchState, {
-        cvi: props.contextValue,
-        multiIndexContext: props.indexContextValue,
-      }),
+      currentRefinement,
+      suggestions: results.suggestions,
       isSearchStalled: searchResults.isSearchStalled,
     };
   },
@@ -86,32 +115,10 @@ export default createConnector({
     );
   },
 
-  getMetadata(props, searchState) {
-    const id = getId(props);
-    const currentRefinement = getCurrentRefinement(props, searchState, {
-      cvi: props.contextValue,
-      multiIndexContext: props.indexContextValue,
-    });
+  searchForSuggestions(props, searchState, nextRefinement) {
     return {
-      id,
-      index: getIndexId({
-        cvi: props.contextValue,
-        multiIndexContext: props.indexContextValue,
-      }),
-      items:
-        currentRefinement === null
-          ? []
-          : [
-              {
-                label: `${id}: ${currentRefinement}`,
-                value: nextState =>
-                  refine(props, nextState, '', {
-                    cvi: props.contextValue,
-                    multiIndexContext: props.indexContextValue,
-                  }),
-                currentRefinement,
-              },
-            ],
+      types: props.types,
+      query: nextRefinement,
     };
   },
 });

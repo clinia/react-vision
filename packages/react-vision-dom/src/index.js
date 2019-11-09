@@ -9,6 +9,7 @@ export { Index } from 'react-vision-core';
 export { Vision } from 'react-vision-core';
 
 // Connectors
+export { connectAutoComplete } from 'react-vision-core';
 export { connectConfigure } from 'react-vision-core';
 export { connectSearchBox } from 'react-vision-core';
 export { connectHits } from 'react-vision-core';

@@ -23,6 +23,7 @@ type VisionManager = {
     mainParameters: SearchParameters;
     derivedParameters: SearchParameters;
   };
+  onSearchForSuggestions: (...args: any[]) => any;
   onExternalStateUpdate: (...args: any[]) => any;
   transitionState: any;
   updateClient: any;
@@ -33,6 +34,7 @@ type VisionManager = {
 
 type SearchClient = {
   search: (requests: Array<{}>) => Promise<{}>;
+  suggest: (request: any) => Promise<{}>;
 };
 
 type SearchState = any;
@@ -170,6 +172,7 @@ class Vision extends Component<Props, State> {
       store: visionManager.store,
       widgetsManager: visionManager.widgetsManager,
       mainTargetedIndex: this.props.indexName,
+      onSearchForSuggestions: this.onSearchForSuggestions.bind(this),
       onInternalStateUpdate: this.onWidgetsInternalStateUpdate.bind(this),
       createHrefForState: this.createHrefForState.bind(this),
       onSearchStateChange: this.onSearchStateChange.bind(this),
@@ -249,6 +252,10 @@ class Vision extends Component<Props, State> {
         searchState
       );
     }
+  }
+
+  onSearchForSuggestions(suggestState) {
+    this.state.visionManager.onSearchForSuggestions(suggestState);
   }
 
   getKnownKeys() {

@@ -25,8 +25,8 @@ import SearchBox from '../components/SearchBox';
  * @themeKey cvi-SearchBox-clearIcon - the default reset icon used inside the reset button
  * @themeKey cvi-SearchBox-loadingIndicator - the loading indicator container
  * @themeKey cvi-SearchBox-loadingIcon - the default loading icon
- * @translationkey searchText - The submit button title
- * @translationkey clearText - The reset button title
+ * @translationkey searchTitle - The submit button title
+ * @translationkey clearTitle - The reset button title
  * @translationkey placeholder - The label of the input placeholder
  * @example
  * import React from 'react';

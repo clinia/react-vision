@@ -12,6 +12,9 @@ export { default as Index } from './widgets/Index';
 export { default as Vision } from './widgets/Vision';
 
 // Connectors
+export {
+  default as connectAutoComplete,
+} from './connectors/connectAutoComplete';
 export { default as connectConfigure } from './connectors/connectConfigure';
 export { default as connectHits } from './connectors/connectHits';
 export { default as connectHitsPerPage } from './connectors/connectHitsPerPage';

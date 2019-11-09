@@ -22,7 +22,7 @@ describe('connectHits', () => {
     it('adds positions to the records provided to the component', () => {
       const records = [{}];
       const props = connect.getProvidedProps({ contextValue }, null, {
-        results: { records, meta: { perPage: 2, page: 2 } },
+        results: { records, perPage: 2, page: 2 },
       });
       expect(props).toEqual({
         records: [{ __position: 5 }],
@@ -69,7 +69,7 @@ describe('connectHits', () => {
         null,
         {
           results: {
-            second: { records, meta: { perPage: 2, page: 2 } },
+            second: { records, perPage: 2, page: 2 },
           },
         }
       );
