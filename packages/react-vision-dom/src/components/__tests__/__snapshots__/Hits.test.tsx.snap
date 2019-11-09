@@ -33,7 +33,7 @@ exports[`Hits accepts a custom className 1`] = `
 </div>
 `;
 
-exports[`Hits accepts a hitComponent prop 1`] = `
+exports[`Hits accepts a hit prop 1`] = `
 <div
   className="cvi-Hits"
   style={Object {}}
