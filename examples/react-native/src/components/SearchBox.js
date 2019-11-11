@@ -4,7 +4,7 @@ import { TextInput, StyleSheet } from 'react-native';
 import { connectSearchBox } from 'react-vision-native';
 import { withNavigation } from 'react-navigation';
 
-import { setQuery } from '../redux/actions';
+import { setQuery, setIsSearching } from '../redux/actions';
 import { Input, Color, Margin } from '../styles';
 
 const styles = StyleSheet.create({
@@ -38,13 +38,7 @@ class SearchBox extends React.Component {
     this.toggleSearch(false);
   };
 
-  toggleSearch = isSearching => {
-    const { navigation } = this.props;
-    const toggleSearch = navigation.getParam('toggleSearch');
-    if (toggleSearch) {
-      toggleSearch(isSearching);
-    }
-  };
+  toggleSearch = isSearching => this.props.setIsSearching(isSearching);
 
   render() {
     const { query } = this.props;
@@ -70,5 +64,5 @@ class SearchBox extends React.Component {
 
 export default connect(
   mapStateToProps,
-  { setQuery }
+  { setQuery, setIsSearching }
 )(withNavigation(connectSearchBox(SearchBox)));
