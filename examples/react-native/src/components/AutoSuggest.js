@@ -9,12 +9,9 @@ import {
   StyleSheet,
   Keyboard,
 } from 'react-native';
-import {
-  connectAutoComplete,
-  connectSuggestionResults,
-} from 'react-vision-core';
+import { connectAutoComplete } from 'react-vision-core';
 
-import { randomId } from '../helpers/utils'
+import { randomId } from '../helpers/utils';
 import { Container, Typography, Margin, Color } from '../styles';
 import { setIsSearching, setQuery } from '../redux/actions';
 
