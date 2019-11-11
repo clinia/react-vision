@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
 import {
   FlatList,
   Text,
@@ -7,9 +8,9 @@ import {
   StyleSheet,
   Keyboard,
 } from 'react-native';
-import { withNavigation } from 'react-navigation';
 
 import { Container, Typography, Margin, Color } from '../styles';
+import { setIsSearching } from '../redux/actions';
 
 const styles = StyleSheet.create({
   separator: {
@@ -33,14 +34,9 @@ class AutoSuggest extends React.Component {
   };
 
   onPress = record => {
-    const { navigation } = this.props;
-
     console.log(record.suggestion);
 
-    const toggleSearch = navigation.getParam('toggleSearch');
-    if (toggleSearch) {
-      toggleSearch(false);
-    }
+    this.props.setIsSearching(false);
 
     Keyboard.dismiss();
   };
@@ -68,4 +64,7 @@ class AutoSuggest extends React.Component {
   }
 }
 
-export default withNavigation(AutoSuggest);
+export default connect(
+  null,
+  { setIsSearching }
+)(AutoSuggest);

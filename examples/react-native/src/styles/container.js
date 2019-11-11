@@ -16,18 +16,6 @@ export default StyleSheet.create({
     height: '100%',
     width: '100%',
   },
-  searchBox: {
-    display: 'flex',
-    flexDirection: 'row',
-    width: '100%',
-    borderWidth: StyleSheet.hairlineWidth,
-    borderColor: Color.navigationBarAccent,
-    backgroundColor: Color.navigationBarBackground,
-    paddingTop: Margin.appTop,
-    paddingLeft: Margin.normal,
-    paddingRight: Margin.normal,
-    paddingBottom: Margin.normal,
-  },
   hit: {
     marginLeft: Margin.normal,
     marginRight: Margin.normal,

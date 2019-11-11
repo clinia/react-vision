@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 import { TextInput, StyleSheet } from 'react-native';
 import { connectSearchBox } from 'react-vision-native';
-import { withNavigation } from 'react-navigation';
 
 import { setQuery, setIsSearching } from '../redux/actions';
 import { Input, Color, Margin } from '../styles';
@@ -62,7 +62,10 @@ class SearchBox extends React.Component {
   }
 }
 
-export default connect(
-  mapStateToProps,
-  { setQuery, setIsSearching }
-)(withNavigation(connectSearchBox(SearchBox)));
+export default compose(
+  connect(
+    mapStateToProps,
+    { setQuery, setIsSearching }
+  ),
+  connectSearchBox
+)(SearchBox);
