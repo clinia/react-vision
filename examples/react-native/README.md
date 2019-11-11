@@ -25,7 +25,3 @@ OR
 ```
 yarn start --web
 ```
-
-## License
-
-React Vision is [MIT licensed](LICENSE).
