@@ -65,3 +65,7 @@ export function find<TItem = any>(
   }
   return undefined;
 }
+
+export const escapeRegExp = (text: string) => {
+  return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+};
