@@ -1,3 +1,4 @@
+export { connectAutoComplete } from 'react-vision-core';
 export { connectConfigure } from 'react-vision-core';
 export { connectHits } from 'react-vision-core';
 export { connectHitsPerPage } from 'react-vision-core';
