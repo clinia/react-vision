@@ -1,6 +1,6 @@
-# cvi-react-native-example
+# example-react-native
 
-This is an example showcasing how the React Vision lirvary can be used to power a react-native application.
+This is an example showcasing how the React Vision library can be used to power a react-native application.
 
 ## Installation
 
@@ -25,10 +25,6 @@ OR
 ```
 yarn start --web
 ```
-
-## Contributing
-
-We welcome all contributors, from casual to regular. You are only one command away to start the developer environment, [read our CONTRIBUTING guide](CONTRIBUTING.md).
 
 ## License
 
