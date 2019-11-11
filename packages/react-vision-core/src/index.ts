@@ -22,6 +22,9 @@ export {
   default as connectInfiniteHits,
 } from './connectors/connectInfiniteHits';
 export { default as connectSearchBox } from './connectors/connectSearchBox';
+export {
+  default as connectSuggestionResults,
+} from './connectors/connectSuggestionResults';
 
 // Types
 export * from './types';
