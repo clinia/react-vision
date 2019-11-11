@@ -8,9 +8,13 @@ export { default as translatable } from './core/translatable';
 
 // Widgets
 export { default as Configure } from './widgets/Configure';
+export { default as Index } from './widgets/Index';
 export { default as Vision } from './widgets/Vision';
 
 // Connectors
+export {
+  default as connectAutoComplete,
+} from './connectors/connectAutoComplete';
 export { default as connectConfigure } from './connectors/connectConfigure';
 export { default as connectHits } from './connectors/connectHits';
 export { default as connectHitsPerPage } from './connectors/connectHitsPerPage';
@@ -18,6 +22,9 @@ export {
   default as connectInfiniteHits,
 } from './connectors/connectInfiniteHits';
 export { default as connectSearchBox } from './connectors/connectSearchBox';
+export {
+  default as connectSuggestionResults,
+} from './connectors/connectSuggestionResults';
 
 // Types
 export * from './types';

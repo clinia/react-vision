@@ -7,9 +7,7 @@ import {
   getIndexId,
 } from '../core/indexUtils';
 
-function getId() {
-  return 'query';
-}
+const getId = () => 'query';
 
 function getCurrentRefinement(props, searchState, context) {
   const id = getId(props);
