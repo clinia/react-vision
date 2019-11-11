@@ -1,6 +1,6 @@
 import Page from './page';
 
-class ExamplePage extends Page {
+class ExampleSearchBoxHitsPage extends Page {
   get searchBoxInput() {
     return $('.cvi-SearchBox-input');
   }
@@ -41,4 +41,4 @@ class ExamplePage extends Page {
   }
 }
 
-export default new ExamplePage();
+export default new ExampleSearchBoxHitsPage();
