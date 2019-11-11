@@ -25,10 +25,10 @@ const ExampleHitComponent = ({ searchResult }) => {
     openingHours,
   } = searchResult;
 
-  const mapLink = `https://www.google.ca/maps/dir/${streetAddress.replace(
+  const mapLink = `https://www.google.ca/maps/dir//${streetAddress.replace(
     ' ',
     '+'
-  )}/@${geoPoint.lat},${geoPoint.lng}/`;
+  )}`;
 
   return (
     <div className="card">
