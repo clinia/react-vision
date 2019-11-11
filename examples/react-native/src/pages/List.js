@@ -2,11 +2,14 @@ import React from 'react';
 
 import Content from '../components/Content';
 import Hits from '../components/Hits';
-import SearchBox from '../components/SearchBox';
+import Header from '../components/Header';
 
 class List extends React.Component {
   static navigationOptions = {
-    headerTitle: <SearchBox />,
+    headerTitle: <Header />,
+    headerStyle: {
+      height: 80,
+    },
   };
 
   render() {

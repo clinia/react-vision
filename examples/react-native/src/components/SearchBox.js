@@ -13,7 +13,6 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     marginLeft: Margin.normal,
     marginRight: Margin.normal,
-    marginBottom: Margin.small,
   },
 });
 
