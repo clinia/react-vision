@@ -27,21 +27,6 @@ class SearchBox extends React.Component {
     initialRefinement: undefined,
   };
 
-  componentDidMount() {
-    // const { currentRefinement } = this.props;
-    // this.props.setQuery(currentRefinement);
-  }
-
-  componentDidUpdate() {
-    // const { currentRefinement } = this.props;
-    // if (this.state.initialRefinement !== currentRefinement) {
-    //   this.setState({
-    //     query: currentRefinement,
-    //     initialRefinement: currentRefinement,
-    //   });
-    // }
-  }
-
   onTextChange = text => this.props.setQuery(text);
 
   onPress = () => {
