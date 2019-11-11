@@ -1,8 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { TextInput, StyleSheet } from 'react-native';
 import { connectSearchBox } from 'react-vision-native';
 import { withNavigation } from 'react-navigation';
 
+import { setQuery } from '../redux/actions';
 import { Input, Color, Margin } from '../styles';
 
 const styles = StyleSheet.create({
@@ -15,37 +17,35 @@ const styles = StyleSheet.create({
   },
 });
 
+const mapStateToProps = state => ({
+  query: state.store.query,
+});
+
 class SearchBox extends React.Component {
   input;
   state = {
     initialRefinement: undefined,
-    query: null,
   };
 
   componentDidMount() {
-    const { currentRefinement } = this.props;
-    this.setState({
-      query: currentRefinement,
-      initialRefinement: currentRefinement,
-    });
+    // const { currentRefinement } = this.props;
+    // this.props.setQuery(currentRefinement);
   }
 
   componentDidUpdate() {
-    const { currentRefinement } = this.props;
-    if (this.state.initialRefinement !== currentRefinement) {
-      this.setState({
-        query: currentRefinement,
-        initialRefinement: currentRefinement,
-      });
-    }
+    // const { currentRefinement } = this.props;
+    // if (this.state.initialRefinement !== currentRefinement) {
+    //   this.setState({
+    //     query: currentRefinement,
+    //     initialRefinement: currentRefinement,
+    //   });
+    // }
   }
 
-  onTextChange = text => {
-    this.setState({ query: text });
-  };
+  onTextChange = text => this.props.setQuery(text);
 
   onPress = () => {
-    const { query } = this.state;
+    const { query } = this.props;
 
     this.props.refine(query);
     this.input.blur();
@@ -62,9 +62,10 @@ class SearchBox extends React.Component {
   };
 
   render() {
+    const { query } = this.props;
     return (
       <TextInput
-        value={this.state.query}
+        value={query}
         style={styles.input}
         placeholder="Search a clinic, a speciality..."
         placeholderColor={Color.placeholder}
@@ -82,4 +83,7 @@ class SearchBox extends React.Component {
   }
 }
 
-export default withNavigation(connectSearchBox(SearchBox));
+export default connect(
+  mapStateToProps,
+  { setQuery }
+)(withNavigation(connectSearchBox(SearchBox)));

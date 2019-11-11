@@ -1,8 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-import Search from '../components/Search';
+import Content from '../components/Content';
 import SearchBox from '../components/SearchBox';
 import MapView from '../components/MapView';
+import { setIsSearching } from '../redux/actions';
 
 class Map extends React.Component {
   static navigationOptions = ({ navigation }) => ({
@@ -11,25 +13,22 @@ class Map extends React.Component {
     ),
   });
 
-  state = {
-    isSearching: false,
-  };
-
   componentDidMount() {
-    this.props.navigation.setParams({ toggleSearch: this.toggleSearch });
+    this.props.navigation.setParams({
+      toggleSearch: isSearching => this.props.setIsSearching(isSearching),
+    });
   }
-
-  toggleSearch = isSearching => {
-    this.setState({ isSearching });
-  };
 
   render() {
     return (
-      <Search isSearching={this.state.isSearching}>
+      <Content>
         <MapView />
-      </Search>
+      </Content>
     );
   }
 }
 
-export default Map;
+export default connect(
+  null,
+  { setIsSearching }
+)(Map);

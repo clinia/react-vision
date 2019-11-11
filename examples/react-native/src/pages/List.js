@@ -1,8 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-import Search from '../components/Search';
+import Content from '../components/Content';
 import Hits from '../components/Hits';
 import SearchBox from '../components/SearchBox';
+import { setIsSearching } from '../redux/actions';
 
 class List extends React.Component {
   static navigationOptions = ({ navigation }) => ({
@@ -11,25 +13,22 @@ class List extends React.Component {
     ),
   });
 
-  state = {
-    isSearching: false,
-  };
-
   componentDidMount() {
-    this.props.navigation.setParams({ toggleSearch: this.toggleSearch });
+    this.props.navigation.setParams({
+      toggleSearch: isSearching => this.props.setIsSearching(isSearching),
+    });
   }
-
-  toggleSearch = isSearching => {
-    this.setState({ isSearching });
-  };
 
   render() {
     return (
-      <Search isSearching={this.state.isSearching}>
+      <Content>
         <Hits />
-      </Search>
+      </Content>
     );
   }
 }
 
-export default List;
+export default connect(
+  null,
+  { setIsSearching }
+)(List);

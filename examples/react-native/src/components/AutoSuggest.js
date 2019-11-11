@@ -58,14 +58,12 @@ class AutoSuggest extends React.Component {
 
   render() {
     return (
-      <View style={Container.suggestions}>
-        <FlatList
-          keyboardShouldPersistTaps="always"
-          data={this.state.suggestions}
-          keyExtractor={record => record.suggestion}
-          renderItem={record => this.suggestion(record.item)}
-        />
-      </View>
+      <FlatList
+        keyboardShouldPersistTaps="always"
+        data={this.state.suggestions}
+        keyExtractor={record => record.suggestion}
+        renderItem={record => this.suggestion(record.item)}
+      />
     );
   }
 }
