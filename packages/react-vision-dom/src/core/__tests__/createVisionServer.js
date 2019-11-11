@@ -2,7 +2,7 @@ import React from 'react';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { SearchParameters } from 'cliniasearch-helper';
-import { Vision, createConnector, version } from 'react-vision-core';
+import { Vision, Index, createConnector, version } from 'react-vision-core';
 import { findResultsState } from '../createVisionServer';
 
 Enzyme.configure({ adapter: new Adapter() });
@@ -321,17 +321,29 @@ describe('findResultsState', () => {
 
       expect(first).toEqual({
         _internalIndexId: 'index1',
-        state: expect.objectContaining({ index: 'index1', query: 'Apple' }),
+        state: expect.objectContaining({
+          index: 'index1',
+          query: 'Apple',
+        }),
         rawResults: [
-          expect.objectContaining({ index: 'index1', query: 'Apple' }),
+          expect.objectContaining({
+            index: 'index1',
+            meta: { query: 'Apple' },
+          }),
         ],
       });
 
       expect(second).toEqual({
         _internalIndexId: 'index2',
-        state: expect.objectContaining({ index: 'index2', query: 'Apple' }),
+        state: expect.objectContaining({
+          index: 'index2',
+          query: 'Apple',
+        }),
         rawResults: [
-          expect.objectContaining({ index: 'index2', query: 'Apple' }),
+          expect.objectContaining({
+            index: 'index2',
+            meta: { query: 'Apple' },
+          }),
         ],
       });
     });
@@ -363,7 +375,10 @@ describe('findResultsState', () => {
         _internalIndexId: 'index1',
         state: expect.objectContaining({ index: 'index1', query: 'Apple' }),
         rawResults: [
-          expect.objectContaining({ index: 'index1', query: 'Apple' }),
+          expect.objectContaining({
+            index: 'index1',
+            meta: { query: 'Apple' },
+          }),
         ],
       });
 
@@ -371,7 +386,10 @@ describe('findResultsState', () => {
         _internalIndexId: 'index2',
         state: expect.objectContaining({ index: 'index2', query: 'Apple' }),
         rawResults: [
-          expect.objectContaining({ index: 'index2', query: 'Apple' }),
+          expect.objectContaining({
+            index: 'index2',
+            meta: { query: 'Apple' },
+          }),
         ],
       });
     });
@@ -403,7 +421,10 @@ describe('findResultsState', () => {
         _internalIndexId: 'index1',
         state: expect.objectContaining({ index: 'index1', query: 'Apple' }),
         rawResults: [
-          expect.objectContaining({ index: 'index1', query: 'Apple' }),
+          expect.objectContaining({
+            index: 'index1',
+            meta: { query: 'Apple' },
+          }),
         ],
       });
 
@@ -411,7 +432,10 @@ describe('findResultsState', () => {
         _internalIndexId: 'index1_with_refinement',
         state: expect.objectContaining({ index: 'index1', query: 'iWatch' }),
         rawResults: [
-          expect.objectContaining({ index: 'index1', query: 'iWatch' }),
+          expect.objectContaining({
+            index: 'index1',
+            meta: { query: 'iWatch' },
+          }),
         ],
       });
     });
@@ -455,7 +479,10 @@ describe('findResultsState', () => {
         _internalIndexId: 'index1',
         state: expect.objectContaining({ index: 'index1', query: 'iPhone' }),
         rawResults: [
-          expect.objectContaining({ index: 'index1', query: 'iPhone' }),
+          expect.objectContaining({
+            index: 'index1',
+            meta: { query: 'iPhone' },
+          }),
         ],
       });
 
@@ -463,7 +490,7 @@ describe('findResultsState', () => {
         _internalIndexId: 'index2',
         state: expect.objectContaining({ index: 'index2', query: 'iPad' }),
         rawResults: [
-          expect.objectContaining({ index: 'index2', query: 'iPad' }),
+          expect.objectContaining({ index: 'index2', meta: { query: 'iPad' } }),
         ],
       });
     });
@@ -503,7 +530,10 @@ describe('findResultsState', () => {
         _internalIndexId: 'index1',
         state: expect.objectContaining({ index: 'index1', query: 'iPhone' }),
         rawResults: [
-          expect.objectContaining({ index: 'index1', query: 'iPhone' }),
+          expect.objectContaining({
+            index: 'index1',
+            meta: { query: 'iPhone' },
+          }),
         ],
       });
 
@@ -511,7 +541,7 @@ describe('findResultsState', () => {
         _internalIndexId: 'index2',
         state: expect.objectContaining({ index: 'index2', query: 'iPad' }),
         rawResults: [
-          expect.objectContaining({ index: 'index2', query: 'iPad' }),
+          expect.objectContaining({ index: 'index2', meta: { query: 'iPad' } }),
         ],
       });
     });
@@ -551,14 +581,17 @@ describe('findResultsState', () => {
         _internalIndexId: 'index1',
         state: expect.objectContaining({ index: 'index1', query: 'iPhone' }),
         rawResults: [
-          expect.objectContaining({ index: 'index1', query: 'iPhone' }),
+          expect.objectContaining({
+            index: 'index1',
+            meta: { query: 'iPhone' },
+          }),
         ],
       });
       expect(second).toEqual({
         _internalIndexId: 'index1WithRefinement',
         state: expect.objectContaining({ index: 'index1', query: 'iPad' }),
         rawResults: [
-          expect.objectContaining({ index: 'index1', query: 'iPad' }),
+          expect.objectContaining({ index: 'index1', meta: { query: 'iPad' } }),
         ],
       });
     });

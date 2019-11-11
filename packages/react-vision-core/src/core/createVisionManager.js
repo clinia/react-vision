@@ -74,8 +74,10 @@ export default function createVisionManager({
     widgets: initialState,
     metadata: [],
     results: hydrateResultsState(resultsState),
+    resultsSuggestions: null,
     error: null,
     searching: false,
+    searchingForSuggestions: false,
     isSearchStalled: true,
   });
 
@@ -163,6 +165,36 @@ export default function createVisionManager({
     }));
 
     return { mainParameters, derivedParameters };
+  }
+
+  function onSearchForSuggestions({ query }) {
+    store.setState({
+      ...store.getState(),
+      searchingForSuggestions: true,
+    });
+
+    // TODO use helper when ready
+    searchClient
+      .suggest({ query })
+      .then(content => {
+        store.setState({
+          ...store.getState(),
+          searchingForSuggestions: false,
+          resultsSuggestions: {
+            suggestions: content,
+            query,
+          },
+        });
+      })
+      .catch(error => {
+        // Since setState is synchronous, any error that occurs in the render of a
+        // component will be swallowed by this promise.
+        // This is a trick to make the error show up correctly in the console.
+        // See http://stackoverflow.com/a/30741722/969302
+        setTimeout(() => {
+          throw error;
+        });
+      });
   }
 
   function search() {
@@ -391,6 +423,7 @@ export default function createVisionManager({
     widgetsManager,
     getWidgetsIds,
     getSearchParameters,
+    onSearchForSuggestions,
     onExternalStateUpdate,
     transitionState,
     updateClient,
