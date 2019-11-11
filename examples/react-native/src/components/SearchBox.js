@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { TextInput, StyleSheet } from 'react-native';
-import { connectSearchBox } from 'react-vision-native';
+import { connectSearchBox, connectAutoComplete } from 'react-vision-core';
 
 import { setQuery, setIsSearching } from '../redux/actions';
 import { Input, Color, Margin } from '../styles';
@@ -23,11 +23,12 @@ const mapStateToProps = state => ({
 
 class SearchBox extends React.Component {
   input;
-  state = {
-    initialRefinement: undefined,
-  };
 
-  onTextChange = text => this.props.setQuery(text);
+  onTextChange = text => {
+    const { searchForSuggestions } = this.props;
+    searchForSuggestions(text);
+    this.props.setQuery(text);
+  };
 
   onPress = () => {
     const { query } = this.props;
@@ -67,5 +68,6 @@ export default compose(
     mapStateToProps,
     { setQuery, setIsSearching }
   ),
-  connectSearchBox
+  connectSearchBox,
+  connectAutoComplete
 )(SearchBox);
