@@ -18,6 +18,7 @@ export { connectInfiniteHits } from 'react-vision-core';
 export { connectSuggestionResults } from 'react-vision-core';
 
 // DOM
+export { default as AutoComplete } from './widgets/AutoComplete';
 export { default as Hits } from './widgets/Hits';
 export { default as InfiniteHits } from './widgets/InfiniteHits';
 export { default as SearchBox } from './widgets/SearchBox';

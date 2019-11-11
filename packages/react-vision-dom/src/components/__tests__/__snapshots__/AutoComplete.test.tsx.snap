@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchBox applies its default props 1`] = `
+<div
+  className="cvi-AutoComplete"
+  style={Object {}}
+>
+  <form
+    action=""
+    className="cvi-AutoComplete-form cvi-AutoComplete"
+    noValidate={true}
+    onReset={[Function]}
+    onSubmit={[Function]}
+    role="search"
+  >
+    <div>
+      <input
+        autoCapitalize="off"
+        autoComplete="off"
+        autoCorrect="off"
+        autoFocus={false}
+        className="cvi-AutoComplete-input"
+        disabled={false}
+        maxLength={512}
+        placeholder="Default"
+        required={true}
+        spellCheck={false}
+        type="search"
+        value=""
+      />
+      <ul />
+    </div>
+    <button
+      title="Search"
+      type="submit"
+    />
+    <button
+      className="cvi-AutoComplete-clear"
+      hidden={true}
+      title="Clear"
+      type="reset"
+    />
+  </form>
+</div>
+`;

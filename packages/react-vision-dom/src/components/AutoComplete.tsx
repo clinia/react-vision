@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
-import Autosuggest from 'react-autosuggest';
-import { escapeRegExp, createClassNames } from '../core/utils';
+import {
+  escapeRegExp,
+  createClassNames,
+  extractInputEventsFromProps,
+} from '../core/utils';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import LoadingIndicator from './LoadingIndicator';
+import {
+  defaultLoadingIndicator,
+  defaultClear,
+  defaultSubmit,
+} from './defaultComponents';
+import { translatable } from 'react-vision-core';
 
 type Suggestion = {
   id: string;
-  name: string;
+  suggestion: string;
 };
 
 interface Props {
@@ -22,11 +30,15 @@ interface Props {
   loadingIndicator?: React.ReactNode;
   clear?: React.ReactNode;
   submit?: React.ReactNode;
+  renderSuggestion?: (suggestion: Suggestion) => React.ReactNode;
 
   autoFocus?: boolean;
 
   onSubmit?: (event: any) => void;
   onClear?: (event: any) => void;
+  onSuggestionSelected?: (suggestion: Suggestion) => void;
+  onBlur(event: React.FocusEvent<HTMLInputElement>);
+  onFocus(event: React.FocusEvent<HTMLInputElement>);
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 
   isSearchStalled: boolean;
@@ -46,12 +58,15 @@ interface DefaultProps {
   loadingIndicator: React.ReactNode;
   clear: React.ReactNode;
   submit: React.ReactNode;
+  renderSuggestion: (suggestion: Suggestion) => React.ReactNode;
+  __inputRef: (el: any) => void;
 }
 
 type PropsWithDefaults = Props & DefaultProps;
 
 type State = {
   query: string;
+  isInputFocused: boolean;
 };
 
 const cx = createClassNames('AutoComplete');
@@ -75,21 +90,26 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
     onSubmit: PropTypes.func,
     onClear: PropTypes.func,
     onChange: PropTypes.func,
+    onBlur: PropTypes.func,
+    onFocus: PropTypes.func,
+    onSuggestionSelected: PropTypes.func,
 
+    renderSuggestion: PropTypes.func,
     isSearchStalled: PropTypes.bool,
     showLoadingIndicator: PropTypes.bool,
     disabled: PropTypes.bool,
+    __inputRef: PropTypes.func,
   };
 
   static defaultProps = {
     currentRefinement: '',
     className: '',
     style: {},
+    suggestions: [],
 
-    loadingIndicator: <LoadingIndicator />,
-    //TODO
-    // clear?: React.ReactNode;
-    // submit?: React.ReactNode;
+    loadingIndicator: defaultLoadingIndicator(cx),
+    clear: defaultClear(cx),
+    submit: defaultSubmit(cx),
 
     autoFocus: false,
     isSearchStalled: false,
@@ -101,22 +121,57 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
     super(props);
     this.state = {
       query: '',
+      isInputFocused: false,
     };
 
     // We bind functions for test purposes instead of using arrow functions
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.onClear = this.onClear.bind(this);
+    this.onBlur = this.onBlur.bind(this);
+    this.onFocus = this.onFocus.bind(this);
+    this.onSuggestionSelected = this.onSuggestionSelected.bind(this);
   }
 
-  onChange(event: React.ChangeEvent<HTMLInputElement>, { newValue }) {
-    const { refine, onChange } = this.props;
+  onBlur(event: React.FocusEvent<HTMLInputElement>) {
+    const { onBlur } = this.props;
 
-    this.setState({
-      query: newValue,
-    });
+    this.setState({ isInputFocused: false });
 
-    refine(newValue);
+    if (onBlur) {
+      onBlur(event);
+    }
+  }
+
+  onFocus(event: React.FocusEvent<HTMLInputElement>) {
+    const { onFocus } = this.props;
+
+    this.setState({ isInputFocused: true });
+
+    if (onFocus) {
+      onFocus(event);
+    }
+  }
+
+  onSuggestionSelected(suggestion: Suggestion) {
+    const { onSuggestionSelected } = this.props;
+
+    console.log(suggestion);
+
+    this.setState({ query: suggestion.suggestion });
+
+    if (onSuggestionSelected) {
+      onSuggestionSelected(suggestion);
+    }
+  }
+
+  onChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const { searchForSuggestions, onChange } = this.props;
+    const query = event.target.value;
+
+    this.setState({ query });
+
+    searchForSuggestions(query);
 
     if (onChange) {
       onChange(event);
@@ -124,28 +179,43 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
   }
 
   onSubmit(event: React.FormEvent<HTMLFormElement>) {
+    const { refine, currentRefinement } = this.props;
+
     event.preventDefault();
     event.stopPropagation();
     this.input.blur();
+
+    refine(currentRefinement);
   }
 
-  onClear() {}
+  onClear(event: React.FormEvent<HTMLFormElement>) {
+    const { refine, onClear } = this.props;
+    refine('');
 
-  onSuggestionsFetchRequested = async ({ value }) => {
-    this.props.searchForSuggestions(value);
-  };
+    this.setState({ query: '' });
+    if (onClear) {
+      onClear(event);
+    }
+  }
 
   renderSuggestion = suggestion => {
-    const { query: value } = this.state;
+    const { query } = this.state;
 
-    const highlightedSuggestion = suggestion.name.replace(
-      new RegExp(escapeRegExp(value), 'gi'),
+    const highlightedSuggestion = suggestion.suggestion.replace(
+      new RegExp(escapeRegExp(query), 'gi'),
       match => {
         return `<strong>${match}</strong>`;
       }
     );
 
     return <div dangerouslySetInnerHTML={{ __html: highlightedSuggestion }} />;
+  };
+
+  onInputMount = input => {
+    this.input = input;
+    if (this.props.__inputRef) {
+      this.props.__inputRef(input);
+    }
   };
 
   render() {
@@ -158,23 +228,27 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
       submit,
       clear,
       loadingIndicator,
+      autoFocus,
+      disabled,
+      renderSuggestion,
     } = this.props;
 
-    const { query } = this.state;
+    const { query, isInputFocused } = this.state;
 
-    const inputProps = {
-      placeholder: translate('searchText'),
-      value: query,
-      onChange: this.onChange,
-      className: cx('input'),
-      type: 'search',
-      autoComplete: 'off',
-      autoCorrect: 'off',
-      autoCapitalize: 'off',
-      spellCheck: false,
-      required: true,
-      maxLength: 512,
-    };
+    //Events that cannot be completely overridden due to internal use
+    const internalEvents = [
+      'onsubmit',
+      'onclear',
+      'onchange',
+      'onblur',
+      'onfocus',
+      'onsuggestionselected',
+    ];
+
+    const autoCompleteInputEvents = extractInputEventsFromProps(
+      internalEvents,
+      this.props
+    );
 
     return (
       <div className={classnames(cx(''), className)} style={style}>
@@ -186,19 +260,46 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
           action=""
           role="search"
         >
-          <Autosuggest
-            suggestions={suggestions}
-            onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-            getSuggestionValue={suggestion => suggestion.name}
-            renderSuggestion={this.renderSuggestion}
-            inputProps={inputProps}
-          />
-          <button type="submit" title={translate('search')}>
+          <div>
+            <input
+              ref={this.onInputMount}
+              type="search"
+              placeholder={translate('placeholder')}
+              autoFocus={autoFocus}
+              disabled={disabled}
+              autoComplete="off"
+              autoCorrect="off"
+              autoCapitalize="off"
+              spellCheck={false}
+              required
+              maxLength={512}
+              value={query!}
+              onChange={this.onChange}
+              onBlur={this.onBlur}
+              onFocus={this.onFocus}
+              {...autoCompleteInputEvents}
+              className={cx('input')}
+            />
+            <ul>
+              {isInputFocused &&
+                suggestions.map(suggestion => (
+                  <li
+                    key={suggestion.suggestion}
+                    onMouseDown={() => this.onSuggestionSelected(suggestion)}
+                  >
+                    {renderSuggestion
+                      ? renderSuggestion(suggestion)
+                      : this.renderSuggestion(suggestion)}
+                  </li>
+                ))}
+            </ul>
+          </div>
+          <button type="submit" title={translate('searchTitle')}>
             {submit}
           </button>
           <button
             type="reset"
-            title={translate('clearText')}
+            title={translate('clearTitle')}
             className={cx('clear')}
             hidden={!query || isSearchStalled}
           >
@@ -215,4 +316,8 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
   }
 }
 
-export default AutoComplete;
+export default translatable({
+  placeholder: 'Default',
+  searchTitle: 'Search',
+  clearTitle: 'Clear',
+})(AutoComplete);

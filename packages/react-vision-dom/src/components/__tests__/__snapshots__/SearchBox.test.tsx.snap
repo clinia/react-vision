@@ -65,7 +65,7 @@ exports[`SearchBox applies its default props 1`] = `
 </div>
 `;
 
-exports[`SearchBox applies its default props wuth custom className 1`] = `
+exports[`SearchBox applies its default props with custom className 1`] = `
 <div
   className="cvi-SearchBox custom"
 >
@@ -130,7 +130,7 @@ exports[`SearchBox applies its default props wuth custom className 1`] = `
 </div>
 `;
 
-exports[`SearchBox applies its default props wuth custom style 1`] = `
+exports[`SearchBox applies its default props with custom style 1`] = `
 <div
   className="cvi-SearchBox"
   style={
