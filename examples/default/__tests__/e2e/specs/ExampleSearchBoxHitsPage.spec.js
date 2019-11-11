@@ -1,6 +1,6 @@
-import examplePage from '../pageobjects/ExamplePage';
+import examplePage from '../pageobjects/ExampleSearchBoxHitsPage';
 
-describe('Example page', () => {
+describe('ExampleSearchBoxHitsPage', () => {
   it('navigates to example page', async () => {
     browser.url('http://localhost:3000/');
   });

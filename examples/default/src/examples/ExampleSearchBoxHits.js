@@ -1,11 +1,11 @@
 import React from 'react';
-import './App.css';
+import './ExampleSearchBoxHits.css';
 import { Vision, SearchBox, Hits } from 'react-vision-dom';
 import cliniasearch from 'cliniasearch/lite';
-import logo from './static/images/logo.svg';
-import notFound from './static/images/empty-search@2x.png';
-import { OpeningHours } from './components/OpeningHours';
-import AutoComplete from './components/AutoSuggest';
+import logo from '../static/images/logo.svg';
+import notFound from '../static/images/empty-search@2x.png';
+import { OpeningHours } from '../components/OpeningHours';
+import AutoComplete from '../components/AutoSuggest';
 
 const searchClient = cliniasearch('TODO', 'ClM5vDTmS4GWEL0aS7osJaRkowV8McuP', {
   hosts: {
@@ -75,7 +75,7 @@ const ExampleNotFoundComponent = () => (
   </div>
 );
 
-const App = () => {
+const ExampleSearchBoxHits = () => {
   return (
     <Vision searchClient={searchClient} indexName="health_facility">
       <div className="example-header">
@@ -93,4 +93,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default ExampleSearchBoxHits;
