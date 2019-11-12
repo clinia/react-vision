@@ -10,8 +10,9 @@ import {
 import * as Permissions from 'expo-permissions';
 import * as Location from 'expo-location';
 
-import { setIsSearching } from '../redux/actions';
 import { Input, Color, Margin } from '../styles';
+import { setSuggestionMode, setLocation } from '../redux/actions';
+import SuggestionMode from '../redux/suggestionMode';
 
 const styles = StyleSheet.create({
   container: {
@@ -35,10 +36,13 @@ const styles = StyleSheet.create({
 
 const CURRENT_LOCATION = 'Current location';
 
+const mapStateToProps = state => ({
+  location: state.store.location,
+});
+
 class LocationBox extends React.Component {
   input;
   state = {
-    location: undefined,
     enableLocation: true,
   };
 
@@ -55,26 +59,26 @@ class LocationBox extends React.Component {
   }
 
   onFocus = () => {
-    if (this.state.location === CURRENT_LOCATION) {
-      this.setState({ location: null });
+    const { location } = this.props;
+    if (location === CURRENT_LOCATION) {
+      this.props.setLocation(null);
     }
-    this.toggleSearch(true);
+    this.toggleSearch(SuggestionMode.Location);
   };
 
   onTextChange = text => {
-    this.setState({ location: text });
     // const { searchForSuggestions } = this.props;
     // searchForSuggestions(text);
-    // this.props.setQuery(text);
+    this.props.setLocation(text);
   };
 
   onPress = () => {
     // const { location } = this.props;
 
     // this.props.refine(query);
-    this.input.blur();
 
-    this.toggleSearch(false);
+    this.input.blur();
+    this.toggleSearch(SuggestionMode.None);
   };
 
   onCurrentLocationPress = async () => {
@@ -82,18 +86,20 @@ class LocationBox extends React.Component {
 
     if (status === 'granted') {
       console.log(await Location.getCurrentPositionAsync());
-      this.setState({ location: CURRENT_LOCATION });
+      this.props.setLocation(CURRENT_LOCATION);
     } else {
       this.setState({ enableLocation: false });
     }
 
     this.input.blur();
+    this.toggleSearch(SuggestionMode.None);
   };
 
-  toggleSearch = isSearching => this.props.setIsSearching(isSearching);
+  toggleSearch = mode => this.props.setSuggestionMode(mode);
 
   render() {
-    const { location, enableLocation } = this.state;
+    const { enableLocation } = this.state;
+    const { location } = this.props;
     return (
       <View style={styles.container}>
         <TextInput
@@ -105,7 +111,6 @@ class LocationBox extends React.Component {
           returnKeyType="search"
           onChangeText={this.onTextChange}
           onFocus={this.onFocus}
-          onBlur={() => this.toggleSearch(false)}
           onSubmitEditing={this.onPress}
           ref={ref => {
             this.input = ref;
@@ -132,6 +137,6 @@ class LocationBox extends React.Component {
 }
 
 export default connect(
-  null,
-  { setIsSearching }
+  mapStateToProps,
+  { setSuggestionMode, setLocation }
 )(LocationBox);

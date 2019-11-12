@@ -1,75 +1,51 @@
 import * as React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import {
-  FlatList,
-  Text,
-  View,
-  TouchableOpacity,
-  StyleSheet,
-  Keyboard,
-} from 'react-native';
+import { Keyboard, View } from 'react-native';
 import { connectAutoComplete } from 'react-vision-core';
 
-import { randomId } from '../helpers/utils';
-import { Container, Typography, Margin, Color } from '../styles';
-import { setIsSearching, setQuery } from '../redux/actions';
-
-const styles = StyleSheet.create({
-  separator: {
-    paddingBottom: Margin.normal,
-    borderBottomColor: Color.separator,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-  },
-  suggestion: {
-    ...Container.suggestion,
-    paddingBottom: 0,
-  },
-});
+import Suggestions from './Suggestions';
+import { setSuggestionMode, setQuery, setLocation } from '../redux/actions';
+import SuggestionMode from '../redux/suggestionMode';
 
 const mapStateToProps = state => ({
-  query: state.store.query,
+  suggestionMode: state.store.suggestionMode,
 });
 
 class AutoSuggest extends React.Component {
-  onPress = record => {
-    const { refine } = this.props;
+  onOptionSelected = option => {
+    const { refine, suggestionMode } = this.props;
 
-    refine(record.suggestion);
-    this.props.setQuery(record.suggestion);
-    this.props.setIsSearching(false);
+    if (suggestionMode === SuggestionMode.Query) {
+      refine(option.text);
+      this.props.setQuery(option.text);
+    }
 
+    // if (suggestionMode === SuggestionMode.Location) {
+    // }
+
+    this.props.setSuggestionMode(SuggestionMode.None);
     Keyboard.dismiss();
   };
 
-  suggestion = record => (
-    <TouchableOpacity
-      onPress={() => this.onPress(record)}
-      style={styles.suggestion}
-    >
-      <View style={styles.separator}>
-        <Text style={Typography.Text}>{record.suggestion}</Text>
-      </View>
-    </TouchableOpacity>
-  );
-
   render() {
-    const results = this.props.suggestions || [];
-    return (
-      <FlatList
-        keyboardShouldPersistTaps="always"
-        data={results}
-        keyExtractor={() => randomId()}
-        renderItem={record => this.suggestion(record.item)}
-      />
-    );
+    const { suggestionMode, suggestions } = this.props;
+    let results = [];
+    switch (suggestionMode) {
+      case SuggestionMode.Query:
+        results = suggestions.map(x => ({ text: x.suggestion, option: x }));
+        break;
+      default:
+        break;
+    }
+    return <Suggestions results={results} onPress={this.onOptionSelected} />;
   }
 }
 
 export default compose(
   connect(
     mapStateToProps,
-    { setIsSearching, setQuery }
+    { setSuggestionMode, setQuery, setLocation }
   ),
   connectAutoComplete
 )(AutoSuggest);
