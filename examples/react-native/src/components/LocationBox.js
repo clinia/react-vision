@@ -1,6 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { TextInput, StyleSheet, View, TouchableOpacity, Image } from 'react-native';
+import {
+  TextInput,
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  Image,
+} from 'react-native';
 import * as Permissions from 'expo-permissions';
 import * as Location from 'expo-location';
 
@@ -27,6 +33,8 @@ const styles = StyleSheet.create({
   },
 });
 
+const CURRENT_LOCATION = 'Current location';
+
 class LocationBox extends React.Component {
   input;
   state = {
@@ -36,7 +44,6 @@ class LocationBox extends React.Component {
 
   componentDidMount() {
     Permissions.getAsync(Permissions.LOCATION).then(response => {
-      console.log(response);
       this.setState({
         enableLocation: !(
           response.permissions &&
@@ -47,14 +54,22 @@ class LocationBox extends React.Component {
     });
   }
 
+  onFocus = () => {
+    if (this.state.location === CURRENT_LOCATION) {
+      this.setState({ location: null });
+    }
+    this.toggleSearch(true);
+  };
+
   onTextChange = text => {
+    this.setState({ location: text });
     // const { searchForSuggestions } = this.props;
     // searchForSuggestions(text);
     // this.props.setQuery(text);
   };
 
   onPress = () => {
-    // const { query } = this.props;
+    // const { location } = this.props;
 
     // this.props.refine(query);
     this.input.blur();
@@ -67,10 +82,12 @@ class LocationBox extends React.Component {
 
     if (status === 'granted') {
       console.log(await Location.getCurrentPositionAsync());
-      this.setState({ location: 'Current location' });
+      this.setState({ location: CURRENT_LOCATION });
     } else {
       this.setState({ enableLocation: false });
     }
+
+    this.input.blur();
   };
 
   toggleSearch = isSearching => this.props.setIsSearching(isSearching);
@@ -87,7 +104,7 @@ class LocationBox extends React.Component {
           autoCorrect={false}
           returnKeyType="search"
           onChangeText={this.onTextChange}
-          onFocus={() => this.toggleSearch(true)}
+          onFocus={this.onFocus}
           onBlur={() => this.toggleSearch(false)}
           onSubmitEditing={this.onPress}
           ref={ref => {
