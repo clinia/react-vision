@@ -40,6 +40,7 @@ interface Props {
   onBlur(event: React.FocusEvent<HTMLInputElement>);
   onFocus(event: React.FocusEvent<HTMLInputElement>);
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
 
   isSearchStalled: boolean;
   showLoadingIndicator?: boolean;
@@ -66,7 +67,9 @@ type PropsWithDefaults = Props & DefaultProps;
 
 type State = {
   query: string;
-  isInputFocused: boolean;
+  queryCache: string;
+  showSuggestions: boolean;
+  activeSuggestionIndex: number;
 };
 
 const cx = createClassNames('AutoComplete');
@@ -92,6 +95,7 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
     onChange: PropTypes.func,
     onBlur: PropTypes.func,
     onFocus: PropTypes.func,
+    onKeyDown: PropTypes.func,
     onSuggestionSelected: PropTypes.func,
 
     renderSuggestion: PropTypes.func,
@@ -121,7 +125,9 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
     super(props);
     this.state = {
       query: '',
-      isInputFocused: false,
+      queryCache: '',
+      showSuggestions: false,
+      activeSuggestionIndex: -1,
     };
 
     // We bind functions for test purposes instead of using arrow functions
@@ -130,13 +136,21 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
     this.onClear = this.onClear.bind(this);
     this.onBlur = this.onBlur.bind(this);
     this.onFocus = this.onFocus.bind(this);
+    this.onKeyDown = this.onKeyDown.bind(this);
     this.onSuggestionSelected = this.onSuggestionSelected.bind(this);
   }
 
   onBlur(event: React.FocusEvent<HTMLInputElement>) {
-    const { onBlur } = this.props;
+    const { onBlur, searchForSuggestions } = this.props;
+    const { query } = this.state;
 
-    this.setState({ isInputFocused: false });
+    this.setState({
+      showSuggestions: false,
+      activeSuggestionIndex: -1,
+      queryCache: query,
+    });
+
+    searchForSuggestions(query);
 
     if (onBlur) {
       onBlur(event);
@@ -146,19 +160,106 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
   onFocus(event: React.FocusEvent<HTMLInputElement>) {
     const { onFocus } = this.props;
 
-    this.setState({ isInputFocused: true });
+    this.setState({ showSuggestions: true, activeSuggestionIndex: -1 });
 
     if (onFocus) {
       onFocus(event);
     }
   }
 
+  moveActiveSuggestionDown = () => {
+    const newActiveSuggestionIndex = this.state.activeSuggestionIndex + 1;
+    const query = this.getSuggestionNameByIndex(newActiveSuggestionIndex);
+
+    this.setState({
+      activeSuggestionIndex: newActiveSuggestionIndex,
+      query,
+    });
+  };
+
+  moveActiveSuggestionUp = () => {
+    const newActiveSuggestionIndex = this.state.activeSuggestionIndex - 1;
+    const query = this.getSuggestionNameByIndex(newActiveSuggestionIndex);
+
+    this.setState({
+      activeSuggestionIndex: newActiveSuggestionIndex,
+      query,
+    });
+  };
+
+  moveActiveSuggestionToTheTop = () => {
+    const { queryCache } = this.state;
+
+    this.setState({ activeSuggestionIndex: -1, query: queryCache });
+  };
+
+  moveActiveSuggestionToTheLast = () => {
+    const lastSuggestionIndex = this.props.suggestions.length - 1;
+    const query = this.getSuggestionNameByIndex(lastSuggestionIndex);
+
+    this.setState({
+      activeSuggestionIndex: lastSuggestionIndex,
+      query,
+    });
+  };
+
+  getSuggestionNameByIndex = (index: number) => {
+    if (index >= 0 && this.props.suggestions[index]) {
+      return this.props.suggestions[index].suggestion;
+    } else return '';
+  };
+
+  onKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
+    const { onKeyDown, suggestions } = this.props;
+    const { activeSuggestionIndex } = this.state;
+
+    //Up arrow key
+    if (event.keyCode === 38) {
+      if (activeSuggestionIndex > 0) {
+        this.moveActiveSuggestionUp();
+      } else if (activeSuggestionIndex === 0) {
+        this.moveActiveSuggestionToTheTop();
+      } else if (activeSuggestionIndex === -1) {
+        this.moveActiveSuggestionToTheLast();
+      }
+      event.preventDefault();
+    }
+
+    //Down arrow key
+    else if (event.keyCode === 40) {
+      if (activeSuggestionIndex + 1 === suggestions.length) {
+        this.moveActiveSuggestionToTheTop();
+      } else {
+        this.moveActiveSuggestionDown();
+      }
+      event.preventDefault();
+    }
+
+    //Enter key
+    else if (event.keyCode === 13) {
+      this.onSuggestionSelected(suggestions[activeSuggestionIndex]);
+      this.input.blur();
+    }
+
+    //Esc Key
+    if (event.keyCode === 27) {
+      event.preventDefault();
+      this.setState({ showSuggestions: false });
+    }
+
+    if (onKeyDown) {
+      onKeyDown(event);
+    }
+  }
+
   onSuggestionSelected(suggestion: Suggestion) {
-    const { onSuggestionSelected } = this.props;
+    const { onSuggestionSelected, searchForSuggestions, refine } = this.props;
 
-    console.log(suggestion);
+    const query = suggestion.suggestion;
+    this.setState({ query, queryCache: query, activeSuggestionIndex: -1 });
 
-    this.setState({ query: suggestion.suggestion });
+    refine(query);
+    searchForSuggestions(query);
 
     if (onSuggestionSelected) {
       onSuggestionSelected(suggestion);
@@ -169,7 +270,7 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
     const { searchForSuggestions, onChange } = this.props;
     const query = event.target.value;
 
-    this.setState({ query });
+    this.setState({ query, queryCache: query, activeSuggestionIndex: -1 });
 
     searchForSuggestions(query);
 
@@ -179,20 +280,22 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
   }
 
   onSubmit(event: React.FormEvent<HTMLFormElement>) {
-    const { refine, currentRefinement } = this.props;
+    const { refine, searchForSuggestions } = this.props;
+    const { query } = this.state;
 
     event.preventDefault();
     event.stopPropagation();
     this.input.blur();
 
-    refine(currentRefinement);
+    refine(query);
+    searchForSuggestions(query);
   }
 
   onClear(event: React.FormEvent<HTMLFormElement>) {
     const { refine, onClear } = this.props;
     refine('');
 
-    this.setState({ query: '' });
+    this.setState({ query: '', queryCache: '', activeSuggestionIndex: -1 });
     if (onClear) {
       onClear(event);
     }
@@ -233,10 +336,15 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
       renderSuggestion,
     } = this.props;
 
-    const { query, isInputFocused } = this.state;
+    const {
+      query,
+      showSuggestions,
+      activeSuggestionIndex: activeSuggestion,
+    } = this.state;
 
     //Events that cannot be completely overridden due to internal use
     const internalEvents = [
+      'onkeydown',
       'onsubmit',
       'onclear',
       'onchange',
@@ -277,14 +385,20 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
               onChange={this.onChange}
               onBlur={this.onBlur}
               onFocus={this.onFocus}
+              onKeyDown={this.onKeyDown}
               {...autoCompleteInputEvents}
               className={cx('input')}
             />
             <ul>
-              {isInputFocused &&
-                suggestions.map(suggestion => (
+              {showSuggestions &&
+                suggestions.map((suggestion, index) => (
                   <li
                     key={suggestion.suggestion}
+                    style={
+                      index === activeSuggestion
+                        ? { backgroundColor: 'red' }
+                        : {}
+                    }
                     onMouseDown={() => this.onSuggestionSelected(suggestion)}
                   >
                     {renderSuggestion
