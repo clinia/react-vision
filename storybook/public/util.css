@@ -86,7 +86,7 @@
   align-items: center;
 }
 
-.hit-actions > .ais-ClearRefinements {
+.hit-actions > .cvi-ClearRefinements {
   margin-left: 15px;
 }
 
@@ -110,7 +110,7 @@
   color: #ffffff;
 }
 
-.ais-SearchBox__root {
+.cvi-SearchBox__root {
   margin-right: 10px;
 }
 

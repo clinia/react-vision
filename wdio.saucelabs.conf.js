@@ -1,5 +1,5 @@
 /* eslint-disable import/no-commonjs */
 
-const { saucelabs } = require('instantsearch-e2e-tests');
+const { saucelabs } = require('vision-e2e-tests');
 
 exports.config = saucelabs;

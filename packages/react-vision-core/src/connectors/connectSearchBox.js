@@ -7,9 +7,7 @@ import {
   getIndexId,
 } from '../core/indexUtils';
 
-function getId() {
-  return 'query';
-}
+const getId = () => 'query';
 
 function getCurrentRefinement(props, searchState, context) {
   const id = getId(props);
@@ -108,7 +106,7 @@ export default createConnector({
                 label: `${id}: ${currentRefinement}`,
                 value: nextState =>
                   refine(props, nextState, '', {
-                    ais: props.contextValue,
+                    cvi: props.contextValue,
                     multiIndexContext: props.indexContextValue,
                   }),
                 currentRefinement,

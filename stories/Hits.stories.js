@@ -71,10 +71,10 @@
 //   <div style={style}>0 results were found</div>
 // );
 
-// const CustomHitComponent = ({ searchResult }) => (
+// const CustomHitComponent = ({ record }) => (
 //   <div style={style}>
 //     <h3>Custom Hit Component Header</h3>
-//     {JSON.stringify(searchResult, null, 2)}
+//     {JSON.stringify(record, null, 2)}
 //   </div>
 // );
 

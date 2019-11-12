@@ -1,19 +1,12 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Enzyme, { shallow, mount } from 'enzyme';
+import Enzyme, { mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import SearchBox from '../SearchBox';
-import LoadingIndicator from '../LoadingIndicator';
-import { createClassNames } from '../../core/utils';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-/*NOTES:
-Tests that uses .dive() do that to get the inner component inside the hoc
-To our tests it's necessary to retrieve the inner component to simulate events and etc
-*/
 describe('SearchBox', () => {
-  const cx = createClassNames('SearchBox');
   it('applies its default props', () => {
     const instance = renderer.create(<SearchBox refine={() => null} />);
 
@@ -22,240 +15,266 @@ describe('SearchBox', () => {
     instance.unmount();
   });
 
-  it('should have focus after render when autoFocus prop is true', () => {
-    //Creates a parent div where the component will be attached to
-    //so that way we can get the active element id
-    document.body.innerHTML = '<div></div>';
+  it('applies its default props wuth custom className', () => {
+    const instance = renderer.create(
+      <SearchBox refine={() => null} className="custom" />
+    );
 
-    const wrapper = mount(<SearchBox autoFocus={true} />, {
-      attachTo: document.getElementsByName('div')[0],
-    });
+    expect(instance.toJSON()).toMatchSnapshot();
 
-    const elementInstance = wrapper.find('input').instance();
-    expect(elementInstance).toEqual(document.activeElement);
+    instance.unmount();
   });
 
-  it('should initialize state with empty query', () => {
-    const wrapper = shallow(<SearchBox />).dive();
-    expect(wrapper.state('query')).toEqual(null);
+  it('applies its default props wuth custom style', () => {
+    const instance = renderer.create(
+      <SearchBox refine={() => null} style={{ color: 'lightgray' }} />
+    );
+
+    expect(instance.toJSON()).toMatchSnapshot();
+
+    instance.unmount();
   });
 
-  it('should render input disabled when "disabled" props is true', () => {
-    const wrapper = shallow(<SearchBox disabled={true} />).dive();
-    expect(wrapper.find('input').props('disabled')).toBeTruthy();
+  it('transfers the autoFocus prop to the underlying input element', () => {
+    const instance = renderer.create(
+      <SearchBox refine={() => null} autoFocus />
+    );
+
+    expect(instance.toJSON()).toMatchSnapshot();
+
+    instance.unmount();
   });
 
-  describe('Style tests', () => {
-    it('should render main div with className props', () => {
-      const classNameTest = 'class-test';
-      const wrapper = shallow(<SearchBox className={classNameTest} />);
+  it('transfers the disabled prop to the underlying input element', () => {
+    const instance = renderer.create(
+      <SearchBox refine={() => null} disabled />
+    );
 
-      expect(wrapper.first('div').hasClass(classNameTest)).toBeTruthy();
-    });
+    expect(instance.toJSON()).toMatchSnapshot();
 
-    it('should render main div with style props ', () => {
-      const styleTest = { top: 0 };
-      const wrapper = shallow(<SearchBox style={styleTest} />);
-
-      expect(wrapper.first('div').props().style).toEqual(styleTest);
-    });
+    instance.unmount();
   });
 
-  describe('Custom inner components', () => {
-    it('should render with custom loading indicator', () => {
-      const customLoadingIndicator = <span>Loading</span>;
-      const wrapper = shallow(
-        <SearchBox
-          loadingIndicator={customLoadingIndicator}
-          showLoadingIndicator={true}
-          loading={true}
-        />
-      ).dive();
-      const defaultLoadingIndicator = <LoadingIndicator />;
+  it('treats its query prop as its input value', () => {
+    const instance = renderer.create(
+      <SearchBox refine={() => null} currentRefinement="QUERY1" />
+    );
 
-      expect(wrapper.contains(customLoadingIndicator)).toBeTruthy();
-      expect(wrapper.contains(defaultLoadingIndicator)).toBeFalsy();
-    });
+    expect(instance.toJSON()).toMatchSnapshot();
 
-    it('should not render with custom loading indicator when "showLoadingIndicator" props is false', () => {
-      const customLoadingIndicator = <span>Loading</span>;
-      const wrapper = shallow(
-        <SearchBox
-          loadingIndicator={customLoadingIndicator}
-          showLoadingIndicator={false}
-          loading={true}
-        />
-      );
-      const defaultLoadingIndicator = <LoadingIndicator />;
+    instance.update(
+      <SearchBox refine={() => null} currentRefinement="QUERY2" />
+    );
 
-      expect(wrapper.contains(customLoadingIndicator)).toBeFalsy();
-      expect(wrapper.contains(defaultLoadingIndicator)).toBeFalsy();
-    });
+    expect(instance.toJSON()).toMatchSnapshot();
 
-    it('should not render with custom loading indicator when "loading" props is false', () => {
-      const customLoadingIndicator = <span>Loading</span>;
-      const wrapper = shallow(
-        <SearchBox
-          loadingIndicator={customLoadingIndicator}
-          loading={false}
-          showLoadingIndicator={true}
-        />
-      );
-      const defaultLoadingIndicator = <LoadingIndicator />;
-
-      expect(wrapper.contains(customLoadingIndicator)).toBeFalsy();
-      expect(wrapper.contains(defaultLoadingIndicator)).toBeFalsy();
-    });
-
-    it('should render with custom clear button', () => {
-      const customClearButton = <div>Test</div>;
-      const wrapper = shallow(
-        <SearchBox clear={_ => customClearButton} />
-      ).dive();
-
-      expect(wrapper.contains(customClearButton)).toBeTruthy();
-    });
-
-    it('should render with custom submit button', () => {
-      const customSubmitButton = <button>Test</button>;
-
-      const wrapper = shallow(
-        <SearchBox submitButton={customSubmitButton} />
-      ).dive();
-
-      expect(wrapper.contains(customSubmitButton)).toBeTruthy();
-      expect(wrapper.exists('.search-box-button')).toBeFalsy();
-    });
+    instance.unmount();
   });
 
-  describe('Event tests', () => {
-    describe('Default events', () => {
-      it('should update state on default input change', () => {
-        const wrapper = shallow(<SearchBox />).dive();
-        const enteredInputValue = 'a';
+  it('lets you customize its theme', () => {
+    const instance = renderer.create(
+      <SearchBox
+        refine={() => null}
+        theme={{
+          root: 'ROOT',
+          wrapper: 'WRAPPER',
+          input: 'INPUT',
+          submit: 'SUBMIT',
+          reset: 'RESET',
+        }}
+      />
+    );
 
-        wrapper
-          .find('input')
-          .simulate('input', { target: { value: enteredInputValue } });
+    expect(instance.toJSON()).toMatchSnapshot();
 
-        expect(wrapper.state('query')).toEqual(enteredInputValue);
-      });
+    instance.unmount();
+  });
 
-      it('should not submit on default input change when "searchAsYouType" prop is not valid ', () => {
-        const wrapper = shallow(<SearchBox />).dive();
-        const enteredInputValue = 'a';
-        const spyOnSubmit = spyOn(wrapper.instance(), 'onSubmit');
+  it('lets you give custom components for clear and submit', () => {
+    const instance = renderer.create(
+      <SearchBox
+        refine={() => null}
+        submit={<span>🔍</span>}
+        clear={
+          <svg viewBox="200 198 108 122">
+            <path d="M200.8 220l45 46.7-20 47.4 31.7-34 50.4 39.3-34.3-52.6 30.2-68.3-49.7 51.7" />
+          </svg>
+        }
+      />
+    );
 
-        wrapper
-          .find('input')
-          .simulate('input', { target: { value: enteredInputValue } });
+    expect(instance.toJSON()).toMatchSnapshot();
 
-        expect(wrapper.state().query).toEqual(enteredInputValue);
-        expect(spyOnSubmit).not.toHaveBeenCalled();
-      });
+    instance.unmount();
+  });
 
-      it('should submit on default input change when "searchAsYouType" prop is true ', () => {
-        //Mounts the inner component inside the hoc
-        const wrapper = mount(
-          shallow(<SearchBox searchAsYouType={true} />).get(0)
-        );
-        const enteredInputValue = 'a';
-        const spyOnSubmit = spyOn(wrapper.instance(), 'onSubmit');
+  it('lets you customize its translations', () => {
+    const instance = renderer.create(
+      <SearchBox
+        refine={() => null}
+        translations={{
+          clearTitle: 'CLEAR_TITLE',
+          placeholder: 'PLACEHOLDER',
+        }}
+      />
+    );
 
-        wrapper
-          .find('input')
-          .simulate('input', { target: { value: enteredInputValue } });
+    expect(instance.toJSON()).toMatchSnapshot();
 
-        expect(wrapper.state().query).toEqual(enteredInputValue);
-        expect(spyOnSubmit).toHaveBeenCalled();
-      });
-      it('should call submit on form submit', () => {
-        const wrapper = shallow(<SearchBox />).dive();
-        const spyOnSubmit = spyOn(wrapper.instance(), 'onSubmit');
-        wrapper.instance().forceUpdate();
+    instance.unmount();
+  });
 
-        wrapper.find('form').simulate('submit', { preventDefault: () => {} });
+  it('should render the loader if showLoadingIndicator is true', () => {
+    const instanceWithoutLoadingIndicator = renderer.create(
+      <SearchBox refine={() => null} showLoadingIndicator />
+    );
 
-        expect(spyOnSubmit).toHaveBeenCalled();
-      });
-      it('should clear state on default clear search click', () => {
-        const wrapper = shallow(<SearchBox />).dive();
-        const enteredInputValue = 'a';
+    expect(instanceWithoutLoadingIndicator.toJSON()).toMatchSnapshot();
 
-        //Simulate input to change the default state query value
-        wrapper
-          .find('input')
-          .simulate('input', { target: { value: enteredInputValue } });
+    const instanceWithLoadingIndicator = renderer.create(
+      <SearchBox refine={() => null} showLoadingIndicator isSearchStalled />
+    );
 
-        expect(wrapper.state().query).toEqual(enteredInputValue);
+    expect(instanceWithLoadingIndicator.toJSON()).toMatchSnapshot();
 
-        const clearElement = wrapper.find(`.${cx('clear')}`);
-        clearElement.simulate('click');
+    instanceWithoutLoadingIndicator.unmount();
+    instanceWithLoadingIndicator.unmount();
+  });
 
-        expect(wrapper.state().query).toEqual('');
-      });
+  it('treats query as a default value when searchAsYouType=false', () => {
+    const wrapper = mount(
+      <SearchBox
+        refine={() => null}
+        currentRefinement="QUERY1"
+        searchAsYouType={false}
+      />
+    );
+
+    expect(wrapper.find('input').props().value).toBe('QUERY1');
+
+    wrapper.find('input').simulate('change', { target: { value: 'QUERY2' } });
+
+    expect(wrapper.find('input').props().value).toBe('QUERY2');
+
+    wrapper.unmount();
+  });
+
+  it('refines its value on change when searchAsYouType=true', () => {
+    const refine = jest.fn();
+    const wrapper = mount(<SearchBox searchAsYouType refine={refine} />);
+
+    wrapper.find('input').simulate('change', { target: { value: 'hello' } });
+
+    expect(refine.mock.calls).toHaveLength(1);
+    expect(refine.mock.calls[0][0]).toBe('hello');
+
+    wrapper.unmount();
+  });
+
+  it('only refines its query on submit when searchAsYouType=false', () => {
+    const refine = jest.fn();
+    const wrapper = mount(
+      <SearchBox searchAsYouType={false} refine={refine} />
+    );
+
+    wrapper.find('input').simulate('change', { target: { value: 'hello' } });
+
+    expect(refine.mock.calls).toHaveLength(0);
+
+    wrapper.find('form').simulate('submit');
+
+    expect(refine.mock.calls).toHaveLength(1);
+    expect(refine.mock.calls[0][0]).toBe('hello');
+
+    wrapper.unmount();
+  });
+
+  it('onSubmit behavior should be override if provided as props', () => {
+    const onSubmit = jest.fn();
+    const refine = jest.fn();
+    const wrapper = mount(
+      <SearchBox searchAsYouType={false} onSubmit={onSubmit} refine={refine} />
+    );
+
+    wrapper.find('form').simulate('submit');
+
+    expect(onSubmit.mock.calls).toHaveLength(1);
+    expect(refine.mock.calls).toHaveLength(0);
+
+    wrapper.unmount();
+  });
+
+  it('focuses the input when one of the keys in focusShortcuts is pressed', () => {
+    let input;
+
+    const wrapper = mount(
+      <SearchBox
+        refine={() => null}
+        focusShortcuts={['s', 84]}
+        __inputRef={node => {
+          input = node;
+        }}
+      />
+    );
+
+    input.focus = jest.fn();
+
+    const event1 = new KeyboardEvent('keydown', { keyCode: 82 });
+    document.dispatchEvent(event1);
+    expect(input.focus.mock.calls).toHaveLength(0);
+
+    const event2 = new KeyboardEvent('keydown', { keyCode: 83 });
+    document.dispatchEvent(event2);
+    expect(input.focus.mock.calls).toHaveLength(1);
+
+    const event3 = new KeyboardEvent('keydown', { keyCode: 84 });
+    document.dispatchEvent(event3);
+    expect(input.focus.mock.calls).toHaveLength(2);
+
+    wrapper.unmount();
+  });
+
+  it('should accept `on*` events', () => {
+    const onSubmit = jest.fn();
+    const onClear = jest.fn();
+
+    const inputEventsList = [
+      'onChange',
+      'onFocus',
+      'onBlur',
+      'onSelect',
+      'onKeyDown',
+      'onKeyPress',
+    ];
+
+    const inputProps = inputEventsList.reduce(
+      (props, prop) => ({ ...props, [prop]: jest.fn() }),
+      {}
+    );
+
+    const wrapper = mount(
+      <SearchBox
+        refine={() => null}
+        onSubmit={onSubmit}
+        onClear={onClear}
+        {...inputProps}
+      />
+    );
+
+    wrapper.find('form').simulate('submit');
+    expect(onSubmit).toHaveBeenCalled();
+
+    wrapper.find('form').simulate('reset');
+    expect(onClear).toHaveBeenCalled();
+
+    inputEventsList.forEach(eventName => {
+      wrapper
+        .find('input')
+        .simulate(eventName.replace(/^on/, '').toLowerCase());
+
+      expect(inputProps[eventName]).toHaveBeenCalled();
     });
 
-    describe('Custom events', () => {
-      it('should trigger onBlur on input blur', () => {
-        const onBlur = jest.fn();
-
-        const wrapper = shallow(<SearchBox onBlur={onBlur} />).dive();
-        wrapper.find('input').simulate('blur');
-
-        expect(onBlur).toHaveBeenCalled();
-      });
-      it('should trigger onChange on input change', () => {
-        const onChange = jest.fn();
-
-        const wrapper = shallow(<SearchBox onChange={onChange} />).dive();
-        wrapper.find('input').simulate('change');
-
-        expect(onChange).toHaveBeenCalled();
-      });
-      it('should trigger onClear on input change', () => {
-        const onClear = jest.fn();
-
-        const wrapper = shallow(<SearchBox onClear={onClear} />).dive();
-        const clearElement = wrapper.find(`.${cx('clear')}`);
-        clearElement.simulate('click');
-
-        expect(onClear).toHaveBeenCalled();
-      });
-      it('should trigger onFocus on input focus', () => {
-        const onFocus = jest.fn();
-
-        const wrapper = shallow(<SearchBox onFocus={onFocus} />).dive();
-        wrapper.find('input').simulate('focus');
-
-        expect(onFocus).toHaveBeenCalled();
-      });
-      it('should trigger onInput on input change', () => {
-        const onInput = jest.fn();
-        const enteredInputValue = 'a';
-        const wrapper = shallow(<SearchBox onInput={onInput} />).dive();
-        wrapper
-          .find('input')
-          .simulate('input', { target: { value: enteredInputValue } });
-
-        expect(onInput).toHaveBeenCalled();
-      });
-      it('should trigger onKeyPress on input change', () => {
-        const onKeyPress = jest.fn();
-
-        const wrapper = shallow(<SearchBox onKeyPress={onKeyPress} />).dive();
-        wrapper.find('input').simulate('keyPress');
-
-        expect(onKeyPress).toHaveBeenCalled();
-      });
-      it('should trigger onSubmit on input change', () => {
-        const onSubmit = jest.fn();
-
-        const wrapper = shallow(<SearchBox onSubmit={onSubmit} />).dive();
-        wrapper.find('form').simulate('submit', { preventDefault: () => {} });
-
-        expect(onSubmit).toHaveBeenCalled();
-      });
-    });
+    wrapper.unmount();
   });
 });

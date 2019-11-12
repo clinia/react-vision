@@ -5476,19 +5476,19 @@ cli-width@^2.0.0:
   resolved "https://registry.yarnpkg.com/cli-width/-/cli-width-2.2.0.tgz#ff19ede8a9a5e579324147b0c11f0fbcbabed639"
   integrity sha1-/xnt6Kml5XkyQUewwR8PvLq+1jk=
 
-cliniasearch-helper@^1.0.0-beta.3:
-  version "1.0.0-beta.3"
-  resolved "https://registry.yarnpkg.com/cliniasearch-helper/-/cliniasearch-helper-1.0.0-beta.3.tgz#8cd7f140cf4470af1c26f9dfc2526c8c1589accd"
-  integrity sha512-W4R0qAxGwKzoDEFTNfrSbh29gobaC2i3IWy3aSASrSLrAOlTh8FQP901aMkVvtEyr0uRiXlfMTCMQzGUS5A8HQ==
+cliniasearch-helper@^1.0.0-beta.4:
+  version "1.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/cliniasearch-helper/-/cliniasearch-helper-1.0.0-beta.4.tgz#9c6cc6928b9a8bc1cde30b15db1fe8c6faec40de"
+  integrity sha512-iQr2kuFt2iGFx+Umo59kNJVgoSbH7xjuy8DUANJdydYJQJe7Xid4VDHX+0EFDMRuZ6XgY+K1Ul+d2SynFLt54Q==
   dependencies:
     events "^1.1.1"
     lodash "^4.17.5"
     qs "^6.5.1"
 
-cliniasearch@1.0.0-beta.4:
-  version "1.0.0-beta.4"
-  resolved "https://registry.yarnpkg.com/cliniasearch/-/cliniasearch-1.0.0-beta.4.tgz#1f29cc7eab20d6a89c094935b502bda94e29313b"
-  integrity sha512-ot3din7TZxA0fdKBqtBgUy3I1//3wZ7CkUuhQwbokAfRXwrqdtu1uM8z0r3DnL7JyAK8wTXuJibuRV+ubeP/yw==
+cliniasearch@1.0.0-beta.8:
+  version "1.0.0-beta.8"
+  resolved "https://registry.yarnpkg.com/cliniasearch/-/cliniasearch-1.0.0-beta.8.tgz#dad1cc7c74ff4bf34bf614fbdf97d96c3252c435"
+  integrity sha512-HgivVgbFSmw1Tp0gnZOu7GD32MWAAlN+vI/xluXd7n7Ip5PCAjDZ5O+46U79k4rq81BADHhqCFCYv+6wQ4BmEQ==
   dependencies:
     agentkeepalive "^2.2.0"
     debug "^2.6.9"
