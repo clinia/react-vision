@@ -1,1 +1,278 @@
-{"numFailedTestSuites":0,"numFailedTests":0,"numPassedTestSuites":1,"numPassedTests":23,"numPendingTestSuites":0,"numPendingTests":0,"numRuntimeErrorTestSuites":0,"numTodoTests":0,"numTotalTestSuites":1,"numTotalTests":23,"openHandles":[],"snapshot":{"added":0,"didUpdate":true,"failure":false,"filesAdded":0,"filesRemoved":0,"filesRemovedList":[],"filesUnmatched":0,"filesUpdated":0,"matched":11,"total":11,"unchecked":0,"uncheckedKeysByFile":[],"unmatched":0,"updated":0},"startTime":1573596873512,"success":true,"testResults":[{"assertionResults":[{"ancestorTitles":["AutoComplete","Snapshot testing"],"failureMessages":[],"fullName":"AutoComplete Snapshot testing applies its default props","location":null,"status":"passed","title":"applies its default props"},{"ancestorTitles":["AutoComplete","Snapshot testing"],"failureMessages":[],"fullName":"AutoComplete Snapshot testing applies its default props with custom className","location":null,"status":"passed","title":"applies its default props with custom className"},{"ancestorTitles":["AutoComplete","Snapshot testing"],"failureMessages":[],"fullName":"AutoComplete Snapshot testing applies its default props with custom style","location":null,"status":"passed","title":"applies its default props with custom style"},{"ancestorTitles":["AutoComplete","Snapshot testing"],"failureMessages":[],"fullName":"AutoComplete Snapshot testing transfers the autoFocus prop to the underlying input element","location":null,"status":"passed","title":"transfers the autoFocus prop to the underlying input element"},{"ancestorTitles":["AutoComplete","Snapshot testing"],"failureMessages":[],"fullName":"AutoComplete Snapshot testing transfers the disabled prop to the underlying input element","location":null,"status":"passed","title":"transfers the disabled prop to the underlying input element"},{"ancestorTitles":["AutoComplete","Snapshot testing"],"failureMessages":[],"fullName":"AutoComplete Snapshot testing lets you give custom components for clear submit","location":null,"status":"passed","title":"lets you give custom components for clear submit"},{"ancestorTitles":["AutoComplete","Snapshot testing"],"failureMessages":[],"fullName":"AutoComplete Snapshot testing lets you give custom components for submit","location":null,"status":"passed","title":"lets you give custom components for submit"},{"ancestorTitles":["AutoComplete","Snapshot testing"],"failureMessages":[],"fullName":"AutoComplete Snapshot testing lets you give custom components for loading indicator","location":null,"status":"passed","title":"lets you give custom components for loading indicator"},{"ancestorTitles":["AutoComplete","Snapshot testing"],"failureMessages":[],"fullName":"AutoComplete Snapshot testing lets you customize its translations","location":null,"status":"passed","title":"lets you customize its translations"},{"ancestorTitles":["AutoComplete","Snapshot testing"],"failureMessages":[],"fullName":"AutoComplete Snapshot testing should render the loader if showLoadingIndicator is true","location":null,"status":"passed","title":"should render the loader if showLoadingIndicator is true"},{"ancestorTitles":["AutoComplete","component behavior"],"failureMessages":[],"fullName":"AutoComplete component behavior onSubmit behavior should be override if provided as props","location":null,"status":"passed","title":"onSubmit behavior should be override if provided as props"},{"ancestorTitles":["AutoComplete","component behavior"],"failureMessages":[],"fullName":"AutoComplete component behavior should accept `on*` events","location":null,"status":"passed","title":"should accept `on*` events"},{"ancestorTitles":["AutoComplete","component behavior","on empty input","after entering suggestions-compliant char"],"failureMessages":[],"fullName":"AutoComplete component behavior on empty input after entering suggestions-compliant char should show suggestions","location":null,"status":"passed","title":"should show suggestions"},{"ancestorTitles":["AutoComplete","component behavior","on empty input","after entering suggestions-compliant char"],"failureMessages":[],"fullName":"AutoComplete component behavior on empty input after entering suggestions-compliant char should highlight the first suggestion when down arrow key pressed","location":null,"status":"passed","title":"should highlight the first suggestion when down arrow key pressed"},{"ancestorTitles":["AutoComplete","component behavior","on empty input","after entering suggestions-compliant char"],"failureMessages":[],"fullName":"AutoComplete component behavior on empty input after entering suggestions-compliant char should not highlight any suggestion after down key pressed on the last suggestion","location":null,"status":"passed","title":"should not highlight any suggestion after down key pressed on the last suggestion"},{"ancestorTitles":["AutoComplete","component behavior","on empty input","after entering suggestions-compliant char"],"failureMessages":[],"fullName":"AutoComplete component behavior on empty input after entering suggestions-compliant char should highlight the last suggestion when up arrow key pressed","location":null,"status":"passed","title":"should highlight the last suggestion when up arrow key pressed"},{"ancestorTitles":["AutoComplete","component behavior","on empty input","after entering suggestions-compliant char"],"failureMessages":[],"fullName":"AutoComplete component behavior on empty input after entering suggestions-compliant char should not highlight any suggestion after up key pressed on the first suggestion","location":null,"status":"passed","title":"should not highlight any suggestion after up key pressed on the first suggestion"},{"ancestorTitles":["AutoComplete","component behavior","on empty input","after entering suggestions-compliant char"],"failureMessages":[],"fullName":"AutoComplete component behavior on empty input after entering suggestions-compliant char should hide suggestions on esc key pressed","location":null,"status":"passed","title":"should hide suggestions on esc key pressed"},{"ancestorTitles":["AutoComplete","component behavior","on empty input"],"failureMessages":[],"fullName":"AutoComplete component behavior on empty input should select suggestion when enter key pressed on active suggestion","location":null,"status":"passed","title":"should select suggestion when enter key pressed on active suggestion"},{"ancestorTitles":["AutoComplete","component behavior","on empty input"],"failureMessages":[],"fullName":"AutoComplete component behavior on empty input lets you give custom components for suggestion via renderProps","location":null,"status":"passed","title":"lets you give custom components for suggestion via renderProps"},{"ancestorTitles":["AutoComplete","component behavior","on empty input"],"failureMessages":[],"fullName":"AutoComplete component behavior on empty input should refine search on suggestion selected","location":null,"status":"passed","title":"should refine search on suggestion selected"},{"ancestorTitles":["AutoComplete","component behavior","on empty input"],"failureMessages":[],"fullName":"AutoComplete component behavior on empty input should refine search on submit","location":null,"status":"passed","title":"should refine search on submit"},{"ancestorTitles":["AutoComplete","component behavior","on empty input"],"failureMessages":[],"fullName":"AutoComplete component behavior on empty input should update suggestions onChange","location":null,"status":"passed","title":"should update suggestions onChange"}],"endTime":1573596878942,"message":"","name":"/Users/pedroferreira/Sources/react-vision/packages/react-vision-dom/src/components/__tests__/AutoComplete.test.tsx","startTime":1573596875138,"status":"passed","summary":""}],"wasInterrupted":false}
+{
+  "numFailedTestSuites": 0,
+  "numFailedTests": 0,
+  "numPassedTestSuites": 1,
+  "numPassedTests": 23,
+  "numPendingTestSuites": 0,
+  "numPendingTests": 0,
+  "numRuntimeErrorTestSuites": 0,
+  "numTodoTests": 0,
+  "numTotalTestSuites": 1,
+  "numTotalTests": 23,
+  "openHandles": [],
+  "snapshot": {
+    "added": 0,
+    "didUpdate": true,
+    "failure": false,
+    "filesAdded": 0,
+    "filesRemoved": 0,
+    "filesRemovedList": [],
+    "filesUnmatched": 0,
+    "filesUpdated": 0,
+    "matched": 11,
+    "total": 11,
+    "unchecked": 0,
+    "uncheckedKeysByFile": [],
+    "unmatched": 0,
+    "updated": 0
+  },
+  "startTime": 1573596873512,
+  "success": true,
+  "testResults": [
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["AutoComplete", "Snapshot testing"],
+          "failureMessages": [],
+          "fullName": "AutoComplete Snapshot testing applies its default props",
+          "location": null,
+          "status": "passed",
+          "title": "applies its default props"
+        },
+        {
+          "ancestorTitles": ["AutoComplete", "Snapshot testing"],
+          "failureMessages": [],
+          "fullName": "AutoComplete Snapshot testing applies its default props with custom className",
+          "location": null,
+          "status": "passed",
+          "title": "applies its default props with custom className"
+        },
+        {
+          "ancestorTitles": ["AutoComplete", "Snapshot testing"],
+          "failureMessages": [],
+          "fullName": "AutoComplete Snapshot testing applies its default props with custom style",
+          "location": null,
+          "status": "passed",
+          "title": "applies its default props with custom style"
+        },
+        {
+          "ancestorTitles": ["AutoComplete", "Snapshot testing"],
+          "failureMessages": [],
+          "fullName": "AutoComplete Snapshot testing transfers the autoFocus prop to the underlying input element",
+          "location": null,
+          "status": "passed",
+          "title": "transfers the autoFocus prop to the underlying input element"
+        },
+        {
+          "ancestorTitles": ["AutoComplete", "Snapshot testing"],
+          "failureMessages": [],
+          "fullName": "AutoComplete Snapshot testing transfers the disabled prop to the underlying input element",
+          "location": null,
+          "status": "passed",
+          "title": "transfers the disabled prop to the underlying input element"
+        },
+        {
+          "ancestorTitles": ["AutoComplete", "Snapshot testing"],
+          "failureMessages": [],
+          "fullName": "AutoComplete Snapshot testing lets you give custom components for clear submit",
+          "location": null,
+          "status": "passed",
+          "title": "lets you give custom components for clear submit"
+        },
+        {
+          "ancestorTitles": ["AutoComplete", "Snapshot testing"],
+          "failureMessages": [],
+          "fullName": "AutoComplete Snapshot testing lets you give custom components for submit",
+          "location": null,
+          "status": "passed",
+          "title": "lets you give custom components for submit"
+        },
+        {
+          "ancestorTitles": ["AutoComplete", "Snapshot testing"],
+          "failureMessages": [],
+          "fullName": "AutoComplete Snapshot testing lets you give custom components for loading indicator",
+          "location": null,
+          "status": "passed",
+          "title": "lets you give custom components for loading indicator"
+        },
+        {
+          "ancestorTitles": ["AutoComplete", "Snapshot testing"],
+          "failureMessages": [],
+          "fullName": "AutoComplete Snapshot testing lets you customize its translations",
+          "location": null,
+          "status": "passed",
+          "title": "lets you customize its translations"
+        },
+        {
+          "ancestorTitles": ["AutoComplete", "Snapshot testing"],
+          "failureMessages": [],
+          "fullName": "AutoComplete Snapshot testing should render the loader if showLoadingIndicator is true",
+          "location": null,
+          "status": "passed",
+          "title": "should render the loader if showLoadingIndicator is true"
+        },
+        {
+          "ancestorTitles": ["AutoComplete", "component behavior"],
+          "failureMessages": [],
+          "fullName": "AutoComplete component behavior onSubmit behavior should be override if provided as props",
+          "location": null,
+          "status": "passed",
+          "title": "onSubmit behavior should be override if provided as props"
+        },
+        {
+          "ancestorTitles": ["AutoComplete", "component behavior"],
+          "failureMessages": [],
+          "fullName": "AutoComplete component behavior should accept `on*` events",
+          "location": null,
+          "status": "passed",
+          "title": "should accept `on*` events"
+        },
+        {
+          "ancestorTitles": [
+            "AutoComplete",
+            "component behavior",
+            "on empty input",
+            "after entering suggestions-compliant char"
+          ],
+          "failureMessages": [],
+          "fullName": "AutoComplete component behavior on empty input after entering suggestions-compliant char should show suggestions",
+          "location": null,
+          "status": "passed",
+          "title": "should show suggestions"
+        },
+        {
+          "ancestorTitles": [
+            "AutoComplete",
+            "component behavior",
+            "on empty input",
+            "after entering suggestions-compliant char"
+          ],
+          "failureMessages": [],
+          "fullName": "AutoComplete component behavior on empty input after entering suggestions-compliant char should highlight the first suggestion when down arrow key pressed",
+          "location": null,
+          "status": "passed",
+          "title": "should highlight the first suggestion when down arrow key pressed"
+        },
+        {
+          "ancestorTitles": [
+            "AutoComplete",
+            "component behavior",
+            "on empty input",
+            "after entering suggestions-compliant char"
+          ],
+          "failureMessages": [],
+          "fullName": "AutoComplete component behavior on empty input after entering suggestions-compliant char should not highlight any suggestion after down key pressed on the last suggestion",
+          "location": null,
+          "status": "passed",
+          "title": "should not highlight any suggestion after down key pressed on the last suggestion"
+        },
+        {
+          "ancestorTitles": [
+            "AutoComplete",
+            "component behavior",
+            "on empty input",
+            "after entering suggestions-compliant char"
+          ],
+          "failureMessages": [],
+          "fullName": "AutoComplete component behavior on empty input after entering suggestions-compliant char should highlight the last suggestion when up arrow key pressed",
+          "location": null,
+          "status": "passed",
+          "title": "should highlight the last suggestion when up arrow key pressed"
+        },
+        {
+          "ancestorTitles": [
+            "AutoComplete",
+            "component behavior",
+            "on empty input",
+            "after entering suggestions-compliant char"
+          ],
+          "failureMessages": [],
+          "fullName": "AutoComplete component behavior on empty input after entering suggestions-compliant char should not highlight any suggestion after up key pressed on the first suggestion",
+          "location": null,
+          "status": "passed",
+          "title": "should not highlight any suggestion after up key pressed on the first suggestion"
+        },
+        {
+          "ancestorTitles": [
+            "AutoComplete",
+            "component behavior",
+            "on empty input",
+            "after entering suggestions-compliant char"
+          ],
+          "failureMessages": [],
+          "fullName": "AutoComplete component behavior on empty input after entering suggestions-compliant char should hide suggestions on esc key pressed",
+          "location": null,
+          "status": "passed",
+          "title": "should hide suggestions on esc key pressed"
+        },
+        {
+          "ancestorTitles": [
+            "AutoComplete",
+            "component behavior",
+            "on empty input"
+          ],
+          "failureMessages": [],
+          "fullName": "AutoComplete component behavior on empty input should select suggestion when enter key pressed on active suggestion",
+          "location": null,
+          "status": "passed",
+          "title": "should select suggestion when enter key pressed on active suggestion"
+        },
+        {
+          "ancestorTitles": [
+            "AutoComplete",
+            "component behavior",
+            "on empty input"
+          ],
+          "failureMessages": [],
+          "fullName": "AutoComplete component behavior on empty input lets you give custom components for suggestion via renderProps",
+          "location": null,
+          "status": "passed",
+          "title": "lets you give custom components for suggestion via renderProps"
+        },
+        {
+          "ancestorTitles": [
+            "AutoComplete",
+            "component behavior",
+            "on empty input"
+          ],
+          "failureMessages": [],
+          "fullName": "AutoComplete component behavior on empty input should refine search on suggestion selected",
+          "location": null,
+          "status": "passed",
+          "title": "should refine search on suggestion selected"
+        },
+        {
+          "ancestorTitles": [
+            "AutoComplete",
+            "component behavior",
+            "on empty input"
+          ],
+          "failureMessages": [],
+          "fullName": "AutoComplete component behavior on empty input should refine search on submit",
+          "location": null,
+          "status": "passed",
+          "title": "should refine search on submit"
+        },
+        {
+          "ancestorTitles": [
+            "AutoComplete",
+            "component behavior",
+            "on empty input"
+          ],
+          "failureMessages": [],
+          "fullName": "AutoComplete component behavior on empty input should update suggestions onChange",
+          "location": null,
+          "status": "passed",
+          "title": "should update suggestions onChange"
+        }
+      ],
+      "endTime": 1573596878942,
+      "message": "",
+      "name": "/Users/pedroferreira/Sources/react-vision/packages/react-vision-dom/src/components/__tests__/AutoComplete.test.tsx",
+      "startTime": 1573596875138,
+      "status": "passed",
+      "summary": ""
+    }
+  ],
+  "wasInterrupted": false
+}
