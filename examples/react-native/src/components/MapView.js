@@ -20,15 +20,15 @@ class Map extends React.Component {
   };
 
   componentDidMount() {
-    const { refine } = this.props;
     // Refine to default region
-    refine({
-      northEast: { lat: 45.53 + 0.25, lng: -73.56 + 0.25 },
-      southWest: { lat: 45.53 - 0.25, lng: -73.56 - 0.25 },
-    });
+    this.refineRegion(defaultRegion);
   }
 
   onRegionChangeComplete = region => {
+    this.refineRegion(region);
+  };
+
+  refineRegion = region => {
     const { refine } = this.props;
     const northEast = {
       lat: region.latitude + region.latitudeDelta / 2,
