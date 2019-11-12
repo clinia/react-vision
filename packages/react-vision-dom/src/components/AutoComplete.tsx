@@ -45,6 +45,8 @@ interface Props {
   isSearchStalled: boolean;
   showLoadingIndicator?: boolean;
   disabled?: boolean;
+
+  __inputRef: (el: any) => void;
 }
 
 interface DefaultProps {
@@ -60,7 +62,6 @@ interface DefaultProps {
   clear: React.ReactNode;
   submit: React.ReactNode;
   renderSuggestion: (suggestion: Suggestion) => React.ReactNode;
-  __inputRef: (el: any) => void;
 }
 
 type PropsWithDefaults = Props & DefaultProps;
@@ -334,6 +335,7 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
       autoFocus,
       disabled,
       renderSuggestion,
+      showLoadingIndicator,
     } = this.props;
 
     const {
@@ -389,11 +391,16 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
               {...autoCompleteInputEvents}
               className={cx('input')}
             />
-            <ul>
-              {showSuggestions &&
-                suggestions.map((suggestion, index) => (
+            {showSuggestions && (
+              <ul className={cx('suggestion-list')}>
+                {suggestions.map((suggestion, index) => (
                   <li
+                    className={classnames(cx('suggestion'), {
+                      [`${cx('active-suggestion')}`]:
+                        index === activeSuggestion,
+                    })}
                     key={suggestion.suggestion}
+                    //TODO remove: Only for story purposes while the styles are not ready
                     style={
                       index === activeSuggestion
                         ? { backgroundColor: 'red' }
@@ -406,7 +413,8 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
                       : this.renderSuggestion(suggestion)}
                   </li>
                 ))}
-            </ul>
+              </ul>
+            )}
           </div>
           <button type="submit" title={translate('searchTitle')}>
             {submit}
@@ -419,7 +427,7 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
           >
             {clear}
           </button>
-          {this.props.showLoadingIndicator && (
+          {showLoadingIndicator && (
             <span hidden={!isSearchStalled} className={cx('loadingIndicator')}>
               {loadingIndicator}
             </span>
