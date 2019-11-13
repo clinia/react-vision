@@ -212,40 +212,42 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
 
   onKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
     const { onKeyDown, suggestions } = this.props;
-    const { activeSuggestionIndex } = this.state;
+    const { activeSuggestionIndex, showSuggestions } = this.state;
 
-    //Up arrow key
-    if (event.keyCode === 38) {
-      if (activeSuggestionIndex > 0) {
-        this.moveActiveSuggestionUp();
-      } else if (activeSuggestionIndex === 0) {
-        this.moveActiveSuggestionToTheTop();
-      } else if (activeSuggestionIndex === -1) {
-        this.moveActiveSuggestionToTheLast();
+    if (showSuggestions) {
+      //Up arrow key
+      if (event.keyCode === 38) {
+        if (activeSuggestionIndex > 0) {
+          this.moveActiveSuggestionUp();
+        } else if (activeSuggestionIndex === 0) {
+          this.moveActiveSuggestionToTheTop();
+        } else if (activeSuggestionIndex === -1) {
+          this.moveActiveSuggestionToTheLast();
+        }
+        event.preventDefault();
       }
-      event.preventDefault();
-    }
 
-    //Down arrow key
-    else if (event.keyCode === 40) {
-      if (activeSuggestionIndex + 1 === suggestions.length) {
-        this.moveActiveSuggestionToTheTop();
-      } else {
-        this.moveActiveSuggestionDown();
+      //Down arrow key
+      else if (event.keyCode === 40) {
+        if (activeSuggestionIndex + 1 === suggestions.length) {
+          this.moveActiveSuggestionToTheTop();
+        } else {
+          this.moveActiveSuggestionDown();
+        }
+        event.preventDefault();
       }
-      event.preventDefault();
-    }
 
-    //Enter key
-    else if (event.keyCode === 13) {
-      this.onSuggestionSelected(suggestions[activeSuggestionIndex]);
-      this.input.blur();
-    }
+      //Enter key
+      else if (event.keyCode === 13) {
+        this.onSuggestionSelected(suggestions[activeSuggestionIndex]);
+        this.input.blur();
+      }
 
-    //Esc Key
-    if (event.keyCode === 27) {
-      event.preventDefault();
-      this.setState({ showSuggestions: false });
+      //Esc Key
+      if (event.keyCode === 27) {
+        event.preventDefault();
+        this.setState({ showSuggestions: false });
+      }
     }
 
     if (onKeyDown) {
@@ -370,7 +372,7 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
           action=""
           role="search"
         >
-          <div>
+          <div className={cx('autocomplete')}>
             <input
               ref={this.onInputMount}
               type="search"
@@ -403,7 +405,7 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
                     //TODO remove: Only for story purposes while the styles are not ready
                     style={
                       index === activeSuggestion
-                        ? { backgroundColor: 'gray' }
+                        ? { backgroundColor: '#f5f5f8' }
                         : {}
                     }
                     onMouseDown={() => this.onSuggestionSelected(suggestion)}
@@ -416,7 +418,11 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
               </ul>
             )}
           </div>
-          <button type="submit" title={translate('searchTitle')}>
+          <button
+            type="submit"
+            className={cx('submit')}
+            title={translate('searchTitle')}
+          >
             {submit}
           </button>
           <button

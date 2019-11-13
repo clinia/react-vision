@@ -1,11 +1,11 @@
 import React from 'react';
-import './App.css';
-import { Vision, SearchBox, Hits } from 'react-vision-dom';
+import './Example.css';
+import { Vision, SearchBox, Hits, AutoComplete } from 'react-vision-dom';
 import cliniasearch from 'cliniasearch/lite';
-import logo from './static/images/logo.svg';
-import notFound from './static/images/empty-search@2x.png';
-import { OpeningHours } from './components/OpeningHours';
-import AutoComplete from './components/AutoSuggest';
+import logo from '../static/images/logo.svg';
+import notFound from '../static/images/empty-search@2x.png';
+import { OpeningHours } from '../components/OpeningHours';
+// import AutoComplete from '../components/AutoSuggest';
 
 const searchClient = cliniasearch('TODO', 'ClM5vDTmS4GWEL0aS7osJaRkowV8McuP', {
   hosts: {
@@ -75,13 +75,16 @@ const ExampleNotFoundComponent = () => (
   </div>
 );
 
-const App = () => {
+const Example = () => {
   return (
     <Vision searchClient={searchClient} indexName="health_facility">
       <div className="example-header">
         <img src={logo} />
-        <AutoComplete client={index} />
-        <SearchBox submit={<i className="fa fa-search"></i>} />
+        <AutoComplete
+          submit={<i className="fa fa-search"></i>}
+          clear={<i className="fa fa-times"></i>}
+        />
+        {/* <SearchBox submit={<i className="fa fa-search"></i>} /> */}
       </div>
       <div className="hits-body">
         <Hits
@@ -93,4 +96,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Example;

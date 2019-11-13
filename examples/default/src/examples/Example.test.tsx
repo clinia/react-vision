@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ExampleSearchBoxHits from './ExampleSearchBoxHits';
+import Example from './Example';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<ExampleSearchBoxHits />, div);
+  ReactDOM.render(<Example />, div);
   ReactDOM.unmountComponentAtNode(div);
 });
