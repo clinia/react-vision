@@ -239,8 +239,10 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
 
       //Enter key
       else if (event.keyCode === 13) {
-        this.onSuggestionSelected(suggestions[activeSuggestionIndex]);
         this.input.blur();
+
+        if (activeSuggestionIndex === -1) this.search();
+        else this.onSuggestionSelected(suggestions[activeSuggestionIndex]);
       }
 
       //Esc Key
@@ -256,17 +258,30 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
   }
 
   onSuggestionSelected(suggestion: Suggestion) {
-    const { onSuggestionSelected, searchForSuggestions, refine } = this.props;
+    const { onSuggestionSelected } = this.props;
 
     const query = suggestion.suggestion;
-    this.setState({ query, queryCache: query, activeSuggestionIndex: -1 });
 
-    refine(query);
-    searchForSuggestions(query);
+    this.setState(
+      {
+        query,
+        queryCache: query,
+        activeSuggestionIndex: -1,
+      },
+      () => this.search()
+    );
 
     if (onSuggestionSelected) {
       onSuggestionSelected(suggestion);
     }
+  }
+
+  search() {
+    const { query } = this.state;
+    const { refine, searchForSuggestions } = this.props;
+
+    refine(query);
+    searchForSuggestions(query);
   }
 
   onChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -283,22 +298,21 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
   }
 
   onSubmit(event: React.FormEvent<HTMLFormElement>) {
-    const { refine, searchForSuggestions } = this.props;
-    const { query } = this.state;
-
     event.preventDefault();
     event.stopPropagation();
     this.input.blur();
 
-    refine(query);
-    searchForSuggestions(query);
+    this.search();
   }
 
   onClear(event: React.FormEvent<HTMLFormElement>) {
-    const { refine, onClear } = this.props;
-    refine('');
+    const { refine, searchForSuggestions, onClear } = this.props;
 
     this.setState({ query: '', queryCache: '', activeSuggestionIndex: -1 });
+
+    refine('');
+    searchForSuggestions('');
+
     if (onClear) {
       onClear(event);
     }
