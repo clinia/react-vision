@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { compose } from 'redux';
 import { connect } from 'react-redux';
 import {
   FlatList,
@@ -8,9 +9,11 @@ import {
   StyleSheet,
   Keyboard,
 } from 'react-native';
+import { connectAutoComplete } from 'react-vision-core';
 
+import { randomId } from '../helpers/utils';
 import { Container, Typography, Margin, Color } from '../styles';
-import { setIsSearching } from '../redux/actions';
+import { setIsSearching, setQuery } from '../redux/actions';
 
 const styles = StyleSheet.create({
   separator: {
@@ -24,18 +27,16 @@ const styles = StyleSheet.create({
   },
 });
 
+const mapStateToProps = state => ({
+  query: state.store.query,
+});
+
 class AutoSuggest extends React.Component {
-  state = {
-    suggestions: [
-      { suggestion: 'Brunet' },
-      { suggestion: 'Jean Coutu' },
-      { suggestion: 'Pharmaprix' },
-    ],
-  };
-
   onPress = record => {
-    console.log(record.suggestion);
+    const { refine } = this.props;
 
+    refine(record.suggestion);
+    this.props.setQuery(record.suggestion);
     this.props.setIsSearching(false);
 
     Keyboard.dismiss();
@@ -53,18 +54,22 @@ class AutoSuggest extends React.Component {
   );
 
   render() {
+    const results = this.props.suggestions || [];
     return (
       <FlatList
         keyboardShouldPersistTaps="always"
-        data={this.state.suggestions}
-        keyExtractor={record => record.suggestion}
+        data={results}
+        keyExtractor={() => randomId()}
         renderItem={record => this.suggestion(record.item)}
       />
     );
   }
 }
 
-export default connect(
-  null,
-  { setIsSearching }
+export default compose(
+  connect(
+    mapStateToProps,
+    { setIsSearching, setQuery }
+  ),
+  connectAutoComplete
 )(AutoSuggest);
