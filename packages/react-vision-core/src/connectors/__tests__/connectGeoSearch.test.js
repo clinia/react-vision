@@ -163,7 +163,7 @@ describe('connectGeoSearch', () => {
           const searchResults = createSingleIndexSearchResults([], {
             aroundLatLng: '47, 74',
           });
-          
+
           const actual = connector.getProvidedProps(
             props,
             searchState,
