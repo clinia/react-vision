@@ -11,7 +11,7 @@ describe('connectInfiniteHits', () => {
     it('provides the current records to the component', () => {
       const records = [{}];
       const props = connect.getProvidedProps.call({}, { contextValue }, null, {
-        results: { records, meta: { page: 0, perPage: 2, numPages: 3 } },
+        results: { records, page: 0, perPage: 2, numPages: 3 },
       });
 
       expect(props).toEqual({
@@ -33,7 +33,7 @@ describe('connectInfiniteHits', () => {
         { contextValue },
         null,
         {
-          results: { records, meta: { page: 0, perPage: 2, numPages: 3 } },
+          results: { records, page: 0, perPage: 2, numPages: 3 },
         }
       );
 
@@ -49,11 +49,9 @@ describe('connectInfiniteHits', () => {
         {
           results: {
             records: records2,
-            meta: {
-              page: 1,
-              perPage: 2,
-              numPages: 3,
-            },
+            page: 1,
+            perPage: 2,
+            numPages: 3,
           },
         }
       );
@@ -75,11 +73,9 @@ describe('connectInfiniteHits', () => {
         {
           results: {
             records: initialPageRecords,
-            meta: {
-              page: 1,
-              perPage: 2,
-              numPages: 3,
-            },
+            page: 1,
+            perPage: 2,
+            numPages: 3,
           },
         }
       );
@@ -96,11 +92,9 @@ describe('connectInfiniteHits', () => {
         {
           results: {
             records: previousPageRecords,
-            meta: {
-              page: 0,
-              perPage: 2,
-              numPages: 3,
-            },
+            page: 0,
+            perPage: 2,
+            numPages: 3,
           },
         }
       );
@@ -126,11 +120,9 @@ describe('connectInfiniteHits', () => {
         {
           results: {
             records,
-            meta: {
-              page: 0,
-              perPage: 6,
-              numPages: 10,
-            },
+            page: 0,
+            perPage: 6,
+            numPages: 10,
           },
         }
       );
@@ -155,11 +147,9 @@ describe('connectInfiniteHits', () => {
         {
           results: {
             records: records2,
-            meta: {
-              page: 1,
-              perPage: 6,
-              numPages: 10,
-            },
+            page: 1,
+            perPage: 6,
+            numPages: 10,
           },
         }
       );
@@ -192,11 +182,9 @@ describe('connectInfiniteHits', () => {
         {
           results: {
             records: records3,
-            meta: {
-              page: 2,
-              perPage: 8,
-              numPages: 10,
-            },
+            page: 2,
+            perPage: 8,
+            numPages: 10,
           },
         }
       );
@@ -238,11 +226,9 @@ describe('connectInfiniteHits', () => {
       res3 = connect.getProvidedProps.call(instance, { contextValue }, null, {
         results: {
           records: records3,
-          meta: {
-            page: 2,
-            perPage: 8,
-            numPages: 10,
-          },
+          page: 2,
+          perPage: 8,
+          numPages: 10,
         },
       });
 
@@ -296,11 +282,9 @@ describe('connectInfiniteHits', () => {
           {
             results: {
               records,
-              meta: {
-                page,
-                perPage: records.length,
-                numPages,
-              },
+              page,
+              perPage: records.length,
+              numPages,
             },
           }
         );
@@ -321,11 +305,9 @@ describe('connectInfiniteHits', () => {
         {
           results: {
             records,
-            meta: {
-              page: numPages - 1,
-              perPage: records.length,
-              numPages,
-            },
+            page: numPages - 1,
+            perPage: records.length,
+            numPages,
           },
         }
       );
@@ -356,17 +338,15 @@ describe('connectInfiniteHits', () => {
       const instance = {};
 
       connect.getProvidedProps.call(instance, { contextValue }, null, {
-        results: { records, meta: { page: 0, perPage: 2, numPages: 3 } },
+        results: { records, page: 0, perPage: 2, numPages: 3 },
       });
 
       connect.getProvidedProps.call(instance, { contextValue }, null, {
         results: {
           records: records2,
-          meta: {
-            page: 1,
-            perPage: 2,
-            numPages: 3,
-          },
+          page: 1,
+          perPage: 2,
+          numPages: 3,
         },
       });
 
@@ -377,11 +357,9 @@ describe('connectInfiniteHits', () => {
         {
           results: {
             records: records3,
-            meta: {
-              page: 2,
-              perPage: 2,
-              numPages: 3,
-            },
+            page: 2,
+            perPage: 2,
+            numPages: 3,
           },
         }
       );
@@ -406,11 +384,9 @@ describe('connectInfiniteHits', () => {
         {
           results: {
             records,
-            meta: {
-              page: 2,
-              perPage: 2,
-              numPages: 3,
-            },
+            page: 2,
+            perPage: 2,
+            numPages: 3,
           },
         }
       );
@@ -433,11 +409,9 @@ describe('connectInfiniteHits', () => {
         {
           results: {
             records,
-            meta: {
-              page: 2,
-              perPage: 2,
-              numPages: 3,
-            },
+            page: 2,
+            perPage: 2,
+            numPages: 3,
           },
         }
       );
@@ -487,11 +461,9 @@ describe('connectInfiniteHits', () => {
       const searchResults = {
         results: {
           records: [{}, {}, {}],
-          meta: {
-            perPage: 3,
-            page: 1,
-            numPages: 3,
-          },
+          perPage: 3,
+          page: 1,
+          numPages: 3,
         },
       };
 
@@ -530,7 +502,7 @@ describe('connectInfiniteHits', () => {
         null,
         {
           results: {
-            second: { records, meta: { page: 0, perPage: 2, numPages: 3 } },
+            second: { records, page: 0, perPage: 2, numPages: 3 },
           },
         }
       );
@@ -556,7 +528,7 @@ describe('connectInfiniteHits', () => {
         null,
         {
           results: {
-            second: { records, meta: { page: 0, perPage: 2, numPages: 3 } },
+            second: { records, page: 0, perPage: 2, numPages: 3 },
           },
         }
       );
@@ -574,7 +546,9 @@ describe('connectInfiniteHits', () => {
           results: {
             second: {
               records: records2,
-              meta: { page: 1, perPage: 2, numPages: 3 },
+              page: 1,
+              perPage: 2,
+              numPages: 3,
             },
           },
         }
@@ -598,11 +572,9 @@ describe('connectInfiniteHits', () => {
           results: {
             second: {
               records: initialPageRecords,
-              meta: {
-                page: 1,
-                perPage: 2,
-                numPages: 3,
-              },
+              page: 1,
+              perPage: 2,
+              numPages: 3,
             },
           },
         }
@@ -621,11 +593,9 @@ describe('connectInfiniteHits', () => {
           results: {
             second: {
               records: previousPageRecords,
-              meta: {
-                page: 0,
-                perPage: 2,
-                numPages: 3,
-              },
+              page: 0,
+              perPage: 2,
+              numPages: 3,
             },
           },
         }
@@ -651,7 +621,7 @@ describe('connectInfiniteHits', () => {
         null,
         {
           results: {
-            second: { records, meta: { page: 0, perPage: 6, numPages: 10 } },
+            second: { records, page: 0, perPage: 6, numPages: 10 },
           },
         }
       );
@@ -669,7 +639,9 @@ describe('connectInfiniteHits', () => {
           results: {
             second: {
               records: records2,
-              meta: { page: 1, perPage: 6, numPages: 10 },
+              page: 1,
+              perPage: 6,
+              numPages: 10,
             },
           },
         }
@@ -688,7 +660,9 @@ describe('connectInfiniteHits', () => {
           results: {
             second: {
               records: records3,
-              meta: { page: 2, perPage: 8, numPages: 10 },
+              page: 2,
+              perPage: 8,
+              numPages: 10,
             },
           },
         }
@@ -710,7 +684,9 @@ describe('connectInfiniteHits', () => {
           results: {
             second: {
               records: records3,
-              meta: { page: 2, perPage: 8, numPages: 10 },
+              page: 2,
+              perPage: 8,
+              numPages: 10,
             },
           },
         }
@@ -737,11 +713,9 @@ describe('connectInfiniteHits', () => {
           results: {
             second: {
               records,
-              meta: {
-                page: 0,
-                perPage: 6,
-                numPages: 10,
-              },
+              page: 0,
+              perPage: 6,
+              numPages: 10,
               _state: { page: 0, query: 'a' },
             },
           },
@@ -761,11 +735,9 @@ describe('connectInfiniteHits', () => {
           results: {
             second: {
               records: records2,
-              meta: {
-                page: 0,
-                perPage: 6,
-                numPages: 10,
-              },
+              page: 0,
+              perPage: 6,
+              numPages: 10,
               _state: { page: 0, query: 'b' },
             },
           },
@@ -795,11 +767,9 @@ describe('connectInfiniteHits', () => {
             results: {
               second: {
                 records,
-                meta: {
-                  page,
-                  perPage: records.length,
-                  numPages,
-                },
+                page,
+                perPage: records.length,
+                numPages,
               },
             },
           }
@@ -822,11 +792,9 @@ describe('connectInfiniteHits', () => {
           results: {
             second: {
               records,
-              meta: {
-                page: numPages - 1,
-                perPage: records.length,
-                numPages,
-              },
+              page: numPages - 1,
+              perPage: records.length,
+              numPages,
             },
           },
         }
@@ -851,7 +819,7 @@ describe('connectInfiniteHits', () => {
         null,
         {
           results: {
-            second: { records, meta: { page: 0, perPage: 2, numPages: 3 } },
+            second: { records, page: 0, perPage: 2, numPages: 3 },
           },
         }
       );
@@ -864,7 +832,9 @@ describe('connectInfiniteHits', () => {
           results: {
             second: {
               records: records2,
-              meta: { page: 1, oerPage: 2, numPages: 3 },
+              page: 1,
+              perPage: 2,
+              numPages: 3,
             },
           },
         }
@@ -878,7 +848,9 @@ describe('connectInfiniteHits', () => {
           results: {
             second: {
               records: records3,
-              meta: { page: 2, perPage: 2, numPages: 3 },
+              page: 2,
+              perPage: 2,
+              numPages: 3,
             },
           },
         }
