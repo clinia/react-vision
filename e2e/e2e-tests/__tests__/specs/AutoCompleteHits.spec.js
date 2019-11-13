@@ -1,8 +1,54 @@
-import autoCompletePage from '../pageobjects/SearchBoxHitsPage';
+import autoCompletePage from '../pageobjects/AutoCompleteHitsPage';
 
-describe('ExamplePage', () => {
+describe('AutoComplete + Hits', () => {
   it('navigates to example page', async () => {
     browser.url('http://localhost:3001/');
+  });
+
+  it('should change results on suggestion clicked', () => {
+    autoCompletePage.open();
+    const initialResultsCount = autoCompletePage.resultsCount;
+
+    autoCompletePage.autoCompleteInput.click();
+    autoCompletePage.enterValue('a');
+    autoCompletePage.waitForSuggestionsListToAppear();
+    const firstSuggestion = autoCompletePage.suggestions[0];
+
+    firstSuggestion.click();
+    browser.pause(2000);
+    const afterSuggestionClickResultsCount = autoCompletePage.resultsCount;
+    expect(initialResultsCount).not.toEqual(afterSuggestionClickResultsCount);
+  });
+  it('should change results selecting suggestion using only arrow keys + enter', () => {
+    autoCompletePage.open();
+    const initialResultsCount = autoCompletePage.resultsCount;
+
+    autoCompletePage.autoCompleteInput.click();
+    autoCompletePage.pressKey('a');
+    autoCompletePage.waitForSuggestionsListToAppear();
+    autoCompletePage.pressKey('ArrowDown');
+    autoCompletePage.pressEnter();
+
+    const afterSuggestionClickResultsCount = autoCompletePage.resultsCount;
+
+    expect(afterSuggestionClickResultsCount).toBeGreaterThan(0);
+    expect(initialResultsCount).not.toEqual(afterSuggestionClickResultsCount);
+  });
+  it('should reset results on clear button click', () => {
+    autoCompletePage.open();
+    autoCompletePage.waitForResultsToLoad();
+
+    const initialResultsCount = autoCompletePage.resultsCount;
+    autoCompletePage.searchFor('cardiology');
+
+    expect(autoCompletePage.resultsCount).not.toEqual(initialResultsCount);
+    expect(autoCompletePage.clearButton.isDisplayed()).toBeTruthy();
+
+    debugger;
+    autoCompletePage.clearButton.click();
+    autoCompletePage.waitForResultsToLoad();
+    debugger;
+    expect(autoCompletePage.resultsCount).toEqual(initialResultsCount);
   });
 
   it('should show Clinia resource when filtering for Geriatrics', () => {
@@ -17,5 +63,6 @@ describe('ExamplePage', () => {
     autoCompletePage.searchFor('aaaaaaaaaa');
 
     expect(autoCompletePage.resultsCount).toEqual(0);
+    expect(autoCompletePage.noResultsFound.isDisplayed()).toBeTruthy();
   });
 });

@@ -6,7 +6,6 @@ exports.config = {
   ...local,
   before: function() {
     require('@babel/register');
-    require('ts-node').register({ files: true });
   },
   // specs: ['./examples/default/__tests__/e2e/specs/**/*.js'],
   specs: ['./e2e/e2e-tests/__tests__/specs/**/*.js'],

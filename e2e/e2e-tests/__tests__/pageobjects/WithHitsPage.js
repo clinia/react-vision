@@ -1,6 +1,4 @@
 import Page from './page';
-//@ts-ignore
-import $ from '@wdio/sync';
 
 export default class WithHitsPage extends Page {
   get hitResultList() {
@@ -14,6 +12,10 @@ export default class WithHitsPage extends Page {
         this.hitResultList.$$('.cvi-Hits-item').length) ||
       0
     );
+  }
+
+  get noResultsFound() {
+    return $('.cvi-Hits-empty');
   }
 
   waitForResultsToLoad() {
