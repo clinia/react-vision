@@ -1,16 +1,20 @@
 import Page from './page';
 
 class ExamplePage extends Page {
-  get searchBoxInput() {
-    return $('.cvi-SearchBox-input');
-  }
+  // get searchBoxInput() {
+  //   return $('.cvi-SearchBox-input');
+  // }
 
-  get searchBoxClearButton() {
-    return $('.cvi-SearchBox-clear');
-  }
+  // get searchBoxClearButton() {
+  //   return $('.cvi-SearchBox-clear');
+  // }
 
   get hitResultList() {
     return $('.cvi-Hits-list');
+  }
+
+  get autoComplete() {
+    return $('.cvi-AutoComplete-input');
   }
 
   get resultsCount() {
@@ -32,8 +36,18 @@ class ExamplePage extends Page {
     }
   }
 
-  searchFor(clinicName) {
-    this.searchBoxInput.setValue(clinicName);
+  //SearchBox
+  // searchFor(clinicName) {
+  //   this.searchBoxInput.setValue(clinicName);
+  //   super.pressEnter();
+
+  //   this.waitForResultsToLoad();
+  //   return this.hitResultList;
+  // }
+
+  //AutoComplete
+  searchFor(speciality) {
+    this.autoComplete.setValue(speciality);
     super.pressEnter();
 
     this.waitForResultsToLoad();
