@@ -21,7 +21,7 @@ addDecorator(withA11y);
 addDecorator(
   withTests({
     results,
-    filesExt: '.test.js',
+    filesExt: '.test.tsx',
   })
 );
 

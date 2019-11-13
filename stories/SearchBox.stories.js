@@ -24,22 +24,6 @@
 //   </WrapWithHits>
 // ));
 
-// const CustomButton = () => (
-//   <button style={{ backgroundColor: 'blue', color: 'white' }}>
-//     Custom Search Button
-//   </button>
-// );
-
-// const CustomClearButton = ({ clearSearch }) => (
-//   <button type="reset" onClick={clearSearch}>
-//     Custom clear button
-//   </button>
-// );
-
-// const CustomLoadingIndicator = () => (
-//   <span style={{ backgroundColor: 'seagreen', width: '10px' }} />
-// );
-
 // stories.add('Custom SearchBox', () => (
 //   <WrapWithHits
 //     searchBox={false}

@@ -14,19 +14,64 @@ const searchClient = cliniasearch('TODO', 'ClM5vDTmS4GWEL0aS7osJaRkowV8McuP', {
   },
 });
 
-stories.add('default', () => (
-  <Vision searchClient={searchClient} indexName="health_facility">
-    <AutoComplete
-      onSubmit={action('onSubmit')}
-      onClear={action('onClear')}
-      onSuggestionSelected={action('onSuggestionSelected')}
-      onBlur={action('onBlur')}
-      onFocus={action('onFocus')}
-      onChange={action('onChange')}
-      onKeyDown={action('onKeyDown')}
-      showLoadingIndicator={boolean('showLoadingIndicator', true)}
-      disabled={boolean('disabled', false)}
-    />
-    {/* <Hits /> */}
-  </Vision>
-));
+stories
+  .addParameters({ jest: ['AutoComplete'] })
+  .add('Default AutoComplete', () => (
+    <Vision searchClient={searchClient} indexName="health_facility">
+      <AutoComplete
+        onSubmit={action('onSubmit')}
+        onClear={action('onClear')}
+        onSuggestionSelected={action('onSuggestionSelected')}
+        onBlur={action('onBlur')}
+        onFocus={action('onFocus')}
+        onChange={action('onChange')}
+        onKeyDown={action('onKeyDown')}
+        showLoadingIndicator={boolean('showLoadingIndicator', true)}
+        disabled={boolean('disabled', false)}
+      />
+    </Vision>
+  ));
+
+const CustomButton = () => (
+  <button style={{ backgroundColor: 'blue', color: 'white' }}>
+    Custom Search Button
+  </button>
+);
+
+const CustomClearButton = () => (
+  <button type="reset">Custom clear button</button>
+);
+
+const CustomLoadingIndicator = () => (
+  <span style={{ backgroundColor: 'seagreen', width: '10px' }} />
+);
+
+const CustomSuggestion = ({ suggestion }) => (
+  <div key={suggestion.suggestion} style={{ color: 'blue' }}>
+    {suggestion.suggestion}
+  </div>
+);
+
+stories
+  .addParameters({ jest: ['AutoComplete'] })
+  .add('Custom AutoComplete', () => (
+    <Vision searchClient={searchClient} indexName="health_facility">
+      <AutoComplete
+        onSubmit={action('onSubmit')}
+        onClear={action('onClear')}
+        onSuggestionSelected={action('onSuggestionSelected')}
+        onBlur={action('onBlur')}
+        onFocus={action('onFocus')}
+        onChange={action('onChange')}
+        onKeyDown={action('onKeyDown')}
+        showLoadingIndicator={boolean('showLoadingIndicator', true)}
+        disabled={boolean('disabled', false)}
+        loadingIndicator={<CustomLoadingIndicator />}
+        clear={<CustomClearButton />}
+        submit={<CustomButton />}
+        renderSuggestion={suggestion => (
+          <CustomSuggestion suggestion={suggestion} />
+        )}
+      />
+    </Vision>
+  ));

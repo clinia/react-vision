@@ -403,7 +403,7 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
                     //TODO remove: Only for story purposes while the styles are not ready
                     style={
                       index === activeSuggestion
-                        ? { backgroundColor: 'red' }
+                        ? { backgroundColor: 'gray' }
                         : {}
                     }
                     onMouseDown={() => this.onSuggestionSelected(suggestion)}
