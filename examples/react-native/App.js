@@ -5,7 +5,9 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createStackNavigator } from 'react-navigation-stack';
 import cliniasearch from 'cliniasearch/lite';
 import { Vision } from 'react-vision-dom';
+import { Provider } from 'react-redux';
 
+import store from './src/redux/store';
 import List from './src/pages/List';
 import Map from './src/pages/Map';
 import { Color } from './src/styles';
@@ -62,7 +64,9 @@ const AppContainer = createAppContainer(TabNavigator);
 export default function App() {
   return (
     <Vision searchClient={searchClient} indexName="health_facility">
-      <AppContainer />
+      <Provider store={store}>
+        <AppContainer />
+      </Provider>
     </Vision>
   );
 }

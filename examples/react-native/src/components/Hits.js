@@ -53,18 +53,16 @@ class Hits extends React.Component {
   render() {
     const { records } = this.props;
     return (
-      <View style={Container.hits}>
-        <FlatList
-          data={records}
-          keyExtractor={record => record.id}
-          renderItem={record =>
-            this.hit(record.item, record.index === records.length - 1)
-          }
-          ListEmptyComponent={
-            <Text style={styles.noContentFound}>No results found</Text>
-          }
-        />
-      </View>
+      <FlatList
+        data={records}
+        keyExtractor={record => record.id}
+        renderItem={record =>
+          this.hit(record.item, record.index === records.length - 1)
+        }
+        ListEmptyComponent={
+          <Text style={styles.noContentFound}>No results found</Text>
+        }
+      />
     );
   }
 }
