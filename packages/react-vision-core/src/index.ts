@@ -17,6 +17,7 @@ export {
 } from './connectors/connectAutoComplete';
 export { default as connectConfigure } from './connectors/connectConfigure';
 export { default as connectGeoSearch } from './connectors/connectGeoSearch';
+export { default as connectLocation } from './connectors/connectLocation';
 export { default as connectHits } from './connectors/connectHits';
 export { default as connectHitsPerPage } from './connectors/connectHitsPerPage';
 export {

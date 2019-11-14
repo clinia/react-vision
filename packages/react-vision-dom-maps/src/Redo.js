@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { createClassNames, translatable } from 'react-instantsearch-dom';
+import { createClassNames, translatable } from 'react-vision-dom';
 import GeoSearchContext from './GeoSearchContext';
 import withGoogleMaps from './withGoogleMaps';
 

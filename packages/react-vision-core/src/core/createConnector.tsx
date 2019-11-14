@@ -40,6 +40,7 @@ export type ConnectorDescription = {
    */
   cleanUp?: (...args: any[]) => any;
   searchForSuggestions?: (...args: any[]) => any;
+  searchForLocations?: (...args: any[]) => any;
   shouldComponentUpdate?: (...args: any[]) => boolean;
   /**
    * PropTypes forwarded to the wrapped component.
@@ -217,8 +218,10 @@ export function createConnectorWithoutContext(
           widgets,
           results,
           resultsSuggestions,
+          resultsLocations,
           searching,
           searchingForSuggestions,
+          searchingForLocations,
           isSearchStalled,
           metadata,
           error,
@@ -236,13 +239,19 @@ export function createConnectorWithoutContext(
           searching: searchingForSuggestions,
         };
 
+        const searchForLoationsResults = {
+          results: resultsLocations,
+          searching: searchingForLocations,
+        };
+
         return connectorDesc.getProvidedProps.call(
           this,
           props,
           widgets,
           searchResults,
           metadata,
-          searchForSuggestionsResults
+          searchForSuggestionsResults,
+          searchForLoationsResults
         );
       }
 
@@ -308,6 +317,18 @@ export function createConnectorWithoutContext(
         );
       };
 
+      searchForLocations = (...args) => {
+        // searchForLocations will always be defined here because the props is only given contitionaly
+        this.props.contextValue.onSearchForLocations(
+          connectorDesc.searchForLocations!.call(
+            this,
+            this.props,
+            this.props.contextValue.store.getState().widgets,
+            ...args
+          )
+        );
+      };
+
       createURL = (...args) =>
         this.props.contextValue.createHrefForState(
           // refine will always be defined here because the prop is only given conditionally
@@ -337,12 +358,18 @@ export function createConnectorWithoutContext(
             ? { searchForSuggestions: this.searchForSuggestions }
             : {};
 
+        const searchForLocationsProps =
+          typeof connectorDesc.searchForLocations === 'function'
+            ? { searchForLocations: this.searchForLocations }
+            : {};
+
         return (
           <Composed
             {...props}
             {...providedProps}
             {...refineProps}
             {...searchForSuggestionsProps}
+            {...searchForLocationsProps}
           />
         );
       }
