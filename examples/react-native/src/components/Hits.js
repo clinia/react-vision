@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, FlatList, Text, StyleSheet } from 'react-native';
-import { connectHits } from 'react-vision-native';
+import { connectInfiniteHits } from 'react-vision-native';
 
 import { Container, Typography, Margin, Color } from '../styles';
 
@@ -32,6 +32,14 @@ const styles = StyleSheet.create({
 });
 
 class Hits extends React.Component {
+  onEndReached = () => {
+    const { records, hasMore, refineNext, ...rest } = this.props;
+    console.log(hasMore);
+    if (hasMore) {
+      refineNext();
+    }
+  };
+
   tag = type => (
     <View style={styles.tag}>
       <Text style={styles.tagText}>{type}</Text>
@@ -59,6 +67,8 @@ class Hits extends React.Component {
         renderItem={record =>
           this.hit(record.item, record.index === records.length - 1)
         }
+        onEndReachedThreshold={0.05}
+        onEndReached={this.onEndReached}
         ListEmptyComponent={
           <Text style={styles.noContentFound}>No results found</Text>
         }
@@ -67,4 +77,4 @@ class Hits extends React.Component {
   }
 }
 
-export default connectHits(Hits);
+export default connectInfiniteHits(Hits);
