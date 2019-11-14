@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
 import {
   FlatList,
   Text,
@@ -7,9 +9,11 @@ import {
   StyleSheet,
   Keyboard,
 } from 'react-native';
-import { withNavigation } from 'react-navigation';
+import { connectAutoComplete } from 'react-vision-core';
 
+import { randomId } from '../helpers/utils';
 import { Container, Typography, Margin, Color } from '../styles';
+import { setIsSearching, setQuery } from '../redux/actions';
 
 const styles = StyleSheet.create({
   separator: {
@@ -23,24 +27,17 @@ const styles = StyleSheet.create({
   },
 });
 
+const mapStateToProps = state => ({
+  query: state.store.query,
+});
+
 class AutoSuggest extends React.Component {
-  state = {
-    suggestions: [
-      { suggestion: 'Brunet' },
-      { suggestion: 'Jean Coutu' },
-      { suggestion: 'Pharmaprix' },
-    ],
-  };
-
   onPress = record => {
-    const { navigation } = this.props;
+    const { refine } = this.props;
 
-    console.log(record.suggestion);
-
-    const toggleSearch = navigation.getParam('toggleSearch');
-    if (toggleSearch) {
-      toggleSearch(false);
-    }
+    refine(record.suggestion);
+    this.props.setQuery(record.suggestion);
+    this.props.setIsSearching(false);
 
     Keyboard.dismiss();
   };
@@ -57,17 +54,22 @@ class AutoSuggest extends React.Component {
   );
 
   render() {
+    const results = this.props.suggestions || [];
     return (
-      <View style={Container.suggestions}>
-        <FlatList
-          keyboardShouldPersistTaps="always"
-          data={this.state.suggestions}
-          keyExtractor={record => record.suggestion}
-          renderItem={record => this.suggestion(record.item)}
-        />
-      </View>
+      <FlatList
+        keyboardShouldPersistTaps="always"
+        data={results}
+        keyExtractor={() => randomId()}
+        renderItem={record => this.suggestion(record.item)}
+      />
     );
   }
 }
 
-export default withNavigation(AutoSuggest);
+export default compose(
+  connect(
+    mapStateToProps,
+    { setIsSearching, setQuery }
+  ),
+  connectAutoComplete
+)(AutoSuggest);
