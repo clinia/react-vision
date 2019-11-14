@@ -1,6 +1,10 @@
-import { SET_QUERY, SET_LOCATION, SET_SUGGESTION_MODE } from './actions';
+import {
+  SET_QUERY,
+  SET_LOCATION,
+  SET_SEARCHBOX_FOCUSED,
+  SET_LOCATIONBOX_FOCUSED,
+} from './actions';
 import { combineReducers } from 'redux';
-import SuggestionMode from './suggestionMode';
 
 const defaultState = {
   // Keeps track of the user input on each SearchBox `onChange` event.
@@ -10,7 +14,9 @@ const defaultState = {
   // Allows sharing of the user input on all active LocationBox components, event if the user doesn't trigger a search.
   location: undefined,
   // Keeps track of the SearchBox state.
-  suggestionMode: SuggestionMode.None,
+  searchBoxFocused: false,
+  // Keeps track of the LocationBox state.
+  locationBoxFocused: false,
 };
 
 function reducers(state = defaultState, action) {
@@ -25,10 +31,15 @@ function reducers(state = defaultState, action) {
         ...state,
         location: action.payload.location,
       };
-    case SET_SUGGESTION_MODE:
+    case SET_SEARCHBOX_FOCUSED:
       return {
         ...state,
-        suggestionMode: action.payload.mode,
+        searchBoxFocused: action.payload.isFocused,
+      };
+    case SET_LOCATIONBOX_FOCUSED:
+      return {
+        ...state,
+        locationBoxFocused: action.payload.isFocused,
       };
     default:
       return state;

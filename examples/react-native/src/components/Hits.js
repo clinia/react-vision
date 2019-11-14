@@ -33,8 +33,7 @@ const styles = StyleSheet.create({
 
 class Hits extends React.Component {
   onEndReached = () => {
-    const { records, hasMore, refineNext, ...rest } = this.props;
-    console.log(hasMore);
+    const { hasMore, refineNext } = this.props;
     if (hasMore) {
       refineNext();
     }

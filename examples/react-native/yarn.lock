@@ -1533,10 +1533,10 @@ cli-width@^2.0.0:
   resolved "https://registry.yarnpkg.com/cli-width/-/cli-width-2.2.0.tgz#ff19ede8a9a5e579324147b0c11f0fbcbabed639"
   integrity sha1-/xnt6Kml5XkyQUewwR8PvLq+1jk=
 
-cliniasearch-helper@^1.0.0-beta.4:
-  version "1.0.0-beta.4"
-  resolved "https://registry.yarnpkg.com/cliniasearch-helper/-/cliniasearch-helper-1.0.0-beta.4.tgz#9c6cc6928b9a8bc1cde30b15db1fe8c6faec40de"
-  integrity sha512-iQr2kuFt2iGFx+Umo59kNJVgoSbH7xjuy8DUANJdydYJQJe7Xid4VDHX+0EFDMRuZ6XgY+K1Ul+d2SynFLt54Q==
+cliniasearch-helper@^1.0.0-beta.5:
+  version "1.0.0-beta.5"
+  resolved "https://registry.yarnpkg.com/cliniasearch-helper/-/cliniasearch-helper-1.0.0-beta.5.tgz#89202f15baaf503a1c74f2036e106ae4465ead9a"
+  integrity sha512-ovOXmAJo1+/FpfAAfc6kFItK6xnrW6cBA7Ca8Sc3aTOg+QmFKPfvmRwhA48suF8MGbx8r1zDCh1NlLJ1AkCegA==
   dependencies:
     events "^1.1.1"
     lodash "^4.17.5"
@@ -4505,41 +4505,41 @@ react-transform-hmr@^1.0.4:
     global "^4.3.0"
     react-proxy "^1.1.7"
 
-react-vision-core@1.0.0-beta.3:
-  version "1.0.0-beta.3"
-  resolved "https://registry.yarnpkg.com/react-vision-core/-/react-vision-core-1.0.0-beta.3.tgz#18e69eb5b519e2b8c0e5c25f33e9c10634224062"
-  integrity sha512-LRCHb7txppe6fev0m+KIAGgeO8I/uJpAFIAD9TtjvBqTTTXx9KCiDDEoLGPLpIvXd3T3+Yr/HeJt6l4bLPmBdQ==
+react-vision-core@1.0.0-beta.4:
+  version "1.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/react-vision-core/-/react-vision-core-1.0.0-beta.4.tgz#598468672edcd5c60f8154f5e68722dfd2271e57"
+  integrity sha512-t++HJWq8yh2DqcK2KclMAxfFCN5zokK3Xg74yg0X0PMe3r4cX7vp3pSlSDNpkVLzw0+RLtWGQKhquwXOWlFLvg==
   dependencies:
     "@babel/runtime" "^7.1.2"
-    cliniasearch-helper "^1.0.0-beta.4"
+    cliniasearch-helper "^1.0.0-beta.5"
     fast-deep-equal "^2.0.1"
     prop-types "^15.5.10"
 
-react-vision-dom@1.0.0-beta.3:
-  version "1.0.0-beta.3"
-  resolved "https://registry.yarnpkg.com/react-vision-dom/-/react-vision-dom-1.0.0-beta.3.tgz#ea0affbbb0dc9dae1bcde3dffd16d79395f29440"
-  integrity sha512-9QCSg5tjae9JET3pNzglqjdD9F+j5ZLnLiH3IgXJdW6SoDAHRuiD7tJSQyIdxt+7i515zkGV9debry4xX6ULvA==
+react-vision-dom@1.0.0-beta.4:
+  version "1.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/react-vision-dom/-/react-vision-dom-1.0.0-beta.4.tgz#1bc37077284dd336f00e88c39e547f26450ab1d7"
+  integrity sha512-l9sUgT+06hOFp/h9s5/ENnpnbu29En8KjQwqH2+ROJgkO6qI/rUqj5pYa7OU1cM//Gdncndu4pwSbka43HkNUQ==
   dependencies:
     "@babel/runtime" "^7.6.3"
     classnames "^2.2.6"
     prop-types "^15.7.2"
-    react-vision-core "1.0.0-beta.3"
+    react-vision-core "1.0.0-beta.4"
 
-react-vision-native@1.0.0-beta.3:
-  version "1.0.0-beta.3"
-  resolved "https://registry.yarnpkg.com/react-vision-native/-/react-vision-native-1.0.0-beta.3.tgz#1ee29e7b446734341613342e59981ac984bc63b4"
-  integrity sha512-TkNuVkU1uiQFK4Epp3/ocU00ktdBBij53qX72pbqU2Ymx64o49BRRFj5F+7OVuQcyPA4NSFaBGcVXP98kYu+8w==
+react-vision-native@1.0.0-beta.4:
+  version "1.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/react-vision-native/-/react-vision-native-1.0.0-beta.4.tgz#8d19dd1dd013d9a1b9dde0c011407c5b412a2cc5"
+  integrity sha512-gGwl62ytOjnlZWGqiLFamG9c6eS/21xvdZvdm6WHcBiggc/BxJL5S0r5VmVrvY8Et3lGKYm5b2OrK6wRtBLCGw==
   dependencies:
     "@babel/runtime" "^7.6.3"
-    react-vision-core "1.0.0-beta.3"
+    react-vision-core "1.0.0-beta.4"
 
 "react-vision@file:../../packages/react-vision":
-  version "1.0.0-beta.3"
+  version "1.0.0-beta.4"
   dependencies:
     "@babel/runtime" "^7.6.3"
-    react-vision-core "1.0.0-beta.3"
-    react-vision-dom "1.0.0-beta.3"
-    react-vision-native "1.0.0-beta.3"
+    react-vision-core "1.0.0-beta.4"
+    react-vision-dom "1.0.0-beta.4"
+    react-vision-native "1.0.0-beta.4"
 
 react@16.8.3:
   version "16.8.3"

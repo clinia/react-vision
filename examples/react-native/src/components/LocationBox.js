@@ -1,4 +1,5 @@
 import React from 'react';
+import { compose } from 'redux';
 import { connect } from 'react-redux';
 import {
   TextInput,
@@ -9,10 +10,10 @@ import {
 } from 'react-native';
 import * as Permissions from 'expo-permissions';
 import * as Location from 'expo-location';
+import { connectLocation } from 'react-vision-core';
 
 import { Input, Color, Margin } from '../styles';
-import { setSuggestionMode, setLocation } from '../redux/actions';
-import SuggestionMode from '../redux/suggestionMode';
+import { setLocationBoxFocused, setLocation } from '../redux/actions';
 
 const styles = StyleSheet.create({
   container: {
@@ -63,22 +64,22 @@ class LocationBox extends React.Component {
     if (location === CURRENT_LOCATION) {
       this.props.setLocation(null);
     }
-    this.toggleSearch(SuggestionMode.Location);
+    this.toggleSearch(true);
   };
 
   onTextChange = text => {
-    // const { searchForSuggestions } = this.props;
-    // searchForSuggestions(text);
+    const { searchForLocations } = this.props;
+    searchForLocations(text);
     this.props.setLocation(text);
   };
 
   onPress = () => {
-    // const { location } = this.props;
+    const { location, refine } = this.props;
 
-    // this.props.refine(query);
+    refine(location);
 
     this.input.blur();
-    this.toggleSearch(SuggestionMode.None);
+    this.toggleSearch(false);
   };
 
   onCurrentLocationPress = async () => {
@@ -86,16 +87,17 @@ class LocationBox extends React.Component {
 
     if (status === 'granted') {
       console.log(await Location.getCurrentPositionAsync());
+      this.props.refine(CURRENT_LOCATION);
       this.props.setLocation(CURRENT_LOCATION);
     } else {
       this.setState({ enableLocation: false });
     }
 
     this.input.blur();
-    this.toggleSearch(SuggestionMode.None);
+    this.toggleSearch(false);
   };
 
-  toggleSearch = mode => this.props.setSuggestionMode(mode);
+  toggleSearch = isFocused => this.props.setLocationBoxFocused(isFocused);
 
   render() {
     const { enableLocation } = this.state;
@@ -111,6 +113,7 @@ class LocationBox extends React.Component {
           returnKeyType="search"
           onChangeText={this.onTextChange}
           onFocus={this.onFocus}
+          onBlur={() => this.toggleSearch(false)}
           onSubmitEditing={this.onPress}
           ref={ref => {
             this.input = ref;
@@ -136,7 +139,10 @@ class LocationBox extends React.Component {
   }
 }
 
-export default connect(
-  mapStateToProps,
-  { setSuggestionMode, setLocation }
+export default compose(
+  connect(
+    mapStateToProps,
+    { setLocationBoxFocused, setLocation }
+  ),
+  connectLocation
 )(LocationBox);

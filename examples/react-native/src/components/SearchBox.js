@@ -4,9 +4,8 @@ import { compose } from 'redux';
 import { TextInput, StyleSheet } from 'react-native';
 import { connectAutoComplete } from 'react-vision-core';
 
-import { setQuery, setSuggestionMode } from '../redux/actions';
+import { setQuery, setSearchBoxFocused } from '../redux/actions';
 import { Input, Color, Margin } from '../styles';
-import SuggestionMode from '../redux/suggestionMode';
 
 const styles = StyleSheet.create({
   input: {
@@ -36,10 +35,10 @@ class SearchBox extends React.Component {
     this.props.refine(query);
     this.input.blur();
 
-    this.toggleSearch(SuggestionMode.None);
+    this.toggleSearch(false);
   };
 
-  toggleSearch = mode => this.props.setSuggestionMode(mode);
+  toggleSearch = isFocused => this.props.setSearchBoxFocused(isFocused);
 
   render() {
     const { query } = this.props;
@@ -52,7 +51,8 @@ class SearchBox extends React.Component {
         autoCorrect={false}
         returnKeyType="search"
         onChangeText={this.onTextChange}
-        onFocus={() => this.toggleSearch(SuggestionMode.Query)}
+        onFocus={() => this.toggleSearch(true)}
+        onBlur={() => this.toggleSearch(false)}
         onSubmitEditing={this.onPress}
         ref={ref => {
           this.input = ref;
@@ -65,7 +65,7 @@ class SearchBox extends React.Component {
 export default compose(
   connect(
     mapStateToProps,
-    { setQuery, setSuggestionMode }
+    { setQuery, setSearchBoxFocused }
   ),
   connectAutoComplete
 )(SearchBox);
