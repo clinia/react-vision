@@ -242,8 +242,6 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
 
       //Enter key
       else if (event.keyCode === 13) {
-        this.input.blur();
-
         if (activeSuggestionIndex === -1) this.search();
         else this.onSuggestionSelected(suggestions[activeSuggestionIndex]);
       }

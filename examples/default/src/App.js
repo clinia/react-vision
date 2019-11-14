@@ -18,6 +18,11 @@ const Home = () => {
   let autoCompleteInputRef;
 
   const onSubmit = event => {
+    event.preventDefault();
+    goToExamplePage();
+  };
+
+  const goToExamplePage = () => {
     let queryParams = '';
 
     if (autoCompleteInputRef.value) {

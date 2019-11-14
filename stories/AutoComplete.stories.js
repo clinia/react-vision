@@ -19,7 +19,10 @@ stories
   .add('Default AutoComplete', () => (
     <Vision searchClient={searchClient} indexName="health_facility">
       <AutoComplete
-        onSubmit={action('onSubmit')}
+        onSubmit={e => {
+          e.preventDefault();
+          action('form submitted')(e);
+        }}
         onClear={action('onClear')}
         onSuggestionSelected={action('onSuggestionSelected')}
         onBlur={action('onBlur')}
@@ -57,7 +60,10 @@ stories
   .add('Custom AutoComplete', () => (
     <Vision searchClient={searchClient} indexName="health_facility">
       <AutoComplete
-        onSubmit={action('onSubmit')}
+        onSubmit={e => {
+          e.preventDefault();
+          action('form submitted')(e);
+        }}
         onClear={action('onClear')}
         onSuggestionSelected={action('onSuggestionSelected')}
         onBlur={action('onBlur')}
