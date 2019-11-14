@@ -56,8 +56,7 @@ function getResults(searchForSuggestionsResults) {
  * @providedPropType {function} refine - a function to change the current query
  * @providedPropType {function} searchForSuggestions - a function to search for suggestions
  * @providedPropType {string} currentRefinement - the current query used
- * @providedPropType {array} suggestions - the current query used
- * @providedPropType {boolean} isSearchStalled - a flag that indicates if Vision has detected that searches are stalled
+ * @providedPropType {array} suggestions - the current suggestions
  */
 export default createConnector({
   displayName: 'CliniaAutoComplete',

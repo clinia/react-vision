@@ -132,16 +132,18 @@ describe('utils', () => {
     it('should add __positions 1 and 2 on page 0', () => {
       const records = allRecords.slice(0, 2);
       const page = 0;
-      expect(utils.addAbsolutePositions(records, perPage, page)).toEqual(
-        [{ id: '1', __position: 1 }, { id: '2', __position: 2 }]
-      );
+      expect(utils.addAbsolutePositions(records, perPage, page)).toEqual([
+        { id: '1', __position: 1 },
+        { id: '2', __position: 2 },
+      ]);
     });
     it('should add __positions 5 and 6 on page 2', () => {
       const records = allRecords.slice(4, 6);
       const page = 2;
-      expect(utils.addAbsolutePositions(records, perPage, page)).toEqual(
-        [{ id: '5', __position: 5 }, { id: '6', __position: 6 }]
-      );
+      expect(utils.addAbsolutePositions(records, perPage, page)).toEqual([
+        { id: '5', __position: 5 },
+        { id: '6', __position: 6 },
+      ]);
     });
   });
 
