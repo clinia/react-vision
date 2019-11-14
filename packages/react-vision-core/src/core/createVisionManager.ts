@@ -62,8 +62,10 @@ export default function createVisionManager({
     .on('result', handleSearchSuccess({ indexId: indexName }))
     .on('error', handleSearchError);
 
+  let locationClient = searchClient.initPlaces();
+
   let skip = false;
-  let stalledSearchTimer = null;
+  let stalledSearchTimer: NodeJS.Timeout | null = null;
   let initialSearchParameters = helper.state;
 
   const widgetsManager = createWidgetsManager(onWidgetsUpdate);
@@ -75,9 +77,11 @@ export default function createVisionManager({
     metadata: [],
     results: hydrateResultsState(resultsState),
     resultsSuggestions: null,
+    resultsLocations: null,
     error: null,
     searching: false,
     searchingForSuggestions: false,
+    searchingForLocations: false,
     isSearchStalled: true,
   });
 
@@ -173,7 +177,6 @@ export default function createVisionManager({
       searchingForSuggestions: true,
     });
 
-    // TODO use helper when ready
     searchClient
       .suggest({ query })
       .then(content => {
@@ -197,12 +200,41 @@ export default function createVisionManager({
       });
   }
 
+  function onSearchForLocations({ query }) {
+    store.setState({
+      ...store.getState(),
+      searchingForLocations: true,
+    });
+
+    if (locationClient) {
+      locationClient!
+        .suggest(query)
+        .then(content => {
+          store.setState({
+            ...store.getState(),
+            searchingForLocations: false,
+            resultsLocations: {
+              suggestions: content,
+              query,
+            },
+          });
+        })
+        .catch(error => {
+          // Since setState is synchronous, any error that occurs in the render of a
+          // component will be swallowed by this promise.
+          // This is a trick to make the error show up correctly in the console.
+          // See http://stackoverflow.com/a/30741722/969302
+          setTimeout(() => {
+            throw error;
+          });
+        });
+    }
+  }
+
   function search() {
     if (skip) return;
 
-    const { mainParameters, derivedParameters } = getSearchParameters(
-      helper.state
-    );
+    const { mainParameters, derivedParameters } = getSearchParameters();
 
     helper.derivedHelpers.slice().forEach(derivedHelper => {
       derivedHelper.detach();
@@ -237,7 +269,7 @@ export default function createVisionManager({
       const currentState = store.getState();
       let nextIsSearchStalled = currentState.isSearchStalled;
       if (!helper.hasPendingRequests()) {
-        clearTimeout(stalledSearchTimer);
+        clearTimeout(stalledSearchTimer!);
         stalledSearchTimer = null;
         nextIsSearchStalled = false;
       }
@@ -259,11 +291,11 @@ export default function createVisionManager({
 
     let nextIsSearchStalled = currentState.isSearchStalled;
     if (!helper.hasPendingRequests()) {
-      clearTimeout(stalledSearchTimer);
+      clearTimeout(stalledSearchTimer!);
       nextIsSearchStalled = false;
     }
 
-    const { resultsFacetsValues, ...partialState } = currentState;
+    const { ...partialState } = currentState;
 
     store.setState({
       ...partialState,
@@ -277,7 +309,7 @@ export default function createVisionManager({
     if (stalledSearchTimer) return;
 
     stalledSearchTimer = setTimeout(() => {
-      const { resultsFacetsValues, ...partialState } = store.getState();
+      const { ...partialState } = store.getState();
 
       store.setState({
         ...partialState,
@@ -424,6 +456,7 @@ export default function createVisionManager({
     getWidgetsIds,
     getSearchParameters,
     onSearchForSuggestions,
+    onSearchForLocations,
     onExternalStateUpdate,
     transitionState,
     updateClient,
@@ -432,3 +465,5 @@ export default function createVisionManager({
     skipSearch,
   };
 }
+
+export type VisionManager = ReturnType<typeof createVisionManager>;

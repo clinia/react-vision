@@ -140,10 +140,8 @@ export default createConnector({
     const currentRefinementFromSearchParameters =
       (results &&
         results._state &&
-        results._state.meta &&
-        results._state.meta.geo &&
-        results._state.meta.geo.insideBoundingBox &&
-        stringToCurrentRefinement(results._state.meta.geo.insideBoundingBox)) ||
+        results._state.insideBoundingBox &&
+        stringToCurrentRefinement(results._state.insideBoundingBox)) ||
       undefined;
 
     const currentPositionFromSearchState = getCurrentPosition(
@@ -155,10 +153,8 @@ export default createConnector({
     const currentPositionFromSearchParameters =
       (results &&
         results._state &&
-        results._state.meta &&
-        results._state.meta.geo &&
-        results._state.meta.geo.aroundLatLng &&
-        stringToPosition(results._state.meta.geo.aroundLatLng)) ||
+        results._state.aroundLatLng &&
+        stringToPosition(results._state.aroundLatLng)) ||
       undefined;
 
     const currentRefinement =

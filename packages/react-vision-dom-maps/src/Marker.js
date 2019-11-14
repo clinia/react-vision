@@ -25,16 +25,16 @@ export class Marker extends Component {
     ...createListenersPropTypes(eventTypes),
     google: PropTypes.object.isRequired,
     googleMapsInstance: PropTypes.object.isRequired,
-    hit: GeolocHitPropType.isRequired,
+    record: GeolocHitPropType.isRequired,
   };
 
   componentDidMount() {
-    const { google, googleMapsInstance, hit, ...props } = this.props;
+    const { google, googleMapsInstance, record, ...props } = this.props;
 
     this.instance = new google.maps.Marker({
       ...filterProps(props),
       map: googleMapsInstance,
-      position: hit._geoloc,
+      position: record.geoPoint,
     });
 
     this.removeEventsListeners = registerEvents(

@@ -24,6 +24,7 @@ const createSearchClient = () => ({
       ],
     })
   ),
+  initPlaces: jest.fn(),
 });
 
 describe('createVisionManager', () => {
@@ -39,8 +40,10 @@ describe('createVisionManager', () => {
       metadata: [],
       results: null,
       resultsSuggestions: null,
+      resultsLocations: null,
       searching: false,
       searchingForSuggestions: false,
+      searchingForLocations: false,
       widgets: {},
     });
 

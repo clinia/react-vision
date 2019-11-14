@@ -64,7 +64,9 @@ export default createConnector({
 
     const {
       records,
-      meta: { page, perPage, numPages },
+      page,
+      perPage,
+      numPages,
       _state: { page: p, ...currentState } = {},
     } = results;
 
