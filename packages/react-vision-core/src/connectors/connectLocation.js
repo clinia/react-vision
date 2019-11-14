@@ -153,9 +153,14 @@ export default createConnector({
   },
 
   searchForLocations(props, searchState, nextRefinment) {
-    return {
+    const params = {
       query: nextRefinment,
     };
+
+    if (props.country) params.country = props.country;
+    if (props.size) params.country = props.size;
+
+    return params;
   },
 
   getMetadata(props, _searchState) {

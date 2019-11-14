@@ -9,8 +9,12 @@ class Header extends React.Component {
   render() {
     return (
       <View style={Container.content}>
-        <SearchBox />
-        <LocationBox />
+        <SearchBox
+          highlightPreTag="<strong>"
+          highlightPostTag="</strong>"
+          size={5}
+        />
+        <LocationBox country="CA" size={5} />
       </View>
     );
   }

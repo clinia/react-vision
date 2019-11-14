@@ -86,8 +86,11 @@ class LocationBox extends React.Component {
     const { status } = await Permissions.askAsync(Permissions.LOCATION);
 
     if (status === 'granted') {
-      console.log(await Location.getCurrentPositionAsync());
-      this.props.refine(CURRENT_LOCATION);
+      const currentLocation = await Location.getCurrentPositionAsync();
+      this.props.refine({
+        lat: currentLocation.coords.latitude,
+        lng: currentLocation.coords.longitude,
+      });
       this.props.setLocation(CURRENT_LOCATION);
     } else {
       this.setState({ enableLocation: false });
