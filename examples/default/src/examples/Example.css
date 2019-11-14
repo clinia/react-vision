@@ -73,7 +73,37 @@
   box-shadow: 0 0 5px 0 rgba(72, 89, 104, 0.23);
 }
 
+.cvi-GeoSearch {
+  width: 100%;
+  height: 100%;
+}
+
+.cvi-GeoSearch-map {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
 /* EXAMPLES */
+
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  margin-top: 102px;
+  overflow: hidden;
+  position: absolute;
+}
+
+.hits-container {
+  width: 40%;
+  overflow: auto;
+}
+
+.map-container {
+  width: 60%;
+  overflow: hidden;
+}
 
 .example-header {
   position: fixed;
@@ -94,10 +124,6 @@
 .example-header img {
   height: 35px;
   padding-right: 25px;
-}
-
-.hits-body {
-  margin-top: 102px;
 }
 
 .card {

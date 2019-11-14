@@ -19,7 +19,10 @@ stories.addParameters({ jest: ['SearchBox'] }).add('Default SearchBox', () => (
       searchAsYouType={boolean('searchAsYouType', true)}
       placeholder={text('placeholder', 'Default')}
       onInput={action('onInput')}
-      onSubmit={action('onSubmit')}
+      onSubmit={e => {
+        e.preventDefault();
+        action('customOnSubmit')(e);
+      }}
     />
   </WrapWithHits>
 ));
@@ -62,7 +65,10 @@ stories.add('Custom SearchBox', () => (
       onFocus={action('customOnFocus')}
       onKeyPress={action('customOnKeyPress')}
       onInput={action('customOnInput')}
-      onSubmit={action('customOnSubmit')}
+      onSubmit={e => {
+        e.preventDefault();
+        action('customOnSubmit')(e);
+      }}
     />
   </WrapWithHits>
 ));
