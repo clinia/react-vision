@@ -15,7 +15,7 @@ describe('AutoComplete + Hits', () => {
     const firstSuggestion = autoCompletePage.suggestions[0];
 
     firstSuggestion.click();
-    browser.pause(2000);
+    browser.pause(1000);
     const afterSuggestionClickResultsCount = autoCompletePage.resultsCount;
     expect(initialResultsCount).not.toEqual(afterSuggestionClickResultsCount);
   });
@@ -33,7 +33,7 @@ describe('AutoComplete + Hits', () => {
 
     expect(afterSuggestionClickResultsCount).toBeGreaterThan(0);
     expect(initialResultsCount).not.toEqual(afterSuggestionClickResultsCount);
-  });
+  }, 3);
   it('should reset results on clear button click', () => {
     autoCompletePage.open();
     autoCompletePage.waitForResultsToLoad();
@@ -44,19 +44,17 @@ describe('AutoComplete + Hits', () => {
     expect(autoCompletePage.resultsCount).not.toEqual(initialResultsCount);
     expect(autoCompletePage.clearButton.isDisplayed()).toBeTruthy();
 
-    debugger;
     autoCompletePage.clearButton.click();
+    browser.pause(1000);
     autoCompletePage.waitForResultsToLoad();
-    debugger;
     expect(autoCompletePage.resultsCount).toEqual(initialResultsCount);
-  });
+  }, 3);
 
   it('should show Clinia resource when filtering for Geriatrics', () => {
     autoCompletePage.open();
     autoCompletePage.searchFor('geriatrics');
-
     expect(autoCompletePage.resultsCount).toEqual(1);
-  });
+  }, 3);
 
   it('should present no resource found', () => {
     autoCompletePage.open();

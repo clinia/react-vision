@@ -33,7 +33,7 @@ const Home = () => {
   };
 
   return (
-    <div>
+    <div className="home">
       <div className="home-header">
         <img src={logo} />
       </div>
@@ -45,8 +45,8 @@ const Home = () => {
         <Vision searchClient={searchClient} indexName="health_facility">
           <AutoComplete
             onSubmit={onSubmit}
-            onSuggestionSelected={onSubmit}
             __inputRef={ref => (autoCompleteInputRef = ref)}
+            triggerSubmitOnSuggestionSelected
           />
         </Vision>
       </div>

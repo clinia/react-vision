@@ -31,6 +31,10 @@ stories
         onKeyDown={action('onKeyDown')}
         showLoadingIndicator={boolean('showLoadingIndicator', true)}
         disabled={boolean('disabled', false)}
+        triggerSubmitOnSuggestionSelected={boolean(
+          'triggerSubmitOnSuggestionSelected',
+          false
+        )}
       />
     </Vision>
   ));
@@ -77,6 +81,10 @@ stories
         submit={<CustomButton />}
         renderSuggestion={suggestion => (
           <CustomSuggestion suggestion={suggestion} />
+        )}
+        triggerSubmitOnSuggestionSelected={boolean(
+          'triggerSubmitOnSuggestionSelected',
+          false
         )}
       />
     </Vision>

@@ -33,6 +33,7 @@ interface Props {
   renderSuggestion?: (suggestion: Suggestion) => React.ReactNode;
 
   autoFocus?: boolean;
+  triggerSubmitOnSuggestionSelected?: boolean;
 
   onSubmit?: (event: any) => void;
   onClear?: (event: any) => void;
@@ -55,6 +56,7 @@ interface DefaultProps {
   className: string;
   searchForSuggestions: (value: string) => void;
   refine: (value: string | null) => void;
+  triggerSubmitOnSuggestionSelected: boolean;
   autoFocus: boolean;
   showLoadingIndicator: boolean;
   isSearchStalled: boolean;
@@ -77,6 +79,7 @@ const cx = createClassNames('AutoComplete');
 
 class AutoComplete extends Component<PropsWithDefaults, State> {
   input!: HTMLInputElement;
+  formRef: any = React.createRef();
 
   static propTypes = {
     currentRefinement: PropTypes.string,
@@ -259,7 +262,10 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
   }
 
   onSuggestionSelected(suggestion: Suggestion) {
-    const { onSuggestionSelected } = this.props;
+    const {
+      onSuggestionSelected,
+      triggerSubmitOnSuggestionSelected,
+    } = this.props;
 
     const query = suggestion.suggestion;
 
@@ -269,7 +275,12 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
         queryCache: query,
         activeSuggestionIndex: -1,
       },
-      () => this.search()
+      () => {
+        this.search();
+        if (triggerSubmitOnSuggestionSelected) {
+          this.formRef.dispatchEvent(new Event('submit'));
+        }
+      }
     );
 
     if (onSuggestionSelected) {
@@ -386,6 +397,9 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
           className={cx('form', isSearchStalled ? 'form--stalledSearch' : '')}
           action=""
           role="search"
+          ref={ref => {
+            this.formRef = ref;
+          }}
         >
           <div className={cx('autocomplete')}>
             <input

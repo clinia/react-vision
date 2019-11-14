@@ -20,7 +20,7 @@ export default class WithHitsPage extends Page {
 
   waitForResultsToLoad() {
     if (!this.hitResultList.isDisplayed() || this.resultsCount === 0) {
-      this.hitResultList.waitForDisplayed(500);
+      browser.waitUntil(() => this.hitResultList.isDisplayed(), 5000);
     }
   }
 }

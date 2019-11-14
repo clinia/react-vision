@@ -451,9 +451,8 @@ describe('AutoComplete', () => {
         );
 
         inputRef.blur = jest.fn();
-        const input = wrapper.find('input');
-        input.simulate('focus');
-        input.simulate('change', {
+
+        wrapper.find('input').simulate('change', {
           target: { value: suggestionCompliantChar },
         });
 
@@ -463,6 +462,32 @@ describe('AutoComplete', () => {
         });
 
         expect(refine).toBeCalled();
+      });
+      it('should trigger submit when triggerSubmitOnSuggestionSelected prop is true', () => {
+        const onSubmit = jest.fn();
+        const wrapper = mount(
+          <AutoComplete
+            refine={() => null}
+            searchForSuggestions={() => null}
+            suggestions={mockSuggestions}
+            onSubmit={onSubmit}
+            triggerSubmitOnSuggestionSelected
+          />
+        );
+
+        const input = wrapper.find('input');
+        input.simulate('focus');
+        input.simulate('change', {
+          target: { value: suggestionCompliantChar },
+        });
+
+        wrapper
+          .find(`.${cx('suggestion-list')}`)
+          .children()
+          .first()
+          .simulate('mousedown');
+
+        expect(onSubmit).toHaveBeenCalled();
       });
       it('should update suggestions onChange', () => {
         const searchForSuggestions = jest.fn();
@@ -474,9 +499,7 @@ describe('AutoComplete', () => {
           />
         ).dive();
 
-        const input = wrapper.find('input');
-        input.simulate('focus');
-        input.simulate('change', {
+        wrapper.find('input').simulate('change', {
           target: { value: suggestionCompliantChar },
         });
 

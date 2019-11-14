@@ -27,7 +27,7 @@ class AutoCompleteHitsPage extends WithHitsPage {
 
   waitForSuggestionsListToAppear() {
     if (!this.suggestionList.isDisplayed() || this.suggestions === 0) {
-      this.suggestionList.waitForDisplayed(2000);
+      browser.waitUntil(() => this.suggestionList.isDisplayed(), 5000);
     }
   }
 
@@ -38,6 +38,7 @@ class AutoCompleteHitsPage extends WithHitsPage {
   searchFor(speciality) {
     this.enterValue(speciality);
     super.pressEnter();
+    browser.pause(1000);
 
     this.waitForResultsToLoad();
     return this.hitResultList;

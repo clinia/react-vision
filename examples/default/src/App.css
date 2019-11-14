@@ -1,5 +1,13 @@
 @import './static/fonts/fonts.css';
 
+.home {
+  /* background-image: url('./static/images/backgroundImage.png'); */
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .home-header img {
   height: 32px;
   margin-top: 20px;
@@ -14,7 +22,7 @@
 .home-container h1 {
   height: 104px;
   width: 367px;
-  /* color: #FFFFFF; */
+  /* color: #ffffff; */
   font-family: 'CircularStd';
   font-size: 54px;
   font-weight: 900;
@@ -25,7 +33,7 @@
 .home-container h3 {
   height: 23px;
   width: 341px;
-  /* color: #D1D5DD; */
+  /* color: #d1d5dd; */
   font-family: 'CircularStd';
   font-size: 18px;
   font-weight: 300;
