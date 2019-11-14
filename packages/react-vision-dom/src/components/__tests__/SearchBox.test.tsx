@@ -15,7 +15,7 @@ describe('SearchBox', () => {
     instance.unmount();
   });
 
-  it('applies its default props wuth custom className', () => {
+  it('applies its default props with custom className', () => {
     const instance = renderer.create(
       <SearchBox refine={() => null} className="custom" />
     );
@@ -25,7 +25,7 @@ describe('SearchBox', () => {
     instance.unmount();
   });
 
-  it('applies its default props wuth custom style', () => {
+  it('applies its default props with custom style', () => {
     const instance = renderer.create(
       <SearchBox refine={() => null} style={{ color: 'lightgray' }} />
     );
@@ -219,15 +219,21 @@ describe('SearchBox', () => {
 
     input.focus = jest.fn();
 
-    const event1 = new KeyboardEvent('keydown', { keyCode: 82 });
+    const event1 = new KeyboardEvent('keydown', {
+      keyCode: 82,
+    } as KeyboardEventInit);
     document.dispatchEvent(event1);
     expect(input.focus.mock.calls).toHaveLength(0);
 
-    const event2 = new KeyboardEvent('keydown', { keyCode: 83 });
+    const event2 = new KeyboardEvent('keydown', {
+      keyCode: 83,
+    } as KeyboardEventInit);
     document.dispatchEvent(event2);
     expect(input.focus.mock.calls).toHaveLength(1);
 
-    const event3 = new KeyboardEvent('keydown', { keyCode: 84 });
+    const event3 = new KeyboardEvent('keydown', {
+      keyCode: 84,
+    } as KeyboardEventInit);
     document.dispatchEvent(event3);
     expect(input.focus.mock.calls).toHaveLength(2);
 

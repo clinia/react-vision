@@ -65,3 +65,24 @@ export function find<TItem = any>(
   }
   return undefined;
 }
+
+export const escapeRegExp = (text: string) => {
+  return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+};
+
+// This enable the developer to provide any on* events for the input
+// except the ones we uses internally
+export const extractInputEventsFromProps = (
+  internalEvents: Array<string>,
+  props: any
+) =>
+  Object.keys(props).reduce((newProps, prop) => {
+    if (
+      internalEvents.indexOf(prop.toLowerCase()) === -1 &&
+      prop.indexOf('on') === 0
+    ) {
+      return { ...newProps, [prop]: props[prop] };
+    }
+
+    return newProps;
+  }, {});

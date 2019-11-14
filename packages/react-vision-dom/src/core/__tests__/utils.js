@@ -116,4 +116,42 @@ describe('utils', () => {
       }).toThrow();
     });
   });
+
+  describe('escapeRegExp', () => {
+    test('escapes regExp chars', () => {
+      expect(() => new RegExp('-[]{}()*+?.,^$|#s')).toThrow();
+      expect(
+        () => new RegExp(utils.escapeRegExp('-[]{}()*+?.,^$|#s'))
+      ).not.toThrow();
+    });
+  });
+
+  describe('extractInputEventsFromProps', () => {
+    it('should return all events except the internal ones', () => {
+      //Internal events defined inside the 'extractInputEventsFromProps'
+      const internalEvents = ['onsubmit', 'onclear', 'onchange'];
+
+      const exposedEvents = [
+        'onFocus',
+        'onBlur',
+        'onSelect',
+        'onKeyDown',
+        'onKeyPress',
+      ];
+
+      const allEvents = [...internalEvents, ...exposedEvents];
+
+      const inputProps = allEvents.reduce(
+        (props, prop) => ({ ...props, [prop]: jest.fn() }),
+        {}
+      );
+
+      const extractedEvents = utils.extractInputEventsFromProps(
+        internalEvents,
+        inputProps
+      );
+
+      expect(Object.keys(extractedEvents).sort()).toEqual(exposedEvents.sort());
+    });
+  });
 });
