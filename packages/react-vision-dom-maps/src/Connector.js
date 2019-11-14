@@ -31,7 +31,7 @@ function isEqualCurrentRefinement(a, b) {
 
 export class Connector extends Component {
   static propTypes = {
-    hits: PropTypes.arrayOf(PropTypes.object).isRequired,
+    records: PropTypes.arrayOf(PropTypes.object).isRequired,
     isRefinedWithMap: PropTypes.bool.isRequired,
     enableRefineOnMapMove: PropTypes.bool.isRequired,
     refine: PropTypes.func.isRequired,
@@ -91,7 +91,7 @@ export class Connector extends Component {
 
   render() {
     const {
-      hits,
+      records,
       isRefinedWithMap,
       position,
       currentRefinement,
@@ -104,7 +104,7 @@ export class Connector extends Component {
     return children({
       toggleRefineOnMapMove: this.toggleRefineOnMapMove,
       setMapMoveSinceLastRefine: this.setMapMoveSinceLastRefine,
-      hits,
+      records,
       isRefinedWithMap,
       isRefineOnMapMove,
       hasMapMoveSinceLastRefine,
