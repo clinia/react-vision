@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { Keyboard, View } from 'react-native';
+import { Keyboard } from 'react-native';
 import { connectAutoComplete } from 'react-vision-core';
 
 import Suggestions from './Suggestions';
