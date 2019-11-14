@@ -19,6 +19,7 @@ export { connectLocation } from 'react-vision-core';
 export { connectSearchBox } from 'react-vision-core';
 
 // DOM
+export { default as AutoComplete } from './widgets/AutoComplete';
 export { default as Hits } from './widgets/Hits';
 export { default as InfiniteHits } from './widgets/InfiniteHits';
 export { default as SearchBox } from './widgets/SearchBox';
