@@ -18,7 +18,7 @@ import InfiniteHits from '../components/InfiniteHits';
  * @example
  * import React from 'react';
  * import cliniasearch from 'cliniasearch/lite';
- * import { Vision, InfiniteHits } from 'react-instantsearch-dom';
+ * import { Vision, InfiniteHits } from 'react-vision-dom';
  *
  * const searchClient = cliniasearch(
  *   'TODO',

@@ -11,19 +11,7 @@ export default StyleSheet.create({
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
   },
-  searchBox: {
-    display: 'flex',
-    flexDirection: 'row',
-    width: '100%',
-    borderWidth: StyleSheet.hairlineWidth,
-    borderColor: Color.navigationBarAccent,
-    backgroundColor: Color.navigationBarBackground,
-    paddingTop: Margin.appTop,
-    paddingLeft: Margin.normal,
-    paddingRight: Margin.normal,
-    paddingBottom: Margin.normal,
-  },
-  hits: {
+  content: {
     flex: 1,
     height: '100%',
     width: '100%',
@@ -35,11 +23,6 @@ export default StyleSheet.create({
     marginTop: Margin.normal,
     padding: Margin.normal,
     backgroundColor: 'white',
-  },
-  suggestions: {
-    flex: 1,
-    width: '100%',
-    height: '100%',
   },
   suggestion: {
     paddingTop: Margin.normal,

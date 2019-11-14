@@ -21,7 +21,7 @@ const eventTypes = {
 export class CustomMarker extends Component {
   static propTypes = {
     ...createListenersPropTypes(eventTypes),
-    hit: GeolocHitPropType.isRequired,
+    record: GeolocHitPropType.isRequired,
     children: PropTypes.node.isRequired,
     google: PropTypes.object.isRequired,
     googleMapsInstance: PropTypes.object.isRequired,
@@ -49,7 +49,13 @@ export class CustomMarker extends Component {
   };
 
   componentDidMount() {
-    const { hit, google, googleMapsInstance, className, anchor } = this.props;
+    const {
+      record,
+      google,
+      googleMapsInstance,
+      className,
+      anchor,
+    } = this.props;
     // Not the best way to create the reference of the CustomMarker
     // but since the Google object is required didn't find another
     // solution. Ideas?
@@ -57,7 +63,7 @@ export class CustomMarker extends Component {
 
     const marker = new Marker({
       map: googleMapsInstance,
-      position: hit._geoloc,
+      position: record.geoPoint,
       className,
       anchor,
     });

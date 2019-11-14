@@ -1,8 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
 import { TextInput, StyleSheet } from 'react-native';
-import { connectSearchBox } from 'react-vision-native';
-import { withNavigation } from 'react-navigation';
+import { connectSearchBox, connectAutoComplete } from 'react-vision-core';
 
+import { setQuery, setIsSearching } from '../redux/actions';
 import { Input, Color, Margin } from '../styles';
 
 const styles = StyleSheet.create({
@@ -15,37 +17,21 @@ const styles = StyleSheet.create({
   },
 });
 
+const mapStateToProps = state => ({
+  query: state.store.query,
+});
+
 class SearchBox extends React.Component {
   input;
-  state = {
-    initialRefinement: undefined,
-    query: null,
-  };
-
-  componentDidMount() {
-    const { currentRefinement } = this.props;
-    this.setState({
-      query: currentRefinement,
-      initialRefinement: currentRefinement,
-    });
-  }
-
-  componentDidUpdate() {
-    const { currentRefinement } = this.props;
-    if (this.state.initialRefinement !== currentRefinement) {
-      this.setState({
-        query: currentRefinement,
-        initialRefinement: currentRefinement,
-      });
-    }
-  }
 
   onTextChange = text => {
-    this.setState({ query: text });
+    const { searchForSuggestions } = this.props;
+    searchForSuggestions(text);
+    this.props.setQuery(text);
   };
 
   onPress = () => {
-    const { query } = this.state;
+    const { query } = this.props;
 
     this.props.refine(query);
     this.input.blur();
@@ -53,18 +39,13 @@ class SearchBox extends React.Component {
     this.toggleSearch(false);
   };
 
-  toggleSearch = isSearching => {
-    const { navigation } = this.props;
-    const toggleSearch = navigation.getParam('toggleSearch');
-    if (toggleSearch) {
-      toggleSearch(isSearching);
-    }
-  };
+  toggleSearch = isSearching => this.props.setIsSearching(isSearching);
 
   render() {
+    const { query } = this.props;
     return (
       <TextInput
-        value={this.state.query}
+        value={query}
         style={styles.input}
         placeholder="Search a clinic, a speciality..."
         placeholderColor={Color.placeholder}
@@ -82,4 +63,11 @@ class SearchBox extends React.Component {
   }
 }
 
-export default withNavigation(connectSearchBox(SearchBox));
+export default compose(
+  connect(
+    mapStateToProps,
+    { setQuery, setIsSearching }
+  ),
+  connectSearchBox,
+  connectAutoComplete
+)(SearchBox);

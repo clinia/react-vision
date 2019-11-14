@@ -4,7 +4,6 @@ import Hits from '../components/Hits';
 /**
  * Displays a list of hits.
  *
- *
  * @name Hits
  * @kind widget
  * @propType {Component} [hitComponent] - Component used for rendering each hit from

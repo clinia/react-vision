@@ -13,8 +13,10 @@ describe('createConnector', () => {
     widgets: {},
     results: {},
     resultsSuggestions: {},
+    resultsLocations: {},
     searching: false,
     searchForSuggestions: false,
+    searchForLocations: false,
     isSearchStalled: false,
     metadata: {},
     error: {},
@@ -39,6 +41,7 @@ describe('createConnector', () => {
     onInternalStateUpdate() {},
     createHrefForState() {},
     onSearchForSuggestions() {},
+    onSearchForLocations() {},
     onSearchStateChange() {},
     onSearchParameters() {},
     store: createFakeStore(),
@@ -86,6 +89,10 @@ describe('createConnector', () => {
         {
           results: state.resultsSuggestions,
           searching: state.searchingSuggestions,
+        },
+        {
+          results: state.resultsLocations,
+          searching: state.searchingLocations,
         }
       );
 

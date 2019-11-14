@@ -1,35 +1,16 @@
 import React, { Component, Children } from 'react';
 import isEqual from 'fast-deep-equal';
 import PropTypes from 'prop-types';
-import createVisionManager from '../core/createVisionManager';
+import createVisionManager, {
+  VisionManager,
+} from '../core/createVisionManager';
 import { VisionProvider, VisionContext } from '../core/context';
-import { Store } from '../core/createStore';
-import { PlainSearchParameters, SearchParameters } from 'cliniasearch-helper';
+import { PlainSearchParameters } from 'cliniasearch-helper';
 import { MultiResponse } from 'cliniasearch';
 
 type ResultsState = {
   state: PlainSearchParameters;
   rawResults: MultiResponse;
-};
-
-// @TODO: move to createVisionManager when it's TS
-type VisionManager = {
-  store: Store;
-  widgetsManager: any;
-  getWidgetsIds: any;
-  getSearchParameters: (
-    ...args: any[]
-  ) => {
-    mainParameters: SearchParameters;
-    derivedParameters: SearchParameters;
-  };
-  onSearchForSuggestions: (...args: any[]) => any;
-  onExternalStateUpdate: (...args: any[]) => any;
-  transitionState: any;
-  updateClient: any;
-  updateIndex: any;
-  clearCache: () => void;
-  skipSearch: any;
 };
 
 type SearchClient = {
@@ -173,6 +154,7 @@ class Vision extends Component<Props, State> {
       widgetsManager: visionManager.widgetsManager,
       mainTargetedIndex: this.props.indexName,
       onSearchForSuggestions: this.onSearchForSuggestions.bind(this),
+      onSearchForLocations: this.onSearchForLocations.bind(this),
       onInternalStateUpdate: this.onWidgetsInternalStateUpdate.bind(this),
       createHrefForState: this.createHrefForState.bind(this),
       onSearchStateChange: this.onSearchStateChange.bind(this),
@@ -256,6 +238,10 @@ class Vision extends Component<Props, State> {
 
   onSearchForSuggestions(suggestState) {
     this.state.visionManager.onSearchForSuggestions(suggestState);
+  }
+
+  onSearchForLocations(locationState) {
+    this.state.visionManager.onSearchForLocations(locationState);
   }
 
   getKnownKeys() {

@@ -4,4 +4,5 @@ export { connectGeoSearch } from 'react-vision-core';
 export { connectHits } from 'react-vision-core';
 export { connectHitsPerPage } from 'react-vision-core';
 export { connectInfiniteHits } from 'react-vision-core';
+export { connectLocation } from 'react-vision-core';
 export { connectSearchBox } from 'react-vision-core';
