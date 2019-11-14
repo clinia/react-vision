@@ -124,9 +124,12 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
 
   constructor(props: PropsWithDefaults) {
     super(props);
+
+    const initialValue = props.currentRefinement || '';
+
     this.state = {
-      query: '',
-      queryCache: '',
+      query: initialValue,
+      queryCache: initialValue,
       showSuggestions: false,
       activeSuggestionIndex: -1,
     };
