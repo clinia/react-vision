@@ -30,7 +30,7 @@ It is also possible to specify some properties while using the exported componen
 ```
 
 # API
-## `1. connectSearchBox`
+## 1. `connectSearchBox`
 This connector provides the logic to build a component that will let the user search for a query. 
 
 ## 1.1 Initialization
@@ -57,7 +57,6 @@ The name of the targeted index, if a single index is targeted.
 | _string_ | `undefined` |
 <br/>
 
----
 ### `currentRefinement`
 The current query used for searches.
 
@@ -66,7 +65,6 @@ The current query used for searches.
 | _string_ | `undefined` |
 <br/>
 
----
 ### `isSearchStalled`
 A flag that indicates if Vision has detected that searches are stalled.
 
@@ -75,7 +73,6 @@ A flag that indicates if Vision has detected that searches are stalled.
 | _boolean_ | `false` |
 <br/>
 
----
 ### `refine(query)`
 Sets the current query and triggers a search.
 
@@ -97,7 +94,6 @@ Provide a default value for the query.
 | _string_ | `undefined` |
 <br/>
 
----
 ### `queryType`
 Type of matching strategy for the query. There a re two strategies supported at the moment : 
 <br/>
@@ -109,7 +105,7 @@ Type of matching strategy for the query. There a re two strategies supported at 
 | _string_ | `undefined` |
 <br/>
 
-## `2. connectHits`
+## 2. `connectHits`
 This connector provides the logic to build a component that will let the user consult the search results.
 
 ## 2.1 Initialization
@@ -136,7 +132,6 @@ The name of the targeted index, if a single index is targeted.
 | _string_ | `undefined` |
 <br/>
 
----
 ### `records`
 The search results.
 
@@ -145,7 +140,7 @@ The search results.
 | _Record[]_ | `undefined` |
 <br/>
 
-## `3. connectInfiniteHits`
+## 3. `connectInfiniteHits`
 This connector provides the logic to build a component that will let the user consult the search results with infinite scrolling enabled.
 
 ## 3.1 Initialization
@@ -172,7 +167,6 @@ The name of the targeted index, if a single index is targeted.
 | _string_ | `undefined` |
 <br/>
 
----
 ### `records`
 The search results.
 
@@ -181,7 +175,6 @@ The search results.
 | _Record[]_ | `undefined` |
 <br/>
 
----
 ### `hasMore`
 Flag that indicates if their are mote search results to be loaded in relation to the current page, the number of results per page and the total number of results.
 
@@ -190,13 +183,12 @@ Flag that indicates if their are mote search results to be loaded in relation to
 | _boolean_ | `false` |
 <br/>
 
----
 ### `refineNext()`
 Loads the next page of search results.
 
 <br/>
 
-## `4. connectAutocomplete`
+## 4. `connectAutocomplete`
 This connector provides the logic to build a component that will let the user search for a query and autocomplete its query with query suggestions. This connector enables the same capabilities as the `connectSearchBox` connector, in addition to the autocomplete functionnalities.
 
 ## 4.1 Initialization
@@ -223,7 +215,6 @@ The name of the targeted index, if a single index is targeted.
 | _string_ | `undefined` |
 <br/>
 
----
 ### `currentRefinement`
 The current query used for searches.
 
@@ -232,7 +223,6 @@ The current query used for searches.
 | _string_ | `undefined` |
 <br/>
 
----
 ### `isSearchStalled`
 A flag that indicates if Vision has detected that searches are stalled.
 
@@ -241,7 +231,6 @@ A flag that indicates if Vision has detected that searches are stalled.
 | _boolean_ | `false` |
 <br/>
 
----
 ### `suggestions`
 The suggestions for the given suggestion query.
 
@@ -250,7 +239,6 @@ The suggestions for the given suggestion query.
 | _QuerySuggestion[]_ | `[]` |
 <br/>
 
----
 ### `refine(query)`
 Sets the current query and triggers a search.
 
@@ -259,7 +247,6 @@ Sets the current query and triggers a search.
 
 <br/>
 
----
 ### `searchForSuggestions(query)`
 Sets the current suggestions query and triggers a suggestions search.
 
@@ -281,7 +268,6 @@ Provide a default value for the query.
 | _string_ | `undefined` |
 <br/>
 
----
 ### `queryType`
 Type of matching strategy for the query. There a re two strategies supported at the moment : 
 <br/>
@@ -293,7 +279,6 @@ Type of matching strategy for the query. There a re two strategies supported at 
 | _string_ | `undefined` |
 <br/>
 
----
 ### `size`
 Maximum number of suggestions to return.
 
@@ -302,8 +287,7 @@ Maximum number of suggestions to return.
 | _number_ | `5` |
 <br/>
 
----
-### `highlighPreTag`
+### `highlightPreTag`
 The pre tag that will highlight the matched part of the query in each suggestion. Usually a html tag like `<strong>`.
 
 | Type | Default |
@@ -311,7 +295,7 @@ The pre tag that will highlight the matched part of the query in each suggestion
 | _string_ | `undefined` |
 <br/>
 
-### `highlighPostTag`
+### `highlightPostTag`
 The post tag that will highlight the matched part of the query in each suggestion. Usually a html tag like `</strong>`.
 
 | Type | Default |
@@ -345,7 +329,6 @@ The post tag that will highlight the matched part of the query in each suggestio
 | `owner` | _string_ | Owner of the resource (mainly used internally) ||
 <br/>
 
----
 ### `Record (professional)`
 | Field name | Type | Description | Possible Values |
 |------------|------|-------------|-----------------|
@@ -358,7 +341,6 @@ The post tag that will highlight the matched part of the query in each suggestio
 | `owner` | _string_ | Owner of the resource (mainly used internally) ||
 <br/>
 
----
 ### `Phone`
 | Field name | Type | Description | Possible Values |
 |------------|------|-------------|-----------------|
@@ -368,7 +350,6 @@ The post tag that will highlight the matched part of the query in each suggestio
 | `type` | _string_ | Type of phone. | `UNKNOWN`<br/>`MAIN`<br/>`ALTERNATE`<br/>`RECEPTION`<br/>`FAX`<br/>`TEXT_TELEPHONE_TTY`<br/>`INFO`<br/>`TOOL_FREE`<br/>`PAGER`<br/>`MOBILE`<br/>`HOME`<br/>`WORK`<br/>`PERSONAL`<br/>`OTHER`<br/> |
 <br/>
 
----
 ### `Address`
 | Field name | Type | Description | Possible Values |
 |------------|------|-------------|-----------------|
@@ -384,7 +365,6 @@ The post tag that will highlight the matched part of the query in each suggestio
 | `countryCode` | _string_ | ISO 3166 country code ||
 <br/>
 
----
 ### `Interval`
 | Field name | Type | Description | Possible Values |
 |------------|------|-------------|-----------------|
@@ -392,7 +372,6 @@ The post tag that will highlight the matched part of the query in each suggestio
 | `end` | _string_ | End time of the time interval. | Format is `HH:mm` |
 <br/>
 
----
 ### `Geometry`
 | Field name | Type | Description | Possible Values |
 |------------|------|-------------|-----------------|
@@ -400,7 +379,6 @@ The post tag that will highlight the matched part of the query in each suggestio
 | `location` | _GeoPoint_ | Best coordinate to locate the location. ||
 <br/>
 
----
 ### `Bounds`
 | Field name | Type | Description | Possible Values |
 |------------|------|-------------|-----------------|
@@ -408,7 +386,6 @@ The post tag that will highlight the matched part of the query in each suggestio
 | `southWest` | _GeoPoint_ | South-west coordinate delimiting the bounds of the location. ||
 <br/>
 
----
 ### `GeoPoint`
 | Field name | Type | Description | Possible Values |
 |------------|------|-------------|-----------------|
@@ -416,7 +393,6 @@ The post tag that will highlight the matched part of the query in each suggestio
 | `lng` | _double_ | Longitude ||
 <br/>
 
----
 ### `LocationTranslation` 
 | Field name | Type | Description | Possible Values |
 |------------|------|-------------|-----------------|
