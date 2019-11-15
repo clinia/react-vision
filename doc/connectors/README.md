@@ -83,7 +83,7 @@ Sets the current query and triggers a search.
 
 ---
 ## 1.3 Exposed Props
-The following properties will be used by the connector if they are specified on the wrapped component.
+The following properties will be used by the connector if they are specified on the wrapped component:
 <br/><br/>
 
 ### `defaultRefinement`
@@ -105,6 +105,15 @@ Type of matching strategy for the query. There a re two strategies supported at 
 | _string_ | `undefined` |
 <br/>
 
+### `perPage`
+Number of search results to return per page.
+
+| Type | Default |
+|------|---------|
+| _number_ | `20` |
+<br/>
+
+---
 ## 2. `connectHits`
 This connector provides the logic to build a component that will let the user consult the search results.
 
@@ -137,9 +146,10 @@ The search results.
 
 | Type | Default |
 |------|---------|
-| _Record[]_ | `undefined` |
+| _Record[]_ | `[]` |
 <br/>
 
+---
 ## 3. `connectInfiniteHits`
 This connector provides the logic to build a component that will let the user consult the search results with infinite scrolling enabled.
 
@@ -172,7 +182,7 @@ The search results.
 
 | Type | Default |
 |------|---------|
-| _Record[]_ | `undefined` |
+| _Record[]_ | `[]]` |
 <br/>
 
 ### `hasMore`
@@ -188,6 +198,15 @@ Loads the next page of search results.
 
 <br/>
 
+### `createUrl()`
+Generates a URL for the corresponding search state.
+
+#### Returns
+A `string` representing the url.
+
+<br/>
+
+---
 ## 4. `connectAutocomplete`
 This connector provides the logic to build a component that will let the user search for a query and autocomplete its query with query suggestions. This connector enables the same capabilities as the `connectSearchBox` connector, in addition to the autocomplete functionnalities.
 
@@ -206,14 +225,6 @@ A component wrapped inside the Autocomplete context
 ## 4.2 Connected Props
 Once connected, the component will have access to the following properties and functions:
 <br/><br/>
-
-### `indexContextValue`
-The name of the targeted index, if a single index is targeted. 
-
-| Type | Default |
-|------|---------|
-| _string_ | `undefined` |
-<br/>
 
 ### `currentRefinement`
 The current query used for searches.
@@ -247,17 +258,17 @@ Sets the current query and triggers a search.
 
 <br/>
 
-### `searchForSuggestions(query)`
-Sets the current suggestions query and triggers a suggestions search.
+### `searchForSuggestions(suggestionQuery)`
+Sets the current suggestion query and triggers a suggestions query.
 
 #### Arguments
-- **query (_string_)** -- The suggestion query.
+- **suggestionQuery (_string_)** -- The suggestion query.
 
 <br/>
 
 ---
 ## 4.3 Exposed Props
-The following properties will be used by the connector if they are specified on the wrapped component.
+The following properties will be used by the connector if they are specified on the wrapped component:
 <br/><br/>
 
 ### `defaultRefinement`
@@ -276,7 +287,15 @@ Type of matching strategy for the query. There a re two strategies supported at 
 
 | Type | Default |
 |------|---------|
-| _string_ | `undefined` |
+| _string_ | `prefix_none` |
+<br/>
+
+### `perPage`
+Number of search results to return per page.
+
+| Type | Default |
+|------|---------|
+| _number_ | `20` |
 <br/>
 
 ### `size`
@@ -303,15 +322,169 @@ The post tag that will highlight the matched part of the query in each suggestio
 | _string_ | `undefined` |
 <br/>
 
-# Shared Models
+---
+## 5. `connectLocation`
+This connector provides the logic to build a component that will let the user search for a locations and autocomplete its location query with location suggestions.
 
-## `QuerySuggestion`
-| Field name | Type | Description | Possible Values |
-|------------|------|-------------|-----------------|
-| `suggestion` | _string_ | Suggested query ||
-| `facet` | _string_ | Type of the suggestion ||
-| `highlight` | _string_ | Augmented suggestion ||
+## 5.1 Initialization
+### `connectLocation(component)`
+Connects a component with the Location context.
+
+#### Arguments
+- **component (_React.Component_)** -- The component to connect
+
+#### Returns
+A component wrapped inside the Location context
+<br/><br/>
+
+---
+## 5.2 Connected Props
+Once connected, the component will have access to the following properties and functions:
+<br/><br/>
+
+### `currentRefinement`
+The current search location.
+
+| Type | Default |
+|------|---------|
+| _string_ | `undefined` |
 <br/>
+
+### `suggestions`
+The suggestions for the given location query.
+
+| Type | Default |
+|------|---------|
+| _PlaceSuggestion[]_ | `[]` |
+<br/>
+
+### `refine(location)`
+Sets the current search location and triggers a search.
+
+#### Arguments
+- **location (_string_)** -- The query.
+
+<br/>
+
+### `searchForSuggestions(locationQuery)`
+Sets the current location query and triggers a location suggestions query.
+
+#### Arguments
+- **locationQuery (_string_)** -- The location query.
+
+<br/>
+
+---
+## 5.3 Exposed Props
+The following properties will be used by the connector if they are specified on the wrapped component:
+<br/><br/>
+
+### `defaultRefinement`
+Provide a default value for the query.
+
+| Type | Default |
+|------|---------|
+| _string_ | `undefined` |
+<br/>
+
+### `country`
+ISO 3166 country code representing the country to which you want to limit the suggestions. (e.g. 'CA', 'US')
+
+| Type | Default |
+|------|---------|
+| _string_ | `undefined` |
+<br/>
+
+### `size`
+Maximum number of suggestions to return.
+
+| Type | Default |
+|------|---------|
+| _number_ | `5` |
+<br/>
+
+---
+## 6. `connectGeoSearch`
+This connector provides the logic to build a map component that will allow the user to search with a maps bounding box.
+
+## 6.1 Initialization
+### `connectGeoSearch(component)`
+Connects a component with the GeoSearch context.
+
+#### Arguments
+- **component (_React.Component_)** -- The component to connect
+
+#### Returns
+A component wrapped inside the GeoSearch context
+<br/><br/>
+
+---
+## 6.2 Connected Props
+Once connected, the component will have access to the following properties and functions:
+<br/><br/>
+
+### `currentRefinement`
+The current search bounds.
+
+| Type | Default |
+|------|---------|
+| _Bounds_ | `undefined` |
+<br/>
+
+### `records`
+The search results.
+
+| Type | Default |
+|------|---------|
+| _Record[]_ | `[]` |
+<br/>
+
+### `isRefinedWithMap`
+Flag that indicates if the search is currently refined with a bounding box.
+
+| Type | Default |
+|------|---------|
+| _boolean_ | `false` |
+<br/>
+
+### `position`
+Geographical position that best defines the bounding box applied to the search. The position is not always the center of a said bounding box.
+
+| Type | Default |
+|------|---------|
+| _GeoPoint_ | `undefined` |
+<br/>
+
+### `refine(bounds)`
+Sets the current search bounding box and triggers a search.
+
+#### Arguments
+- **bounds (_Bounds_)** -- The bounding box.
+
+<br/>
+
+### `createUrl()`
+Generates a URL for the corresponding search state.
+
+#### Returns
+A `string` representing the url.
+
+<br/>
+
+---
+## 5.3 Exposed Props
+The following properties will be used by the connector if they are specified on the wrapped component:
+<br/><br/>
+
+### `defaultRefinement`
+Provide a default value for the bounding box.
+
+| Type | Default |
+|------|---------|
+| _Bounds_ | `undefined` |
+<br/>
+
+# Shared Models
 
 ### `Record (health_facility)`
 | Field name | Type | Description | Possible Values |
@@ -339,6 +512,36 @@ The post tag that will highlight the matched part of the query in each suggestio
 | `name` | _string_ | Name. ||
 | `phones` | _Phone[]_ | Phones. ||
 | `owner` | _string_ | Owner of the resource (mainly used internally) ||
+<br/>
+
+### `QuerySuggestion`
+| Field name | Type | Description | Possible Values |
+|------------|------|-------------|-----------------|
+| `suggestion` | _string_ | Suggested query ||
+| `facet` | _string_ | Type of the suggestion ||
+| `highlight` | _string_ | Augmented suggestion ||
+<br/>
+
+### `PlaceSuggestion`
+| Field name | Type | Description | Possible Values |
+|------------|------|-------------|-----------------|
+| `id` | _string_ | Identifier. ||
+| `type` | _string_ | Type of location. | `postcode`<br/>`place`<br/>`neighborhood`|
+| `formattedAddress` | _string_ | Formatted address, ready to display. ||
+| `suite` | _string_ | Suite, door, appartment number. ||
+| `route` | _string_ | Street name of the location. ||
+| `postalCode` | _string_ | Postal code. ||
+| `neighborhood` | _string_ | Neighborhood. ||
+| `locality` | _string_ | Locality. ||
+| `place` | _string_ | City. ||
+| `district` | _string_ | District. ||
+| `region` | _string_ | Name of the region. ||
+| `regionCode` | _string_ | ISO 3166-2 region code. ||
+| `country` | _string_ | Name of the country. ||
+| `countryCode` | _string_ | ISO 3166 country code ||
+| `geometry` | _Geometry_ | Geographical information of the location. ||
+| `timeZoneId` | _string_ | Timezone. ||
+| `translations` | _Map<string, LocationTranslation>_ | Translatable elements, if applicable. ||
 <br/>
 
 ### `Phone`
