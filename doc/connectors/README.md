@@ -30,6 +30,12 @@ It is also possible to specify some properties while using the exported componen
 ```
 
 # API
+
+1. [`connectSearchBox`](#1-connectsearchbox)
+    1. [Initilization]((#11-initialization))
+    2. [Connected Props]((#12-connected-props))
+    3. [Exposed Props]((#13-exposed-props))
+
 ## 1. `connectSearchBox`
 This connector provides the logic to build a component that will let the user search for a query. 
 
@@ -95,14 +101,14 @@ Provide a default value for the query.
 <br/>
 
 ### `queryType`
-Type of matching strategy for the query. There a re two strategies supported at the moment : 
+Type of matching strategy for the query. There are two strategies supported at the moment : 
 <br/>
 `prefix_none` => Will match full words.<br/>
 `prefix_last` => Will match partial words.
 
 | Type | Default |
 |------|---------|
-| _string_ | `undefined` |
+| _string_ | `prefix_none` |
 <br/>
 
 ### `perPage`
@@ -182,7 +188,7 @@ The search results.
 
 | Type | Default |
 |------|---------|
-| _Record[]_ | `[]]` |
+| _Record[]_ | `[]` |
 <br/>
 
 ### `hasMore`
@@ -280,7 +286,7 @@ Provide a default value for the query.
 <br/>
 
 ### `queryType`
-Type of matching strategy for the query. There a re two strategies supported at the moment : 
+Type of matching strategy for the query. There are two strategies supported at the moment : 
 <br/>
 `prefix_none` => Will match full words.<br/>
 `prefix_last` => Will match partial words.
@@ -405,7 +411,7 @@ Maximum number of suggestions to return.
 
 ---
 ## 6. `connectGeoSearch`
-This connector provides the logic to build a map component that will allow the user to search with a maps bounding box.
+This connector provides the logic to build a map component that will allow the user to search with a maps bounding box and to consult the results.
 
 ## 6.1 Initialization
 ### `connectGeoSearch(component)`
@@ -472,7 +478,7 @@ A `string` representing the url.
 <br/>
 
 ---
-## 5.3 Exposed Props
+## 6.3 Exposed Props
 The following properties will be used by the connector if they are specified on the wrapped component:
 <br/><br/>
 
