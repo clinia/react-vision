@@ -1,9 +1,20 @@
+# React-Vision connectors documentation
+
+[Features](#features)
+</br>
+[QuickStart](#quickstart)
+</br>
+[API](#api)
+</br>
+[Shared Models](#shared-models)
+</br>
+
 # Features
 
 - Facilitates the interactions between custom React components and Clinia's client.
 - Gives acces to properties and functions as React hooks
 
-## Quickstart
+# Quickstart
 
 Let's use the `connectHits` connector to access and display search results obtained from a search query triggered from another unknown component. The properties made available through the use of the connectors will be refered to as **Connected Props**.
 
@@ -32,9 +43,27 @@ It is also possible to specify some properties while using the exported componen
 # API
 
 1. [`connectSearchBox`](#1-connectsearchbox)
-    1. [Initilization]((#11-initialization))
-    2. [Connected Props]((#12-connected-props))
-    3. [Exposed Props]((#13-exposed-props))
+    1. [Initilization](#11-initialization)
+    2. [Connected Props](#12-connected-props)
+    3. [Exposed Props](#13-exposed-props)
+2. [`connectHits`](#2-connecthits)
+    1. [Initilization](#21-initialization)
+    2. [Connected Props](#22-connected-props)
+3. [`connectHits`](#3-connectinfinitehits)
+    1. [Initilization](#31-initialization)
+    2. [Connected Props](#32-connected-props)
+4. [`connectAutocomplete`](#4-connectautocomplete)
+    1. [Initilization](#41-initialization)
+    2. [Connected Props](#42-connected-props)
+    3. [Exposed Props](#43-exposed-props)
+5. [`connectLocation`](#5-connectlocation)
+    1. [Initilization](#51-initialization)
+    2. [Connected Props](#52-connected-props)
+    3. [Exposed Props](#53-exposed-props)
+6. [`connectGeoSearch`](#6-connectgeosearch)
+    1. [Initilization](#61-initialization)
+    2. [Connected Props](#62-connected-props)
+    3. [Exposed Props](#63-exposed-props)
 
 ## 1. `connectSearchBox`
 This connector provides the logic to build a component that will let the user search for a query. 
@@ -491,6 +520,28 @@ Provide a default value for the bounding box.
 <br/>
 
 # Shared Models
+
+[`Record (health_facility)`](#record-health_facility)
+<br/>
+[`Record (professional)`](#record-professional)
+<br/>
+[`QuerySuggestion`](#querysuggestion)
+<br/>
+[`PlaceSuggestion`](#placesuggestion)
+<br/>
+[`Phone`](#phone)
+<br/>
+[`Address`](#address)
+<br/>
+[`Interval`](#interval)
+<br/>
+[`Geometry`](#geometry)
+<br/>
+[`Bounds`](#bounds)
+<br/>
+[`GeoPoint`](#geopoint)
+<br/>
+[`LocationTranslation`](#locationtranslation)
 
 ### `Record (health_facility)`
 | Field name | Type | Description | Possible Values |
