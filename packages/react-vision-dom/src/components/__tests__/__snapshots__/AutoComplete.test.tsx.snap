@@ -13,7 +13,9 @@ exports[`AutoComplete Snapshot testing applies its default props 1`] = `
     onSubmit={[Function]}
     role="search"
   >
-    <div>
+    <div
+      className="cvi-AutoComplete-autocomplete"
+    >
       <input
         autoCapitalize="off"
         autoComplete="off"
@@ -34,6 +36,7 @@ exports[`AutoComplete Snapshot testing applies its default props 1`] = `
       />
     </div>
     <button
+      className="cvi-AutoComplete-submit"
       title="Search"
       type="submit"
     >
@@ -84,7 +87,9 @@ exports[`AutoComplete Snapshot testing applies its default props with custom cla
     onSubmit={[Function]}
     role="search"
   >
-    <div>
+    <div
+      className="cvi-AutoComplete-autocomplete"
+    >
       <input
         autoCapitalize="off"
         autoComplete="off"
@@ -105,6 +110,7 @@ exports[`AutoComplete Snapshot testing applies its default props with custom cla
       />
     </div>
     <button
+      className="cvi-AutoComplete-submit"
       title="Search"
       type="submit"
     >
@@ -159,7 +165,9 @@ exports[`AutoComplete Snapshot testing applies its default props with custom sty
     onSubmit={[Function]}
     role="search"
   >
-    <div>
+    <div
+      className="cvi-AutoComplete-autocomplete"
+    >
       <input
         autoCapitalize="off"
         autoComplete="off"
@@ -180,6 +188,7 @@ exports[`AutoComplete Snapshot testing applies its default props with custom sty
       />
     </div>
     <button
+      className="cvi-AutoComplete-submit"
       title="Search"
       type="submit"
     >
@@ -230,7 +239,9 @@ exports[`AutoComplete Snapshot testing lets you customize its translations 1`] =
     onSubmit={[Function]}
     role="search"
   >
-    <div>
+    <div
+      className="cvi-AutoComplete-autocomplete"
+    >
       <input
         autoCapitalize="off"
         autoComplete="off"
@@ -251,6 +262,7 @@ exports[`AutoComplete Snapshot testing lets you customize its translations 1`] =
       />
     </div>
     <button
+      className="cvi-AutoComplete-submit"
       title="Search"
       type="submit"
     >
@@ -301,7 +313,9 @@ exports[`AutoComplete Snapshot testing lets you give custom components for clear
     onSubmit={[Function]}
     role="search"
   >
-    <div>
+    <div
+      className="cvi-AutoComplete-autocomplete"
+    >
       <input
         autoCapitalize="off"
         autoComplete="off"
@@ -322,6 +336,7 @@ exports[`AutoComplete Snapshot testing lets you give custom components for clear
       />
     </div>
     <button
+      className="cvi-AutoComplete-submit"
       title="Search"
       type="submit"
     >
@@ -364,7 +379,9 @@ exports[`AutoComplete Snapshot testing lets you give custom components for loadi
     onSubmit={[Function]}
     role="search"
   >
-    <div>
+    <div
+      className="cvi-AutoComplete-autocomplete"
+    >
       <input
         autoCapitalize="off"
         autoComplete="off"
@@ -385,6 +402,7 @@ exports[`AutoComplete Snapshot testing lets you give custom components for loadi
       />
     </div>
     <button
+      className="cvi-AutoComplete-submit"
       title="Search"
       type="submit"
     >
@@ -427,7 +445,9 @@ exports[`AutoComplete Snapshot testing lets you give custom components for submi
     onSubmit={[Function]}
     role="search"
   >
-    <div>
+    <div
+      className="cvi-AutoComplete-autocomplete"
+    >
       <input
         autoCapitalize="off"
         autoComplete="off"
@@ -448,6 +468,7 @@ exports[`AutoComplete Snapshot testing lets you give custom components for submi
       />
     </div>
     <button
+      className="cvi-AutoComplete-submit"
       title="Search"
       type="submit"
     >
@@ -494,7 +515,9 @@ exports[`AutoComplete Snapshot testing should render the loader if showLoadingIn
     onSubmit={[Function]}
     role="search"
   >
-    <div>
+    <div
+      className="cvi-AutoComplete-autocomplete"
+    >
       <input
         autoCapitalize="off"
         autoComplete="off"
@@ -515,6 +538,7 @@ exports[`AutoComplete Snapshot testing should render the loader if showLoadingIn
       />
     </div>
     <button
+      className="cvi-AutoComplete-submit"
       title="Search"
       type="submit"
     >
@@ -607,7 +631,9 @@ exports[`AutoComplete Snapshot testing should render the loader if showLoadingIn
     onSubmit={[Function]}
     role="search"
   >
-    <div>
+    <div
+      className="cvi-AutoComplete-autocomplete"
+    >
       <input
         autoCapitalize="off"
         autoComplete="off"
@@ -628,6 +654,7 @@ exports[`AutoComplete Snapshot testing should render the loader if showLoadingIn
       />
     </div>
     <button
+      className="cvi-AutoComplete-submit"
       title="Search"
       type="submit"
     >
@@ -720,7 +747,9 @@ exports[`AutoComplete Snapshot testing transfers the autoFocus prop to the under
     onSubmit={[Function]}
     role="search"
   >
-    <div>
+    <div
+      className="cvi-AutoComplete-autocomplete"
+    >
       <input
         autoCapitalize="off"
         autoComplete="off"
@@ -741,6 +770,7 @@ exports[`AutoComplete Snapshot testing transfers the autoFocus prop to the under
       />
     </div>
     <button
+      className="cvi-AutoComplete-submit"
       title="Search"
       type="submit"
     >
@@ -791,7 +821,9 @@ exports[`AutoComplete Snapshot testing transfers the disabled prop to the underl
     onSubmit={[Function]}
     role="search"
   >
-    <div>
+    <div
+      className="cvi-AutoComplete-autocomplete"
+    >
       <input
         autoCapitalize="off"
         autoComplete="off"
@@ -812,6 +844,7 @@ exports[`AutoComplete Snapshot testing transfers the disabled prop to the underl
       />
     </div>
     <button
+      className="cvi-AutoComplete-submit"
       title="Search"
       type="submit"
     >

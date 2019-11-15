@@ -6,4 +6,8 @@ export default class Page {
   pressEnter() {
     browser.keys('Enter');
   }
+
+  pressKey(key) {
+    browser.keys(key);
+  }
 }

@@ -1,20 +1,11 @@
 import React from 'react';
-import './ExampleSearchBoxHits.css';
-import { Vision, SearchBox, Hits } from 'react-vision-dom';
-import cliniasearch from 'cliniasearch/lite';
+import './Example.css';
+import { Vision, Hits, AutoComplete, SearchBox } from 'react-vision-dom';
 import logo from '../static/images/logo.svg';
 import notFound from '../static/images/empty-search@2x.png';
 import { OpeningHours } from '../components/OpeningHours';
-import AutoComplete from '../components/AutoSuggest';
-
-const searchClient = cliniasearch('TODO', 'ClM5vDTmS4GWEL0aS7osJaRkowV8McuP', {
-  hosts: {
-    read: ['api.partner.staging.clinia.ca'],
-    write: ['api.partner.staging.clinia.ca'],
-  },
-});
-
-const index = searchClient.initIndex('health_facility');
+import searchClient from '../searchClientExample';
+import { withRouter } from 'react-router';
 
 const ExampleHitComponent = ({ searchResult }) => {
   const {
@@ -75,13 +66,19 @@ const ExampleNotFoundComponent = () => (
   </div>
 );
 
-const ExampleSearchBoxHits = () => {
+const Example = ({ location }) => {
+  const searchParams = new URLSearchParams(location.search);
+
   return (
     <Vision searchClient={searchClient} indexName="health_facility">
       <div className="example-header">
         <img src={logo} />
-        <AutoComplete client={index} />
-        <SearchBox submit={<i className="fa fa-search"></i>} />
+        <AutoComplete
+          submit={<i className="fa fa-search"></i>}
+          clear={<i className="fa fa-times"></i>}
+          defaultRefinement={searchParams.get('speciality')}
+        />
+        {/* <SearchBox submit={<i className="fa fa-search"></i>} /> */}
       </div>
       <div className="hits-body">
         <Hits
@@ -93,4 +90,4 @@ const ExampleSearchBoxHits = () => {
   );
 };
 
-export default ExampleSearchBoxHits;
+export default withRouter(Example);

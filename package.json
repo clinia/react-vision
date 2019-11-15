@@ -4,7 +4,8 @@
   "license": "MIT",
   "workspaces": [
     "packages/*",
-    "examples/@(default-theme)"
+    "examples/@(default)",
+    "e2e/e2e-tests"
   ],
   "scripts": {
     "postinstall": "lerna run build:cjs --scope react-vision-*",
