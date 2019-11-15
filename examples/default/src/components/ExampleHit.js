@@ -2,14 +2,14 @@ import notFound from '../static/images/empty-search@2x.png';
 import React from 'react';
 import { OpeningHours } from './OpeningHours';
 
-export const ExampleHitComponent = ({ searchResult }) => {
+export const ExampleHit = ({ record, onRecordOver }) => {
   const {
     type,
     address: { streetAddress, place, regionCode },
     geoPoint,
     phones,
     openingHours,
-  } = searchResult;
+  } = record;
 
   const mapLink = `https://www.google.ca/maps/dir//${streetAddress.replace(
     ' ',
@@ -17,12 +17,17 @@ export const ExampleHitComponent = ({ searchResult }) => {
   )}`;
 
   return (
-    <div className="card">
+    <div
+      className="card"
+      key={record.id}
+      onMouseEnter={() => onRecordOver(record)}
+      onMouseLeave={() => onRecordOver(null)}
+    >
       <div className="card-body">
         <div className="card-badge">
           <span>{type}</span>
         </div>
-        <h3>{searchResult.name}</h3>
+        <h3>{record.name}</h3>
         <div>
           <p>{`${streetAddress}, ${place} - ${regionCode}`}</p>
           <OpeningHours openingHours={openingHours} />

@@ -84,6 +84,24 @@
   overflow: hidden;
 }
 
+.cvi-GeoSearch-control {
+  display: flex;
+  height: 42.66px;
+  width: 230px;
+  border-radius: 23px;
+  background-color: #ffffff;
+  box-shadow: 0 0 5px 0 rgba(72, 89, 104, 0.23);
+  justify-content: center;
+}
+
+.cvi-GeoSearch-label {
+  padding: 12px 17px;
+  font-family: 'CircularStd';
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 18px;
+}
+
 /* EXAMPLES */
 
 .container {
@@ -96,12 +114,12 @@
 }
 
 .hits-container {
-  width: 40%;
+  width: 37%;
   overflow: auto;
 }
 
 .map-container {
-  width: 60%;
+  width: 63%;
   overflow: hidden;
 }
 
@@ -126,7 +144,17 @@
   padding-right: 25px;
 }
 
+.example-autoComplete .cvi-AutoComplete-submit,
+.cvi-AutoComplete-clear {
+  display: none;
+}
+
+.example-location .cvi-AutoComplete-input {
+  border-radius: 0px 8px 8px 0px;
+}
+
 .card {
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -137,6 +165,10 @@
   background-color: #ffffff;
   box-shadow: 0 0 5px 0 rgba(72, 89, 104, 0.23);
   margin: 7px 22px;
+}
+
+.card:hover {
+  box-shadow: 0 0 18px 0 rgba(72, 89, 104, 0.23);
 }
 
 .card h3 {
@@ -172,11 +204,12 @@
 
 .card-badge {
   height: 24px;
-  min-width: 58px;
+  min-width: 54px;
   width: fit-content;
   border-radius: 17px;
   background-color: #2dcebf;
   text-align: center;
+  padding: 0px 4px;
 }
 
 .card-badge span {
@@ -244,6 +277,11 @@
   color: #2dcebf;
 }
 
+.example-tooltip a {
+  text-decoration: none;
+  color: black;
+}
+
 .react-autosuggest__suggestions-container {
   background-color: #fff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
@@ -258,4 +296,23 @@
 .react-autosuggest__suggestion {
   padding: 5px 12px;
   cursor: pointer;
+}
+
+.custom-marker {
+  cursor: pointer;
+  background-image: url('../static/icons/pin@2x.png');
+  background-repeat: no-repeat;
+  background-size: 22px 24px;
+  min-height: 24px;
+  min-width: 22px;
+}
+
+.custom-marker:hover,
+.custom-marker-active {
+  cursor: pointer;
+  background-image: url('../static/icons/active-pin@2x.png');
+  background-repeat: no-repeat;
+  background-size: 22px 24px;
+  min-height: 24px;
+  min-width: 22px;
 }

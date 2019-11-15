@@ -1,11 +1,26 @@
 @import './static/fonts/fonts.css';
 
-.home {
-  /* background-image: url('./static/images/backgroundImage.png'); */
+html,
+body,
+#root {
   height: 100%;
-  background-position: center;
+}
+
+.home {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.home-bg {
+  background-image: url('./static/images/backgroundImage.jpg');
   background-repeat: no-repeat;
   background-size: cover;
+  filter: brightness(50%);
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  position: absolute;
 }
 
 .home-header img {
@@ -22,7 +37,7 @@
 .home-container h1 {
   height: 104px;
   width: 367px;
-  /* color: #ffffff; */
+  color: #ffffff;
   font-family: 'CircularStd';
   font-size: 54px;
   font-weight: 900;
@@ -33,10 +48,14 @@
 .home-container h3 {
   height: 23px;
   width: 341px;
-  /* color: #d1d5dd; */
+  color: #d1d5dd;
   font-family: 'CircularStd';
   font-size: 18px;
   font-weight: 300;
   letter-spacing: 0.18px;
   line-height: 23px;
+}
+
+.search {
+  display: flex;
 }

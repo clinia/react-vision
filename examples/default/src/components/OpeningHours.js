@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 
-export const OpeningHours = ({ openingHours }) => {
+export const OpeningHours = ({ openingHours, compact }) => {
   let openingHoursText;
 
   if (!openingHours) {
@@ -55,7 +55,11 @@ export const OpeningHours = ({ openingHours }) => {
     }
   }
 
-  return (
+  return compact ? (
+    <div>
+      <span>{openingHoursText}</span>
+    </div>
+  ) : (
     <p>
       <span className="dot" />
       <span>{openingHoursText}</span>
