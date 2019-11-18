@@ -54,11 +54,7 @@ const Tooltip = ({ record }) => {
   );
 };
 
-export default function ExampleGeoSearch({
-  google,
-  selectedRecord,
-  onRecordOver,
-}) {
+export default function ExampleGeoSearch({ google, selectedRecord }) {
   const InfoWindow = new google.maps.InfoWindow();
 
   const onClickMarker = (record, marker) => {
@@ -79,8 +75,6 @@ export default function ExampleGeoSearch({
         key={record.id}
         record={record}
         anchor={{ x: 0, y: 5 }}
-        onMouseEnter={() => onRecordOver(record)}
-        onMouseLeave={() => onRecordOver(null)}
         onClick={({ marker }) => onClickMarker(record, marker)}
       >
         <div

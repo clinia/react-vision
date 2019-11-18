@@ -35,7 +35,6 @@ const Example = ({ location }) => {
               <ExampleGeoSearch
                 google={google}
                 selectedRecord={selectedRecord}
-                onRecordOver={setSelectedRecord}
               />
             )}
           </GoogleMapsLoader>
