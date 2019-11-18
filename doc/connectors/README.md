@@ -1,20 +1,49 @@
 # React-Vision connectors documentation
 
-[Features](#features)
-</br>
-[QuickStart](#quickstart)
-</br>
-[API](#api)
-</br>
-[Shared Models](#shared-models)
-</br>
+1. [Features](#1-features)
+2. [QuickStart](#2-quickstart)
+3. [API](#3-api)</br>
+3.1 [`connectSearchBox`](#1-connectsearchbox)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;3.1.1 [Initilization](#311-initialization)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;3.1.2 [Connected Props](#312-connected-props)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;3.1.3 [Exposed Props](#313-exposed-props)<br/>
+3.2 [`connectHits`](#2-connecthits)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;3.2.1 [Initilization](#321-initialization)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;3.2.2 [Connected Props](#322-connected-props)<br/>
+3.3 [`connectHits`](#3-connectinfinitehits)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;3.3.1 [Initilization](#331-initialization)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;3.3.2 [Connected Props](#332-connected-props)<br/>
+3.4 [`connectAutocomplete`](#4-connectautocomplete)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;3.4.1 [Initilization](#341-initialization)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;3.4.2 [Connected Props](#342-connected-props)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;3.4.3 [Exposed Props](#343-exposed-props)<br/>
+3.5 [`connectLocation`](#5-connectlocation)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;3.5.1 [Initilization](#351-initialization)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;3.5.2 [Connected Props](#352-connected-props)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;3.5.3 [Exposed Props](#353-exposed-props)<br/>
+3.6 [`connectGeoSearch`](#6-connectgeosearch)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;3.6.1 [Initilization](#361-initialization)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;3.6.2 [Connected Props](#362-connected-props)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;3.6.3 [Exposed Props](#363-exposed-props)<br/>
+4. [Shared Models](#4-shared-models)<br/>
+4.1 [`Record (health_facility)`](#41-record-health_facility)<br/>
+4.2 [`Record (professional)`](#42-record-professional)<br/>
+4.3 [`QuerySuggestion`](#43-querysuggestion)<br/>
+4.4 [`PlaceSuggestion`](#44-placesuggestion)<br/>
+4.5 [`Phone`](#45-phone)<br/>
+4.6 [`Address`](#46-address)<br/>
+4.7 [`Interval`](#47-interval)<br/>
+4.8 [`Geometry`](#48-geometry)<br/>
+4.9 [`Bounds`](#49-bounds)<br/>
+4.10 [`GeoPoint`](#410-geopoint)<br/>
+4.11 [`LocationTranslation`](#411-locationtranslation)<br/>
 
-# Features
+# 1. Features
 
 - Facilitates the interactions between custom React components and Clinia's client.
 - Gives acces to properties and functions as React hooks
 
-# Quickstart
+# 2. Quickstart
 
 Let's use the `connectHits` connector to access and display search results obtained from a search query triggered from another unknown component. The properties made available through the use of the connectors will be refered to as **Connected Props**.
 
@@ -40,35 +69,12 @@ It is also possible to specify some properties while using the exported componen
 </Container>
 ```
 
-# API
+# 3. API
 
-1. [`connectSearchBox`](#1-connectsearchbox)
-    1. [Initilization](#11-initialization)
-    2. [Connected Props](#12-connected-props)
-    3. [Exposed Props](#13-exposed-props)
-2. [`connectHits`](#2-connecthits)
-    1. [Initilization](#21-initialization)
-    2. [Connected Props](#22-connected-props)
-3. [`connectHits`](#3-connectinfinitehits)
-    1. [Initilization](#31-initialization)
-    2. [Connected Props](#32-connected-props)
-4. [`connectAutocomplete`](#4-connectautocomplete)
-    1. [Initilization](#41-initialization)
-    2. [Connected Props](#42-connected-props)
-    3. [Exposed Props](#43-exposed-props)
-5. [`connectLocation`](#5-connectlocation)
-    1. [Initilization](#51-initialization)
-    2. [Connected Props](#52-connected-props)
-    3. [Exposed Props](#53-exposed-props)
-6. [`connectGeoSearch`](#6-connectgeosearch)
-    1. [Initilization](#61-initialization)
-    2. [Connected Props](#62-connected-props)
-    3. [Exposed Props](#63-exposed-props)
-
-## 1. `connectSearchBox`
+## 3.1 `connectSearchBox`
 This connector provides the logic to build a component that will let the user search for a query. 
 
-## 1.1 Initialization
+## 3.1.1 Initialization
 ### `connectSearchBox(component)`
 Connects a component with the SearchBox context.
 
@@ -80,7 +86,7 @@ A component wrapped inside the SearchBox context
 <br/><br/>
 
 ---
-## 1.2 Connected Props
+## 3.1.2 Connected Props
 Once connected, the component will have access to the following properties and functions:
 <br/><br/>
 
@@ -117,7 +123,7 @@ Sets the current query and triggers a search.
 <br/>
 
 ---
-## 1.3 Exposed Props
+## 3.1.3 Exposed Props
 The following properties will be used by the connector if they are specified on the wrapped component:
 <br/><br/>
 
@@ -149,10 +155,10 @@ Number of search results to return per page.
 <br/>
 
 ---
-## 2. `connectHits`
+## 3.2 `connectHits`
 This connector provides the logic to build a component that will let the user consult the search results.
 
-## 2.1 Initialization
+## 3.2.1 Initialization
 ### `connectHits(component)`
 Connects a component with the Hits context.
 
@@ -164,7 +170,7 @@ A component wrapped inside the Hits context
 <br/><br/>
 
 ---
-## 2.2 Connected Props
+## 3.2.2 Connected Props
 Once connected, the component will have access to the following properties and functions:
 <br/><br/>
 
@@ -185,10 +191,10 @@ The search results.
 <br/>
 
 ---
-## 3. `connectInfiniteHits`
+## 3.3 `connectInfiniteHits`
 This connector provides the logic to build a component that will let the user consult the search results with infinite scrolling enabled.
 
-## 3.1 Initialization
+## 3.3.1 Initialization
 ### `connectInfiniteHits(component)`
 Connects a component with the InfiniteHits context.
 
@@ -200,7 +206,7 @@ A component wrapped inside the InfiniteHits context
 <br/><br/>
 
 ---
-## 3.2 Connected Props
+## 3.3.2 Connected Props
 Once connected, the component will have access to the following properties and functions:
 <br/><br/>
 
@@ -242,10 +248,10 @@ A `string` representing the url.
 <br/>
 
 ---
-## 4. `connectAutocomplete`
+## 3.4 `connectAutocomplete`
 This connector provides the logic to build a component that will let the user search for a query and autocomplete its query with query suggestions. This connector enables the same capabilities as the `connectSearchBox` connector, in addition to the autocomplete functionnalities.
 
-## 4.1 Initialization
+## 3.4.1 Initialization
 ### `connectAutocomplete(component)`
 Connects a component with the Autocomplete context.
 
@@ -257,7 +263,7 @@ A component wrapped inside the Autocomplete context
 <br/><br/>
 
 ---
-## 4.2 Connected Props
+## 3.4.2 Connected Props
 Once connected, the component will have access to the following properties and functions:
 <br/><br/>
 
@@ -302,7 +308,7 @@ Sets the current suggestion query and triggers a suggestions query.
 <br/>
 
 ---
-## 4.3 Exposed Props
+## 3.4.3 Exposed Props
 The following properties will be used by the connector if they are specified on the wrapped component:
 <br/><br/>
 
@@ -358,10 +364,10 @@ The post tag that will highlight the matched part of the query in each suggestio
 <br/>
 
 ---
-## 5. `connectLocation`
+## 3.5 `connectLocation`
 This connector provides the logic to build a component that will let the user search for a locations and autocomplete its location query with location suggestions.
 
-## 5.1 Initialization
+## 3.5.1 Initialization
 ### `connectLocation(component)`
 Connects a component with the Location context.
 
@@ -373,7 +379,7 @@ A component wrapped inside the Location context
 <br/><br/>
 
 ---
-## 5.2 Connected Props
+## 3.5.2 Connected Props
 Once connected, the component will have access to the following properties and functions:
 <br/><br/>
 
@@ -410,7 +416,7 @@ Sets the current location query and triggers a location suggestions query.
 <br/>
 
 ---
-## 5.3 Exposed Props
+## 3.5.3 Exposed Props
 The following properties will be used by the connector if they are specified on the wrapped component:
 <br/><br/>
 
@@ -439,10 +445,10 @@ Maximum number of suggestions to return.
 <br/>
 
 ---
-## 6. `connectGeoSearch`
+## 3.6 `connectGeoSearch`
 This connector provides the logic to build a map component that will allow the user to search with a maps bounding box and to consult the results.
 
-## 6.1 Initialization
+## 3.6.1 Initialization
 ### `connectGeoSearch(component)`
 Connects a component with the GeoSearch context.
 
@@ -454,7 +460,7 @@ A component wrapped inside the GeoSearch context
 <br/><br/>
 
 ---
-## 6.2 Connected Props
+## 3.6.2 Connected Props
 Once connected, the component will have access to the following properties and functions:
 <br/><br/>
 
@@ -507,7 +513,7 @@ A `string` representing the url.
 <br/>
 
 ---
-## 6.3 Exposed Props
+## 3.6.3 Exposed Props
 The following properties will be used by the connector if they are specified on the wrapped component:
 <br/><br/>
 
@@ -519,31 +525,9 @@ Provide a default value for the bounding box.
 | _Bounds_ | `undefined` |
 <br/>
 
-# Shared Models
+# 4. Shared Models
 
-[`Record (health_facility)`](#record-health_facility)
-<br/>
-[`Record (professional)`](#record-professional)
-<br/>
-[`QuerySuggestion`](#querysuggestion)
-<br/>
-[`PlaceSuggestion`](#placesuggestion)
-<br/>
-[`Phone`](#phone)
-<br/>
-[`Address`](#address)
-<br/>
-[`Interval`](#interval)
-<br/>
-[`Geometry`](#geometry)
-<br/>
-[`Bounds`](#bounds)
-<br/>
-[`GeoPoint`](#geopoint)
-<br/>
-[`LocationTranslation`](#locationtranslation)
-
-### `Record (health_facility)`
+### 4.1 `Record (health_facility)`
 | Field name | Type | Description | Possible Values |
 |------------|------|-------------|-----------------|
 | `documentType` | _string_ | Type of document. | `health_facility`|
@@ -559,7 +543,7 @@ Provide a default value for the bounding box.
 | `owner` | _string_ | Owner of the resource (mainly used internally) ||
 <br/>
 
-### `Record (professional)`
+### 4.2 `Record (professional)`
 | Field name | Type | Description | Possible Values |
 |------------|------|-------------|-----------------|
 | `documentType` | _string_ | Type of document. | `professional` |
@@ -571,7 +555,7 @@ Provide a default value for the bounding box.
 | `owner` | _string_ | Owner of the resource (mainly used internally) ||
 <br/>
 
-### `QuerySuggestion`
+### 4.3 `QuerySuggestion`
 | Field name | Type | Description | Possible Values |
 |------------|------|-------------|-----------------|
 | `suggestion` | _string_ | Suggested query ||
@@ -579,7 +563,7 @@ Provide a default value for the bounding box.
 | `highlight` | _string_ | Augmented suggestion ||
 <br/>
 
-### `PlaceSuggestion`
+### 4.4 `PlaceSuggestion`
 | Field name | Type | Description | Possible Values |
 |------------|------|-------------|-----------------|
 | `id` | _string_ | Identifier. ||
@@ -601,7 +585,7 @@ Provide a default value for the bounding box.
 | `translations` | _Map<string, LocationTranslation>_ | Translatable elements, if applicable. ||
 <br/>
 
-### `Phone`
+### 4.5 `Phone`
 | Field name | Type | Description | Possible Values |
 |------------|------|-------------|-----------------|
 | `countryCode` | _string_ | Country code. ||
@@ -610,7 +594,7 @@ Provide a default value for the bounding box.
 | `type` | _string_ | Type of phone. | `UNKNOWN`<br/>`MAIN`<br/>`ALTERNATE`<br/>`RECEPTION`<br/>`FAX`<br/>`TEXT_TELEPHONE_TTY`<br/>`INFO`<br/>`TOOL_FREE`<br/>`PAGER`<br/>`MOBILE`<br/>`HOME`<br/>`WORK`<br/>`PERSONAL`<br/>`OTHER`<br/> |
 <br/>
 
-### `Address`
+### 4.6 `Address`
 | Field name | Type | Description | Possible Values |
 |------------|------|-------------|-----------------|
 | `streetAddress` | _string_ | Street number plus route name. ||
@@ -625,35 +609,35 @@ Provide a default value for the bounding box.
 | `countryCode` | _string_ | ISO 3166 country code ||
 <br/>
 
-### `Interval`
+### 4.7 `Interval`
 | Field name | Type | Description | Possible Values |
 |------------|------|-------------|-----------------|
 | `start` | _string_ | Start time of the time interval. | Format is `HH:mm` |
 | `end` | _string_ | End time of the time interval. | Format is `HH:mm` |
 <br/>
 
-### `Geometry`
+### 4.8 `Geometry`
 | Field name | Type | Description | Possible Values |
 |------------|------|-------------|-----------------|
 | `bounds` | _Bounds_ | Bounds of the location. ||
 | `location` | _GeoPoint_ | Best coordinate to locate the location. ||
 <br/>
 
-### `Bounds`
+### 4.9 `Bounds`
 | Field name | Type | Description | Possible Values |
 |------------|------|-------------|-----------------|
 | `northEast` | _GeoPoint_ | North-east coordinate delimiting the bounds of the location. ||
 | `southWest` | _GeoPoint_ | South-west coordinate delimiting the bounds of the location. ||
 <br/>
 
-### `GeoPoint`
+### 4.10 `GeoPoint`
 | Field name | Type | Description | Possible Values |
 |------------|------|-------------|-----------------|
 | `lat` | _double_ | Latitude ||
 | `lng` | _double_ | Longitude ||
 <br/>
 
-### `LocationTranslation` 
+### 4.11 `LocationTranslation` 
 | Field name | Type | Description | Possible Values |
 |------------|------|-------------|-----------------|
 | `formattedAddress` | _string_ | Formatted address, ready to display. ||
