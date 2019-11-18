@@ -1,8 +1,9 @@
 import notFound from '../static/images/empty-search@2x.png';
 import React from 'react';
 import { OpeningHours } from './OpeningHours';
+import { connectHits } from 'react-vision-dom';
 
-export const ExampleHit = ({ record, onRecordOver }) => {
+const ExampleHit = ({ record, onRecordOver }) => {
   const {
     type,
     address: { streetAddress, place, regionCode },
@@ -65,3 +66,17 @@ export const ExampleNotFoundComponent = () => (
     </div>
   </div>
 );
+
+export default connectHits(({ records, selectedRecord, onRecordOver }) => (
+  <div className="hits">
+    {records.map(record => {
+      return (
+        <ExampleHit
+          record={record}
+          selectedRecord={selectedRecord}
+          onRecordOver={onRecordOver}
+        />
+      );
+    })}
+  </div>
+));

@@ -6,12 +6,10 @@ import searchClient from '../searchClientExample';
 import { withRouter } from 'react-router';
 import { GoogleMapsLoader } from 'react-vision-dom-maps';
 import ExampleGeoSearch from '../components/ExampleGeoSearch';
-import ExampleCustomHits from '../components/ExampleCustomHits';
+import ExampleCustomHits from '../components/ExampleHits';
 
 const apiKey = 'AIzaSyCinD8RBonNR0YccJKv6sHvT2_BGQiP2pw';
 const endpoint = 'https://maps.googleapis.com/maps/api/js?v=weekly';
-const initialZoom = 6;
-const initialPosition = { lat: 45.410246, lng: -73.986345 };
 
 const Example = ({ location }) => {
   const [selectedRecord, setSelectedRecord] = useState(null);

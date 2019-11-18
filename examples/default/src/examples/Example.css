@@ -108,6 +108,17 @@
   line-height: 18px;
 }
 
+.cvi-GeoSearch-redo {
+  display: flex;
+  border-radius: 50px;
+  padding: 10px;
+  height: inherit;
+  height: 80%;
+  margin-top: 2%;
+  background-color: #2dcebf;
+  color: white;
+}
+
 /* EXAMPLES */
 
 .container {
