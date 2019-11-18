@@ -48,8 +48,8 @@ import AutoComplete from '../components/AutoComplete';
  * );
  */
 
-const workAround = props => {
-  let customSuggestions = props.suggestions.map(s => ({
+const Location = props => {
+  let locationSuggestions = props.suggestions.map(s => ({
     suggestion: s.formattedAddress,
   }));
 
@@ -57,12 +57,9 @@ const workAround = props => {
     <AutoComplete
       {...props}
       searchForSuggestions={props.searchForLocations}
-      suggestions={customSuggestions}
-      //   onSubmit={props.onSubmit}
-      //   __inputRef={props.__inputRef}
-      //   refine={props.refine}
+      suggestions={locationSuggestions}
     />
   );
 };
 
-export default connectLocation(workAround);
+export default connectLocation(Location);
