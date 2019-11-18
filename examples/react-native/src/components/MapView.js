@@ -1,4 +1,4 @@
-import MapView, { Marker } from 'react-native-maps';
+import MapView from 'react-native-maps';
 import React from 'react';
 import { connectGeoSearch } from 'react-vision-core';
 
@@ -57,7 +57,7 @@ class Map extends React.Component {
         {records.map(record => {
           const { geoPoint } = record;
           return (
-            <Marker
+            <MapView.Marker
               id={record.id}
               key={record.id}
               coordinate={{ latitude: geoPoint.lat, longitude: geoPoint.lng }}
