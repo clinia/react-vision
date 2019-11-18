@@ -94,15 +94,7 @@ export default function ExampleGeoSearch({
   };
 
   return (
-    <GeoSearch
-      google={google}
-      defaultRefinement={{
-        northEast: { lat: 45.7058381, lng: -73.47426 },
-        southWest: { lat: 45.410246, lng: -73.986345 },
-      }}
-      initialZoom={6}
-      styles={mapStyles}
-    >
+    <GeoSearch google={google} initialZoom={6} styles={mapStyles}>
       {({ records }) => (
         <Fragment>
           <Control />

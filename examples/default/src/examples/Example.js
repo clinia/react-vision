@@ -29,7 +29,11 @@ const Example = ({ location }) => {
           />
         </div>
         <div className="example-location">
-          <Location defaultRefinement={searchParams.get('location') || ''} />
+          <Location
+            types={['']}
+            country={['CA']}
+            defaultRefinement={searchParams.get('location') || ''}
+          />
         </div>
       </div>
       <div className="container">
