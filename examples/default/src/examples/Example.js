@@ -19,18 +19,8 @@ const Example = ({ location }) => {
     <Vision searchClient={searchClient} indexName="health_facility">
       <div className="example-header">
         <img src={logo} />
-        <div className="example-autoComplete">
-          <AutoComplete
-            submit={<i className="fa fa-search"></i>}
-            clear={<i className="fa fa-times"></i>}
-            defaultRefinement={searchParams.get('speciality')}
-            submit={null}
-            clear={null}
-          />
-        </div>
-        <div className="example-location">
-          <Location />
-        </div>
+        <AutoComplete defaultRefinement={searchParams.get('speciality')} />
+        <Location defaultRefinement={searchParams.get('location')} />
       </div>
       <div className="container">
         <div className="hits-container">
