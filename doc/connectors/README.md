@@ -3,25 +3,25 @@
 1. [Features](#1-features)
 2. [QuickStart](#2-quickstart)
 3. [API](#3-api)</br>
-3.1 [`connectSearchBox`](#1-connectsearchbox)<br/>
+3.1 [`connectSearchBox`](#31-connectsearchbox)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;3.1.1 [Initilization](#311-initialization)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;3.1.2 [Connected Props](#312-connected-props)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;3.1.3 [Exposed Props](#313-exposed-props)<br/>
-3.2 [`connectHits`](#2-connecthits)<br/>
+3.2 [`connectHits`](#32-connecthits)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;3.2.1 [Initilization](#321-initialization)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;3.2.2 [Connected Props](#322-connected-props)<br/>
-3.3 [`connectHits`](#3-connectinfinitehits)<br/>
+3.3 [`connectHits`](#33-connectinfinitehits)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;3.3.1 [Initilization](#331-initialization)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;3.3.2 [Connected Props](#332-connected-props)<br/>
-3.4 [`connectAutocomplete`](#4-connectautocomplete)<br/>
+3.4 [`connectAutocomplete`](#34-connectautocomplete)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;3.4.1 [Initilization](#341-initialization)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;3.4.2 [Connected Props](#342-connected-props)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;3.4.3 [Exposed Props](#343-exposed-props)<br/>
-3.5 [`connectLocation`](#5-connectlocation)<br/>
+3.5 [`connectLocation`](#35-connectlocation)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;3.5.1 [Initilization](#351-initialization)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;3.5.2 [Connected Props](#352-connected-props)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;3.5.3 [Exposed Props](#353-exposed-props)<br/>
-3.6 [`connectGeoSearch`](#6-connectgeosearch)<br/>
+3.6 [`connectGeoSearch`](#36-connectgeosearch)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;3.6.1 [Initilization](#361-initialization)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;3.6.2 [Connected Props](#362-connected-props)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;3.6.3 [Exposed Props](#363-exposed-props)<br/>
