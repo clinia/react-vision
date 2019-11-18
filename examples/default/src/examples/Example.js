@@ -23,13 +23,13 @@ const Example = ({ location }) => {
           <AutoComplete
             submit={<i className="fa fa-search"></i>}
             clear={<i className="fa fa-times"></i>}
-            defaultRefinement={searchParams.get('speciality')}
+            defaultRefinement={searchParams.get('speciality') || ''}
             submit={null}
             clear={null}
           />
         </div>
         <div className="example-location">
-          <Location />
+          <Location defaultRefinement={searchParams.get('location') || ''} />
         </div>
       </div>
       <div className="container">
