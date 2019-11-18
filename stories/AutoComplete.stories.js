@@ -19,7 +19,10 @@ stories
   .add('Default AutoComplete', () => (
     <Vision searchClient={searchClient} indexName="health_facility">
       <AutoComplete
-        onSubmit={action('onSubmit')}
+        onSubmit={e => {
+          e.preventDefault();
+          action('form submitted')(e);
+        }}
         onClear={action('onClear')}
         onSuggestionSelected={action('onSuggestionSelected')}
         onBlur={action('onBlur')}
@@ -28,6 +31,10 @@ stories
         onKeyDown={action('onKeyDown')}
         showLoadingIndicator={boolean('showLoadingIndicator', true)}
         disabled={boolean('disabled', false)}
+        triggerSubmitOnSuggestionSelected={boolean(
+          'triggerSubmitOnSuggestionSelected',
+          false
+        )}
       />
     </Vision>
   ));
@@ -57,7 +64,10 @@ stories
   .add('Custom AutoComplete', () => (
     <Vision searchClient={searchClient} indexName="health_facility">
       <AutoComplete
-        onSubmit={action('onSubmit')}
+        onSubmit={e => {
+          e.preventDefault();
+          action('form submitted')(e);
+        }}
         onClear={action('onClear')}
         onSuggestionSelected={action('onSuggestionSelected')}
         onBlur={action('onBlur')}
@@ -71,6 +81,10 @@ stories
         submit={<CustomButton />}
         renderSuggestion={suggestion => (
           <CustomSuggestion suggestion={suggestion} />
+        )}
+        triggerSubmitOnSuggestionSelected={boolean(
+          'triggerSubmitOnSuggestionSelected',
+          false
         )}
       />
     </Vision>

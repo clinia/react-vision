@@ -33,6 +33,7 @@ interface Props {
   renderSuggestion?: (suggestion: Suggestion) => React.ReactNode;
 
   autoFocus?: boolean;
+  triggerSubmitOnSuggestionSelected?: boolean;
 
   onSubmit?: (event: any) => void;
   onClear?: (event: any) => void;
@@ -55,6 +56,7 @@ interface DefaultProps {
   className: string;
   searchForSuggestions: (value: string) => void;
   refine: (value: string | null) => void;
+  triggerSubmitOnSuggestionSelected: boolean;
   autoFocus: boolean;
   showLoadingIndicator: boolean;
   isSearchStalled: boolean;
@@ -77,6 +79,7 @@ const cx = createClassNames('AutoComplete');
 
 class AutoComplete extends Component<PropsWithDefaults, State> {
   input!: HTMLInputElement;
+  formRef: any = React.createRef();
 
   static propTypes = {
     currentRefinement: PropTypes.string,
@@ -124,9 +127,12 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
 
   constructor(props: PropsWithDefaults) {
     super(props);
+
+    const initialValue = props.currentRefinement || '';
+
     this.state = {
-      query: '',
-      queryCache: '',
+      query: initialValue,
+      queryCache: initialValue,
       showSuggestions: false,
       activeSuggestionIndex: -1,
     };
@@ -212,40 +218,42 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
 
   onKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
     const { onKeyDown, suggestions } = this.props;
-    const { activeSuggestionIndex } = this.state;
+    const { activeSuggestionIndex, showSuggestions } = this.state;
 
-    //Up arrow key
-    if (event.keyCode === 38) {
-      if (activeSuggestionIndex > 0) {
-        this.moveActiveSuggestionUp();
-      } else if (activeSuggestionIndex === 0) {
-        this.moveActiveSuggestionToTheTop();
-      } else if (activeSuggestionIndex === -1) {
-        this.moveActiveSuggestionToTheLast();
+    if (showSuggestions) {
+      //Up arrow key
+      if (event.keyCode === 38) {
+        if (activeSuggestionIndex > 0) {
+          this.moveActiveSuggestionUp();
+        } else if (activeSuggestionIndex === 0) {
+          this.moveActiveSuggestionToTheTop();
+        } else if (activeSuggestionIndex === -1) {
+          this.moveActiveSuggestionToTheLast();
+        }
+        event.preventDefault();
       }
-      event.preventDefault();
-    }
 
-    //Down arrow key
-    else if (event.keyCode === 40) {
-      if (activeSuggestionIndex + 1 === suggestions.length) {
-        this.moveActiveSuggestionToTheTop();
-      } else {
-        this.moveActiveSuggestionDown();
+      //Down arrow key
+      else if (event.keyCode === 40) {
+        if (activeSuggestionIndex + 1 === suggestions.length) {
+          this.moveActiveSuggestionToTheTop();
+        } else {
+          this.moveActiveSuggestionDown();
+        }
+        event.preventDefault();
       }
-      event.preventDefault();
-    }
 
-    //Enter key
-    else if (event.keyCode === 13) {
-      this.onSuggestionSelected(suggestions[activeSuggestionIndex]);
-      this.input.blur();
-    }
+      //Enter key
+      else if (event.keyCode === 13) {
+        if (activeSuggestionIndex === -1) this.search();
+        else this.onSuggestionSelected(suggestions[activeSuggestionIndex]);
+      }
 
-    //Esc Key
-    if (event.keyCode === 27) {
-      event.preventDefault();
-      this.setState({ showSuggestions: false });
+      //Esc Key
+      if (event.keyCode === 27) {
+        event.preventDefault();
+        this.setState({ showSuggestions: false });
+      }
     }
 
     if (onKeyDown) {
@@ -254,17 +262,38 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
   }
 
   onSuggestionSelected(suggestion: Suggestion) {
-    const { onSuggestionSelected, searchForSuggestions, refine } = this.props;
+    const {
+      onSuggestionSelected,
+      triggerSubmitOnSuggestionSelected,
+    } = this.props;
 
     const query = suggestion.suggestion;
-    this.setState({ query, queryCache: query, activeSuggestionIndex: -1 });
 
-    refine(query);
-    searchForSuggestions(query);
+    this.setState(
+      {
+        query,
+        queryCache: query,
+        activeSuggestionIndex: -1,
+      },
+      () => {
+        this.search();
+        if (triggerSubmitOnSuggestionSelected) {
+          this.formRef.dispatchEvent(new Event('submit'));
+        }
+      }
+    );
 
     if (onSuggestionSelected) {
       onSuggestionSelected(suggestion);
     }
+  }
+
+  search() {
+    const { query } = this.state;
+    const { refine, searchForSuggestions } = this.props;
+
+    refine(query);
+    searchForSuggestions(query);
   }
 
   onChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -281,22 +310,21 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
   }
 
   onSubmit(event: React.FormEvent<HTMLFormElement>) {
-    const { refine, searchForSuggestions } = this.props;
-    const { query } = this.state;
-
     event.preventDefault();
     event.stopPropagation();
     this.input.blur();
 
-    refine(query);
-    searchForSuggestions(query);
+    this.search();
   }
 
   onClear(event: React.FormEvent<HTMLFormElement>) {
-    const { refine, onClear } = this.props;
-    refine('');
+    const { refine, searchForSuggestions, onClear } = this.props;
 
     this.setState({ query: '', queryCache: '', activeSuggestionIndex: -1 });
+
+    refine('');
+    searchForSuggestions('');
+
     if (onClear) {
       onClear(event);
     }
@@ -369,8 +397,11 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
           className={cx('form', isSearchStalled ? 'form--stalledSearch' : '')}
           action=""
           role="search"
+          ref={ref => {
+            this.formRef = ref;
+          }}
         >
-          <div>
+          <div className={cx('autocomplete')}>
             <input
               ref={this.onInputMount}
               type="search"
@@ -403,7 +434,7 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
                     //TODO remove: Only for story purposes while the styles are not ready
                     style={
                       index === activeSuggestion
-                        ? { backgroundColor: 'gray' }
+                        ? { backgroundColor: '#f5f5f8' }
                         : {}
                     }
                     onMouseDown={() => this.onSuggestionSelected(suggestion)}
@@ -416,7 +447,11 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
               </ul>
             )}
           </div>
-          <button type="submit" title={translate('searchTitle')}>
+          <button
+            type="submit"
+            className={cx('submit')}
+            title={translate('searchTitle')}
+          >
             {submit}
           </button>
           <button
