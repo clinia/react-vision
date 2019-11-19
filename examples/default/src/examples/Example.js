@@ -34,6 +34,7 @@ const Example = ({ location }) => {
           <Location
             types={['postcode', 'place', 'neighborhood']}
             country={['CA']}
+            locale="en"
             defaultRefinement={searchParams.get('location') || ''}
           />
         </div>

@@ -89,6 +89,8 @@ export default createConnector({
   propTypes: {
     types: PropTypes.arrayOf(PropTypes.string),
     country: PropTypes.arrayOf(PropTypes.string),
+    locale: PropTypes.string,
+    limit: PropTypes.number,
   },
 
   // eslint-disable-next-line max-params
@@ -171,6 +173,10 @@ export default createConnector({
     if (Array.isArray(props.types) && props.types.length > 0) {
       props.types.filter(t => t).forEach(type => (query += `&types=${type}`));
     }
+
+    if (props.locale) query += `&locale=${props.locale}`;
+
+    if (props.limit) query += `&limit=${props.limit}`;
 
     return {
       query,
