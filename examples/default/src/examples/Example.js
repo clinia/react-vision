@@ -34,6 +34,7 @@ const Example = ({ location }) => {
           <Location
             types={['postcode', 'place', 'neighborhood']}
             country={['CA']}
+            locale="en"
             defaultRefinement={searchParams.get('location') || ''}
           />
         </div>
@@ -51,7 +52,6 @@ const Example = ({ location }) => {
               <ExampleGeoSearch
                 google={google}
                 selectedRecord={selectedRecord}
-                onRecordOver={setSelectedRecord}
               />
             )}
           </GoogleMapsLoader>

@@ -137,6 +137,20 @@ describe('AutoComplete', () => {
       instance.unmount();
     });
 
+    it('lets you give a custom theme key', () => {
+      const instance = renderer.create(
+        <AutoComplete
+          refine={() => null}
+          searchForSuggestions={() => null}
+          customThemeKey="Test"
+        />
+      );
+
+      expect(instance.toJSON()).toMatchSnapshot();
+
+      instance.unmount();
+    });
+
     it('should render the loader if showLoadingIndicator is true', () => {
       const instanceWithoutLoadingIndicator = renderer.create(
         <AutoComplete
