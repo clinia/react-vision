@@ -6,7 +6,9 @@ import AutoComplete from '../components/AutoComplete';
  * The Location component displays a search box that lets the user search for a specific location.
  * @name Location
  * @kind widget
- * @propType {string[]} [country] - Filter the suggestion to the given countries. (The countries values must be formatted according to the ISO 3166, e.g. "CA")
+ * @propType {string[]} [country=['CA']] - Filter the suggestion to the given country codes. (The countries values must be formatted according to the ISO 3166, e.g. "CA")
+ * @propType {string} [locale='en'] - Define the language for the presented suggestions (The locale value must be formatted according to the ISO 639, e.g. 'en')
+ * @propType {number} [limit=5] - Define the limit number for the presented suggestions
  * @propType {function} [renderSuggestion] - Define how suggestions will be rendered
  * @propType {function} [onSuggestionSelected] - Executes every time that a suggestion is selected
  * @propType {boolean} [triggerSubmitOnSuggestionSelected=false] - Define if the Location form container should be submitted onSuggestionSelected
