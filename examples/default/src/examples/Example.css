@@ -73,6 +73,7 @@
   border: none;
   box-shadow: 0 0 5px 0 rgba(72, 89, 104, 0.23);
   clip-path: inset(-10px -10px -10px -1px);
+  outline: none;
 }
 
 .cvi-GeoSearch {
@@ -131,7 +132,6 @@
   position: absolute;
 }
 
-
 /* Hits */
 .hits {
   margin-bottom: 20px;
@@ -161,6 +161,7 @@
 .example-header img {
   height: 35px;
   padding-right: 25px;
+  margin-top: 5px;
 }
 
 /* Autocomplete */
@@ -172,6 +173,8 @@
   padding-top: 14px;
   position: relative;
 }
+
+.example-autoComplete,
 .example-location {
   position: relative;
 }
@@ -195,7 +198,7 @@
 .autocomplete-label {
   position: absolute;
   z-index: 10;
-  color: #00AB9B;
+  color: #00ab9b;
   font-size: 11px;
   text-transform: uppercase;
   top: 5px;
@@ -328,7 +331,7 @@
   border: 2px solid #e0e2e9;
   padding: 10px 20px;
   margin-left: 12px;
-  width: 86px;
+  width: fit-content;
 }
 
 .card-footer a {
@@ -371,7 +374,7 @@
   width: 100%;
   margin-bottom: 5px;
   padding-bottom: 3px;
-  border-bottom: 1px solid rgba(255,255,255,0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 /* Map */
@@ -383,7 +386,7 @@
 /* Google Map Infowindow Style Override */
 .gm-style .gm-style-iw-c,
 .gm-style .gm-style-iw-d {
-  background-color: #00AB9B !important;
+  background-color: #00ab9b !important;
   overflow: hidden !important;
 }
 

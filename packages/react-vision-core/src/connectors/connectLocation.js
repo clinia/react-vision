@@ -163,7 +163,9 @@ export default createConnector({
     let query = nextRefinement;
 
     // Filters empty values and joins them into a valid query param value format
-    const formattedCountries = props.country.filter(c => c).join(',');
+    const formattedCountries =
+      props.country && props.country.filter(c => c).join(',');
+
     if (formattedCountries) query += `&country=${formattedCountries}`;
 
     if (Array.isArray(props.types) && props.types.length > 0) {

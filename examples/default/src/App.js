@@ -51,6 +51,7 @@ const Home = () => {
         <div className="search">
           <Vision searchClient={searchClient} indexName="health_facility">
             <div className="example-autoComplete">
+              <div className="autocomplete-label">What</div>
               <AutoComplete
                 __inputRef={ref => (autoCompleteInputRef = ref)}
                 submit={null}
@@ -58,9 +59,12 @@ const Home = () => {
               />
             </div>
             <div className="example-location">
+              <div className="autocomplete-label">Where</div>
               <Location
                 __inputRef={ref => (locationInputRef = ref)}
                 onSubmit={onSubmit}
+                types={['postcode', 'place', 'neighborhood']}
+                country={['CA']}
               />
             </div>
           </Vision>

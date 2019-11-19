@@ -27,6 +27,7 @@ body,
   height: 32px;
   margin-top: 20px;
   margin-left: 45px;
+  filter: brightness(0) invert(1);
 }
 
 .home-container {
