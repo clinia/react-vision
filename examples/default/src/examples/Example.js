@@ -20,6 +20,7 @@ const Example = ({ location }) => {
       <div className="example-header">
         <img src={logo} />
         <div className="example-autoComplete">
+          <div className="autocomplete-label">What</div>
           <AutoComplete
             submit={<i className="fa fa-search"></i>}
             clear={<i className="fa fa-times"></i>}
@@ -29,6 +30,7 @@ const Example = ({ location }) => {
           />
         </div>
         <div className="example-location">
+          <div className="autocomplete-label">Where</div>
           <Location
             types={['postcode', 'place', 'neighborhood']}
             country={['CA']}

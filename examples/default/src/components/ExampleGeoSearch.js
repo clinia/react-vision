@@ -33,15 +33,18 @@ const Tooltip = ({ record }) => {
 
   return (
     <div className="example-tooltip">
+      <div className="card-badge">
+        <span>{record.type}</span>
+      </div>
+      {record.distance && (
+        <div>{record.distance}</div>
+      )}
       <h3>{record.name}</h3>
       <div>
-        <div className="card-badge">
-          <span>{record.type}</span>
-        </div>
         <a href={mapLink} target="_blank">
           Get directions
         </a>
-        <OpeningHours openingHours={record.openingHours} compact={true} />
+        <OpeningHours openingHours={record.openingHours} compact={true} style={{marginTop: 5}}/>
         {Array.isArray(record.phones) && record.phones.length > 0 && (
           <a
             href={`tel://${record.phones[0].countryCode}${record.phones[0].number}`}
@@ -59,7 +62,7 @@ export default function ExampleGeoSearch({
   selectedRecord,
   onRecordOver,
 }) {
-  const InfoWindow = new google.maps.InfoWindow();
+  const InfoWindow = new google.maps.InfoWindow({ width: 300 });
 
   const onClickMarker = (record, marker) => {
     if (InfoWindow.getMap()) {
@@ -78,7 +81,7 @@ export default function ExampleGeoSearch({
       <CustomMarker
         key={record.id}
         record={record}
-        anchor={{ x: 0, y: 5 }}
+        anchor={{ x: 0, y: 0 }}
         onMouseEnter={() => onRecordOver(record)}
         onMouseLeave={() => onRecordOver(null)}
         onClick={({ marker }) => onClickMarker(record, marker)}
