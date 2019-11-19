@@ -10,8 +10,6 @@ import ExampleCustomHits from '../components/ExampleCustomHits';
 
 const apiKey = 'AIzaSyCinD8RBonNR0YccJKv6sHvT2_BGQiP2pw';
 const endpoint = 'https://maps.googleapis.com/maps/api/js?v=weekly';
-const initialZoom = 6;
-const initialPosition = { lat: 45.410246, lng: -73.986345 };
 
 const Example = ({ location }) => {
   const [selectedRecord, setSelectedRecord] = useState(null);
@@ -22,6 +20,7 @@ const Example = ({ location }) => {
       <div className="example-header">
         <img src={logo} />
         <div className="example-autoComplete">
+          <div className="autocomplete-label">What</div>
           <AutoComplete
             submit={<i className="fa fa-search"></i>}
             clear={<i className="fa fa-times"></i>}
@@ -31,6 +30,7 @@ const Example = ({ location }) => {
           />
         </div>
         <div className="example-location">
+          <div className="autocomplete-label">Where</div>
           <Location />
         </div>
       </div>

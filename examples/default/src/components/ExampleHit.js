@@ -29,8 +29,8 @@ export const ExampleHit = ({ record, onRecordOver }) => {
         </div>
         <h3>{record.name}</h3>
         <div>
-          <p>{`${streetAddress}, ${place} - ${regionCode}`}</p>
-          <OpeningHours openingHours={openingHours} />
+          <p style={{marginTop: 10}}>{`${streetAddress}, ${place} - ${regionCode}`}</p>
+          <OpeningHours openingHours={openingHours}  style={{marginTop: 5}}/>
         </div>
       </div>
       <div className="card-footer">
