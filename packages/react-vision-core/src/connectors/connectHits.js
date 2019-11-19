@@ -58,7 +58,11 @@ export default createConnector({
       results.perPage,
       results.page
     );
-    return { records: recordsWithPositions };
+
+    return {
+      records: recordsWithPositions,
+      loading: searchResults.searching,
+    };
   },
 
   /**
