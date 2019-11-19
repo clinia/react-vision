@@ -3,6 +3,7 @@ import * as ReactDOMServer from 'react-dom/server';
 import { GeoSearch, CustomMarker, Control } from 'react-vision-dom-maps';
 import { OpeningHours } from '../components/OpeningHours';
 import classnames from 'classnames';
+import mapStyles from '../static/mapStyle.json';
 
 const phoneFormatter = phone => {
   if (!phone) return phone;
@@ -96,13 +97,7 @@ export default function ExampleGeoSearch({
   };
 
   return (
-    <GeoSearch
-      google={google}
-      defaultRefinement={{
-        northEast: { lat: 45.7058381, lng: -73.47426 },
-        southWest: { lat: 45.410246, lng: -73.986345 },
-      }}
-    >
+    <GeoSearch google={google} initialZoom={6} styles={mapStyles}>
       {({ records }) => (
         <Fragment>
           <Control />

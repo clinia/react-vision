@@ -78,6 +78,7 @@
 .cvi-GeoSearch {
   width: 100%;
   height: 100%;
+  position: relative;
 }
 
 .cvi-GeoSearch-map {
@@ -87,6 +88,11 @@
 }
 
 .cvi-GeoSearch-control {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  margin-top: 22px;
+  top: 0px;
   display: flex;
   height: 42.66px;
   width: 230px;
@@ -102,6 +108,17 @@
   font-size: 14px;
   font-weight: 300;
   line-height: 18px;
+}
+
+.cvi-GeoSearch-redo {
+  display: flex;
+  border-radius: 50px;
+  padding: 10px;
+  height: inherit;
+  height: 80%;
+  margin-top: 2%;
+  background-color: #2dcebf;
+  color: white;
 }
 
 /* EXAMPLES */
@@ -288,6 +305,7 @@
   letter-spacing: -0.39px;
   line-height: 20px;
   margin: 0px;
+  white-space: nowrap;
 }
 
 .card i {
