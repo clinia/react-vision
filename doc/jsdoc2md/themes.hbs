@@ -1,0 +1,10 @@
+{{#if themes}}**Themes**
+
+{{tableHead themes "name|Name" "description|Description" ~}}
+
+{{#tableRow themes "name" "description" ~}}
+| {{#if @col1}}{{>param-table-name}} | {{/if~}}
+{{#if @col2}}<p>{{{stripNewlines (inlineLinks description)}}}</p> |{{/if}}
+{{/tableRow}}
+
+{{/if}}

@@ -2,34 +2,38 @@ import { connectSearchBox } from 'react-vision-core';
 import SearchBox from '../components/SearchBox';
 
 /**
+ * @module SearchBox
+ */
+
+/**
  * The SearchBox component displays a search box that lets the user search for a specific query.
- * @name SearchBox
+ * @alias module:SearchBox
  * @kind widget
- * @propType {string[]} [focusShortcuts=['s','/']] - List of keyboard shortcuts that focus the search box. Accepts key names and key codes.
- * @propType {boolean} [autoFocus=false] - Should the search box be focused on render?
- * @propType {boolean} [searchAsYouType=true] - Should we search on every change to the query? If you disable this option, new searches will only be triggered by clicking the search button or by pressing the enter key while the search box is focused.
- * @propType {function} [onSubmit] - Intercept submit event sent from the SearchBox form container.
- * @propType {function} [onClear] - Listen to `reset` event sent from the SearchBox form container.
- * @propType {function} [on*] - Listen to any events sent from the search input itself.
- * @propType {node} [submit] - Change the apparence of the default submit button (magnifying glass).
- * @propType {node} [clear] - Change the apparence of the default reset button (cross).
- * @propType {node} [loadingIndicator] - Change the apparence of the default loading indicator (spinning circle).
- * @propType {string} [defaultRefinement] - Provide default refinement value when component is mounted.
- * @propType {boolean} [showLoadingIndicator=false] - Display that the search is loading. This only happens after a certain amount of time to avoid a blinking effect. This timer can be configured with `stalledSearchDelay` props on <InstantSearch>. By default, the value is 200ms.
- * @propType {string} [className] - Add a custom CSS class to the SearchBox form container
- * @propType {object} [style] - Add a custom React.CSSProperties object to SearchBox form container
- * @themeKey cvi-SearchBox - the root div of the widget
- * @themeKey cvi-SearchBox-form - the wrapping form
- * @themeKey cvi-SearchBox-input - the search input
- * @themeKey cvi-SearchBox-submit - the submit button
- * @themeKey cvi-SearchBox-submitIcon - the default magnifier icon used with the search input
- * @themeKey cvi-SearchBox-clear - the reset button used to clear the content of the input
- * @themeKey cvi-SearchBox-clearIcon - the default reset icon used inside the reset button
- * @themeKey cvi-SearchBox-loadingIndicator - the loading indicator container
- * @themeKey cvi-SearchBox-loadingIcon - the default loading icon
- * @translationkey searchTitle - The submit button title
- * @translationkey clearTitle - The reset button title
- * @translationkey placeholder - The label of the input placeholder
+ * @prop {string[]} focusShortcuts=['s','/'] - List of keyboard shortcuts that focus the search box. Accepts key names and key codes.
+ * @prop {boolean} autoFocus=false - Should the search box be focused on render?
+ * @prop {boolean} searchAsYouType=true - Should we search on every change to the query? If you disable this option, new searches will only be triggered by clicking the search button or by pressing the enter key while the search box is focused.
+ * @prop {function} onSubmit - Intercept submit event sent from the SearchBox form container.
+ * @prop {function} onClear - Listen to `reset` event sent from the SearchBox form container.
+ * @prop {function} on* - Listen to any events sent from the search input itself.
+ * @prop {node} submit - Change the apparence of the default submit button (magnifying glass).
+ * @prop {node} clear - Change the apparence of the default reset button (cross).
+ * @prop {node} loadingIndicator - Change the apparence of the default loading indicator (spinning circle).
+ * @prop {string} defaultRefinement - Provide default refinement value when component is mounted.
+ * @prop {boolean} showLoadingIndicator=false - Display that the search is loading. This only happens after a certain amount of time to avoid a blinking effect. This timer can be configured with `stalledSearchDelay` props on <InstantSearch>. By default, the value is 200ms.
+ * @prop {string} className - Add a custom CSS class to the SearchBox form container
+ * @prop {object} style - Add a custom React.CSSProperties object to SearchBox form container
+ * @prop {string} searchTitle - The submit button title
+ * @prop {string} clearTitle - The reset button title
+ * @prop {string} placeholder - The label of the input placeholder
+ * @themekey cvi-SearchBox - the root div of the widget
+ * @themekey cvi-SearchBox-form - the wrapping form
+ * @themekey cvi-SearchBox-input - the search input
+ * @themekey cvi-SearchBox-submit - the submit button
+ * @themekey cvi-SearchBox-submitIcon - the default magnifier icon used with the search input
+ * @themekey cvi-SearchBox-clear - the reset button used to clear the content of the input
+ * @themekey cvi-SearchBox-clearIcon - the default reset icon used inside the reset button
+ * @themekey cvi-SearchBox-loadingIndicator - the loading indicator container
+ * @themekey cvi-SearchBox-loadingIcon - the default loading icon
  * @example
  * import React from 'react';
  * import cliniasearch from 'cliniasearch/lite';
