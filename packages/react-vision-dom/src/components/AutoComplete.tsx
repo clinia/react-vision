@@ -119,6 +119,7 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
     clear: defaultClear(cx),
     submit: defaultSubmit(cx),
 
+    triggerSubmitOnSuggestionSelected: false,
     autoFocus: false,
     isSearchStalled: false,
     showLoadingIndicator: false,

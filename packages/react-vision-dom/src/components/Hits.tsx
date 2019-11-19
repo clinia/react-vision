@@ -62,7 +62,6 @@ const Hits: React.FunctionComponent<Props> = ({
               </div>
             ))
           : noResultsFound || (
-              //Temporarily until we have the styles decided
               <div className={cx('empty')}>{translate('emptySearch')}</div>
             )}
       </div>

@@ -16,6 +16,8 @@ import SearchBox from '../components/SearchBox';
  * @propType {node} [loadingIndicator] - Change the apparence of the default loading indicator (spinning circle).
  * @propType {string} [defaultRefinement] - Provide default refinement value when component is mounted.
  * @propType {boolean} [showLoadingIndicator=false] - Display that the search is loading. This only happens after a certain amount of time to avoid a blinking effect. This timer can be configured with `stalledSearchDelay` props on <InstantSearch>. By default, the value is 200ms.
+ * @propType {string} [className] - Add a custom CSS class to the SearchBox form container
+ * @propType {object} [style] - Add a custom React.CSSProperties object to SearchBox form container
  * @themeKey cvi-SearchBox - the root div of the widget
  * @themeKey cvi-SearchBox-form - the wrapping form
  * @themeKey cvi-SearchBox-input - the search input
