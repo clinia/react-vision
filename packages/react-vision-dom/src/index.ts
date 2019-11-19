@@ -23,6 +23,7 @@ export { default as AutoComplete } from './widgets/AutoComplete';
 export { default as Hits } from './widgets/Hits';
 export { default as InfiniteHits } from './widgets/InfiniteHits';
 export { default as SearchBox } from './widgets/SearchBox';
+export { default as Location } from './widgets/Location';
 
 // Utils
 export { createClassNames } from './core/utils';
