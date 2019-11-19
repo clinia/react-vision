@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { Hits, Vision } from 'react-vision-dom';
-import { object } from '@storybook/addon-knobs';
+import { Hits, Vision, InfiniteHits } from 'react-vision-dom';
+import { object, boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import cliniasearch from 'cliniasearch/lite';
 
@@ -56,6 +56,15 @@ stories.add('Custom Hits', () => (
       onClick={action('onClick')}
       noResultsFound={<CustomNoResultsFound />}
       hit={searchResult => <CustomHitComponent searchResult={searchResult} />}
+    />
+  </Vision>
+));
+
+stories.add('InfinitHits', () => (
+  <Vision indexName="health_facility" searchClient={searchClient}>
+    <InfiniteHits
+      onClick={action('onClick')}
+      showPrevious={boolean('showPrevious', false)}
     />
   </Vision>
 ));

@@ -115,6 +115,7 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
     style: {},
     suggestions: [],
 
+    triggerSubmitOnSuggestionSelected: false,
     autoFocus: false,
     isSearchStalled: false,
     showLoadingIndicator: false,

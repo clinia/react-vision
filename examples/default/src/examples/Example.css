@@ -168,6 +168,7 @@
   padding-bottom: 9px;
   padding-left: 30px;
   display: flex;
+  cursor: pointer;
 }
 
 .example-header img {
