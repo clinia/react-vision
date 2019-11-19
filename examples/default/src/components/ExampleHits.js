@@ -30,8 +30,10 @@ const ExampleHit = ({ record, onRecordOver }) => {
         </div>
         <h3>{record.name}</h3>
         <div>
-          <p style={{marginTop: 10}}>{`${streetAddress}, ${place} - ${regionCode}`}</p>
-          <OpeningHours openingHours={openingHours}  style={{marginTop: 5}}/>
+          <p
+            style={{ marginTop: 10 }}
+          >{`${streetAddress}, ${place} - ${regionCode}`}</p>
+          <OpeningHours openingHours={openingHours} style={{ marginTop: 5 }} />
         </div>
       </div>
       <div className="card-footer">
@@ -69,14 +71,18 @@ export const ExampleNotFoundComponent = () => (
 
 export default connectHits(({ records, selectedRecord, onRecordOver }) => (
   <div className="hits">
-    {records.map(record => {
-      return (
-        <ExampleHit
-          record={record}
-          selectedRecord={selectedRecord}
-          onRecordOver={onRecordOver}
-        />
-      );
-    })}
+    {Array.isArray(records) && records.length > 0 ? (
+      records.map(record => {
+        return (
+          <ExampleHit
+            record={record}
+            selectedRecord={selectedRecord}
+            onRecordOver={onRecordOver}
+          />
+        );
+      })
+    ) : (
+      <ExampleNotFoundComponent />
+    )}
   </div>
 ));

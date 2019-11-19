@@ -47,6 +47,7 @@ interface Props {
   showLoadingIndicator?: boolean;
   disabled?: boolean;
 
+  customThemeKey: string;
   __inputRef: (el: any) => void;
 }
 
@@ -75,11 +76,10 @@ type State = {
   activeSuggestionIndex: number;
 };
 
-const cx = createClassNames('AutoComplete');
-
 class AutoComplete extends Component<PropsWithDefaults, State> {
   input!: HTMLInputElement;
   formRef: any = React.createRef();
+  cx = createClassNames('AutoComplete');
 
   static propTypes = {
     currentRefinement: PropTypes.string,
@@ -115,10 +115,6 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
     style: {},
     suggestions: [],
 
-    loadingIndicator: defaultLoadingIndicator(cx),
-    clear: defaultClear(cx),
-    submit: defaultSubmit(cx),
-
     triggerSubmitOnSuggestionSelected: false,
     autoFocus: false,
     isSearchStalled: false,
@@ -146,6 +142,10 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
     this.onFocus = this.onFocus.bind(this);
     this.onKeyDown = this.onKeyDown.bind(this);
     this.onSuggestionSelected = this.onSuggestionSelected.bind(this);
+
+    if (this.props.customThemeKey) {
+      this.cx = createClassNames(this.props.customThemeKey);
+    }
   }
 
   onBlur(event: React.FocusEvent<HTMLInputElement>) {
@@ -390,19 +390,22 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
     );
 
     return (
-      <div className={classnames(cx(''), className)} style={style}>
+      <div className={classnames(this.cx(''), className)} style={style}>
         <form
           noValidate
           onSubmit={this.props.onSubmit ? this.props.onSubmit : this.onSubmit}
           onReset={this.onClear}
-          className={cx('form', isSearchStalled ? 'form--stalledSearch' : '')}
+          className={this.cx(
+            'form',
+            isSearchStalled ? 'form--stalledSearch' : ''
+          )}
           action=""
           role="search"
           ref={ref => {
             this.formRef = ref;
           }}
         >
-          <div className={cx('autocomplete')}>
+          <div className={this.cx('autocomplete')}>
             <input
               ref={this.onInputMount}
               type="search"
@@ -421,14 +424,14 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
               onFocus={this.onFocus}
               onKeyDown={this.onKeyDown}
               {...autoCompleteInputEvents}
-              className={cx('input')}
+              className={this.cx('input')}
             />
             {showSuggestions && (
-              <ul className={cx('suggestion-list')}>
+              <ul className={this.cx('suggestion-list')}>
                 {suggestions.map((suggestion, index) => (
                   <li
-                    className={classnames(cx('suggestion'), {
-                      [`${cx('active-suggestion')}`]:
+                    className={classnames(this.cx('suggestion'), {
+                      [`${this.cx('active-suggestion')}`]:
                         index === activeSuggestion,
                     })}
                     key={suggestion.suggestion}
@@ -450,22 +453,25 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
           </div>
           <button
             type="submit"
-            className={cx('submit')}
+            className={this.cx('submit')}
             title={translate('searchTitle')}
           >
-            {submit}
+            {submit || defaultSubmit(this.cx)}
           </button>
           <button
             type="reset"
             title={translate('clearTitle')}
-            className={cx('clear')}
+            className={this.cx('clear')}
             hidden={!query || isSearchStalled}
           >
-            {clear}
+            {clear || defaultClear(this.cx)}
           </button>
           {showLoadingIndicator && (
-            <span hidden={!isSearchStalled} className={cx('loadingIndicator')}>
-              {loadingIndicator}
+            <span
+              hidden={!isSearchStalled}
+              className={this.cx('loadingIndicator')}
+            >
+              {loadingIndicator || defaultLoadingIndicator(this.cx)}
             </span>
           )}
         </form>

@@ -65,6 +65,7 @@ const Home = () => {
                 onSubmit={onSubmit}
                 types={['postcode', 'place', 'neighborhood']}
                 country={['CA']}
+                locale="en"
               />
             </div>
           </Vision>
