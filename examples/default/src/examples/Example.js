@@ -19,8 +19,24 @@ const Example = ({ location }) => {
     <Vision searchClient={searchClient} indexName="health_facility">
       <div className="example-header">
         <img src={logo} />
-        <AutoComplete defaultRefinement={searchParams.get('speciality')} />
-        <Location defaultRefinement={searchParams.get('location')} />
+        <div className="example-autoComplete">
+          <div className="autocomplete-label">What</div>
+          <AutoComplete
+            submit={<i className="fa fa-search"></i>}
+            clear={<i className="fa fa-times"></i>}
+            defaultRefinement={searchParams.get('speciality') || ''}
+            submit={null}
+            clear={null}
+          />
+        </div>
+        <div className="example-location">
+          <div className="autocomplete-label">Where</div>
+          <Location
+            types={['postcode', 'place', 'neighborhood']}
+            country={['CA']}
+            defaultRefinement={searchParams.get('location') || ''}
+          />
+        </div>
       </div>
       <div className="container">
         <div className="hits-container">

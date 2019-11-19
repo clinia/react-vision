@@ -33,15 +33,20 @@ const Tooltip = ({ record }) => {
 
   return (
     <div className="example-tooltip">
+      <div className="card-badge">
+        <span>{record.type}</span>
+      </div>
+      {record.distance && <div>{record.distance}</div>}
       <h3>{record.name}</h3>
       <div>
-        <div className="card-badge">
-          <span>{record.type}</span>
-        </div>
         <a href={mapLink} target="_blank">
           Get directions
         </a>
-        <OpeningHours openingHours={record.openingHours} compact={true} />
+        <OpeningHours
+          openingHours={record.openingHours}
+          compact={true}
+          style={{ marginTop: 5 }}
+        />
         {Array.isArray(record.phones) && record.phones.length > 0 && (
           <a
             href={`tel://${record.phones[0].countryCode}${record.phones[0].number}`}
@@ -55,7 +60,7 @@ const Tooltip = ({ record }) => {
 };
 
 export default function ExampleGeoSearch({ google, selectedRecord }) {
-  const InfoWindow = new google.maps.InfoWindow();
+  const InfoWindow = new google.maps.InfoWindow({ width: 300 });
 
   const onClickMarker = (record, marker) => {
     if (InfoWindow.getMap()) {
@@ -88,15 +93,7 @@ export default function ExampleGeoSearch({ google, selectedRecord }) {
   };
 
   return (
-    <GeoSearch
-      google={google}
-      defaultRefinement={{
-        northEast: { lat: 45.7058381, lng: -73.47426 },
-        southWest: { lat: 45.410246, lng: -73.986345 },
-      }}
-      initialZoom={6}
-      styles={mapStyles}
-    >
+    <GeoSearch google={google} initialZoom={6} styles={mapStyles}>
       {({ records }) => (
         <Fragment>
           <Control />
