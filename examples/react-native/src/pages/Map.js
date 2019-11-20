@@ -1,12 +1,15 @@
 import React from 'react';
 
 import Content from '../components/Content';
-import SearchBox from '../components/SearchBox';
+import Header from '../components/Header';
 import MapView from '../components/MapView';
 
 class Map extends React.Component {
   static navigationOptions = {
-    headerTitle: <SearchBox />,
+    headerTitle: <Header />,
+    headerStyle: {
+      height: 80,
+    },
   };
 
   render() {

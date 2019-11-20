@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { TextInput, StyleSheet } from 'react-native';
-import { connectSearchBox, connectAutoComplete } from 'react-vision-core';
+import { connectAutoComplete } from 'react-vision-core';
 
-import { setQuery, setIsSearching } from '../redux/actions';
+import { setQuery, setSearchBoxFocused } from '../redux/actions';
 import { Input, Color, Margin } from '../styles';
 
 const styles = StyleSheet.create({
@@ -13,7 +13,6 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     marginLeft: Margin.normal,
     marginRight: Margin.normal,
-    marginBottom: Margin.small,
   },
 });
 
@@ -39,7 +38,7 @@ class SearchBox extends React.Component {
     this.toggleSearch(false);
   };
 
-  toggleSearch = isSearching => this.props.setIsSearching(isSearching);
+  toggleSearch = isFocused => this.props.setSearchBoxFocused(isFocused);
 
   render() {
     const { query } = this.props;
@@ -66,8 +65,7 @@ class SearchBox extends React.Component {
 export default compose(
   connect(
     mapStateToProps,
-    { setQuery, setIsSearching }
+    { setQuery, setSearchBoxFocused }
   ),
-  connectSearchBox,
   connectAutoComplete
 )(SearchBox);

@@ -1,12 +1,22 @@
-import { SET_QUERY, SET_IS_SEARCHING } from './actions';
+import {
+  SET_QUERY,
+  SET_LOCATION,
+  SET_SEARCHBOX_FOCUSED,
+  SET_LOCATIONBOX_FOCUSED,
+} from './actions';
 import { combineReducers } from 'redux';
 
 const defaultState = {
   // Keeps track of the user input on each SearchBox `onChange` event.
   // Allows sharing of the user input on all active SearchBox components, event if the user doesn't trigger a search.
   query: undefined,
-  // Keeps track of the search state.
-  isSearching: false,
+  // Keeps track of the user input on each LocationBox `onChange` event.
+  // Allows sharing of the user input on all active LocationBox components, event if the user doesn't trigger a search.
+  location: undefined,
+  // Keeps track of the SearchBox state.
+  searchBoxFocused: false,
+  // Keeps track of the LocationBox state.
+  locationBoxFocused: false,
 };
 
 function reducers(state = defaultState, action) {
@@ -16,10 +26,20 @@ function reducers(state = defaultState, action) {
         ...state,
         query: action.payload.query,
       };
-    case SET_IS_SEARCHING:
+    case SET_LOCATION:
       return {
         ...state,
-        isSearching: action.payload.isSearching,
+        location: action.payload.location,
+      };
+    case SET_SEARCHBOX_FOCUSED:
+      return {
+        ...state,
+        searchBoxFocused: action.payload.isFocused,
+      };
+    case SET_LOCATIONBOX_FOCUSED:
+      return {
+        ...state,
+        locationBoxFocused: action.payload.isFocused,
       };
     default:
       return state;

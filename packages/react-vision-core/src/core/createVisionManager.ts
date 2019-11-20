@@ -171,14 +171,14 @@ export default function createVisionManager({
     return { mainParameters, derivedParameters };
   }
 
-  function onSearchForSuggestions({ query }) {
+  function onSearchForSuggestions({ query, args }) {
     store.setState({
       ...store.getState(),
       searchingForSuggestions: true,
     });
 
     searchClient
-      .suggest({ query })
+      .suggest(query, args)
       .then(content => {
         store.setState({
           ...store.getState(),
@@ -200,7 +200,7 @@ export default function createVisionManager({
       });
   }
 
-  function onSearchForLocations({ query }) {
+  function onSearchForLocations({ query, ...args }) {
     store.setState({
       ...store.getState(),
       searchingForLocations: true,
@@ -208,7 +208,7 @@ export default function createVisionManager({
 
     if (locationClient) {
       locationClient!
-        .suggest(query)
+        .suggest(query, args)
         .then(content => {
           store.setState({
             ...store.getState(),
