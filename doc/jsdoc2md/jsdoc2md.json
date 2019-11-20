@@ -3,7 +3,6 @@
         "allowUnknownTags": true
     },
     "source": {
-        "include": ["."],
         "includePattern": ".+\\.ts(doc|x)?$",
         "excludePattern": ".+\\.(test|spec).ts"
     },

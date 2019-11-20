@@ -146,9 +146,7 @@ export default createConnector({
         .setQueryParameter(
           'aroundLatLng',
           currentRefinementToString(currentRefinement)
-        )
-        .setQueryParameter('country', props.country)
-        .setQueryParameter('types', props.types);
+        );
     }
 
     const currentRefinement = searchState.location || props.defaultRefinement;
@@ -156,31 +154,26 @@ export default createConnector({
     return searchParameters
       .setQueryParameter('insideBoundingBox')
       .setQueryParameter('aroundLatLng')
-      .setQueryParameter('location', currentRefinement)
-      .setQueryParameter('country', props.country)
-      .setQueryParameter('types', props.types);
+      .setQueryParameter('location', currentRefinement);
   },
 
-  searchForLocations(props, searchState, nextRefinement) {
-    let query = nextRefinement;
-
-    // Filters empty values and joins them into a valid query param value format
-    const formattedCountries =
-      props.country && props.country.filter(c => c).join(',');
-
-    if (formattedCountries) query += `&country=${formattedCountries}`;
-
-    if (Array.isArray(props.types) && props.types.length > 0) {
-      props.types.filter(t => t).forEach(type => (query += `&types=${type}`));
-    }
-
-    if (props.locale) query += `&locale=${props.locale}`;
-
-    if (props.limit) query += `&limit=${props.limit}`;
-
-    return {
-      query,
+  searchForLocations(props, searchState, nextRefinment) {
+    const params = {
+      query: nextRefinment,
     };
+
+    if (props.country) {
+      if (Array.isArray(props.country)) {
+        // Filters empty values and joins them into a valid query param value format
+        params.country = props.country.filter(c => c).join(',');
+      } else {
+        params.country = props.country;
+      }
+    }
+    if (props.size) params.limit = props.size;
+    if (props.locale) params.locale = props.locale;
+
+    return params;
   },
 
   getMetadata(props, _searchState) {

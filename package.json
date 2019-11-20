@@ -11,7 +11,7 @@
     "postinstall": "lerna run build:cjs --scope react-vision-*",
     "start": "yarn storybook",
     "build": "lerna run build --scope react-*",
-    "build:doc": "jsdoc2md --no-cache --template ./doc/jsdoc2md/README.hbs --partial ./doc/jsdoc2md/body.hbs ./doc/jsdoc2md/themes.hbs --files ./packages/react-vision-dom/src/widgets/* --configure ./doc/jsdoc2md/jsdoc2md.json > ./doc/widgets/README-generated.md",
+    "build:doc": "jsdoc2md --no-cache --template ./doc/jsdoc2md/README.hbs --partial ./doc/jsdoc2md/body.hbs ./doc/jsdoc2md/themes.hbs --files ./packages/react-vision-dom/src/widgets/* ./packages/react-vision-core/src/widgets/* --configure ./doc/jsdoc2md/jsdoc2md.json > ./doc/widgets/README-generated.md",
     "watch": "lerna run watch --scope react-vision-* --parallel",
     "release": "scripts/release.sh",
     "lint": "eslint --ext .js,.ts,.tsx .",
