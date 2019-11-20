@@ -1,19 +1,14 @@
 import * as React from 'react';
-import { compose } from 'redux';
-import { connect } from 'react-redux';
 import {
   FlatList,
   Text,
   View,
   TouchableOpacity,
   StyleSheet,
-  Keyboard,
 } from 'react-native';
-import { connectAutoComplete } from 'react-vision-core';
 
 import { randomId } from '../helpers/utils';
 import { Container, Typography, Margin, Color } from '../styles';
-import { setIsSearching, setQuery } from '../redux/actions';
 
 const styles = StyleSheet.create({
   separator: {
@@ -27,34 +22,27 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = state => ({
-  query: state.store.query,
-});
-
-class AutoSuggest extends React.Component {
-  onPress = record => {
-    const { refine } = this.props;
-
-    refine(record.suggestion);
-    this.props.setQuery(record.suggestion);
-    this.props.setIsSearching(false);
-
-    Keyboard.dismiss();
+class Suggestions extends React.Component {
+  onPress = option => {
+    const { onPress } = this.props;
+    if (onPress) {
+      onPress(option);
+    }
   };
 
-  suggestion = record => (
+  suggestion = option => (
     <TouchableOpacity
-      onPress={() => this.onPress(record)}
+      onPress={() => this.onPress(option)}
       style={styles.suggestion}
     >
       <View style={styles.separator}>
-        <Text style={Typography.Text}>{record.suggestion}</Text>
+        <Text style={Typography.Text}>{option.text}</Text>
       </View>
     </TouchableOpacity>
   );
 
   render() {
-    const results = this.props.suggestions || [];
+    const { results } = this.props;
     return (
       <FlatList
         keyboardShouldPersistTaps="always"
@@ -66,10 +54,4 @@ class AutoSuggest extends React.Component {
   }
 }
 
-export default compose(
-  connect(
-    mapStateToProps,
-    { setIsSearching, setQuery }
-  ),
-  connectAutoComplete
-)(AutoSuggest);
+export default Suggestions;

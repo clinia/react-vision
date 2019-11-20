@@ -1,5 +1,6 @@
 const background = '#EFEFF4';
 const separator = '#E0E0E0';
+const disabled = '#8E8E93';
 
 const primary = '#9BD8D8';
 const primaryAccent = '#1DA89F';
@@ -11,6 +12,7 @@ const placeholder = '#8E8E93';
 export default {
   background,
   separator,
+  disabled,
   primary,
   primaryAccent,
   placeholder,
