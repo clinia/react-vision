@@ -124,7 +124,7 @@ export default createConnector({
     if (props.highlightPreTag) params.highlightPreTag = props.highlightPreTag;
     if (props.highlightPostTag)
       params.highlightPostTag = props.highlightPostTag;
-    if (props.size) params.country = props.size;
+    if (props.size) params.size = props.size;
 
     return params;
   },

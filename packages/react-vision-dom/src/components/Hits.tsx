@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { createClassNames } from '../core/utils';
 import { translatable } from 'react-vision-core';
+import { defaultLoadingIndicator } from './defaultComponents';
 
 export type Record = {
   id: string;
@@ -14,6 +15,7 @@ type HitProps = {
 
 type Props = {
   records: Record[];
+  loading?: boolean;
   className?: string;
   style?: React.CSSProperties;
   noResultsFound?: React.ReactNode;
@@ -46,8 +48,11 @@ const Hits: React.FunctionComponent<Props> = ({
   hit: HitComponent = DefaultHit,
   noResultsFound,
   translate,
+  loading,
 }) => {
-  return (
+  return loading ? (
+    defaultLoadingIndicator(cx)
+  ) : (
     <div className={classnames(cx(''), className)} style={style}>
       <div className={cx('list')}>
         {Array.isArray(records) && records.length > 0
@@ -57,7 +62,6 @@ const Hits: React.FunctionComponent<Props> = ({
               </div>
             ))
           : noResultsFound || (
-              //Temporarily until we have the styles decided
               <div className={cx('empty')}>{translate('emptySearch')}</div>
             )}
       </div>

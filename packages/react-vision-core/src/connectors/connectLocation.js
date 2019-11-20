@@ -45,14 +45,14 @@ const refine = (props, searchState, nextRefinement, context) => {
     return {
       ...refineValue(searchState, nextValue, context, resetPage),
       location: undefined,
-      boudingBox: {},
+      boudingBox: undefined,
     };
   }
 
   return {
     ...refineValue(searchState, nextValue, context, resetPage),
     aroundLatLng: undefined,
-    boudingBox: {},
+    boudingBox: undefined,
   };
 };
 
@@ -86,7 +86,12 @@ const getResults = searchForLocationsResults => {
 export default createConnector({
   displayName: 'CliniaLocation',
 
-  propTypes: {},
+  propTypes: {
+    types: PropTypes.arrayOf(PropTypes.string),
+    country: PropTypes.arrayOf(PropTypes.string),
+    locale: PropTypes.string,
+    limit: PropTypes.number,
+  },
 
   // eslint-disable-next-line max-params
   getProvidedProps(
@@ -141,7 +146,9 @@ export default createConnector({
         .setQueryParameter(
           'aroundLatLng',
           currentRefinementToString(currentRefinement)
-        );
+        )
+        .setQueryParameter('country', props.country)
+        .setQueryParameter('types', props.types);
     }
 
     const currentRefinement = searchState.location || props.defaultRefinement;
@@ -149,7 +156,9 @@ export default createConnector({
     return searchParameters
       .setQueryParameter('insideBoundingBox')
       .setQueryParameter('aroundLatLng')
-      .setQueryParameter('location', currentRefinement);
+      .setQueryParameter('location', currentRefinement)
+      .setQueryParameter('country', props.country)
+      .setQueryParameter('types', props.types);
   },
 
   searchForLocations(props, searchState, nextRefinment) {
@@ -157,8 +166,16 @@ export default createConnector({
       query: nextRefinment,
     };
 
-    if (props.country) params.country = props.country;
-    if (props.size) params.country = props.size;
+    if (props.country) {
+      if (Array.isArray(props.country)) {
+        // Filters empty values and joins them into a valid query param value format
+        params.country = props.country.filter(c => c).join(',');
+      } else {
+        params.country = props.country;
+      }
+    }
+    if (props.size) params.limt = props.size;
+    if (props.locale) params.locale = props.locale;
 
     return params;
   },

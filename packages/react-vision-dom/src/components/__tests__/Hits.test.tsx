@@ -24,4 +24,10 @@ describe('Hits', () => {
 
     expect(tree.toJSON()).toMatchSnapshot();
   });
+
+  it('shows loading indicator when loading prop is true', () => {
+    const tree = renderer.create(<Hits loading={true} />);
+
+    expect(tree.toJSON()).toMatchSnapshot();
+  });
 });

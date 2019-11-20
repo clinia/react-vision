@@ -1,5 +1,6 @@
 @import '../static/fonts/fonts.css';
 
+/* CVI */
 .cvi-SearchBox-input {
   height: 48px;
   width: 361px;
@@ -16,13 +17,14 @@
   box-shadow: 0 0 5px 0 rgba(72, 89, 104, 0.23);
 }
 
+.cvi-Location-clear,
 .cvi-SearchBox-clear {
   display: none;
 }
 
 .cvi-AutoComplete-submit,
 .cvi-AutoComplete-clear,
-.cvi-SearchBox-submit {
+.cvi-Location-submit {
   margin-right: 10px;
   height: 38px;
   width: 52px;
@@ -32,11 +34,13 @@
   outline: none;
 }
 
+.cvi-Location-autocomplete,
 .cvi-AutoComplete-autocomplete {
   position: relative;
   display: inline-block;
 }
 
+.cvi-Location-suggestion-list,
 .cvi-AutoComplete-suggestion-list {
   position: absolute;
   margin: 0;
@@ -47,16 +51,20 @@
   width: 100%;
 }
 
+.cvi-Location-suggestion,
 .cvi-AutoComplete-suggestion {
   padding: 5px 12px;
   cursor: pointer;
 }
 
+.cvi-Location-suggestion:hover,
+.cvi-Location-active-suggestion,
 .cvi-AutoComplete-suggestion:hover,
 .cvi-AutoComplete-active-suggestion {
   background-color: #f5f5f8;
 }
 
+.cvi-Location-input,
 .cvi-AutoComplete-input {
   height: 48px;
   width: 361px;
@@ -71,9 +79,80 @@
   padding-left: 10px;
   border: none;
   box-shadow: 0 0 5px 0 rgba(72, 89, 104, 0.23);
+  clip-path: inset(-10px -10px -10px -1px);
+  outline: none;
+}
+
+.cvi-Location-input {
+  border-radius: 0px 8px 8px 0px;
+}
+
+.cvi-GeoSearch {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.cvi-GeoSearch-map {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.cvi-GeoSearch-control {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  margin-top: 22px;
+  top: 0px;
+  display: flex;
+  height: 42.66px;
+  width: 230px;
+  border-radius: 23px;
+  background-color: #ffffff;
+  box-shadow: 0 0 5px 0 rgba(72, 89, 104, 0.23);
+  justify-content: center;
+}
+
+.cvi-GeoSearch-label {
+  padding: 12px 17px;
+  font-family: 'CircularStd';
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 18px;
+}
+
+.cvi-GeoSearch-redo {
+  display: flex;
+  border-radius: 50px;
+  padding: 10px;
+  height: inherit;
+  height: 80%;
+  margin-top: 2%;
+  background-color: #2dcebf;
+  color: white;
 }
 
 /* EXAMPLES */
+.container {
+  width: 100%;
+  height: calc(100vh - 88px);
+  display: flex;
+  margin-top: 88px;
+  overflow: hidden;
+  position: absolute;
+}
+
+/* Hits */
+.hits {
+  margin-bottom: 20px;
+  height: 100%;
+}
+
+.hits-container {
+  width: 525px;
+  overflow: auto;
+}
 
 .example-header {
   position: fixed;
@@ -89,108 +168,59 @@
   padding-bottom: 9px;
   padding-left: 30px;
   display: flex;
+  cursor: pointer;
 }
 
 .example-header img {
   height: 35px;
   padding-right: 25px;
+  margin-top: 5px;
 }
 
-.hits-body {
-  margin-top: 102px;
+/* Autocomplete */
+.example-autoComplete .cvi-AutoComplete-submit,
+.cvi-AutoComplete-clear {
+  display: none;
+}
+.example-autoComplete .cvi-AutoComplete-input,
+.cvi-Location-input {
+  padding-top: 14px;
+  position: relative;
 }
 
-.card {
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  height: 246px;
-  width: 467px;
-  border: 1px solid #e5e7ec;
-  border-radius: 8px;
-  background-color: #ffffff;
-  box-shadow: 0 0 5px 0 rgba(72, 89, 104, 0.23);
-  margin: 7px 22px;
+.example-autoComplete,
+.example-location {
+  position: relative;
 }
-
-.card h3 {
-  color: #485968;
-  font-family: 'CircularStd';
-  font-size: 24px;
-  font-weight: bold;
-  letter-spacing: 0.24px;
-  line-height: 30px;
-  margin-bottom: 0px;
+.example-location .cvi-AutoComplete-input,
+.cvi-Location-input {
+  padding-top: 14px;
+  border-radius: 0px 8px 8px 0px;
+  padding-right: 70px;
 }
-
-.card p {
-  height: 20px;
-  width: 100%;
-  color: #8c96a9;
-  font-family: 'CircularStd';
-  font-size: 16px;
-  font-weight: 300;
-  letter-spacing: -0.39px;
-  line-height: 20px;
-  margin: 0px;
+.example-location .cvi-Location-submit {
+  border: none;
+  position: absolute;
+  top: 5px;
+  right: -3px;
+  height: 38px;
 }
-
-.card i {
-  margin-right: 10px;
+.example-location .cvi-Location-submit svg {
+  fill: white;
+  height: 17px !important;
+  width: 17px !important;
 }
-
-.card-body {
-  padding: 25px 18px 0px 18px;
-  height: 70%;
+.autocomplete-label {
+  position: absolute;
+  z-index: 10;
+  color: #00ab9b;
+  font-size: 11px;
+  text-transform: uppercase;
+  top: 5px;
+  left: 10px;
 }
-
-.card-badge {
-  height: 24px;
-  min-width: 58px;
-  width: fit-content;
-  border-radius: 17px;
-  background-color: #2dcebf;
-  text-align: center;
-}
-
-.card-badge span {
-  height: 13px;
-  width: 35px;
-  color: #ffffff;
-  font-family: 'CircularStd';
-  font-size: 10px;
-  font-weight: 300;
-  letter-spacing: 0.1px;
-  line-height: 13px;
-  height: 30%;
-}
-
-.card-footer {
-  display: flex;
-  height: 30%;
-  padding: 10px;
-  border-radius: 0 0 8px 8px;
-  background-color: #f9f9fb;
-}
-
-.card-footer .footer {
-  display: 'flex';
-  padding: '10px';
-}
-
-.card-footer span {
-  display: flex;
-  border-radius: 50px;
-  border: 2px solid #e0e2e9;
-  padding: 10px;
-  margin: 1%;
-  margin-left: 12px;
-  height: inherit;
-}
-
-.card-footer a {
-  text-decoration: none;
-  color: black;
+.example-header .example-autoComplete {
+  position: relative;
 }
 
 .dot {
@@ -202,12 +232,17 @@
   margin-right: 3px;
 }
 
+.dot--closed {
+  background-color: #e82436;
+}
+
 .notFound {
   display: flex;
   flex-flow: column;
   align-items: center;
   text-align: center;
   font-family: 'CircularStd';
+  margin-top: 20%;
 }
 
 .notFound img {
@@ -232,4 +267,161 @@
 .react-autosuggest__suggestion {
   padding: 5px 12px;
   cursor: pointer;
+}
+
+.custom-marker {
+  cursor: pointer;
+  background-image: url('../static/icons/pin@2x.png');
+  background-repeat: no-repeat;
+  background-size: 22px 24px;
+  min-height: 24px;
+  min-width: 22px;
+  margin-top: 14px;
+}
+
+.custom-marker:hover,
+.custom-marker-active {
+  cursor: pointer;
+  background-image: url('../static/icons/active-pin@2x.png');
+  background-repeat: no-repeat;
+  background-size: 22px 24px;
+  min-height: 24px;
+  min-width: 22px;
+}
+
+/* Search Card */
+.card {
+  cursor: pointer;
+  width: 467px;
+  border: 1px solid #e5e7ec;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 0 5px 0 rgba(72, 89, 104, 0.23);
+  margin: 20px auto 0px auto;
+}
+
+.card:hover {
+  box-shadow: 0 0 8px 0 rgba(72, 89, 104, 0.23);
+}
+
+.card h3 {
+  color: #485968;
+  font-family: 'CircularStd';
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: 0.24px;
+  line-height: 30px;
+  margin-bottom: 0px;
+  margin-top: 15px;
+}
+
+.card p {
+  width: 100%;
+  color: #8c96a9;
+  font-family: 'CircularStd';
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: -0.39px;
+  line-height: 20px;
+  margin: 0px;
+  white-space: nowrap;
+}
+
+.card i {
+  margin-right: 10px;
+}
+
+.card-body {
+  padding: 25px 18px 25px 18px;
+}
+
+.card-footer {
+  padding: 10px;
+  border-radius: 0 0 8px 8px;
+  background-color: #f9f9fb;
+}
+
+.card-footer span {
+  display: inline-block;
+  border-radius: 50px;
+  border: 2px solid #e0e2e9;
+  padding: 10px 20px;
+  margin-left: 12px;
+  width: fit-content;
+}
+
+.card-footer a {
+  text-decoration: none;
+  color: #485968;
+  font-weight: 500;
+}
+
+.card-footer i {
+  margin-top: 3px;
+}
+
+/* Card Badge */
+.card-badge {
+  min-width: 54px;
+  border-radius: 17px;
+  background-color: #2dcebf;
+  text-align: center;
+  padding: 0px 4px;
+  display: inline-block;
+}
+
+.card-badge span {
+  display: block;
+  color: #ffffff;
+  font-family: 'CircularStd';
+  font-size: 10px;
+  font-weight: 300;
+  padding: 5px;
+}
+
+/* Tooltip */
+.example-tooltip {
+  min-width: 250px;
+}
+.example-tooltip a {
+  text-decoration: none;
+}
+.example-tooltip h3 {
+  width: 100%;
+  margin-bottom: 5px;
+  padding-bottom: 3px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Map */
+.map-container {
+  width: calc(100vw - 525px);
+  overflow: hidden;
+}
+
+/* Google Map Infowindow Style Override */
+.gm-style .gm-style-iw-c,
+.gm-style .gm-style-iw-d {
+  background-color: #00ab9b !important;
+  overflow: hidden !important;
+}
+
+.gm-style .gm-style-iw-c {
+  padding: 12px !important;
+  margin-top: -23px;
+}
+
+.gm-style .gm-style-iw-c > button {
+  filter: invert(1);
+  margin-top: 5px !important;
+  margin-right: 5px !important;
+}
+
+.gm-style .gm-style-iw-c * {
+  color: white !important;
+}
+
+.gm-style .gm-style-iw-t::after {
+  background: none !important;
+  box-shadow: none !important;
 }

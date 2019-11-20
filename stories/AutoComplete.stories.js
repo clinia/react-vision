@@ -4,6 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { Vision, AutoComplete } from 'react-vision-dom';
 import { action } from '@storybook/addon-actions';
 import { boolean } from '@storybook/addon-knobs';
+import { WrapWithHits } from './utils';
 
 const stories = storiesOf('AutoComplete', module);
 
@@ -17,7 +18,11 @@ const searchClient = cliniasearch('TODO', 'ClM5vDTmS4GWEL0aS7osJaRkowV8McuP', {
 stories
   .addParameters({ jest: ['AutoComplete'] })
   .add('Default AutoComplete', () => (
-    <Vision searchClient={searchClient} indexName="health_facility">
+    <WrapWithHits
+      searchBox={false}
+      hasPlayground={true}
+      linkedStoryGroup="AutoComplete"
+    >
       <AutoComplete
         onSubmit={e => {
           e.preventDefault();
@@ -36,7 +41,7 @@ stories
           false
         )}
       />
-    </Vision>
+    </WrapWithHits>
   ));
 
 const CustomButton = () => (

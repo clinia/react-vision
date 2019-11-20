@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 
-export const OpeningHours = ({ openingHours }) => {
+export const OpeningHours = ({ openingHours, compact, style }) => {
   let openingHoursText;
 
   if (!openingHours) {
@@ -17,7 +17,12 @@ export const OpeningHours = ({ openingHours }) => {
 
     // Closed today
     if (todayOpeningHourIntervals.length === 0) {
-      openingHoursText = <span>Closed today</span>;
+      openingHoursText = (
+        <>
+          {!compact && <span className="dot dot--closed" />}
+          <span>Closed today</span>
+        </>
+      );
     }
 
     // Opened today in one intervals
@@ -28,10 +33,16 @@ export const OpeningHours = ({ openingHours }) => {
       const endHour = moment(firstInterval.end, 'HH:mm');
 
       if (firstInterval.start === '00:00' && firstInterval.end === '00:00') {
-        openingHoursText = <span className="open">Open 24 hours today</span>;
+        openingHoursText = (
+          <>
+            {!compact && <span className="dot" />}
+            <span className="open">Open 24 hours today</span>
+          </>
+        )
       } else if (now.isBefore(startHour)) {
         openingHoursText = (
           <>
+            {!compact && <span className="dot" />}
             <span className="open">Open today: </span>
             <span>
               {startHour.format('LT')} - {endHour.format('LT')}
@@ -41,12 +52,14 @@ export const OpeningHours = ({ openingHours }) => {
       } else if (now.isAfter(startHour) && now.isAfter(endHour)) {
         openingHoursText = (
           <>
+            {!compact && <span className="dot dot--closed" />}
             <span className="open">Closed now</span>
           </>
         );
       } else {
         openingHoursText = (
           <>
+            {!compact && <span className="dot" />}
             <span className="open">Open now </span>
             <span>until {endHour.format('LT')}</span>
           </>
@@ -56,9 +69,8 @@ export const OpeningHours = ({ openingHours }) => {
   }
 
   return (
-    <p>
-      <span className="dot" />
+    <div style={style}>
       <span>{openingHoursText}</span>
-    </p>
+    </div>
   );
 };

@@ -1,56 +1,25 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { Hits, Vision } from 'react-vision-dom';
-import { object } from '@storybook/addon-knobs';
+import { Hits, Vision, InfiniteHits } from 'react-vision-dom';
+import { object, boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
+import cliniasearch from 'cliniasearch/lite';
 
 const stories = storiesOf('Hits', module);
 
-const mockResult = [
-  {
-    data: {
-      attributes: {
-        firstName: 'That',
-        lastName: 'OtherProfessional',
-        professionalTitle: 'DR',
-        practiceNumber: '12345',
-        contacts: {
-          phones: [
-            {
-              number: '(765) 434-5678',
-              type: 'MOBILE',
-            },
-            {
-              number: '(234) 234-2342',
-              type: 'PAGER',
-            },
-          ],
-          emails: ['test@clinia.ca'],
-        },
-        casesToRefer: 'test',
-        modalities: 'test',
-      },
-      type: 'professionalProfiles',
-    },
+const searchClient = cliniasearch('TODO', 'ClM5vDTmS4GWEL0aS7osJaRkowV8McuP', {
+  hosts: {
+    read: ['api.partner.staging.clinia.ca'],
+    write: ['api.partner.staging.clinia.ca'],
   },
-];
+});
 
 stories.addParameters({ jest: ['Hits'] }).add('Default Hits', () => (
-  <Vision
-    indexName="health_facility"
-    searchClient={{
-      search() {
-        return Promise.resolve({
-          results: [{ records: [{ name: 'Fake result' }] }],
-        });
-      },
-    }}
-  >
+  <Vision indexName="health_facility" searchClient={searchClient}>
     <Hits
       style={object('style', {
         backgroundColor: 'white',
       })}
-      results={object('results', mockResult)}
       onClick={action('onClick')}
     />
   </Vision>
@@ -79,24 +48,23 @@ const CustomHitComponent = ({ record }) => (
 );
 
 stories.add('Custom Hits', () => (
-  <Vision
-    indexName="health_facility"
-    searchClient={{
-      search() {
-        return Promise.resolve({
-          results: [{ records: [{ name: 'Fake result' }] }],
-        });
-      },
-    }}
-  >
+  <Vision indexName="health_facility" searchClient={searchClient}>
     <Hits
       style={object('style', {
         backgroundColor: 'white',
       })}
-      results={object('results', mockResult)}
       onClick={action('onClick')}
       noResultsFound={<CustomNoResultsFound />}
       hit={searchResult => <CustomHitComponent searchResult={searchResult} />}
+    />
+  </Vision>
+));
+
+stories.add('InfinitHits', () => (
+  <Vision indexName="health_facility" searchClient={searchClient}>
+    <InfiniteHits
+      onClick={action('onClick')}
+      showPrevious={boolean('showPrevious', false)}
     />
   </Vision>
 ));

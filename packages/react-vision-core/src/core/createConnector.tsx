@@ -239,7 +239,7 @@ export function createConnectorWithoutContext(
           searching: searchingForSuggestions,
         };
 
-        const searchForLoationsResults = {
+        const searchForLocationsResults = {
           results: resultsLocations,
           searching: searchingForLocations,
         };
@@ -251,7 +251,7 @@ export function createConnectorWithoutContext(
           searchResults,
           metadata,
           searchForSuggestionsResults,
-          searchForLoationsResults
+          searchForLocationsResults
         );
       }
 
@@ -318,7 +318,7 @@ export function createConnectorWithoutContext(
       };
 
       searchForLocations = (...args) => {
-        // searchForLocations will always be defined here because the props is only given contitionaly
+        // searchForLocations will always be defined here because the props is only given conditionally
         this.props.contextValue.onSearchForLocations(
           connectorDesc.searchForLocations!.call(
             this,
