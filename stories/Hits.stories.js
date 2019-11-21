@@ -7,7 +7,7 @@ import cliniasearch from 'cliniasearch/lite';
 
 const stories = storiesOf('Hits', module);
 
-const searchClient = cliniasearch('TODO', 'ClM5vDTmS4GWEL0aS7osJaRkowV8McuP', {
+const searchClient = cliniasearch('TODO', 'AAW3nfvI79tj4LzECYZSEbDP7lqBpFd5', {
   hosts: {
     read: ['api.partner.staging.clinia.ca'],
     write: ['api.partner.staging.clinia.ca'],

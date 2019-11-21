@@ -12,7 +12,7 @@ import List from './src/pages/List';
 import Map from './src/pages/Map';
 import { Color } from './src/styles';
 
-const searchClient = cliniasearch('TODO', 'ClM5vDTmS4GWEL0aS7osJaRkowV8McuP', {
+const searchClient = cliniasearch('TODO', 'AAW3nfvI79tj4LzECYZSEbDP7lqBpFd5', {
   hosts: {
     write: ['api.partner.staging.clinia.ca'],
     read: ['api.partner.staging.clinia.ca'],

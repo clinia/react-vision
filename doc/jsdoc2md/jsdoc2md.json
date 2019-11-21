@@ -3,8 +3,8 @@
         "allowUnknownTags": true
     },
     "source": {
-        "includePattern": ".+\\.ts(doc|x)?$",
-        "excludePattern": ".+\\.(test|spec).ts"
+      "includePattern": ".+\\.(ts|js)(doc|x)?$",
+      "excludePattern": ".+\\.(test|spec).ts"
     },
     "plugins": [
       "plugins/markdown",

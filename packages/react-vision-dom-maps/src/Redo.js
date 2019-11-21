@@ -10,6 +10,32 @@ const RedoPropTypes = {
   translate: PropTypes.func.isRequired,
 };
 
+/**
+ * Button that indicate if a search should be triggered on each map movement or not.
+ * @module Redo
+ * @kind widget
+ * @prop {function} translate - Should return the text to display in the button.
+ * @example
+ * ```js
+ * <GoogleMapsLoader apiKey={apiKey} endpoint={endpoint}>
+ *   {google => (
+ *     <GeoSearch google={google}>
+ *       {({ records }) => (
+ *         <Fragment>
+ *           <Redo />
+ *           {records.map(record => (
+ *             <Marker
+ *               key={record.id}
+ *               record={record}
+ *             />
+ *           ))}
+ *         </Fragment>
+ *       )}
+ *     </GeoSearch>
+ *   )}
+ * </GoogleMapsLoader>
+ * ```
+ */
 export const Redo = ({
   googleMapsInstance,
   translate,

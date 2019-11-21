@@ -136,7 +136,7 @@ WrapWithHits.propTypes = {
 
 WrapWithHits.defaultProps = {
   appId: 'TODO',
-  apiKey: 'ClM5vDTmS4GWEL0aS7osJaRkowV8McuP',
+  apiKey: 'AAW3nfvI79tj4LzECYZSEbDP7lqBpFd5',
   indexName: 'health_facility',
   initialSearchState: {},
   onSearchStateChange: () => {},

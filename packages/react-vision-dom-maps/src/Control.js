@@ -69,6 +69,31 @@ const ControlWrapper = props => (
 
 ControlWrapper.propTypes = ControlPropTypes;
 
+/**
+ * Shows the control to help map navigation.
+ * @module Control
+ * @kind widget
+ * @example
+ * ```js
+ * <GoogleMapsLoader apiKey={apiKey} endpoint={endpoint}>
+ *   {google => (
+ *     <GeoSearch google={google}>
+ *       {({ records }) => (
+ *         <Fragment>
+ *           <Control />
+ *           {records.map(record => (
+ *             <Marker
+ *               key={record.id}
+ *               record={record}
+ *             />
+ *           ))}
+ *         </Fragment>
+ *       )}
+ *     </GeoSearch>
+ *   )}
+ * </GoogleMapsLoader>
+ * ```
+ */
 export default translatable({
   control: 'Search as I move the map',
   redo: 'Redo search here',
