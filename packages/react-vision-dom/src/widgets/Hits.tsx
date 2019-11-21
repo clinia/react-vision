@@ -2,8 +2,12 @@ import { connectHits } from 'react-vision-core';
 import Hits from '../components/Hits';
 
 /**
- * Displays a list of hits.
  * @module Hits
+ */
+
+/**
+ * Displays a list of hits.
+ * @alias module:Hits
  * @kind widget
  * @prop {string} className - Add a custom CSS class to the component.
  * @prop {string} emptySearch - The text shown on empty results.

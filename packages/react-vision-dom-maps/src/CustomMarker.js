@@ -19,8 +19,12 @@ const eventTypes = {
 };
 
 /**
- * Allow the creation a custom map marker.
  * @module CustomMarker
+ */
+
+/**
+ * @description Allow the creation a custom map marker.
+ * @alias module:CustomMarker
  * @kind widget
  * @prop {{ x: number, y: number }} anchor - The anchor of the marker.
  * @prop {string} className - Classname for the custom marker.

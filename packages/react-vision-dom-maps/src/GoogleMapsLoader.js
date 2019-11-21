@@ -2,9 +2,13 @@ import { Component } from 'react';
 import PropTypes from 'prop-types';
 
 /**
- * Instantiate an instance of the Google maps client on the client side.
- * Since this component rely on the `document` property, this won't be run on the server during any SSR phase.
  * @module GoogleMapsLoader
+ */
+
+/**
+ * @description Instantiate an instance of the Google maps client on the client side.
+ * Since this component rely on the `document` property, this won't be run on the server during any [Server Side Rendering](guide/Server-side_rendering.html) phase.
+ * @alias module:GoogleMapsLoader
  * @kind widget
  * @prop {string} apiKey - Your Google maps api key.
  * @prop {string} endpoint=https://maps.googleapis.com/maps/api/js?v=quarterly - The default endpoint to get the maps from.

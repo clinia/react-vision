@@ -9,7 +9,13 @@ All properties in the different modules are either optional or are provided with
 ## Modules
 
 <dl>
-<dt><a href="#module_Autocomplete">Autocomplete</a></dt>
+<dt><a href="#module_Configure">Configure</a></dt>
+<dd></dd>
+<dt><a href="#module_Index">Index</a></dt>
+<dd></dd>
+<dt><a href="#module_Vision">Vision</a></dt>
+<dd></dd>
+<dt><a href="#module_AutoComplete">AutoComplete</a></dt>
 <dd></dd>
 <dt><a href="#module_Hits">Hits</a></dt>
 <dd></dd>
@@ -19,18 +25,138 @@ All properties in the different modules are either optional or are provided with
 <dd></dd>
 <dt><a href="#module_SearchBox">SearchBox</a></dt>
 <dd></dd>
-<dt><a href="#module_Configure">Configure</a></dt>
+<dt><a href="#module_Control">Control</a></dt>
 <dd></dd>
-<dt><a href="#module_Index">Index</a></dt>
+<dt><a href="#module_CustomMarker">CustomMarker</a></dt>
 <dd></dd>
-<dt><a href="#module_Vision">Vision</a></dt>
+<dt><a href="#module_GeoSearch">GeoSearch</a></dt>
+<dd></dd>
+<dt><a href="#module_GoogleMapsLoader">GoogleMapsLoader</a></dt>
+<dd></dd>
+<dt><a href="#module_Marker">Marker</a></dt>
+<dd></dd>
+<dt><a href="#module_Redo">Redo</a></dt>
 <dd></dd>
 </dl>
 
-<a name="module_Autocomplete"></a>
+## Typedefs
 
-## Autocomplete
-<a name="exp_module_Autocomplete--_default"></a>
+<dl>
+<dt><a href="#LatLngPropType">LatLngPropType</a> : <code>Object</code></dt>
+<dd></dd>
+<dt><a href="#BoundingBoxPropType">BoundingBoxPropType</a> : <code>Object</code></dt>
+<dd></dd>
+<dt><a href="#GeolocHitPropType">GeolocHitPropType</a> : <code>Object</code></dt>
+<dd></dd>
+</dl>
+
+<a name="module_Configure"></a>
+
+## Configure
+<a name="exp_module_Configure--_default"></a>
+
+<p>Configure is a widget that lets you provide raw search parameters
+to the Clinia API.</p>
+<p>This widget can be used either with react-dom and react-native. It will not render anything
+on screen, only configure some parameters.</p>
+
+**Kind**: Exported widget  
+**Properties**
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| queryType | <code>string</code> | <code>&quot;prefix_none&quot;</code> | <p>Sets the matching strategy for the search. Value is either <code>prefix_none</code> for complete word matching or <code>prefix_last</code> for partial word matching.</p> |
+| perPage | <code>perPage</code> |  | <p>Sets the number of search results to return per page.</p> |
+
+**Example**  
+```js
+import React from 'react';
+import cliniasearch from 'cliniasearch/lite';
+import { Vision, Configure, Hits } from 'react-vision-dom';
+
+const searchClient = cliniasearch(
+  'TODO',
+  'test'
+);
+
+const App = () => (
+  <Vision
+    searchClient={searchClient}
+    indexName="health_facility"
+  >
+    <Configure perPage={5} queryType="prefix_last" />
+    <Hits />
+  </Vision>
+);
+```
+<a name="module_Index"></a>
+
+## Index
+<a name="exp_module_Index--exports.IndexComponentWithoutContext"></a>
+
+<p>The component that allows you to apply widgets to a dedicated index. It's
+useful if you want to build an interface that targets multiple indices.</p>
+
+**Kind**: Exported widget  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| indexName | <code>string</code> | <p>The name of the targeted index. Value is either <code>health_facility</code> or <code>professional</code>.</p> |
+
+**Example**  
+```js
+import React from 'react';
+import cliniasearch from 'cliniasearch/lite';
+import { Vision. Index, SearcbBox, Hits, Configure } from 'react-vision-dom';
+
+const searchClient = cliniasearch(
+ 'TODO',
+ 'test'
+);
+
+const App = () => (
+  <Vision searchClient={searchClient} indexName="health_facility">
+    <Configure perPage={5} />
+    <SearcbBox />
+    <Index indexName="health_facility">
+      <Hits />
+    </Index>
+    <Index indexName="professional">
+      <Hits />
+    </Index>
+  </Vision>
+);
+```
+<a name="module_Vision"></a>
+
+## Vision
+<a name="exp_module_Vision--Vision"></a>
+
+<p><code>Vision</code> is the root component of all React Vision implementations.
+It provides all the connected components (aka widgets) a means to interact
+with the searchState.</p>
+
+**Kind**: Exported widget  
+**Requirements**: You will need to have an Clinia account to be able to use this widget.  
+**Properties**
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| createURL | <code>func</code> |  | <p>Function to call when creating links, useful for <a href="guide/Routing.html">URL Routing</a>.</p> |
+| indexName | <code>string</code> |  | <p>Main index in which to search.</p> |
+| onSearchStateChange | <code>func</code> |  | <p>Function to be called everytime a new search is done. Useful for <a href="guide/Routing.html">URL Routing</a>.</p> |
+| refresh | <code>boolean</code> | <code>false</code> | <p>Flag to activate when the cache needs to be cleared so that the front-end is updated when a change occurs in the index.</p> |
+| resultsState | <code>SearchResults</code> \| <code>Array.&lt;SearchResults&gt;</code> |  | <p>Use this to inject the results that will be used at first rendering. Those results are found by using the <code>findResultsState</code> function. Useful for <a href="guide/Server-side_rendering.html">Server Side Rendering</a>.</p> |
+| root | <code>Object</code> |  | <p>Use this to customize the root element. Default value: <code>{ Root: 'div' }</code></p> |
+| searchClient | <code>object</code> |  | <p>Provide a custom search client.</p> |
+| searchState | <code>object</code> |  | <p>Object to inject some search state. Switches the Vision component in controlled mode. Useful for <a href="guide/Routing.html">URL Routing</a>.</p> |
+| stalledSearchDelay | <code>number</code> | <code>200</code> | <p>The amount of time before considering that the search takes too much time. The time is expressed in milliseconds.</p> |
+
+<a name="module_AutoComplete"></a>
+
+## AutoComplete
+<a name="exp_module_AutoComplete--_default"></a>
 
 <p>The AutoComplete component displays a search box that lets the user search for a specific query.</p>
 
@@ -206,7 +332,7 @@ const App = () => (
 | defaultRefinement | <code>string</code> |  | <p>Provide default refinement value when component is mounted.</p> |
 | limit | <code>number</code> | <code>5</code> | <p>Define the limit number for the presented suggestions.</p> |
 | loadingIndicator | <code>node</code> |  | <p>Change the apparence of the default loading indicator (spinning circle).</p> |
-| locale | <code>string</code> | <code>&quot;&#x27;en&#x27;&quot;</code> | <p>Define the language for the presented suggestions (The locale value must be formatted according to the ISO 639, e.g. 'en').</p> |
+| locale | <code>string</code> | <code>&quot;en&quot;</code> | <p>Define the language for the presented suggestions (The locale value must be formatted according to the ISO 639, e.g. 'en').</p> |
 | onClear | <code>function</code> |  | <p>Listen to <code>reset</code> event sent from the Location form container.</p> |
 | onSubmit | <code>function</code> |  | <p>Intercept submit event sent from the Location form container.</p> |
 | onSuggestionSelected | <code>function</code> |  | <p>Executes every time that a suggestion is selected.</p> |
@@ -269,7 +395,7 @@ const App = () => (
 | clear | <code>node</code> |  | <p>Change the apparence of the default reset button (cross).</p> |
 | clearTitle | <code>string</code> |  | <p>The reset button title.</p> |
 | defaultRefinement | <code>string</code> |  | <p>Provide default refinement value when component is mounted.</p> |
-| focusShortcuts | <code>Array.&lt;string&gt;</code> | <code>[&#x27;s&#x27;,&#x27;/&#x27;]</code> | <p>List of keyboard shortcuts that focus the search box. Accepts key names and key codes.</p> |
+| focusShortcuts | <code>Array.&lt;string&gt;</code> | <code>[&#x27;s&#x27;,&#x27;/&#x27;</code> | <p>List of keyboard shortcuts that focus the search box. Accepts key names and key codes.</p> |
 | loadingIndicator | <code>node</code> |  | <p>Change the apparence of the default loading indicator (spinning circle).</p> |
 | onClear | <code>function</code> |  | <p>Listen to <code>reset</code> event sent from the SearchBox form container.</p> |
 | onSubmit | <code>function</code> |  | <p>Intercept submit event sent from the SearchBox form container.</p> |
@@ -314,128 +440,253 @@ const App = () => (
   </Vision>
 );
 ```
-<a name="module_Configure"></a>
+<a name="module_Control"></a>
 
-## Configure
-<a name="exp_module_Configure--_default"></a>
+## Control
+<a name="exp_module_Control--exports.Control"></a>
 
-<p>Configure is a widget that lets you provide raw search parameters
-to the Clinia API.</p>
-<p>This widget can be used either with react-dom and react-native. It will not render anything
-on screen, only configure some parameters.</p>
+<p>Control to enable, disable or to manually trigger a search on map movement.</p>
 
 **Kind**: Exported widget  
-**Properties**
+**Themes**
 
-| Name | Type | Default | Description |
-| --- | --- | --- | --- |
-| queryType | <code>string</code> | <code>&quot;prefix_none&quot;</code> | <p>Sets the matching strategy for the search. Value is either <code>prefix_none</code> for complete word matching or <code>prefix_last</code> for partial word matching.</p> |
-| perPage | <code>perPage</code> |  | <p>Sets the number of search results to return per page.</p> |
+| Name | Description |
+| --- | --- |
+| cvi-GeoSearch-control | <p>The root div of the Control.</p> |
+| cvi-GeoSearch-label | <p>The label of the checkbox.</p> |
+| cvi-GeoSearch-input | <p>The checkbox.</p> |
+| cvi-GeoSearch-redo | <p>The re-search button.</p> |
 
 **Example**  
 ```js
-import React from 'react';
-import cliniasearch from 'cliniasearch/lite';
-import { Vision, Configure, Hits } from 'react-vision-dom';
-
-const searchClient = cliniasearch(
-  'TODO',
-  'test'
-);
-
-const App = () => (
-  <Vision
-    searchClient={searchClient}
-    indexName="health_facility"
-  >
-    <Configure perPage={5} queryType="prefix_last" />
-    <Hits />
-  </Vision>
-);
+<GoogleMapsLoader apiKey={apiKey} endpoint={endpoint}>
+  {google => (
+    <GeoSearch google={google}>
+      {({ records }) => (
+        <Fragment>
+          <Control />
+          {records.map(record => (
+            <Marker
+              key={record.id}
+              record={record}
+            />
+          ))}
+        </Fragment>
+      )}
+    </GeoSearch>
+  )}
+</GoogleMapsLoader>
 ```
-<a name="module_Index"></a>
+<a name="module_CustomMarker"></a>
 
-## Index
-<a name="exp_module_Index--Index"></a>
+## CustomMarker
+<a name="exp_module_CustomMarker--exports.CustomMarker"></a>
 
-<p>The component that allows you to apply widgets to a dedicated index. It's
-useful if you want to build an interface that targets multiple indices.</p>
+<p>Allow the creation a custom map marker.</p>
 
 **Kind**: Exported widget  
 **Properties**
 
 | Name | Type | Description |
 | --- | --- | --- |
-| indexName | <code>string</code> | <p>The name of the targeted index. Value is either <code>health_facility</code> or <code>professional</code>.</p> |
+| anchor | <code>Object</code> | <p>The anchor of the marker.</p> |
+| className | <code>string</code> | <p>Classname for the custom marker.</p> |
+| label | <code>string</code> | <p>Label to display.</p> |
+| on* | <code>function</code> | <p>Listen to any mouse events sent from the marker.</p> |
+| record | [<code>GeolocHitPropType</code>](#GeolocHitPropType) | <p>Record to display.</p> |
 
 **Example**  
 ```js
-import React from 'react';
-import cliniasearch from 'cliniasearch/lite';
-import { Vision. Index, SearcbBox, Hits, Configure } from 'react-vision-dom';
-
-const searchClient = cliniasearch(
- 'TODO',
- 'test'
-);
-
-const App = () => (
-  <Vision searchClient={searchClient} indexName="health_facility">
-    <Configure perPage={5} />
-    <SearcbBox />
-    <Index indexName="health_facility">
-      <Hits />
-    </Index>
-    <Index indexName="professional">
-      <Hits />
-    </Index>
-  </Vision>
-);
+<GoogleMapsLoader apiKey={apiKey} endpoint={endpoint}>
+  {google => (
+    <GeoSearch google={google}>
+      {({ records }) => (
+        <Fragment>
+          {records.map(record => (
+             <CustomMarker
+               key={record.id}
+               record={record}
+               anchor={{ x: 5, y: 0 }}
+               onMouseEnter={() => {}}
+               onMouseLeave={() => {}}
+             >
+               <div className={classNames.join(' ').trim()}>
+                 <span>{record.name}</span>
+               </div>
+             </CustomMarker>
+          ))}
+        </Fragment>
+      )}
+    </GeoSearch>
+  )}
+</GoogleMapsLoader>
 ```
+<a name="module_GeoSearch"></a>
 
-<a name="module_Vision"></a>
+## GeoSearch
+<a name="exp_module_GeoSearch--module.exports"></a>
 
-## Vision
-<a name="exp_module_Vision--Vision"></a>
-
-<p><code>Vision</code> is the root component of all React Vision implementations.
-It provides all the connected components (aka widgets) a means to interact
-with the searchState.</p>
+<p>Map component to display search results.</p>
 
 **Kind**: Exported widget  
-**Requirements**: You will need to have an Clinia account to be able to use this widget.  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| defaultRefinement | [<code>BoundingBoxPropType</code>](#BoundingBoxPropType) | <p>The default bounds of the map.</p> |
+| enableRefine | <code>boolean</code> | <p>If the refinement is enabled at all for the map.</p> |
+| enableRefineOnMapMove | <code>boolean</code> | <p>If the map should trigger a new search on map movement.</p> |
+| google | <code>Object</code> | <p>The google client.</p> |
+| initialPosition | [<code>LatLngPropType</code>](#LatLngPropType) | <p>The initial position of the map.</p> |
+| initialZoom | <code>number</code> | <p>The initial zoom value.</p> |
+
+<a name="module_GoogleMapsLoader"></a>
+
+## GoogleMapsLoader
+<a name="exp_module_GoogleMapsLoader--GoogleMapsLoader"></a>
+
+<p>Instantiate an instance of the Google maps client on the client side.
+Since this component rely on the <code>document</code> property, this won't be run on the server during any <a href="guide/Server-side_rendering.html">Server Side Rendering</a> phase.</p>
+
+**Kind**: Exported widget  
 **Properties**
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| createURL | <code>func</code> |  | <p>Function to call when creating links, useful for <a href="guide/Routing.html">URL Routing</a>.</p> |
-| indexName | <code>string</code> |  | <p>Main index in which to search.</p> |
-| onSearchStateChange | <code>func</code> |  | <p>Function to be called everytime a new search is done. Useful for <a href="guide/Routing.html">URL Routing</a>.</p> |
-| refresh | <code>boolean</code> | <code>false</code> | <p>Flag to activate when the cache needs to be cleared so that the front-end is updated when a change occurs in the index.</p> |
-| resultsState | <code>SearchResults</code> \| <code>Array.&lt;SearchResults&gt;</code> |  | <p>Use this to inject the results that will be used at first rendering. Those results are found by using the <code>findResultsState</code> function. Useful for <a href="guide/Server-side_rendering.html">Server Side Rendering</a>.</p> |
-| root | <code>Object</code> |  | <p>Use this to customize the root element. Default value: <code>{ Root: 'div' }</code></p> |
-| searchClient | <code>object</code> |  | <p>Provide a custom search client.</p> |
-| searchState | <code>object</code> |  | <p>Object to inject some search state. Switches the Vision component in controlled mode. Useful for <a href="guide/Routing.html">URL Routing</a>.</p> |
-| stalledSearchDelay | <code>number</code> | <code>200</code> | <p>The amount of time before considering that the search takes too much time. The time is expressed in milliseconds.</p> |
+| apiKey | <code>string</code> |  | <p>Your Google maps api key.</p> |
+| endpoint | <code>string</code> | <code>&quot;https://maps.googleapis.com/maps/api/js?v&#x3D;quarterly&quot;</code> | <p>The default endpoint to get the maps from.</p> |
 
 **Example**  
 ```js
-import React from 'react';
-import cliniasearch from 'cliniasearch/lite';
-import { Vision, SearchBox, Hits } from 'react-vision-dom';
-
-const searchClient = cliniasearch(
-  'TODO',
-  'test'
-);
-
-const App = () => (
-  <Vision
-    searchClient={searchClient}
-    indexName="health_facility"
-  >
-    <SearchBox />
-    <Hits />
-  </Vision>
-);
+<GoogleMapsLoader apiKey={apiKey} endpoint={endpoint}>
+  {google => (
+    <GeoSearch
+      google={google}
+      defaultRefinement={{
+        northEast: { lat: 45.7058381, lng: -73.47426 },
+        southWest: { lat: 45.410246, lng: -73.986345 },
+      }}
+    >
+      {({ records }) => (
+        <Fragment>
+          {records.map(record => (
+            <Marker key={record.id} record={record} />
+          ))}
+        </Fragment>
+      )}
+    </GeoSearch>
+  )}
+</GoogleMapsLoader>
 ```
+<a name="module_Marker"></a>
+
+## Marker
+<a name="exp_module_Marker--exports.Marker"></a>
+
+<p>Map marker.</p>
+
+**Kind**: Exported widget  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| record | [<code>GeolocHitPropType</code>](#GeolocHitPropType) | <p>Record to display.</p> |
+| label | <code>string</code> | <p>Label to display.</p> |
+| on* | <code>function</code> | <p>Listen to any mouse events sent from the marker.</p> |
+
+**Example**  
+```js
+<GoogleMapsLoader apiKey={apiKey} endpoint={endpoint}>
+  {google => (
+    <GeoSearch google={google}>
+      {({ records }) => (
+        <Fragment>
+          {records.map(record => (
+            <Marker
+              key={record.id}
+              record={record}
+              label={record.name}
+              onClick={() => {}}
+              onDoubleClick={() => {}}
+            />
+          ))}
+        </Fragment>
+      )}
+    </GeoSearch>
+  )}
+</GoogleMapsLoader>
+```
+<a name="module_Redo"></a>
+
+## Redo
+<a name="exp_module_Redo--exports.Redo"></a>
+
+<p>Button that indicate triggers a search when clicked.</p>
+
+**Kind**: Exported widget  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| translate | <code>function</code> | <p>Should return the text to display in the button.</p> |
+
+**Themes**
+
+| Name | Description |
+| --- | --- |
+| cvi-GeoSearch-control | <p>The root div of the Control.</p> |
+| cvi-GeoSearch-redo | <p>The re-search button.</p> |
+| cvi-GeoSearch-redo--disabled | <p>The re-search button while disabled.</p> |
+
+**Example**  
+```js
+<GoogleMapsLoader apiKey={apiKey} endpoint={endpoint}>
+  {google => (
+    <GeoSearch google={google}>
+      {({ records }) => (
+        <Fragment>
+          <Redo />
+          {records.map(record => (
+            <Marker
+              key={record.id}
+              record={record}
+            />
+          ))}
+        </Fragment>
+      )}
+    </GeoSearch>
+  )}
+</GoogleMapsLoader>
+```
+<a name="LatLngPropType"></a>
+
+## LatLngPropType : <code>Object</code>
+**Kind**: global typedef  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| lat | <code>number</code> | <p>Latitude (-90 to 90).</p> |
+| lng | <code>number</code> | <p>Longitude (-180 tp 180).</p> |
+
+<a name="BoundingBoxPropType"></a>
+
+## BoundingBoxPropType : <code>Object</code>
+**Kind**: global typedef  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| northEast | [<code>LatLngPropType</code>](#LatLngPropType) | <p>NorthEast coordinate descibing the bounds.</p> |
+| southWest | [<code>LatLngPropType</code>](#LatLngPropType) | <p>SouthWest coordinate descibing the bounds.</p> |
+
+<a name="GeolocHitPropType"></a>
+
+## GeolocHitPropType : <code>Object</code>
+**Kind**: global typedef  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| geoPoint | [<code>LatLngPropType</code>](#LatLngPropType) | <p>Coordinate of the hit.</p> |
+

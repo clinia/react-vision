@@ -1,13 +1,9 @@
 import PropTypes from 'prop-types';
 
 /**
- * @module GeoSearch/ProType
- */
-
-/**
  * @typedef {Object} LatLngPropType
- * @prop {number} lat - Latitude.
- * @prop {number} lng - Longitude.
+ * @prop {number} lat - Latitude (-90 to 90).
+ * @prop {number} lng - Longitude (-180 tp 180).
  */
 export const LatLngPropType = PropTypes.shape({
   lat: PropTypes.number.isRequired,

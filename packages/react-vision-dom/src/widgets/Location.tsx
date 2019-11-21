@@ -3,8 +3,12 @@ import { connectLocation } from 'react-vision-core';
 import AutoComplete from '../components/AutoComplete';
 
 /**
- * The Location component displays a search box that lets the user search for a specific location.
  * @module Location
+ */
+
+/**
+ * The Location component displays a search box that lets the user search for a specific location.
+ * @alias module:Location
  * @kind widget
  * @prop {boolean} autoFocus=false - Set autoFocus to the autocomplete input
  * @prop {string} className - Add a custom CSS class to the Location form container

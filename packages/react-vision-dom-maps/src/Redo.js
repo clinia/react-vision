@@ -11,10 +11,17 @@ const RedoPropTypes = {
 };
 
 /**
- * Button that indicate if a search should be triggered on each map movement or not.
  * @module Redo
+ */
+
+/**
+ * @description Button that indicate triggers a search when clicked.
+ * @alias module:Redo
  * @kind widget
  * @prop {function} translate - Should return the text to display in the button.
+ * @themekey cvi-GeoSearch-control - The root div of the Control.
+ * @themekey cvi-GeoSearch-redo - The re-search button.
+ * @themekey cvi-GeoSearch-redo--disabled - The re-search button while disabled.
  * @example
  * ```js
  * <GoogleMapsLoader apiKey={apiKey} endpoint={endpoint}>

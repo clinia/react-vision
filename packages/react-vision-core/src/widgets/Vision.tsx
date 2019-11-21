@@ -48,10 +48,14 @@ function isControlled(props: Props) {
 }
 
 /**
+ * @module Vision
+ */
+
+/**
  * `Vision` is the root component of all React Vision implementations.
  * It provides all the connected components (aka widgets) a means to interact
  * with the searchState.
- * @module Vision
+ * @alias module:Vision
  * @kind widget
  * @requirements You will need to have an Clinia account to be able to use this widget.
  * @prop {func} createURL - Function to call when creating links, useful for [URL Routing](guide/Routing.html).
@@ -83,7 +87,7 @@ function isControlled(props: Props) {
  *   </Vision>
  * );
  */
-class Vision extends Component<Props, State> {
+export default class Vision extends Component<Props, State> {
   static defaultProps = {
     stalledSearchDelay: 200,
     refresh: false,
@@ -259,5 +263,3 @@ class Vision extends Component<Props, State> {
     );
   }
 }
-
-export default Vision;

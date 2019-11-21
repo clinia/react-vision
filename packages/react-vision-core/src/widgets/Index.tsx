@@ -7,6 +7,10 @@ import {
   IndexContext,
 } from '../core/context';
 
+/**
+ * @module Index
+ */
+
 function getIndexContext(props: Props): IndexContext {
   return {
     targetedIndex: props.indexId,
@@ -24,35 +28,6 @@ type State = {
   indexContext: IndexContext;
 };
 
-/**
- * The component that allows you to apply widgets to a dedicated index. It's
- * useful if you want to build an interface that targets multiple indices.
- * @module Index
- * @kind widget
- * @prop {string} indexName - The name of the targeted index. Value is either `health_facility` or `professional`.
- * @example
- * import React from 'react';
- * import cliniasearch from 'cliniasearch/lite';
- * import { Vision. Index, SearcbBox, Hits, Configure } from 'react-vision-dom';
- *
- * const searchClient = cliniasearch(
- *  'TODO',
- *  'test'
- * );
- *
- * const App = () => (
- *   <Vision searchClient={searchClient} indexName="health_facility">
- *     <Configure perPage={5} />
- *     <SearcbBox />
- *     <Index indexName="health_facility">
- *       <Hits />
- *     </Index>
- *     <Index indexName="professional">
- *       <Hits />
- *     </Index>
- *   </Vision>
- * );
- */
 class Index extends Component<InnerProps, State> {
   static propTypes = {
     indexName: PropTypes.string.isRequired,
@@ -149,4 +124,34 @@ IndexWrapper.propTypes = {
 };
 
 export const IndexComponentWithoutContext = Index;
+
+/**
+ * The component that allows you to apply widgets to a dedicated index. It's
+ * useful if you want to build an interface that targets multiple indices.
+ * @alias module:Index
+ * @kind widget
+ * @prop {string} indexName - The name of the targeted index. Value is either `health_facility` or `professional`.
+ * @example
+ * import React from 'react';
+ * import cliniasearch from 'cliniasearch/lite';
+ * import { Vision. Index, SearcbBox, Hits, Configure } from 'react-vision-dom';
+ *
+ * const searchClient = cliniasearch(
+ *  'TODO',
+ *  'test'
+ * );
+ *
+ * const App = () => (
+ *   <Vision searchClient={searchClient} indexName="health_facility">
+ *     <Configure perPage={5} />
+ *     <SearcbBox />
+ *     <Index indexName="health_facility">
+ *       <Hits />
+ *     </Index>
+ *     <Index indexName="professional">
+ *       <Hits />
+ *     </Index>
+ *   </Vision>
+ * );
+ */
 export default IndexWrapper;

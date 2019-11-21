@@ -21,8 +21,12 @@ const excludes = ['children'].concat(Object.keys(eventTypes));
 const filterProps = createFilterProps(excludes);
 
 /**
- * Map marker.
  * @module Marker
+ */
+
+/**
+ * @description Map marker.
+ * @alias module:Marker
  * @kind widget
  * @prop {GeolocHitPropType} record - Record to display.
  * @prop {string} label - Label to display.

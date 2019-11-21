@@ -6,8 +6,12 @@ import Provider from './Provider';
 import GoogleMaps from './GoogleMaps';
 
 /**
- * Map component to display search results.
  * @module GeoSearch
+ */
+
+/**
+ * @description Map component to display search results.
+ * @alias module:GeoSearch
  * @kind widget
  * @prop {BoundingBoxPropType} defaultRefinement - The default bounds of the map.
  * @prop {boolean} enableRefine - If the refinement is enabled at all for the map.
@@ -16,7 +20,7 @@ import GoogleMaps from './GoogleMaps';
  * @prop {LatLngPropType} initialPosition - The initial position of the map.
  * @prop {number} initialZoom - The initial zoom value.
  */
-class GeoSearch extends Component {
+export default class GeoSearch extends Component {
   static propTypes = {
     google: PropTypes.object.isRequired,
     children: PropTypes.func.isRequired,
@@ -96,5 +100,3 @@ class GeoSearch extends Component {
     );
   }
 }
-
-export default GeoSearch;
