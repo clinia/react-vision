@@ -1,13 +1,9 @@
 import { connectAutoComplete } from 'react-vision-core';
 import AutoComplete from '../components/AutoComplete';
 
-/** 
- * @module Autocomplete
- */
-
 /**
  * The AutoComplete component displays a search box that lets the user search for a specific query.
- * @alias module:Autocomplete
+ * @module Autocomplete
  * @kind widget
  * @prop {boolean} autoFocus=false - Set autoFocus to the autocomplete input.
  * @prop {string} className - Add a custom CSS class to the AutoComplete form container.

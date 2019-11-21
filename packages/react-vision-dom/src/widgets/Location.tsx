@@ -3,12 +3,8 @@ import { connectLocation } from 'react-vision-core';
 import AutoComplete from '../components/AutoComplete';
 
 /**
- * @module Location
- */
-
-/**
  * The Location component displays a search box that lets the user search for a specific location.
- * @alias module:Location
+ * @module Location
  * @kind widget
  * @prop {boolean} autoFocus=false - Set autoFocus to the autocomplete input
  * @prop {string} className - Add a custom CSS class to the Location form container
@@ -18,7 +14,7 @@ import AutoComplete from '../components/AutoComplete';
  * @prop {string} defaultRefinement - Provide default refinement value when component is mounted.
  * @prop {number} limit=5 - Define the limit number for the presented suggestions.
  * @prop {node} loadingIndicator - Change the apparence of the default loading indicator (spinning circle).
- * @prop {string} locale='en' - Define the language for the presented suggestions (The locale value must be formatted according to the ISO 639, e.g. 'en').
+ * @prop {string} locale=en - Define the language for the presented suggestions (The locale value must be formatted according to the ISO 639, e.g. 'en').
  * @prop {function} onClear - Listen to `reset` event sent from the Location form container.
  * @prop {function} onSubmit - Intercept submit event sent from the Location form container.
  * @prop {function} onSuggestionSelected - Executes every time that a suggestion is selected.

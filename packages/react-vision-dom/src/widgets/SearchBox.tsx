@@ -2,12 +2,8 @@ import { connectSearchBox } from 'react-vision-core';
 import SearchBox from '../components/SearchBox';
 
 /**
- * @module SearchBox
- */
-
-/**
  * The SearchBox component displays a search box that lets the user search for a specific query.
- * @alias module:SearchBox
+ * @module SearchBox
  * @kind widget
  * @prop {boolean} autoFocus=false - Should the search box be focused on render?
  * @prop {string} className - Add a custom CSS class to the SearchBox form container.

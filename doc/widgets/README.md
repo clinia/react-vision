@@ -361,12 +361,37 @@ const App = () => (
 <p>The component that allows you to apply widgets to a dedicated index. It's
 useful if you want to build an interface that targets multiple indices.</p>
 
-**Kind**: Exported class  
+**Kind**: Exported widget  
 **Properties**
 
 | Name | Type | Description |
 | --- | --- | --- |
 | indexName | <code>string</code> | <p>The name of the targeted index. Value is either <code>health_facility</code> or <code>professional</code>.</p> |
+
+**Example**  
+```js
+import React from 'react';
+import cliniasearch from 'cliniasearch/lite';
+import { Vision. Index, SearcbBox, Hits, Configure } from 'react-vision-dom';
+
+const searchClient = cliniasearch(
+ 'TODO',
+ 'test'
+);
+
+const App = () => (
+  <Vision searchClient={searchClient} indexName="health_facility">
+    <Configure perPage={5} />
+    <SearcbBox />
+    <Index indexName="health_facility">
+      <Hits />
+    </Index>
+    <Index indexName="professional">
+      <Hits />
+    </Index>
+  </Vision>
+);
+```
 
 <a name="module_Vision"></a>
 
@@ -377,7 +402,7 @@ useful if you want to build an interface that targets multiple indices.</p>
 It provides all the connected components (aka widgets) a means to interact
 with the searchState.</p>
 
-**Kind**: Exported class  
+**Kind**: Exported widget  
 **Requirements**: You will need to have an Clinia account to be able to use this widget.  
 **Properties**
 
@@ -393,3 +418,24 @@ with the searchState.</p>
 | searchState | <code>object</code> |  | <p>Object to inject some search state. Switches the Vision component in controlled mode. Useful for <a href="guide/Routing.html">URL Routing</a>.</p> |
 | stalledSearchDelay | <code>number</code> | <code>200</code> | <p>The amount of time before considering that the search takes too much time. The time is expressed in milliseconds.</p> |
 
+**Example**  
+```js
+import React from 'react';
+import cliniasearch from 'cliniasearch/lite';
+import { Vision, SearchBox, Hits } from 'react-vision-dom';
+
+const searchClient = cliniasearch(
+  'TODO',
+  'test'
+);
+
+const App = () => (
+  <Vision
+    searchClient={searchClient}
+    indexName="health_facility"
+  >
+    <SearchBox />
+    <Hits />
+  </Vision>
+);
+```
