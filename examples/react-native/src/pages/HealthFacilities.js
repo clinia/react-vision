@@ -2,10 +2,10 @@ import React from 'react';
 import { Index } from 'react-vision-native';
 
 import Content from '../components/Content';
+import Hits from '../components/Hits';
 import Header from '../components/Header';
-import MapView from '../components/MapView';
 
-class Map extends React.Component {
+class HealthFacilities extends React.Component {
   static navigationOptions = {
     headerTitle: (
       <Index indexName="health_facility">
@@ -21,11 +21,11 @@ class Map extends React.Component {
     return (
       <Content>
         <Index indexName="health_facility">
-          <MapView />
+          <Hits />
         </Index>
       </Content>
     );
   }
 }
 
-export default Map;
+export default HealthFacilities;

@@ -1,12 +1,17 @@
 import React from 'react';
+import { Index } from 'react-vision-native';
 
 import Content from '../components/Content';
 import Hits from '../components/Hits';
 import Header from '../components/Header';
 
-class List extends React.Component {
+class Professionals extends React.Component {
   static navigationOptions = {
-    headerTitle: <Header />,
+    headerTitle: (
+      <Index indexName="professional">
+        <Header />
+      </Index>
+    ),
     headerStyle: {
       height: 80,
     },
@@ -15,10 +20,12 @@ class List extends React.Component {
   render() {
     return (
       <Content>
-        <Hits />
+        <Index indexName="professional">
+          <Hits />
+        </Index>
       </Content>
     );
   }
 }
 
-export default List;
+export default Professionals;

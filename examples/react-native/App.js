@@ -1,26 +1,31 @@
 import React from 'react';
-import { Image } from 'react-native';
+import { Image, Text } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createStackNavigator } from 'react-navigation-stack';
 import cliniasearch from 'cliniasearch/lite';
-import { Vision } from 'react-vision-dom';
+import { Vision } from 'react-vision-native';
 import { Provider } from 'react-redux';
 
 import store from './src/redux/store';
-import List from './src/pages/List';
+import HealthFacilities from './src/pages/HealthFacilities';
+import Professionals from './src/pages/Professionals';
 import Map from './src/pages/Map';
 import { Color } from './src/styles';
 
-const searchClient = cliniasearch('TODO', 'ClM5vDTmS4GWEL0aS7osJaRkowV8McuP', {
+const searchClient = cliniasearch('TODO', 'AAW3nfvI79tj4LzECYZSEbDP7lqBpFd5', {
   hosts: {
     write: ['api.partner.staging.clinia.ca'],
     read: ['api.partner.staging.clinia.ca'],
   },
 });
 
-const ListNavigation = createStackNavigator({
-  List,
+const ProfessionalsNavigation = createStackNavigator({
+  Professionals,
+});
+
+const HealthFacilitiesNavigation = createStackNavigator({
+  HealthFacilities,
 });
 
 const MapNavigation = createStackNavigator({
@@ -29,7 +34,8 @@ const MapNavigation = createStackNavigator({
 
 const TabNavigator = createBottomTabNavigator(
   {
-    List: ListNavigation,
+    HealthFacilities: HealthFacilitiesNavigation,
+    Professionals: ProfessionalsNavigation,
     Map: MapNavigation,
   },
   {
@@ -41,8 +47,11 @@ const TabNavigator = createBottomTabNavigator(
           case 'Map':
             icon = require('./assets/map.png');
             break;
-          case 'List':
-            icon = require('./assets/list.png');
+          case 'HealthFacilities':
+            icon = require('./assets/health_facilities.png');
+            break;
+          case 'Professionals':
+            icon = require('./assets/professionals.png');
             break;
           default:
             break;
@@ -50,6 +59,19 @@ const TabNavigator = createBottomTabNavigator(
         return (
           <Image style={{ width: 20, height: 20, tintColor }} source={icon} />
         );
+      },
+      tabBarLabel: ({ tintColor }) => {
+        const { routeName } = navigation.state;
+        let title;
+        switch (routeName) {
+          case 'HealthFacilities':
+            title = 'Health Facilities';
+            break;
+          default:
+            title = routeName;
+            break;
+        }
+        return <Text style={{ color: tintColor }}>{title}</Text>;
       },
     }),
     tabBarOptions: {
