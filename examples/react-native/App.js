@@ -78,6 +78,10 @@ const TabNavigator = createBottomTabNavigator(
       activeTintColor: Color.primary,
       inactiveTintColor: 'gray',
     },
+    // This forces all the tabs to render immediately instead of when they are first made active.
+    // This is necessary in order for the `Vision` component to interpret the `Index` present on each tabs.
+    // If rendering is lazy, problems may arise where the internal state of the `Vision` component does not reflect the structure found in the code.
+    lazy: false,
   }
 );
 

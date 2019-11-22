@@ -261,7 +261,7 @@ export default function createVisionManager({
       let results = state.results ? state.results : {};
 
       if (!isDerivedHelperEmpty) {
-        results[indexId] = event.results;
+        results[indexId] = event;
       } else {
         results = event;
       }
