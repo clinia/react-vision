@@ -10,6 +10,39 @@ const ControlPropTypes = {
   translate: PropTypes.func.isRequired,
 };
 
+/**
+ * @module Control
+ */
+
+/**
+ * @description Control to enable, disable or to manually trigger a search on map movement.
+ * @alias module:Control
+ * @kind widget
+ * @themekey cvi-GeoSearch-control - The root div of the Control.
+ * @themekey cvi-GeoSearch-label - The label of the checkbox.
+ * @themekey cvi-GeoSearch-input - The checkbox.
+ * @themekey cvi-GeoSearch-redo - The re-search button.
+ * @example
+ * ```js
+ * <GoogleMapsLoader apiKey={apiKey} endpoint={endpoint}>
+ *   {google => (
+ *     <GeoSearch google={google}>
+ *       {({ records }) => (
+ *         <Fragment>
+ *           <Control />
+ *           {records.map(record => (
+ *             <Marker
+ *               key={record.id}
+ *               record={record}
+ *             />
+ *           ))}
+ *         </Fragment>
+ *       )}
+ *     </GeoSearch>
+ *   )}
+ * </GoogleMapsLoader>
+ * ```
+ */
 export const Control = ({
   googleMapsInstance,
   translate,

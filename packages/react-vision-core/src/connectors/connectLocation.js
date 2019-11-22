@@ -146,9 +146,7 @@ export default createConnector({
         .setQueryParameter(
           'aroundLatLng',
           currentRefinementToString(currentRefinement)
-        )
-        .setQueryParameter('country', props.country)
-        .setQueryParameter('types', props.types);
+        );
     }
 
     const currentRefinement = searchState.location || props.defaultRefinement;
@@ -156,9 +154,7 @@ export default createConnector({
     return searchParameters
       .setQueryParameter('insideBoundingBox')
       .setQueryParameter('aroundLatLng')
-      .setQueryParameter('location', currentRefinement)
-      .setQueryParameter('country', props.country)
-      .setQueryParameter('types', props.types);
+      .setQueryParameter('location', currentRefinement);
   },
 
   searchForLocations(props, searchState, nextRefinment) {
@@ -174,7 +170,7 @@ export default createConnector({
         params.country = props.country;
       }
     }
-    if (props.size) params.limt = props.size;
+    if (props.size) params.limit = props.size;
     if (props.locale) params.locale = props.locale;
 
     return params;

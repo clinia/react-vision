@@ -20,6 +20,40 @@ const eventTypes = {
 const excludes = ['children'].concat(Object.keys(eventTypes));
 const filterProps = createFilterProps(excludes);
 
+/**
+ * @module Marker
+ */
+
+/**
+ * @description Map marker.
+ * @alias module:Marker
+ * @kind widget
+ * @prop {GeolocHitPropType} record - Record to display.
+ * @prop {string} label - Label to display.
+ * @prop {function} on* - Listen to any mouse events sent from the marker.
+ * @example
+ * ```js
+ * <GoogleMapsLoader apiKey={apiKey} endpoint={endpoint}>
+ *   {google => (
+ *     <GeoSearch google={google}>
+ *       {({ records }) => (
+ *         <Fragment>
+ *           {records.map(record => (
+ *             <Marker
+ *               key={record.id}
+ *               record={record}
+ *               label={record.name}
+ *               onClick={() => {}}
+ *               onDoubleClick={() => {}}
+ *             />
+ *           ))}
+ *         </Fragment>
+ *       )}
+ *     </GeoSearch>
+ *   )}
+ * </GoogleMapsLoader>
+ * ```
+ */
 export class Marker extends Component {
   static propTypes = {
     ...createListenersPropTypes(eventTypes),
