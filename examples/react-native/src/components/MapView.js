@@ -1,7 +1,10 @@
 import MapView from 'react-native-maps';
 import React from 'react';
 import { connectGeoSearch } from 'react-vision-core';
+import { withNavigation } from 'react-navigation';
+import { compose } from 'redux';
 
+import { deltaRegionToBoundsRegion } from '../helpers/utils';
 import { Container } from '../styles';
 
 // Default region is the city of Montreal QC, Canada.
@@ -17,32 +20,37 @@ class Map extends React.Component {
     showUserLocation: false,
     currentLocation: undefined,
     hasAskedForLocationPermission: false,
+    currentRegion: undefined,
   };
 
   componentDidMount() {
-    // Refine to default region
-    this.refineRegion(defaultRegion);
+    this.subs = [
+      this.props.navigation.addListener('willBlur', () => {
+        const { refine } = this.props;
+        refine();
+      }),
+      this.props.navigation.addListener('willFocus', () => {
+        const { currentRegion } = this.state;
+        if (currentRegion) {
+          this.refineRegion(currentRegion);
+        }
+      }),
+    ];
+  }
+
+  componentWillUnmount() {
+    this.subs.forEach(x => x.remove());
   }
 
   onRegionChangeComplete = region => {
+    this.setState({ currentRegion: region });
     this.refineRegion(region);
   };
 
   refineRegion = region => {
     const { refine } = this.props;
-    const northEast = {
-      lat: region.latitude + region.latitudeDelta / 2,
-      lng: region.longitude + region.longitudeDelta / 2,
-    };
-    const southWest = {
-      lat: region.latitude - region.latitudeDelta / 2,
-      lng: region.longitude - region.longitudeDelta / 2,
-    };
 
-    refine({
-      northEast,
-      southWest,
-    });
+    refine(deltaRegionToBoundsRegion(region));
   };
 
   render() {
@@ -71,4 +79,7 @@ class Map extends React.Component {
   }
 }
 
-export default connectGeoSearch(Map);
+export default compose(
+  connectGeoSearch,
+  withNavigation
+)(Map);

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { TextInput, StyleSheet } from 'react-native';
 import { connectAutoComplete } from 'react-vision-core';
+import { withNavigation } from 'react-navigation';
 
 import { setQuery, setSearchBoxFocused } from '../redux/actions';
 import { Input, Color, Margin } from '../styles';
@@ -22,6 +23,23 @@ const mapStateToProps = state => ({
 
 class SearchBox extends React.Component {
   input;
+
+  componentDidMount() {
+    this.subs = [
+      this.props.navigation.addListener('willBlur', () => {
+        const { refine } = this.props;
+        refine();
+      }),
+      this.props.navigation.addListener('willFocus', () => {
+        const { refine, query } = this.props;
+        refine(query);
+      }),
+    ];
+  }
+
+  componentWillUnmount() {
+    this.subbs.forEach(x => x.remove());
+  }
 
   onTextChange = text => {
     const { searchForSuggestions } = this.props;
@@ -67,5 +85,6 @@ export default compose(
     mapStateToProps,
     { setQuery, setSearchBoxFocused }
   ),
+  withNavigation,
   connectAutoComplete
 )(SearchBox);
