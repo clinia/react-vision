@@ -135,25 +135,6 @@ Provide a default value for the query.
 | _string_ | `undefined` |
 <br/>
 
-### `queryType`
-Type of matching strategy for the query. There are two strategies supported at the moment : 
-<br/>
-`prefix_none` => Will match full words.<br/>
-`prefix_last` => Will match partial words.
-
-| Type | Default |
-|------|---------|
-| _string_ | `prefix_none` |
-<br/>
-
-### `perPage`
-Number of search results to return per page.
-
-| Type | Default |
-|------|---------|
-| _number_ | `20` |
-<br/>
-
 ---
 ## 3.2 `connectHits`
 This connector provides the logic to build a component that will let the user consult the search results.
@@ -320,25 +301,6 @@ Provide a default value for the query.
 | _string_ | `undefined` |
 <br/>
 
-### `queryType`
-Type of matching strategy for the query. There are two strategies supported at the moment : 
-<br/>
-`prefix_none` => Will match full words.<br/>
-`prefix_last` => Will match partial words.
-
-| Type | Default |
-|------|---------|
-| _string_ | `prefix_none` |
-<br/>
-
-### `perPage`
-Number of search results to return per page.
-
-| Type | Default |
-|------|---------|
-| _number_ | `20` |
-<br/>
-
 ### `size`
 Maximum number of suggestions to return.
 
@@ -442,6 +404,14 @@ Maximum number of suggestions to return.
 | Type | Default |
 |------|---------|
 | _number_ | `5` |
+<br/>
+
+### `locale`
+Preferred locale in which to receive the location suggestions. Suggestions may still be in a different locale depending on the targeted country, region, etc.
+
+| Type | Default |
+|------|---------|
+| _string_ | `undefined` |
 <br/>
 
 ---

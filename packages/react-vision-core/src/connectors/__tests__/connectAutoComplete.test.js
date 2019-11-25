@@ -85,9 +85,28 @@ describe('connectAutoComplete', () => {
       params = connect.getSearchParameters(
         new SearchParameters(),
         { contextValue },
-        { query: 'bar' }
+        {
+          query: 'bar',
+        }
       );
       expect(params.query).toBe('bar');
+    });
+
+    it('refines properties for the autocomplete', () => {
+      params = connect.searchForSuggestions(
+        {
+          query: 'bar',
+          highlightPreTag: '<strong>',
+          highlightPostTag: '</strong>',
+          size: 5,
+        },
+        {},
+        'bar'
+      );
+      expect(params.query).toBe('bar');
+      expect(params.highlightPreTag).toBe('<strong>');
+      expect(params.highlightPostTag).toBe('</strong>');
+      expect(params.size).toBe(5);
     });
 
     it('should return the right searchState when clean up', () => {

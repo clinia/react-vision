@@ -18,6 +18,46 @@ const eventTypes = {
   onMouseUp: 'mouseup',
 };
 
+/**
+ * @module CustomMarker
+ */
+
+/**
+ * @description Allow the creation a custom map marker.
+ * @alias module:CustomMarker
+ * @kind widget
+ * @prop {{ x: number, y: number }} anchor - The anchor of the marker.
+ * @prop {string} className - Classname for the custom marker.
+ * @prop {string} label - Label to display.
+ * @prop {function} on* - Listen to any mouse events sent from the marker.
+ * @prop {GeolocHitPropType} record - Record to display.
+ * @example
+ * ```js
+ * <GoogleMapsLoader apiKey={apiKey} endpoint={endpoint}>
+ *   {google => (
+ *     <GeoSearch google={google}>
+ *       {({ records }) => (
+ *         <Fragment>
+ *           {records.map(record => (
+ *              <CustomMarker
+ *                key={record.id}
+ *                record={record}
+ *                anchor={{ x: 5, y: 0 }}
+ *                onMouseEnter={() => {}}
+ *                onMouseLeave={() => {}}
+ *              >
+ *                <div className={classNames.join(' ').trim()}>
+ *                  <span>{record.name}</span>
+ *                </div>
+ *              </CustomMarker>
+ *           ))}
+ *         </Fragment>
+ *       )}
+ *     </GeoSearch>
+ *   )}
+ * </GoogleMapsLoader>
+ * ```
+ */
 export class CustomMarker extends Component {
   static propTypes = {
     ...createListenersPropTypes(eventTypes),

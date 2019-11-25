@@ -5,7 +5,22 @@ import Connector from './Connector';
 import Provider from './Provider';
 import GoogleMaps from './GoogleMaps';
 
-class GeoSearch extends Component {
+/**
+ * @module GeoSearch
+ */
+
+/**
+ * @description Map component to display search results.
+ * @alias module:GeoSearch
+ * @kind widget
+ * @prop {BoundingBoxPropType} defaultRefinement - The default bounds of the map.
+ * @prop {boolean} enableRefine - If the refinement is enabled at all for the map.
+ * @prop {boolean} enableRefineOnMapMove - If the map should trigger a new search on map movement.
+ * @prop {Object} google - The google client.
+ * @prop {LatLngPropType} initialPosition - The initial position of the map.
+ * @prop {number} initialZoom - The initial zoom value.
+ */
+export default class GeoSearch extends Component {
   static propTypes = {
     google: PropTypes.object.isRequired,
     children: PropTypes.func.isRequired,
@@ -85,5 +100,3 @@ class GeoSearch extends Component {
     );
   }
 }
-
-export default GeoSearch;
