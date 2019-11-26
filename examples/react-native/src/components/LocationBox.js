@@ -11,6 +11,7 @@ import {
 import * as Permissions from 'expo-permissions';
 import * as Location from 'expo-location';
 import { connectLocation } from 'react-vision-core';
+import { withNavigation } from 'react-navigation';
 
 import { Input, Color, Margin } from '../styles';
 import { setLocationBoxFocused, setLocation } from '../redux/actions';
@@ -57,6 +58,21 @@ class LocationBox extends React.Component {
         ),
       });
     });
+
+    this.subs = [
+      this.props.navigation.addListener('didBlur', () => {
+        const { refine } = this.props;
+        refine();
+      }),
+      this.props.navigation.addListener('didFocus', () => {
+        const { refine, location } = this.props;
+        refine(location);
+      }),
+    ];
+  }
+
+  componentWillUnmount() {
+    this.subs.forEach(x => x.remove());
   }
 
   onFocus = () => {
@@ -147,5 +163,6 @@ export default compose(
     mapStateToProps,
     { setLocationBoxFocused, setLocation }
   ),
+  withNavigation,
   connectLocation
 )(LocationBox);

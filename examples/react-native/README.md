@@ -25,3 +25,9 @@ OR
 ```
 yarn start --web
 ```
+
+# Credits
+<div> Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+
+[health_facilities](assets/health_facilities.png) <br/>
+[professionals](assets/professionals.png)
