@@ -33,7 +33,7 @@ const Example = ({ location, history }) => {
           <div className="autocomplete-label">Where</div>
           <Location
             types={['postcode', 'place', 'neighborhood']}
-            country={['CA']}
+            country={'CA'}
             locale="en"
             defaultRefinement={searchParams.get('location') || ''}
           />
