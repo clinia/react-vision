@@ -2332,23 +2332,6 @@
     react-inspector "^3.0.2"
     uuid "^3.3.2"
 
-"@storybook/addon-jest@^5.2.5":
-  version "5.2.6"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-jest/-/addon-jest-5.2.6.tgz#9729f999ab68eac41fb5b7959af8bc173fde868b"
-  integrity sha512-zvGZlyvgg0uv4oRLCG7ovFkm6oKj9VP8WEWeK3LVPt88jFJwkCpzaHqib+b+8Tk7/ITOViuJZivGlbmd4NHFqg==
-  dependencies:
-    "@storybook/addons" "5.2.6"
-    "@storybook/api" "5.2.6"
-    "@storybook/components" "5.2.6"
-    "@storybook/core-events" "5.2.6"
-    "@storybook/theming" "5.2.6"
-    core-js "^3.0.1"
-    global "^4.3.2"
-    react "^16.8.3"
-    react-sizeme "^2.5.2"
-    upath "^1.1.0"
-    util-deprecate "^1.0.2"
-
 "@storybook/addon-knobs@^5.2.4":
   version "5.2.6"
   resolved "https://registry.yarnpkg.com/@storybook/addon-knobs/-/addon-knobs-5.2.6.tgz#28b2c74ea26519fef204915142a03bd7476f247c"
@@ -5597,27 +5580,6 @@ cliniasearch@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/cliniasearch/-/cliniasearch-1.0.0.tgz#49c5299887964003b3f33413b01425312621d181"
   integrity sha512-v/AiDjOROjuS/0e5gCcS1UB5rZ6McgEYU3qCQumWyZf2sX7U+sgFG/y6+9jb0MpgxMZbzNpeAVNUwCLka5sIoQ==
-  dependencies:
-    agentkeepalive "^2.2.0"
-    debug "^2.6.9"
-    envify "^4.0.0"
-    es6-promise "^4.1.0"
-    events "^1.1.0"
-    foreach "^2.0.5"
-    global "^4.3.2"
-    inherits "^2.0.1"
-    isarray "^2.0.1"
-    load-script "^1.0.0"
-    object-keys "^1.0.11"
-    querystring-es3 "^0.2.1"
-    reduce "^1.0.1"
-    semver "^5.1.0"
-    tunnel-agent "^0.6.0"
-
-cliniasearch@1.0.0-beta.8:
-  version "1.0.0-beta.8"
-  resolved "https://registry.yarnpkg.com/cliniasearch/-/cliniasearch-1.0.0-beta.8.tgz#dad1cc7c74ff4bf34bf614fbdf97d96c3252c435"
-  integrity sha512-HgivVgbFSmw1Tp0gnZOu7GD32MWAAlN+vI/xluXd7n7Ip5PCAjDZ5O+46U79k4rq81BADHhqCFCYv+6wQ4BmEQ==
   dependencies:
     agentkeepalive "^2.2.0"
     debug "^2.6.9"
@@ -18349,7 +18311,7 @@ unzip-response@^2.0.1:
   resolved "https://registry.yarnpkg.com/unzip-response/-/unzip-response-2.0.1.tgz#d2f0f737d16b0615e72a6935ed04214572d56f97"
   integrity sha1-0vD3N9FrBhXnKmk17QQhRXLVb5c=
 
-upath@^1.1.0, upath@^1.1.1:
+upath@^1.1.1:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/upath/-/upath-1.2.0.tgz#8f66dbcd55a883acdae4408af8b035a5044c1894"
   integrity sha512-aZwGpamFO61g3OlfT7OQCHqhGnW43ieH9WZeP7QxN/G/jS4jfqUkZxoryvJgVPEcrl5NL/ggHsSmLMHuH64Lhg==
