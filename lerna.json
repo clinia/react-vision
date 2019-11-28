@@ -1,7 +1,11 @@
 {
   "lerna": "2.10.1",
-  "packages": ["packages/*", "examples/@(default)", "e2e/e2e-tests"],
-  "version": "1.0.0-beta.4",
+  "packages": [
+    "packages/*",
+    "examples/@(default)",
+    "e2e/e2e-tests"
+  ],
+  "version": "1.0.0",
   "npmClient": "yarn",
   "useWorkspaces": true
 }
