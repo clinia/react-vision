@@ -129,7 +129,7 @@
   "bundlesize": [
     {
       "path": "packages/react-vision/dist/umd/Core.min.js",
-      "maxSize": "2.75 kB"
+      "maxSize": "3 kB"
     },
     {
       "path": "packages/react-vision/dist/umd/Connectors.min.js",
@@ -141,7 +141,7 @@
     },
     {
       "path": "packages/react-vision-core/dist/umd/ReactVisionCore.min.js",
-      "maxSize": "24.25 kB"
+      "maxSize": "27 kB"
     },
     {
       "path": "packages/react-vision-dom/dist/umd/ReactVisionDOM.min.js",
@@ -149,7 +149,7 @@
     },
     {
       "path": "packages/react-vision-dom-maps/dist/umd/ReactVisionDOMMaps.min.js",
-      "maxSize": "6 kB"
+      "maxSize": "7 kB"
     }
   ]
 }
