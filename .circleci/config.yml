@@ -83,3 +83,25 @@ jobs:
           command: |
             yarn run website:build
             yarn run test:e2e:saucelabs
+
+  test_examples:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: *install_yarn_version
+      - restore_cache: *restore_yarn_cache
+      - run: *run_yarn_install
+      - save_cache: *save_yarn_cache
+      - run:
+          name: Build & Test examples
+          command: yarn test:examples
+
+workflows:
+  version: 2
+  ci:
+    jobs:
+      - test_build
+      - test_unit
+      - test_integration
+      # - test_e2e
+      - test_examples
