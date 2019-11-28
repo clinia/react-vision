@@ -23,6 +23,7 @@ class Hits extends React.Component {
 
   render() {
     const { records, hit } = this.props;
+
     return (
       <FlatList
         data={records}

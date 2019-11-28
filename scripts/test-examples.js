@@ -3,7 +3,7 @@ const glob = require('glob');
 const execSync = require('child_process').execSync;
 
 const examples = glob.sync(
-  path.join(__dirname, '..', 'examples', '!(default-theme)')
+  path.join(__dirname, '..', 'examples', '!(default)')
 );
 
 examples.forEach(example => {

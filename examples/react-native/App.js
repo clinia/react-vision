@@ -13,12 +13,10 @@ import Professionals from './src/pages/Professionals';
 import Map from './src/pages/Map';
 import { Color } from './src/styles';
 
-const searchClient = cliniasearch('TODO', 'AAW3nfvI79tj4LzECYZSEbDP7lqBpFd5', {
-  hosts: {
-    write: ['api.partner.staging.clinia.ca'],
-    read: ['api.partner.staging.clinia.ca'],
-  },
-});
+const searchClient = cliniasearch(
+  'demo-pharamcies',
+  'KcLxBhVFP8ooPgQODlAxWqfNg657fTz9'
+);
 
 const ProfessionalsNavigation = createStackNavigator({
   Professionals,
