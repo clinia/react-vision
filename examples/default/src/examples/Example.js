@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import './Example.css';
 import { Vision, AutoComplete, Location } from 'react-vision-dom';
 import logo from '../static/images/logo.svg';
@@ -18,15 +18,13 @@ const Example = ({ location, history }) => {
   return (
     <Vision searchClient={searchClient} indexName="health_facility">
       <div className="example-header">
-        <img src={logo} onClick={() => history.push('/')} />
+        <img src={logo} onClick={() => history.push('/')} alt="logo" />
         <div className="example-autoComplete">
           <div className="autocomplete-label">What</div>
           <AutoComplete
             submit={<i className="fa fa-search"></i>}
             clear={<i className="fa fa-times"></i>}
             defaultRefinement={searchParams.get('speciality') || ''}
-            submit={null}
-            clear={null}
           />
         </div>
         <div className="example-location">

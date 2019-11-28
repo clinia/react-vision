@@ -119,7 +119,7 @@ describe('utils', () => {
 
   describe('escapeRegExp', () => {
     test('escapes regExp chars', () => {
-      expect(() => new RegExp('-[]{}()*+?.,^$|#s')).toThrow();
+      expect(() => new RegExp('-[]{}()*+?.,^$|#s')).toThrow(); // eslint-disable-line no-invalid-regexp
       expect(
         () => new RegExp(utils.escapeRegExp('-[]{}()*+?.,^$|#s'))
       ).not.toThrow();

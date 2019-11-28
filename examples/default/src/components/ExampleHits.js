@@ -7,7 +7,6 @@ const ExampleHit = ({ record, onRecordOver }) => {
   const {
     type,
     address: { streetAddress, place, regionCode },
-    geoPoint,
     phones,
     openingHours,
   } = record;
@@ -47,7 +46,7 @@ const ExampleHit = ({ record, onRecordOver }) => {
         )}
         <span>
           <i className="fa fa-map-marker" style={{ color: '#2DCEBF' }} />
-          <a href={mapLink} target="_blank">
+          <a href={mapLink} target="_blank" rel="noopener noreferrer">
             Direction
           </a>
         </span>

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import Example from './examples/Example';
 import { Vision, AutoComplete, Location } from 'react-vision-dom';
 import {
@@ -41,7 +41,7 @@ const Home = () => {
     <div className="home">
       <div className="home-bg" />
       <div className="home-header">
-        <img src={logo} />
+        <img src={logo} alt="logo" />
       </div>
       <div className="home-container">
         <h1>

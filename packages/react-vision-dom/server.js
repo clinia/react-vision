@@ -1,4 +1,6 @@
-/* eslint-disable */
+/* eslint-disable eslint-comments/disable-enable-pair */
+/* eslint-disable no-var */
+/* eslint-disable import/no-commonjs */
 
 // This file only exist to allow the import from 'react-vision-dom/server'
 // We can't have this import working easily with the current project architecture.

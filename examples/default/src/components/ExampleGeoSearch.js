@@ -39,7 +39,7 @@ const Tooltip = ({ record }) => {
       {record.distance && <div>{record.distance}</div>}
       <h3>{record.name}</h3>
       <div>
-        <a href={mapLink} target="_blank">
+        <a href={mapLink} target="_blank" rel="noopener noreferrer">
           Get directions
         </a>
         <OpeningHours

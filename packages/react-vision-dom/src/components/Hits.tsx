@@ -39,6 +39,12 @@ const DefaultHit: React.FC<HitProps> = ({ record }) => {
   );
 };
 
+DefaultHit.propTypes = {
+  record: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+  }).isRequired,
+};
+
 const cx = createClassNames('Hits');
 
 const Hits: React.FunctionComponent<Props> = ({
@@ -76,6 +82,10 @@ const HitPropTypes = PropTypes.shape({
 Hits.propTypes = {
   records: PropTypes.arrayOf(HitPropTypes.isRequired).isRequired,
   className: PropTypes.string,
+  noResultsFound: PropTypes.func,
+  translate: PropTypes.func,
+  loading: PropTypes.bool,
+  style: PropTypes.object,
   hit: PropTypes.func,
 };
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import cliniasearch from 'cliniasearch/lite';
 import { storiesOf } from '@storybook/react';
 import { Vision, AutoComplete } from 'react-vision-dom';
@@ -61,6 +62,10 @@ const CustomSuggestion = ({ suggestion }) => (
     {suggestion.suggestion}
   </div>
 );
+
+CustomSuggestion.propTypes = {
+  suggestion: PropTypes.object.isRequired,
+};
 
 stories
   .addParameters({ jest: ['AutoComplete'] })

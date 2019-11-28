@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connectLocation } from 'react-vision-core';
 import AutoComplete from '../components/AutoComplete';
 
@@ -71,6 +72,11 @@ const Location = props => {
       customThemeKey="Location"
     />
   );
+};
+
+Location.propTypes = {
+  suggestions: PropTypes.arrayOf(PropTypes.object.isRequired),
+  searchForLocations: PropTypes.func,
 };
 
 export default connectLocation(Location);

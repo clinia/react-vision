@@ -7,6 +7,7 @@ import Hits from '../components/Hits';
 import Header from '../components/Header';
 import { Container, Typography, Margin, Color } from '../styles';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const styles = StyleSheet.create({
   tag: {
     borderRadius: 5,
