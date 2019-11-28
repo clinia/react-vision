@@ -260,7 +260,9 @@ describe('AutoComplete', () => {
       const suggestionCompliantChar = 's';
 
       describe('after entering suggestions-compliant char', () => {
-        let wrapper, input, getSuggestionsElements;
+        let wrapper;
+        let input;
+        let getSuggestionsElements;
         beforeEach(() => {
           wrapper = shallow(
             <AutoComplete
@@ -338,7 +340,7 @@ describe('AutoComplete', () => {
         });
 
         it('should not highlight any suggestion after up key pressed on the first suggestion', () => {
-          //KeyDown
+          // KeyDown
           input.simulate('keydown', {
             preventDefault: jest.fn(),
             keyCode: 40,
@@ -350,7 +352,7 @@ describe('AutoComplete', () => {
           expect(elements.exists(`.${activeSuggestionClass}`)).toBeTruthy();
           expect(elements.first().hasClass(activeSuggestionClass)).toBeTruthy();
 
-          //KeyUp
+          // KeyUp
           input.simulate('keydown', { preventDefault: jest.fn(), keyCode: 38 });
           const updatedElements = getSuggestionsElements();
 
@@ -447,7 +449,7 @@ describe('AutoComplete', () => {
           .first()
           .simulate('mousedown');
 
-        expect(refine).toBeCalled();
+        expect(refine).toHaveBeenCalled();
       });
 
       it('should refine search on submit', () => {
@@ -475,7 +477,7 @@ describe('AutoComplete', () => {
           stopPropagation: jest.fn(),
         });
 
-        expect(refine).toBeCalled();
+        expect(refine).toHaveBeenCalled();
       });
       it('should trigger submit when triggerSubmitOnSuggestionSelected prop is true', () => {
         const onSubmit = jest.fn();

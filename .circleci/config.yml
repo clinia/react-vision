@@ -1,0 +1,85 @@
+aliases:
+  - &install_yarn_version
+    name: Install specific Yarn version
+    command: |
+      curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.16.0
+      echo 'export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"' >> $BASH_ENV
+  - &restore_yarn_cache
+    name: Restore Yarn cache
+    keys:
+      - yarn-{{ .Branch }}-packages-{{ checksum "yarn.lock" }}
+
+  - &save_yarn_cache
+    name: Save Yarn cache
+    key: yarn-{{ .Branch }}-packages-{{ checksum "yarn.lock" }}
+    paths:
+      - ~/.cache/yarn
+
+  - &run_yarn_install
+    name: Install dependencies
+    command: yarn install
+
+defaults: &defaults
+  working_directory: ~/react-vision
+  docker:
+    - image: circleci/node:8.16.1@sha256:9e83d4b3b046d1c7591952865bc4d803d2ddeaf1c6352f76c2133bbe96606d40
+
+version: 2
+jobs:
+  test_build:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: *install_yarn_version
+      - restore_cache: *restore_yarn_cache
+      - run: *run_yarn_install
+      - save_cache: *save_yarn_cache
+      - run:
+          name: Build & Test packages size
+          command: yarn test:build
+
+  test_unit:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: *install_yarn_version
+      - restore_cache: *restore_yarn_cache
+      - run: *run_yarn_install
+      - save_cache: *save_yarn_cache
+      - run:
+          name: Lint & Code styles
+          command: yarn lint
+      - run:
+          name: Type checking
+          command: yarn type-check
+      - run:
+          name: Unit Tests
+          command: yarn test --maxWorkers=4
+
+  test_integration:
+    <<: *defaults
+    docker:
+      - image: circleci/node:8.16.1-browsers@sha256:e2f01766ecc1e133ca4873b7a0fa292da2d39e756783f6a7f90d4d5c2a59ccb7
+    steps:
+      - checkout
+      - run: *install_yarn_version
+      - restore_cache: *restore_yarn_cache
+      - run: *run_yarn_install
+      - save_cache: *save_yarn_cache
+      - run:
+          name: Integration Tests
+          command: yarn test:integration
+
+  test_e2e:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: *install_yarn_version
+      - restore_cache: *restore_yarn_cache
+      - run: *run_yarn_install
+      - save_cache: *save_yarn_cache
+      - run:
+          name: End-2-End tests
+          command: |
+            yarn run website:build
+            yarn run test:e2e:saucelabs

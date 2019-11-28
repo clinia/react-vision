@@ -22,7 +22,7 @@ interface Props {
 
   autoFocus?: boolean;
 
-  focusShortcuts: (string | number)[];
+  focusShortcuts: Array<string | number>;
 
   searchAsYouType?: boolean;
   onSubmit?: (event: any) => void;
@@ -232,7 +232,7 @@ class SearchBox extends Component<PropsWithDefaults, State> {
     } = this.props;
     const query = this.getQuery();
 
-    //Events that cannot be completely overridden due to internal use
+    // Events that cannot be completely overridden due to internal use
     const internalEvents = ['onsubmit', 'onclear', 'onchange'];
     const searchInputEvents = extractInputEventsFromProps(
       internalEvents,

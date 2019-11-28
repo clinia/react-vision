@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./clinia-logo.svg" width="250">
+  <img src=".github/clinia-logo.svg" width="250">
   <h1>React Vision</h1>
   <h4>React library that lets you create a health-care search experience using Clinia's search API.</h4>
   <a href="https://www.npmjs.com/package/react-vision">
@@ -32,20 +32,22 @@ React Vision is available on [npm](https://www.npmjs.com/get-npm) registry. It r
 
 ```
 npm install react-vision-dom cliniasearch
-```
 OR
-```
 yarn add react-vision-dom cliniasearch
 ```
 
 # Examples
+
 ## React example ([README](./examples/default))
 
 Inside the **[React example](./examples/default)** folder:
+
 ```
 yarn install
 ```
+
 Then
+
 ```
 yarn start
 ```
@@ -53,14 +55,19 @@ yarn start
 ## React-Native example ([README](./examples/react-native))
 
 Inside the **[React-Native example](./examples/react-native)** folder:
+
 ```
 yarn install
 ```
+
 Then
+
 ```
 yarn start
 ```
+
 This example uses **[Expo](https://github.com/expo/expo)** and can therefore be launch using the expo cli :
+
 ```
 expo start
 ```

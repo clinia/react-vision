@@ -6,3 +6,8 @@ dist
 build
 .expo
 .next
+
+# Documentation
+doc
+e2e/
+

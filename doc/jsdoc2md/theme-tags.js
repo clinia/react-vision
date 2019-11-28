@@ -1,3 +1,5 @@
+/* eslint-disable eslint-comments/disable-enable-pair */
+/* eslint-disable import/no-commonjs */
 // See https://github.com/bvanderlaan/jsdoc-route-plugin for examples on how to edit a tag output.
 
 exports.defineTags = function(dictionary) {

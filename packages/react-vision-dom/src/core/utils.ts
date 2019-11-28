@@ -73,7 +73,7 @@ export const escapeRegExp = (text: string) => {
 // This enable the developer to provide any on* events for the input
 // except the ones we uses internally
 export const extractInputEventsFromProps = (
-  internalEvents: Array<string>,
+  internalEvents: string[],
   props: any
 ) =>
   Object.keys(props).reduce((newProps, prop) => {

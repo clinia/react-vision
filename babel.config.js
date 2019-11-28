@@ -1,3 +1,4 @@
+/* eslint-disable eslint-comments/disable-enable-pair */
 /* eslint-disable import/no-commonjs */
 
 const isES = process.env.BABEL_ENV === 'es';

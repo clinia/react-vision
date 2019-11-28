@@ -128,7 +128,7 @@ describe('utils', () => {
 
   describe('extractInputEventsFromProps', () => {
     it('should return all events except the internal ones', () => {
-      //Internal events defined inside the 'extractInputEventsFromProps'
+      // Internal events defined inside the 'extractInputEventsFromProps'
       const internalEvents = ['onsubmit', 'onclear', 'onchange'];
 
       const exposedEvents = [

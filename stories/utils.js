@@ -31,7 +31,7 @@ export const WrapWithHits = ({
   searchBox = true,
   hasPlayground = false,
   linkedStoryGroup,
-  pagination = true,
+  // pagination = true,
   appId,
   apiKey,
   indexName,
@@ -40,12 +40,7 @@ export const WrapWithHits = ({
   onSearchStateChange,
 }) => {
   const searchClient = useMemo(() => {
-    return cliniasearch(appId, apiKey, {
-      hosts: {
-        write: ['api.partner.staging.clinia.ca'],
-        read: ['api.partner.staging.clinia.ca'],
-      },
-    });
+    return cliniasearch(appId, apiKey);
   }, [appId, apiKey]);
 
   const sourceCodeUrl = `https://github.com/clinia/react-vision/tree/develop/stories/${linkedStoryGroup}.stories.js`;
@@ -135,8 +130,8 @@ WrapWithHits.propTypes = {
 };
 
 WrapWithHits.defaultProps = {
-  appId: 'TODO',
-  apiKey: 'AAW3nfvI79tj4LzECYZSEbDP7lqBpFd5',
+  appId: 'demo-pharmacies',
+  apiKey: 'KcLxBhVFP8ooPgQODlAxWqfNg657fTz9',
   indexName: 'health_facility',
   initialSearchState: {},
   onSearchStateChange: () => {},

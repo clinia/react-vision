@@ -26,9 +26,6 @@ class SearchSuggest extends React.Component {
 }
 
 export default compose(
-  connect(
-    null,
-    { setSearchBoxFocused, setQuery }
-  ),
+  connect(null, { setSearchBoxFocused, setQuery }),
   connectAutoComplete
 )(SearchSuggest);

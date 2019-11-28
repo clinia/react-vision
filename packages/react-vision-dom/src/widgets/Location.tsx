@@ -59,7 +59,7 @@ import AutoComplete from '../components/AutoComplete';
  */
 
 const Location = props => {
-  let locationSuggestions = props.suggestions.map(s => ({
+  const locationSuggestions = props.suggestions.map(s => ({
     suggestion: s.formattedAddress,
   }));
 

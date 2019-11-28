@@ -62,7 +62,7 @@ export default function createVisionManager({
     .on('result', handleSearchSuccess({ indexId: indexName }))
     .on('error', handleSearchError);
 
-  let locationClient = searchClient.initPlaces();
+  const locationClient = searchClient.initPlaces();
 
   let skip = false;
   let stalledSearchTimer: NodeJS.Timeout | null = null;

@@ -8,12 +8,10 @@ import { WrapWithHits } from './utils';
 
 const stories = storiesOf('AutoComplete', module);
 
-const searchClient = cliniasearch('TODO', 'AAW3nfvI79tj4LzECYZSEbDP7lqBpFd5', {
-  hosts: {
-    read: ['api.partner.staging.clinia.ca'],
-    write: ['api.partner.staging.clinia.ca'],
-  },
-});
+const searchClient = cliniasearch(
+  'demo-pharmacies',
+  'KcLxBhVFP8ooPgQODlAxWqfNg657fTz9'
+);
 
 stories
   .addParameters({ jest: ['AutoComplete'] })

@@ -29,9 +29,6 @@ class SearchSuggest extends React.Component {
 }
 
 export default compose(
-  connect(
-    null,
-    { setLocationBoxFocused, setLocation }
-  ),
+  connect(null, { setLocationBoxFocused, setLocation }),
   connectLocation
 )(SearchSuggest);

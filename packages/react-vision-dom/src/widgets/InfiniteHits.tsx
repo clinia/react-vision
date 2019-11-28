@@ -7,7 +7,7 @@ import InfiniteHits from '../components/InfiniteHits';
 
 /**
  * Displays an infinite list of hits along with a **load more** button.
- * @alias module:InfiniteHits 
+ * @alias module:InfiniteHits
  * @kind widget
  * @prop {string} className - Add a custom CSS class to the component.
  * @prop {Component} hitComponent - Component used for rendering each record from

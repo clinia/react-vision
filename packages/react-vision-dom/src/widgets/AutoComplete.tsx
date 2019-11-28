@@ -56,4 +56,4 @@ import AutoComplete from '../components/AutoComplete';
  *   </Vision>
  * );
  */
-export default connectAutoComplete(AutoComplete)
+export default connectAutoComplete(AutoComplete);

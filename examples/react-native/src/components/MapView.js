@@ -79,7 +79,4 @@ class Map extends React.Component {
   }
 }
 
-export default compose(
-  connectGeoSearch,
-  withNavigation
-)(Map);
+export default compose(connectGeoSearch, withNavigation)(Map);

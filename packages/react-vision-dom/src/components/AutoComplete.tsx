@@ -23,7 +23,7 @@ interface Props {
   className?: string;
   refine?: (value: string | null) => void;
   searchForSuggestions: (value: string) => void;
-  suggestions?: Array<Suggestion>;
+  suggestions?: Suggestion[];
   style?: React.CSSProperties;
   translate?: any;
 
@@ -53,7 +53,7 @@ interface Props {
 
 interface DefaultProps {
   currentRefinement: string;
-  suggestions: Array<Suggestion>;
+  suggestions: Suggestion[];
   className: string;
   searchForSuggestions: (value: string) => void;
   refine: (value: string | null) => void;
@@ -222,7 +222,7 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
     const { activeSuggestionIndex, showSuggestions } = this.state;
 
     if (showSuggestions) {
-      //Up arrow key
+      // Up arrow key
       if (event.keyCode === 38) {
         if (activeSuggestionIndex > 0) {
           this.moveActiveSuggestionUp();
@@ -234,7 +234,7 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
         event.preventDefault();
       }
 
-      //Down arrow key
+      // Down arrow key
       else if (event.keyCode === 40) {
         if (activeSuggestionIndex + 1 === suggestions.length) {
           this.moveActiveSuggestionToTheTop();
@@ -244,13 +244,13 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
         event.preventDefault();
       }
 
-      //Enter key
+      // Enter key
       else if (event.keyCode === 13) {
         if (activeSuggestionIndex === -1) this.search();
         else this.onSuggestionSelected(suggestions[activeSuggestionIndex]);
       }
 
-      //Esc Key
+      // Esc Key
       if (event.keyCode === 27) {
         event.preventDefault();
         this.setState({ showSuggestions: false });
@@ -373,7 +373,7 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
       activeSuggestionIndex: activeSuggestion,
     } = this.state;
 
-    //Events that cannot be completely overridden due to internal use
+    // Events that cannot be completely overridden due to internal use
     const internalEvents = [
       'onkeydown',
       'onsubmit',
@@ -435,7 +435,6 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
                         index === activeSuggestion,
                     })}
                     key={suggestion.suggestion}
-                    //TODO remove: Only for story purposes while the styles are not ready
                     style={
                       index === activeSuggestion
                         ? { backgroundColor: '#f5f5f8' }
