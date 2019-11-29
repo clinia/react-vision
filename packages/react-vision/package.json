@@ -36,8 +36,8 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.6.3",
-    "react-vision-core": "^1.0.0",
-    "react-vision-dom": "^1.0.0",
-    "react-vision-native": "^1.0.0"
+    "react-vision-core": "1.0.0",
+    "react-vision-dom": "1.0.0",
+    "react-vision-native": "1.0.0"
   }
 }
