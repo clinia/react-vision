@@ -2,9 +2,6 @@
   <img src=".github/clinia-logo.svg" width="250">
   <h1>React Vision</h1>
   <h4>React library that lets you create a health-care search experience using Clinia's search API.</h4>
-  <a href="https://www.npmjs.com/package/react-vision">
-    <img src="http://img.shields.io/npm/v/react-vision.svg" alt="View on npm">
-  </a>
   <p>
     <a href="#why">Why</a> •
     <a href="#features">Features</a> •
