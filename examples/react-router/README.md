@@ -16,10 +16,12 @@
 ## Clone the example
 
 ```bash
-curl https://codeload.github.com/clinia/react-vision/tar.gz/master | tar -xz --strip=2 react-vision-master/examples/react-router
+curl https://codeload.github.com/clinia/react-vision/tar.gz/develop | tar -xz --strip=2 react-vision-develop/examples/react-router
 ```
 
 ## Start the example
+
+You will need to provide your own Google Maps Api Key inside the `src/components/pages/Search.js` file.
 
 ```
 yarn install --no-lockfile
