@@ -48,11 +48,7 @@ jobs:
       - save_cache: *save_yarn_cache
       - run:
           name: Lint & Code styles
-          command: yarn lint --format junit --output-file ~/reports/eslint.xml
-      - store_test_results:
-          path: ~/reports
-      - store_artifacts:
-          path: ~/reports
+          command: yarn lint --format junit --output-file ~/reports/junit/js-lint-results.xml
       - run:
           name: Type checking
           command: yarn type-check
@@ -61,6 +57,10 @@ jobs:
           command: yarn test --ci --runInBand --reporters=default --reporters=jest-junit
           environment:
             JEST_JUNIT_OUTPUT_DIR: 'reports/junit/js-test-results.xml'
+      - store_test_results:
+          path: ~/reports
+      - store_artifacts:
+          path: ~/reports
 
   test_integration:
     <<: *defaults
