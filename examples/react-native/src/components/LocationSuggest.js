@@ -12,7 +12,7 @@ class SearchSuggest extends React.Component {
     const { refine } = this.props;
 
     refine(option.text);
-    this.props.setLocation(option.text);
+    this.props.setLocation({ text: option.text, coordinates: null });
 
     this.props.setLocationBoxFocused(false);
     Keyboard.dismiss();
@@ -29,6 +29,9 @@ class SearchSuggest extends React.Component {
 }
 
 export default compose(
-  connect(null, { setLocationBoxFocused, setLocation }),
+  connect(
+    null,
+    { setLocationBoxFocused, setLocation }
+  ),
   connectLocation
 )(SearchSuggest);

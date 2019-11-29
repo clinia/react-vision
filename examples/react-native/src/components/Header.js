@@ -14,7 +14,7 @@ class Header extends React.Component {
           highlightPostTag="</strong>"
           size={5}
         />
-        <LocationBox country="CA" size={5} />
+        <LocationBox country={['CA']} size={5} />
       </View>
     );
   }

@@ -27,11 +27,7 @@ const styles = StyleSheet.create({
 
 class Professionals extends React.Component {
   static navigationOptions = {
-    headerTitle: (
-      <Index indexName="professional">
-        <Header />
-      </Index>
-    ),
+    headerTitle: <Header />,
     headerStyle: {
       height: 80,
     },

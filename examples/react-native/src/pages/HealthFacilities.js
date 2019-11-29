@@ -30,11 +30,7 @@ const styles = StyleSheet.create({
 
 class HealthFacilities extends React.Component {
   static navigationOptions = {
-    headerTitle: (
-      <Index indexName="health_facility">
-        <Header />
-      </Index>
-    ),
+    headerTitle: <Header />,
     headerStyle: {
       height: 80,
     },
