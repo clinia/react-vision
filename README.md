@@ -15,6 +15,8 @@
   </p>
 </div>
 
+[![Version][version-svg]][package-url] [![Build Status][ci-svg]][ci-url] [![License][license-image]][license-url] [![Downloads][downloads-image]][downloads-url]
+
 # Why
 
 #### React Vision is the result of Clinia's effort to make its expertise more accessible to its partners. The Vision tools allow partners to create their own health-care search experience, for internal or external use, using Clinia's search API.
@@ -79,3 +81,14 @@ We welcome all contributors, from casual to regular. You are only one command aw
 # 📄 License
 
 React Vision is an open-sourced software licensed under the [MIT license](LICENSE).
+
+<!-- Links -->
+
+[ci-svg]: https://circleci.com/gh/clinia/react-vision.svg?style=svg
+[ci-url]: https://circleci.com/gh/clinia/react-vision
+[license-image]: http://img.shields.io/badge/license-MIT-green.svg?style=flat-square
+[license-url]: LICENSE
+[downloads-image]: https://img.shields.io/npm/dm/react-vision.svg?style=flat-square
+[downloads-url]: http://npm-stat.com/charts.html?package=react-vision
+[version-svg]: https://img.shields.io/npm/v/react-vision.svg?style=flat-square
+[package-url]: https://yarnpkg.com/en/package/react-vision
