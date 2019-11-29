@@ -81,7 +81,10 @@ class SearchBox extends React.Component {
 }
 
 export default compose(
-  connect(mapStateToProps, { setQuery, setSearchBoxFocused }),
+  connect(
+    mapStateToProps,
+    { setQuery, setSearchBoxFocused }
+  ),
   withNavigation,
   connectAutoComplete
 )(SearchBox);

@@ -27,7 +27,7 @@ export const OpeningHours = ({ openingHours, compact, style }) => {
 
     // Opened today in one intervals
     else if (todayOpeningHourIntervals.length === 1) {
-      var firstInterval = todayOpeningHourIntervals[0];
+      const firstInterval = todayOpeningHourIntervals[0];
 
       const startHour = moment(firstInterval.start, 'HH:mm');
       const endHour = moment(firstInterval.end, 'HH:mm');
@@ -38,7 +38,7 @@ export const OpeningHours = ({ openingHours, compact, style }) => {
             {!compact && <span className="dot" />}
             <span className="open">Open 24 hours today</span>
           </>
-        )
+        );
       } else if (now.isBefore(startHour)) {
         openingHoursText = (
           <>

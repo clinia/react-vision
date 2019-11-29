@@ -159,7 +159,10 @@ class LocationBox extends React.Component {
 }
 
 export default compose(
-  connect(mapStateToProps, { setLocationBoxFocused, setLocation }),
+  connect(
+    mapStateToProps,
+    { setLocationBoxFocused, setLocation }
+  ),
   withNavigation,
   connectLocation
 )(LocationBox);

@@ -74,6 +74,7 @@ export default connectHits(({ records, selectedRecord, onRecordOver }) => (
       records.map(record => {
         return (
           <Hit
+            key={record.id}
             record={record}
             selectedRecord={selectedRecord}
             onRecordOver={onRecordOver}
