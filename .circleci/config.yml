@@ -49,6 +49,10 @@ jobs:
       - run:
           name: Lint & Code styles
           command: yarn lint --format junit --output-file ~/reports/eslint.xml
+      - store_test_results:
+          path: ~/reports
+      - store_artifacts:
+          path: ~/reports
       - run:
           name: Type checking
           command: yarn type-check
