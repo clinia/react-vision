@@ -1,4 +1,4 @@
-export const phoneFormatter = (phone: string) => {
+export const phoneFormatter = phone => {
   if (!phone) return phone;
   // Only numbers
   const newValue = phone.replace(/\D/g, '');
@@ -18,6 +18,6 @@ export const phoneFormatter = (phone: string) => {
   return formattedValue;
 };
 
-export const escapeRegExp = (text: string) => {
+export const escapeRegExp = text => {
   return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
 };
