@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import * as ReactDOMServer from 'react-dom/server';
 import { GeoSearch, CustomMarker, Control } from 'react-vision-dom-maps';
-import { OpeningHours } from '../components/OpeningHours';
+import { OpeningHours } from './OpeningHours';
 import classnames from 'classnames';
 import mapStyles from '../static/mapStyle.json';
 
@@ -59,7 +59,7 @@ const Tooltip = ({ record }) => {
   );
 };
 
-export default function ExampleGeoSearch({ google, selectedRecord }) {
+export default function Map({ google, selectedRecord }) {
   const InfoWindow = new google.maps.InfoWindow({ width: 300 });
 
   const onClickMarker = (record, marker) => {
@@ -67,7 +67,7 @@ export default function ExampleGeoSearch({ google, selectedRecord }) {
       InfoWindow.close();
     }
 
-    let html = ReactDOMServer.renderToString(<Tooltip record={record} />);
+    const html = ReactDOMServer.renderToString(<Tooltip record={record} />);
 
     InfoWindow.setContent(html);
 

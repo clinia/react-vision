@@ -1,93 +1,68 @@
-import React from 'react';
-import Example from './examples/Example';
-import { Vision, AutoComplete, Location } from 'react-vision-dom';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  useHistory,
-} from 'react-router-dom';
-import logo from './static/images/logo.svg';
-import searchClient from './searchClientExample';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import qs from 'qs';
+import { HomePage, SearchPage } from './pages';
+import { Vision } from 'react-vision-dom';
+import cliniasearch from 'cliniasearch/lite';
 import './App.css';
 
-const exampleRoute = '/example';
+const searchClient = cliniasearch(
+  'demo-pharmacies',
+  'KcLxBhVFP8ooPgQODlAxWqfNg657fTz9'
+);
 
-const Home = () => {
-  let history = useHistory();
-  let autoCompleteInputRef;
-  let locationInputRef;
+const updateAfter = 700;
 
-  const onSubmit = event => {
-    event.preventDefault();
-    goToExamplePage();
+const createURL = state => `?${qs.stringify(state)}`;
+
+const searchStateToUrl = (props, searchState) =>
+  searchState ? `${props.location.pathname}${createURL(searchState)}` : '';
+const urlToSearchState = location => qs.parse(location.search.slice(1));
+
+class App extends Component {
+  state = {
+    searchState: urlToSearchState(this.props.location),
   };
 
-  const goToExamplePage = () => {
-    let queryParams = '';
-
-    if (autoCompleteInputRef.value) {
-      queryParams += `speciality=${autoCompleteInputRef.value}`;
+  componentDidUpdate(prevProps) {
+    if (prevProps.location !== this.props.location) {
+      this.setState({ searchState: urlToSearchState(this.props.location) });
     }
+  }
 
-    if (locationInputRef.value) {
-      queryParams += `&location=${locationInputRef.value}`;
-    }
+  onSearchStateChange = searchState => {
+    clearTimeout(this.debouncedSetState);
 
-    history.push(`${exampleRoute}?${queryParams}`);
+    this.debouncedSetState = setTimeout(() => {
+      this.props.history.push(
+        searchStateToUrl(this.props, searchState),
+        searchState
+      );
+    }, updateAfter);
+
+    this.setState({ searchState });
   };
 
-  return (
-    <div className="home">
-      <div className="home-bg" />
-      <div className="home-header">
-        <img src={logo} alt="logo" />
-      </div>
-      <div className="home-container">
-        <h1>
-          Find a <br /> ressource
-        </h1>
-        <h3>Find and book a trusted professional now</h3>
-        <div className="search">
-          <Vision searchClient={searchClient} indexName="health_facility">
-            <div className="example-autoComplete">
-              <div className="autocomplete-label">What</div>
-              <AutoComplete
-                __inputRef={ref => (autoCompleteInputRef = ref)}
-                submit={null}
-                clear={null}
-              />
-            </div>
-            <div className="example-location">
-              <div className="autocomplete-label">Where</div>
-              <Location
-                __inputRef={ref => (locationInputRef = ref)}
-                onSubmit={onSubmit}
-                types={['postcode', 'place', 'neighborhood']}
-                country={['CA']}
-                locale="en"
-              />
-            </div>
-          </Vision>
-        </div>
-      </div>
-    </div>
-  );
-};
+  render() {
+    return (
+      <Vision
+        searchClient={searchClient}
+        indexName="health_facility"
+        searchState={this.state.searchState}
+        onSearchStateChange={this.onSearchStateChange}
+        createURL={createURL}
+      >
+        <SearchPage />
+      </Vision>
+    );
+  }
+}
 
-const App = () => {
-  return (
-    <Router>
-      <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route path={exampleRoute}>
-          <Example />
-        </Route>
-      </Switch>
-    </Router>
-  );
+App.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }),
+  location: PropTypes.object.isRequired,
 };
 
 export default App;

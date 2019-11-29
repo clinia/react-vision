@@ -3,7 +3,7 @@ import React from 'react';
 import { OpeningHours } from './OpeningHours';
 import { connectHits } from 'react-vision-dom';
 
-const ExampleHit = ({ record, onRecordOver }) => {
+const Hit = ({ record, onRecordOver }) => {
   const {
     type,
     address: { streetAddress, place, regionCode },
@@ -55,7 +55,7 @@ const ExampleHit = ({ record, onRecordOver }) => {
   );
 };
 
-export const ExampleNotFoundComponent = () => (
+export const NotFound = () => (
   <div className="notFound">
     <img src={notFound} alt="Content not found" />
     <div>
@@ -73,7 +73,7 @@ export default connectHits(({ records, selectedRecord, onRecordOver }) => (
     {Array.isArray(records) && records.length > 0 ? (
       records.map(record => {
         return (
-          <ExampleHit
+          <Hit
             record={record}
             selectedRecord={selectedRecord}
             onRecordOver={onRecordOver}
@@ -81,7 +81,7 @@ export default connectHits(({ records, selectedRecord, onRecordOver }) => (
         );
       })
     ) : (
-      <ExampleNotFoundComponent />
+      <NotFound />
     )}
   </div>
 ));

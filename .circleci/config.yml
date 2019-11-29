@@ -104,4 +104,4 @@ workflows:
       - test_unit
       - test_integration
       # - test_e2e
-      - test_examples
+      # - test_examples
