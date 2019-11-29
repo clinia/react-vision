@@ -23,11 +23,6 @@ module.exports = ({ config }) => ({
         test: /\.css$/,
         use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
       },
-      {
-        test: /\.stories\.jsx?$/,
-        loaders: [require.resolve('@storybook/source-loader')],
-        enforce: 'pre',
-      },
     ],
   },
 });
