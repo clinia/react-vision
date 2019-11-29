@@ -12,7 +12,12 @@ const defaultState = {
   query: undefined,
   // Keeps track of the user input on each LocationBox `onChange` event.
   // Allows sharing of the user input on all active LocationBox components, event if the user doesn't trigger a search.
-  location: undefined,
+  location: {
+    // Location text
+    text: undefined,
+    // Location coordinates. Used if the user toggles the current locations button.
+    coordinates: undefined,
+  },
   // Keeps track of the SearchBox state.
   searchBoxFocused: false,
   // Keeps track of the LocationBox state.
@@ -29,7 +34,9 @@ function reducers(state = defaultState, action) {
     case SET_LOCATION:
       return {
         ...state,
-        location: action.payload.location,
+        location: {
+          ...action.payload.location,
+        },
       };
     case SET_SEARCHBOX_FOCUSED:
       return {

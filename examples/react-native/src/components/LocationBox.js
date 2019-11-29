@@ -60,13 +60,15 @@ class LocationBox extends React.Component {
     });
 
     this.subs = [
-      this.props.navigation.addListener('didBlur', () => {
+      this.props.navigation.addListener('willBlur', () => {
         const { refine } = this.props;
         refine();
       }),
-      this.props.navigation.addListener('didFocus', () => {
+      this.props.navigation.addListener('willFocus', () => {
         const { refine, location } = this.props;
-        refine(location);
+        if (location) {
+          refine(location.coordinates ? location.coordinates : location.text);
+        }
       }),
     ];
   }
@@ -77,8 +79,11 @@ class LocationBox extends React.Component {
 
   onFocus = () => {
     const { location } = this.props;
-    if (location === CURRENT_LOCATION) {
-      this.props.setLocation(null);
+    if (location.text === CURRENT_LOCATION) {
+      this.props.setLocation({
+        text: null,
+        coordinates: null,
+      });
     }
     this.toggleSearch(true);
   };
@@ -86,13 +91,16 @@ class LocationBox extends React.Component {
   onTextChange = text => {
     const { searchForLocations } = this.props;
     searchForLocations(text);
-    this.props.setLocation(text);
+    this.props.setLocation({
+      text,
+      coordinates: null,
+    });
   };
 
   onPress = () => {
     const { location, refine } = this.props;
 
-    refine(location);
+    refine(location.text);
 
     this.input.blur();
     this.toggleSearch(false);
@@ -103,11 +111,16 @@ class LocationBox extends React.Component {
 
     if (status === 'granted') {
       const currentLocation = await Location.getCurrentPositionAsync();
-      this.props.refine({
+      const coordinates = {
         lat: currentLocation.coords.latitude,
         lng: currentLocation.coords.longitude,
+      };
+
+      this.props.refine(coordinates);
+      this.props.setLocation({
+        text: CURRENT_LOCATION,
+        coordinates,
       });
-      this.props.setLocation(CURRENT_LOCATION);
     } else {
       this.setState({ enableLocation: false });
     }
@@ -124,7 +137,7 @@ class LocationBox extends React.Component {
     return (
       <View style={styles.container}>
         <TextInput
-          value={location}
+          value={location.text}
           style={styles.input}
           placeholder="Location"
           placeholderColor={Color.placeholder}
