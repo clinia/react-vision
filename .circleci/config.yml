@@ -58,9 +58,9 @@ jobs:
           environment:
             JEST_JUNIT_OUTPUT_DIR: 'reports/junit/js-test-results.xml'
       - store_test_results:
-          path: ~/reports
+          path: ~/reports/junit
       - store_artifacts:
-          path: ~/reports
+          path: ~/reports/junit
 
   test_integration:
     <<: *defaults
