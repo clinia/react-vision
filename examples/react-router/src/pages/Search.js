@@ -7,7 +7,7 @@ import { GoogleMapsLoader } from 'react-vision-dom-maps';
 import Map from '../components/Map';
 import Hits from '../components/Hits';
 
-const apiKey = 'AIzaSyCinD8RBonNR0YccJKv6sHvT2_BGQiP2pw';
+const apiKey = 'GOOGLE_API_KEY';
 const endpoint = 'https://maps.googleapis.com/maps/api/js?v=weekly';
 
 const Example = ({ location, history }) => {

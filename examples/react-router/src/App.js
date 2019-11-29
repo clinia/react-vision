@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import qs from 'qs';
-import { HomePage, SearchPage } from './pages';
+import { SearchPage } from './pages';
 import { Vision } from 'react-vision-dom';
 import cliniasearch from 'cliniasearch/lite';
 import './App.css';

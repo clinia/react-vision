@@ -17,6 +17,7 @@ addParameters({
 addDecorator(withKnobs);
 addDecorator(withA11y);
 
+// @ts-ignore
 const req = require.context('../stories', true, /\.stories\.(js|ts|tsx)$/);
 
 function loadStories() {

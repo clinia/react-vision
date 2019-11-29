@@ -10,10 +10,7 @@ describe('connectHitsPerPage', () => {
   describe('single index', () => {
     const contextValue = { mainTargetedIndex: 'index' };
 
-    const items = [
-      { label: '10', value: 10 },
-      { label: '20', value: 20 },
-    ];
+    const items = [{ label: '10', value: 10 }, { label: '20', value: 20 }];
 
     it('provides the correct props to the component', () => {
       props = connect.getProvidedProps(
