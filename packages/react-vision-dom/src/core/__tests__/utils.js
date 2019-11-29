@@ -117,15 +117,6 @@ describe('utils', () => {
     });
   });
 
-  describe('escapeRegExp', () => {
-    test('escapes regExp chars', () => {
-      expect(() => new RegExp('-[]{}()*+?.,^$|#s')).toThrow(); // eslint-disable-line no-invalid-regexp
-      expect(
-        () => new RegExp(utils.escapeRegExp('-[]{}()*+?.,^$|#s'))
-      ).not.toThrow();
-    });
-  });
-
   describe('extractInputEventsFromProps', () => {
     it('should return all events except the internal ones', () => {
       // Internal events defined inside the 'extractInputEventsFromProps'
