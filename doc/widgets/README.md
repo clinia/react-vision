@@ -1,12 +1,12 @@
 <div align="center">
-  <img src="../../clinia-logo.svg" width="250">
+  <img src="../../.github/clinia-logo.svg" width="250">
   <h1>React Vision Widgets</h1>
   <h4>Widgets provide bare UI components to ease the integration Clinia's API suite inside a provider's application.</h4>
   <h4>This documentation is generated using <a href="https://github.com/jsdoc/jsdoc">JSDoc</a></h4>
 </div>
 
 ## Overview
-All properties in the different modules are either optional or are provided with a default value. For further examples on how to use the different widgets, refer to the [example](https://github.com/clinia/react-vision/tree/master/examples/default).
+All properties in the different modules are either optional or are provided with a default value. For further examples on how to use the different widgets, refer to the [example](./examples/react-router).
 
 ## Modules
 

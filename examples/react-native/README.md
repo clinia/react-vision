@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="../../clinia-logo.svg" width="250">
+  <img src="../../.github/clinia-logo.svg" width="250">
   <h1>React-native example</h1>
   <h4>Example showcasing how the React Vision library can be used to power a react-native application</h4>
   <p>

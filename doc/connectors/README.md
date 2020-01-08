@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="../../clinia-logo.svg" width="250">
+  <img src="../../.github/clinia-logo.svg" width="250">
   <h1>React Vision Connectors</h1>
   <h4>Connectors are React hooks allowing the partner to connect its own components with Clinia's search logic.</h4>
   <a href="#features">Features</a> •
@@ -11,7 +11,7 @@
 # Features
 
 - Facilitates the interactions between custom React components and Clinia's client.
-- Gives acces to properties and functions as React hooks.
+- Gives access to properties and functions as React hooks.
 
 # Getting Started
 
