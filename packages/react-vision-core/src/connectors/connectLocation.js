@@ -90,7 +90,7 @@ export default createConnector({
     types: PropTypes.arrayOf(PropTypes.string),
     country: PropTypes.arrayOf(PropTypes.string),
     locale: PropTypes.string,
-    limit: PropTypes.number,
+    size: PropTypes.number,
   },
 
   // eslint-disable-next-line max-params
@@ -162,15 +162,9 @@ export default createConnector({
       query: nextRefinment,
     };
 
-    if (props.country) {
-      if (Array.isArray(props.country)) {
-        // Filters empty values and joins them into a valid query param value format
-        params.country = props.country.filter(c => c).join(',');
-      } else {
-        params.country = props.country;
-      }
-    }
-    if (props.size) params.limit = props.size;
+    if (props.types) params.types = props.types;
+    if (props.country) params.country = props.country;
+    if (props.size) params.size = props.size;
     if (props.locale) params.locale = props.locale;
 
     return params;

@@ -384,11 +384,11 @@ Provide a default value for the query.
 <br/>
 
 ### `country`
-ISO 3166 country code representing the country to which you want to limit the suggestions. (e.g. 'CA', 'US')
+ISO 3166 country codes representing the countries to which you want to limit the suggestions. (e.g. 'CA', 'US')
 
 | Type | Default |
 |------|---------|
-| _string_ | `undefined` |
+| _string[]_ | `undefined` |
 <br/>
 
 ### `size`
@@ -400,11 +400,19 @@ Maximum number of suggestions to return.
 <br/>
 
 ### `locale`
-Preferred locale in which to receive the location suggestions. Suggestions may still be in a different locale depending on the targeted country, region, etc.
+ISO639-1 language code (e.g. 'en', 'fr'). Preferred locale in which to receive the location suggestions. Suggestions may still be in a different locale depending on the targeted country, region, etc.
 
 | Type | Default |
 |------|---------|
 | _string_ | `undefined` |
+<br/>
+
+### `types`
+Types of suggestions to receive. Valid values are `country`, `region`, `postcode`, `district`, `place`, `locality`, `neighborhood`, `poi`, `route`.
+
+| Type | Default |
+|------|---------|
+| _string[]_ | `['postcode', 'place', 'neighborhood']` |
 <br/>
 
 ---
