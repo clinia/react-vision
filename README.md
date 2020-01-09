@@ -12,7 +12,11 @@
   </p>
 </div>
 
+<div align="center">
+
 [![Version][version-svg]][package-url] [![Build Status][ci-svg]][ci-url] [![License][license-image]][license-url] [![Downloads][downloads-image]][downloads-url]
+
+</div>
 
 # Why
 

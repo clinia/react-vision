@@ -53,7 +53,7 @@ function isControlled(props: Props) {
 
 /**
  * `Vision` is the root component of all React Vision implementations.
- * It provides all the connected components (aka widgets) a means to interact
+ * It provides all the connected components (aka widgets) a mean to interact
  * with the searchState.
  * @alias module:Vision
  * @kind widget
