@@ -127,7 +127,7 @@ export const IndexComponentWithoutContext = Index;
 
 /**
  * The component that allows you to apply widgets to a dedicated index. It's
- * useful if you want to build an interface that targets multiple indices.
+ * useful if you want to build an interface that targets multiple indexes.
  * @alias module:Index
  * @kind widget
  * @prop {string} indexName - The name of the targeted index. Value is either `health_facility` or `professional`.
@@ -144,7 +144,7 @@ export const IndexComponentWithoutContext = Index;
  * const App = () => (
  *   <Vision searchClient={searchClient} indexName="health_facility">
  *     <Configure perPage={5} />
- *     <SearcbBox />
+ *     <SearchBox />
  *     <Index indexName="health_facility">
  *       <Hits />
  *     </Index>

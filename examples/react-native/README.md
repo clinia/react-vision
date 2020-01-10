@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="../../clinia-logo.svg" width="250">
+  <img src="../../.github/clinia-logo.svg" width="250">
   <h1>React-native example</h1>
   <h4>Example showcasing how the React Vision library can be used to power a react-native application</h4>
   <p>
@@ -43,7 +43,7 @@ yarn start --web
 ```
 
 # More Details
-This examples uses `redux` and `react-navigation`, but be aware that neither of those libraries are necessary to build your application using Clinia Vision. In this particular example, `react-navigation` is used to add a tabs functionnality and give a more realistic mobile app experience. Following this thought, `redux` is used to share the changes made inside one tab to the others. Other approaches could have been used and this is in no way a mandatory template to follow when building your own app.
+This examples uses `redux` and `react-navigation`, but be aware that neither of those libraries are necessary to build your application using React Vision. In this particular example, `react-navigation` is used to add tabs functionnalities and give a more realistic mobile app experience. Following this thought, `redux` is used to share the changes made inside one tab to the others. Other approaches could have been used and this is in no way a mandatory template to follow when building your own app.
 
 # Credits
 <div> Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> :</div> 

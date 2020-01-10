@@ -1,7 +1,7 @@
 <div align="center">
   <img src=".github/clinia-logo.svg" width="250">
   <h1>React Vision</h1>
-  <h4>React library that lets you create a health-care search experience using Clinia's search API.</h4>
+  <h4>React library that lets you create a healthcare search experience using Clinia's search API.</h4>
   <p>
     <a href="#why">Why</a> •
     <a href="#features">Features</a> •
@@ -12,11 +12,15 @@
   </p>
 </div>
 
+<div align="center">
+
 [![Version][version-svg]][package-url] [![Build Status][ci-svg]][ci-url] [![License][license-image]][license-url] [![Downloads][downloads-image]][downloads-url]
+
+</div>
 
 # Why
 
-#### React Vision is the result of Clinia's effort to make its expertise more accessible to its partners. The Vision tools allow partners to create their own health-care search experience, for internal or external use, using Clinia's search API.
+#### React Vision is the result of Clinia's effort to make its expertise more accessible to its partners. The Vision tools allow partners to create their own healthcare search experience, for internal or external use, using Clinia's search API.
 
 # Features
 
@@ -37,9 +41,9 @@ yarn add react-vision-dom cliniasearch
 
 # Examples
 
-## React example ([README](./examples/default))
+## React example ([README](./examples/react-router))
 
-Inside the **[React example](./examples/default)** folder:
+Inside the **[React example](./examples/react-router)** folder:
 
 ```
 yarn install

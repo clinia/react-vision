@@ -1,12 +1,12 @@
 <div align="center">
-  <img src="../../clinia-logo.svg" width="250">
+  <img src="../../.github/clinia-logo.svg" width="250">
   <h1>React Vision Widgets</h1>
   <h4>Widgets provide bare UI components to ease the integration Clinia's API suite inside a provider's application.</h4>
   <h4>This documentation is generated using <a href="https://github.com/jsdoc/jsdoc">JSDoc</a></h4>
 </div>
 
 ## Overview
-All properties in the different modules are either optional or are provided with a default value. For further examples on how to use the different widgets, refer to the [example](https://github.com/clinia/react-vision/tree/master/examples/default).
+All properties in the different modules are either optional or are provided with a default value. For further examples on how to use the different widgets, refer to the [example](./examples/react-router).
 
 ## Modules
 
@@ -97,7 +97,7 @@ const App = () => (
 <a name="exp_module_Index--exports.IndexComponentWithoutContext"></a>
 
 <p>The component that allows you to apply widgets to a dedicated index. It's
-useful if you want to build an interface that targets multiple indices.</p>
+useful if you want to build an interface that targets multiple indexes.</p>
 
 **Kind**: Exported widget  
 **Properties**
@@ -120,7 +120,7 @@ const searchClient = cliniasearch(
 const App = () => (
   <Vision searchClient={searchClient} indexName="health_facility">
     <Configure perPage={5} />
-    <SearcbBox />
+    <SearchBox />
     <Index indexName="health_facility">
       <Hits />
     </Index>
@@ -136,7 +136,7 @@ const App = () => (
 <a name="exp_module_Vision--Vision"></a>
 
 <p><code>Vision</code> is the root component of all React Vision implementations.
-It provides all the connected components (aka widgets) a means to interact
+It provides all the connected components (aka widgets) a mean to interact
 with the searchState.</p>
 
 **Kind**: Exported widget  
