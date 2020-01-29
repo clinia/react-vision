@@ -55,7 +55,7 @@ type State = {
   query: string | null;
 };
 
-const cx = createClassNames('SearchBox');
+const cx = createClassNames('searchbox');
 
 class SearchBox extends Component<PropsWithDefaults, State> {
   input!: HTMLInputElement;

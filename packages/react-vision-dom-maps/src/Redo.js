@@ -4,7 +4,7 @@ import { createClassNames, translatable } from 'react-vision-dom';
 import GeoSearchContext from './GeoSearchContext';
 import withGoogleMaps from './withGoogleMaps';
 
-const cx = createClassNames('GeoSearch');
+const cx = createClassNames('geosearch');
 const RedoPropTypes = {
   googleMapsInstance: PropTypes.object.isRequired,
   translate: PropTypes.func.isRequired,

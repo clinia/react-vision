@@ -5,7 +5,7 @@ import { translatable } from 'react-vision-core';
 import { createClassNames } from '../core/utils';
 import { Translate } from 'react-vision-core/src';
 
-const cx = createClassNames('InfiniteHits');
+const cx = createClassNames('infinitehits');
 
 interface Props {
   className?: string;
