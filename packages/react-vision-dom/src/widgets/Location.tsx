@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connectLocation } from 'react-vision-core';
 import AutoComplete from '../components/AutoComplete';
+import ExecutionEnvironment from 'exenv';
 
 /**
  * @module Location
@@ -14,9 +15,12 @@ import AutoComplete from '../components/AutoComplete';
  * @prop {boolean} autoFocus=false - Set autoFocus to the autocomplete input
  * @prop {string} className - Add a custom CSS class to the Location form container
  * @prop {node} clear - Change the apparence of the default reset button (cross).
+ * @prop {boolean} hideClear - hide clear button
  * @prop {string} clearTitle - The reset button title
  * @prop {string} country - Filter the suggestion to the given country codes. (The countries values must be formatted according to the ISO 3166, e.g. "CA").
  * @prop {string} defaultRefinement - Provide default refinement value when component is mounted.
+ * @prop {boolean} enableUserLocation - Append to suggestions user location. If this option is enabled, a new suggestion with { type: 'user' } can be handled in `renderSuggestion`
+ * @prop {function} onUserPositionError - Execute when an error occur while fetching user position
  * @prop {number} limit=5 - Define the limit number for the presented suggestions.
  * @prop {node} loadingIndicator - Change the apparence of the default loading indicator (spinning circle).
  * @prop {string} locale=en - Define the language for the presented suggestions (The locale value must be formatted according to the ISO 639, e.g. 'en').
@@ -24,7 +28,7 @@ import AutoComplete from '../components/AutoComplete';
  * @prop {function} onSubmit - Intercept submit event sent from the Location form container.
  * @prop {function} onSuggestionSelected - Executes every time that a suggestion is selected.
  * @prop {function} on* - Listen to any events sent from the search input itself.
- * @prop {object} translations - translations for: { placeholder, searchTitle, clearTitle}
+ * @prop {object} translations - translations for: { placeholder, searchTitle, clearTitle, userPosition }
  * @prop {function} renderSuggestion - Define how suggestions will be rendered.
  * @prop {string} searchTitle - The submit button title
  * @prop {boolean} showLoadingIndicator=false - Display that the search is loading. This only happens after a certain amount of time to avoid a blinking effect. This timer can be configured with `stalledSearchDelay` props on <InstantSearch>. By default, the value is 200ms.
@@ -60,10 +64,22 @@ import AutoComplete from '../components/AutoComplete';
  */
 
 const Location = props => {
-  const locationSuggestions = props.suggestions.map(s => ({
+  let locationSuggestions = props.suggestions.map(s => ({
     ...s, // expose all suggestion properties
     suggestion: s.formattedAddress,
   }));
+
+  if (
+    ExecutionEnvironment.canUseDOM &&
+    props.enableUserLocation &&
+    navigator &&
+    navigator.geolocation
+  ) {
+    locationSuggestions = [
+      { type: 'user', suggestion: 'user-position' },
+      ...locationSuggestions,
+    ];
+  }
 
   return (
     <AutoComplete
@@ -78,6 +94,7 @@ const Location = props => {
 Location.propTypes = {
   suggestions: PropTypes.arrayOf(PropTypes.object.isRequired),
   searchForLocations: PropTypes.func,
+  enableUserLocation: PropTypes.bool,
 };
 
 export default connectLocation(Location);

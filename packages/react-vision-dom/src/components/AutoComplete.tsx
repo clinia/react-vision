@@ -15,13 +15,14 @@ import { translatable } from 'react-vision-core';
 
 type Suggestion = {
   id: string;
+  type: string;
   suggestion: string;
 };
 
 interface Props {
   currentRefinement?: string;
   className?: string;
-  refine?: (value: string | null) => void;
+  refine?: (value: string | { lat: number; lng: number } | null) => void;
   searchForSuggestions: (value: string) => void;
   suggestions?: Suggestion[];
   style?: React.CSSProperties;
@@ -29,6 +30,7 @@ interface Props {
 
   loadingIndicator?: React.ReactNode;
   clear?: React.ReactNode;
+  hideClear?: boolean;
   submit?: React.ReactNode;
   renderSuggestion?: (suggestion: Suggestion) => React.ReactNode;
 
@@ -42,6 +44,7 @@ interface Props {
   onFocus(event: React.FocusEvent<HTMLInputElement>);
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
+  onUserPositionError?: () => void;
 
   isSearchStalled: boolean;
   showLoadingIndicator?: boolean;
@@ -74,6 +77,7 @@ type State = {
   queryCache: string;
   showSuggestions: boolean;
   activeSuggestionIndex: number;
+  userPosition: { lat: number; lng: number } | null;
 };
 
 class AutoComplete extends Component<PropsWithDefaults, State> {
@@ -132,6 +136,7 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
       queryCache: initialValue,
       showSuggestions: false,
       activeSuggestionIndex: -1,
+      userPosition: null,
     };
 
     // We bind functions for test purposes instead of using arrow functions
@@ -150,7 +155,7 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
 
   onBlur(event: React.FocusEvent<HTMLInputElement>) {
     const { onBlur, searchForSuggestions } = this.props;
-    const { query } = this.state;
+    const { query, userPosition } = this.state;
 
     this.setState({
       showSuggestions: false,
@@ -158,7 +163,11 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
       queryCache: query,
     });
 
-    searchForSuggestions(query);
+    if (userPosition) {
+      // user position already searched (on selected)
+    } else if (query) {
+      searchForSuggestions(query);
+    }
 
     if (onBlur) {
       onBlur(event);
@@ -212,8 +221,15 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
   };
 
   getSuggestionNameByIndex = (index: number) => {
+    const { translate } = this.props;
+
     if (index >= 0 && this.props.suggestions[index]) {
-      return this.props.suggestions[index].suggestion;
+      const suggestion = this.props.suggestions[index];
+      if (suggestion.type === 'user') {
+        return translate('userPosition');
+      } else {
+        return this.props.suggestions[index].suggestion;
+      }
     } else return '';
   };
 
@@ -264,25 +280,67 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
 
   onSuggestionSelected(suggestion: Suggestion) {
     const {
+      translate,
       onSuggestionSelected,
       triggerSubmitOnSuggestionSelected,
+      onUserPositionError,
     } = this.props;
 
-    const query = suggestion.suggestion;
+    const { type, suggestion: value } = suggestion;
 
-    this.setState(
-      {
-        query,
-        queryCache: query,
-        activeSuggestionIndex: -1,
-      },
-      () => {
-        this.search();
-        if (triggerSubmitOnSuggestionSelected) {
-          this.formRef.dispatchEvent(new Event('submit'));
+    if (type === 'user') {
+      // try to get user position
+      try {
+        navigator.geolocation.getCurrentPosition(
+          position => {
+            const {
+              coords: { latitude, longitude },
+            } = position;
+
+            this.setState(
+              {
+                query: translate('userPosition'),
+                queryCache: translate('userPosition'),
+                activeSuggestionIndex: -1,
+                userPosition: { lat: latitude, lng: longitude },
+              },
+              () => {
+                this.search();
+                if (triggerSubmitOnSuggestionSelected) {
+                  this.formRef.dispatchEvent(new Event('submit'));
+                }
+              }
+            );
+          },
+          () => {
+            // Error while fetching user position
+            if (onUserPositionError) {
+              onUserPositionError();
+            }
+          }
+        );
+      } catch (e) {
+        // Exception while fetching user position
+        if (onUserPositionError) {
+          onUserPositionError();
         }
       }
-    );
+    } else {
+      this.setState(
+        {
+          query: value,
+          queryCache: value,
+          activeSuggestionIndex: -1,
+          userPosition: null,
+        },
+        () => {
+          this.search();
+          if (triggerSubmitOnSuggestionSelected) {
+            this.formRef.dispatchEvent(new Event('submit'));
+          }
+        }
+      );
+    }
 
     if (onSuggestionSelected) {
       onSuggestionSelected(suggestion);
@@ -290,22 +348,33 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
   }
 
   search() {
-    const { query } = this.state;
-    const { refine, searchForSuggestions } = this.props;
+    const { query, userPosition } = this.state;
+    const { refine } = this.props;
 
-    refine(query);
-    searchForSuggestions(query);
+    if (userPosition) {
+      refine({ ...userPosition });
+    } else if (query) {
+      refine(query);
+    }
   }
 
   onChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { searchForSuggestions, onChange } = this.props;
-    const query = event.target.value;
+    let { userPosition } = this.state;
+    let query = event.target.value;
+
+    // If user position was selected besore, clear it to start the search anew
+    if (userPosition) {
+      query = '';
+      userPosition = null;
+    }
 
     this.setState({
       query,
       queryCache: query,
       activeSuggestionIndex: -1,
       showSuggestions: true,
+      userPosition,
     });
 
     if (query) {
@@ -323,7 +392,6 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
     event.preventDefault();
     event.stopPropagation();
     this.input.blur();
-
     this.search();
   }
 
@@ -335,6 +403,7 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
       queryCache: '',
       activeSuggestionIndex: -1,
       showSuggestions: false,
+      userPosition: null,
     });
     refine('');
 
@@ -345,6 +414,12 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
 
   renderSuggestion = suggestion => {
     const { query } = this.state;
+
+    // Render user suggestion (Location only)
+    if (suggestion.type === 'user') {
+      const { translate } = this.props;
+      return <div>{translate('userPosition')}</div>;
+    }
 
     const highlightedSuggestion = suggestion.suggestion.replace(
       new RegExp(escapeRegExp(query), 'gi'),
@@ -372,6 +447,7 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
       isSearchStalled,
       submit,
       clear,
+      hideClear,
       loadingIndicator,
       autoFocus,
       disabled,
@@ -475,7 +551,7 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
             className={this.cx('clear')}
             hidden={!query || isSearchStalled}
           >
-            {clear || defaultClear(this.cx)}
+            {!hideClear ? clear || defaultClear(this.cx) : null}
           </button>
           {showLoadingIndicator && (
             <span
@@ -495,4 +571,5 @@ export default translatable({
   placeholder: 'Search',
   searchTitle: 'Search',
   clearTitle: 'Clear',
+  userPosition: 'Current position',
 })(AutoComplete);

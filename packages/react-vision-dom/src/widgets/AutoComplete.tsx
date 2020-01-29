@@ -12,6 +12,7 @@ import AutoComplete from '../components/AutoComplete';
  * @prop {boolean} autoFocus=false - Set autoFocus to the autocomplete input.
  * @prop {string} className - Add a custom CSS class to the AutoComplete form container.
  * @prop {node} clear - Change the apparence of the default reset button (cross).
+ * @prop {boolean} hideClear - hide clear button
  * @prop {string} clearTitle - The reset button title.
  * @prop {string} defaultRefinement - Provide default refinement value when component is mounted.
  * @prop {string} highlightPostTag - The post tag that will highlight the matched part of the query in each suggestion. Usually a html tag like `</strong>`.

@@ -188,10 +188,13 @@ export default createConnector({
       return searchParameters;
     }
 
-    return searchParameters.setQueryParameter(
-      'insideBoundingBox',
-      currentRefinementToString(currentRefinement)
-    );
+    return searchParameters
+      .setQueryParameter('aroundLatLng')
+      .setQueryParameter('location')
+      .setQueryParameter(
+        'insideBoundingBox',
+        currentRefinementToString(currentRefinement)
+      );
   },
 
   cleanUp(props, searchState) {

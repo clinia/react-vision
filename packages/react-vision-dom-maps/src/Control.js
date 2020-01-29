@@ -19,7 +19,8 @@ const ControlPropTypes = {
  * @alias module:Control
  * @kind widget
  * @themekey cvi-geosearch-control - The root div of the Control.
- * @themekey cvi-geosearch-label - The label of the checkbox.
+ * @themekey cvi-geosearch-label - The label checkbox.
+ * @themekey cvi-geosearch-label-text - The label text.
  * @themekey cvi-geosearch-input - The checkbox.
  * @themekey cvi-geosearch-redo - The re-search button.
  * @example
@@ -60,7 +61,7 @@ export const Control = ({
           checked={isRefineOnMapMove}
           onChange={toggleRefineOnMapMove}
         />
-        {translate('control')}
+        <span className={cx('label-text')}>{translate('control')}</span>
       </label>
     ) : (
       <button

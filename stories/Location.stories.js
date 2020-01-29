@@ -11,8 +11,17 @@ const searchClient = cliniasearch(
 );
 
 stories.addParameters({ jest: ['Location'] }).add('Default Location', () => (
-  <Vision searchClient={searchClient}>
+  <Vision searchClient={searchClient} indexName="health_facility">
     <Location />
+  </Vision>
+));
+
+stories.addParameters({ jest: ['Location'] }).add('User Location', () => (
+  <Vision searchClient={searchClient} indexName="health_facility">
+    <Location
+      translations={{ userPosition: 'Current location' }}
+      enableUserLocation
+    />
   </Vision>
 ));
 
@@ -25,7 +34,7 @@ const renderSuggestion = suggestion => {
 };
 
 stories.addParameters({ jest: ['Location'] }).add('Custom Location', () => (
-  <Vision searchClient={searchClient}>
+  <Vision searchClient={searchClient} indexName="health_facility">
     <Location
       translations={{ placeholder: 'Custom placeholder' }}
       renderSuggestion={renderSuggestion}

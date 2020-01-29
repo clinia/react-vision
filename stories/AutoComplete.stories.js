@@ -44,14 +44,12 @@ stories
   ));
 
 const CustomButton = () => (
-  <button style={{ backgroundColor: 'blue', color: 'white' }}>
+  <div style={{ backgroundColor: 'blue', color: 'white' }}>
     Custom Search Button
-  </button>
+  </div>
 );
 
-const CustomClearButton = () => (
-  <button type="reset">Custom clear button</button>
-);
+const CustomClearButton = () => <div type="reset">Custom clear button</div>;
 
 const CustomLoadingIndicator = () => (
   <span style={{ backgroundColor: 'seagreen', width: '10px' }} />
