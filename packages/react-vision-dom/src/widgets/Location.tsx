@@ -24,7 +24,7 @@ import AutoComplete from '../components/AutoComplete';
  * @prop {function} onSubmit - Intercept submit event sent from the Location form container.
  * @prop {function} onSuggestionSelected - Executes every time that a suggestion is selected.
  * @prop {function} on* - Listen to any events sent from the search input itself.
- * @prop {string} placeholder - The label of the input placeholder
+ * @prop {object} translations - translations for: { placeholder, searchTitle, clearTitle}
  * @prop {function} renderSuggestion - Define how suggestions will be rendered.
  * @prop {string} searchTitle - The submit button title
  * @prop {boolean} showLoadingIndicator=false - Display that the search is loading. This only happens after a certain amount of time to avoid a blinking effect. This timer can be configured with `stalledSearchDelay` props on <InstantSearch>. By default, the value is 200ms.
@@ -61,6 +61,7 @@ import AutoComplete from '../components/AutoComplete';
 
 const Location = props => {
   const locationSuggestions = props.suggestions.map(s => ({
+    ...s, // expose all suggestion properties
     suggestion: s.formattedAddress,
   }));
 

@@ -21,7 +21,7 @@ import AutoComplete from '../components/AutoComplete';
  * @prop {function} onSubmit - Intercept submit event sent from the AutoComplete form container.
  * @prop {function} onSuggestionSelected - Executes every time that a suggestion is selected.
  * @prop {function} on* - Listen to any events sent from the search input itself.
- * @prop {string} placeholder - The label of the input placeholder.
+ * @prop {object} translations - translations for: { placeholder, searchTitle, clearTitle}
  * @prop {function} renderSuggestion - Define how suggestions will be rendered.
  * @prop {string} searchTitle - The submit button title.
  * @prop {number} size=5 - Number of suggestions to show.

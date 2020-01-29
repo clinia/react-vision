@@ -301,9 +301,18 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
     const { searchForSuggestions, onChange } = this.props;
     const query = event.target.value;
 
-    this.setState({ query, queryCache: query, activeSuggestionIndex: -1 });
+    this.setState({
+      query,
+      queryCache: query,
+      activeSuggestionIndex: -1,
+      showSuggestions: true,
+    });
 
-    searchForSuggestions(query);
+    if (query) {
+      searchForSuggestions(query);
+    } else {
+      this.setState({ showSuggestions: false });
+    }
 
     if (onChange) {
       onChange(event);
@@ -319,12 +328,15 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
   }
 
   onClear(event: React.FormEvent<HTMLFormElement>) {
-    const { refine, searchForSuggestions, onClear } = this.props;
+    const { refine, onClear } = this.props;
 
-    this.setState({ query: '', queryCache: '', activeSuggestionIndex: -1 });
-
+    this.setState({
+      query: '',
+      queryCache: '',
+      activeSuggestionIndex: -1,
+      showSuggestions: false,
+    });
     refine('');
-    searchForSuggestions('');
 
     if (onClear) {
       onClear(event);
@@ -480,7 +492,7 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
 }
 
 export default translatable({
-  placeholder: 'Default',
+  placeholder: 'Search',
   searchTitle: 'Search',
   clearTitle: 'Clear',
 })(AutoComplete);

@@ -94,6 +94,7 @@ stories
           'triggerSubmitOnSuggestionSelected',
           false
         )}
+        translations={{ placeholder: 'Custom placeholder' }}
       />
     </Vision>
   ));
