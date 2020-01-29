@@ -2,28 +2,28 @@
 
 exports[`Hits accepts a custom className 1`] = `
 <div
-  className="cvi-Hits MyCustomHits"
+  className="cvi-hits MyCustomHits"
   style={Object {}}
 >
   <div
-    className="cvi-Hits-list"
+    className="cvi-hits-list"
   >
     <div
-      className="cvi-Hits-item"
+      className="cvi-hits-item"
     >
       <div
         id="0"
       />
     </div>
     <div
-      className="cvi-Hits-item"
+      className="cvi-hits-item"
     >
       <div
         id="1"
       />
     </div>
     <div
-      className="cvi-Hits-item"
+      className="cvi-hits-item"
     >
       <div
         id="2"
@@ -35,28 +35,28 @@ exports[`Hits accepts a custom className 1`] = `
 
 exports[`Hits accepts a hit prop 1`] = `
 <div
-  className="cvi-Hits"
+  className="cvi-hits"
   style={Object {}}
 >
   <div
-    className="cvi-Hits-list"
+    className="cvi-hits-list"
   >
     <div
-      className="cvi-Hits-item"
+      className="cvi-hits-item"
     >
       <div
         id="0"
       />
     </div>
     <div
-      className="cvi-Hits-item"
+      className="cvi-hits-item"
     >
       <div
         id="1"
       />
     </div>
     <div
-      className="cvi-Hits-item"
+      className="cvi-hits-item"
     >
       <div
         id="2"
@@ -68,7 +68,7 @@ exports[`Hits accepts a hit prop 1`] = `
 
 exports[`Hits shows loading indicator when loading prop is true 1`] = `
 <svg
-  className="cvi-Hits-loadingIcon"
+  className="cvi-hits-loadingicon"
   height="18"
   stroke="#444"
   viewBox="0 0 38 38"

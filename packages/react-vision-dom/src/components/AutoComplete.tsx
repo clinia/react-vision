@@ -79,7 +79,7 @@ type State = {
 class AutoComplete extends Component<PropsWithDefaults, State> {
   input!: HTMLInputElement;
   formRef: any = React.createRef();
-  cx = createClassNames('AutoComplete');
+  cx = createClassNames('autocomplete');
 
   static propTypes = {
     currentRefinement: PropTypes.string,
@@ -480,7 +480,7 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
           {showLoadingIndicator && (
             <span
               hidden={!isSearchStalled}
-              className={this.cx('loadingIndicator')}
+              className={this.cx('loadingindicator')}
             >
               {loadingIndicator || defaultLoadingIndicator(this.cx)}
             </span>

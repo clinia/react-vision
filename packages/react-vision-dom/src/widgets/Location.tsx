@@ -31,15 +31,15 @@ import AutoComplete from '../components/AutoComplete';
  * @prop {object} style - Add a custom React.CSSProperties object to the Location form container
  * @prop {node} submit - Change the apparence of the default submit button (magnifying glass).
  * @prop {boolean} triggerSubmitOnSuggestionSelected=false - Define if the Location form container should be submitted onSuggestionSelected
- * @themekey cvi-Location - The root div of the widget.
- * @themekey cvi-Location-clear - The reset button used to clear the content of the input.
- * @themekey cvi-Location-clearIcon - The default reset icon used inside the reset button.
- * @themekey cvi-Location-form - The wrapping form.
- * @themekey cvi-Location-input - The search input.
- * @themekey cvi-Location-loadingIcon - The default loading icon.
- * @themekey cvi-Location-loadingIndicator - The loading indicator container.
- * @themekey cvi-Location-submit - The submit button.
- * @themekey cvi-Location-submitIcon - The default magnifier icon used with the search input.
+ * @themekey cvi-location - The root div of the widget.
+ * @themekey cvi-location-clear - The reset button used to clear the content of the input.
+ * @themekey cvi-location-clearicon - The default reset icon used inside the reset button.
+ * @themekey cvi-location-form - The wrapping form.
+ * @themekey cvi-location-input - The search input.
+ * @themekey cvi-location-loadingicon - The default loading icon.
+ * @themekey cvi-location-loadingindicator - The loading indicator container.
+ * @themekey cvi-location-submit - The submit button.
+ * @themekey cvi-location-submiticon - The default magnifier icon used with the search input.
  * @example
  * import React from 'react';
  * import cliniasearch from 'cliniasearch/lite';

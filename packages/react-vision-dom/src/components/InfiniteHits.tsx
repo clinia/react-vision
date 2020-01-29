@@ -95,8 +95,8 @@ class InfiniteHits extends PureComponent<Props> {
         </ul>
         <button
           className={classNames(
-            cx('loadMore'),
-            hasMore ? null : cx('loadMore--disabled')
+            cx('loadmore'),
+            hasMore ? null : cx('loadmore--disabled')
           )}
           onClick={() => refineNext()}
           disabled={!hasMore}

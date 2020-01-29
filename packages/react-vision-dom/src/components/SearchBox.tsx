@@ -285,7 +285,7 @@ class SearchBox extends Component<PropsWithDefaults, State> {
             {clear}
           </button>
           {this.props.showLoadingIndicator && (
-            <span hidden={!isSearchStalled} className={cx('loadingIndicator')}>
+            <span hidden={!isSearchStalled} className={cx('loadingindicator')}>
               {loadingIndicator}
             </span>
           )}

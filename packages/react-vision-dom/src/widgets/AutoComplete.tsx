@@ -29,15 +29,15 @@ import AutoComplete from '../components/AutoComplete';
  * @prop {node} submit - Change the apparence of the default submit button (magnifying glass).
  * @prop {object} style - Add a custom React.CSSProperties object to the AutoComplete form container.
  * @prop {boolean} triggerSubmitOnSuggestionSelected=false - Define if the AutoComplete form container should be submitted onSuggestionSelected.
- * @themekey cvi-AutoComplete - The root div of the widget.
- * @themekey cvi-AutoComplete-clear - The reset button used to clear the content of the input.
- * @themekey cvi-AutoComplete-clearIcon - The default reset icon used inside the reset button.
- * @themekey cvi-AutoComplete-form - The wrapping form.
- * @themekey cvi-AutoComplete-input - The search input.
- * @themekey cvi-AutoComplete-loadingIcon - The default loading icon.
- * @themekey cvi-AutoComplete-loadingIndicator - The loading indicator container.
- * @themekey cvi-AutoComplete-submit - The submit button.
- * @themekey cvi-AutoComplete-submitIcon - The default magnifier icon used with the search input.
+ * @themekey cvi-autocomplete - The root div of the widget.
+ * @themekey cvi-autocomplete-clear - The reset button used to clear the content of the input.
+ * @themekey cvi-autocomplete-clearicon - The default reset icon used inside the reset button.
+ * @themekey cvi-autocomplete-form - The wrapping form.
+ * @themekey cvi-autocomplete-input - The search input.
+ * @themekey cvi-autocomplete-loadingicon - The default loading icon.
+ * @themekey cvi-autocomplete-loadingindicator - The loading indicator container.
+ * @themekey cvi-autocomplete-submit - The submit button.
+ * @themekey cvi-autocomplete-submiticon - The default magnifier icon used with the search input.
  * @example
  * import React from 'react';
  * import cliniasearch from 'cliniasearch/lite';

@@ -16,9 +16,9 @@ import Hits from '../components/Hits';
  *   hit in its JSON form. The component will be called with a `record` prop.
  * @prop {node} noResultsFound - Change the apparence of the default empty results found.
  * @prop {object} style - Add a custom React.CSSProperties object to the Hits container.
- * @themekey cvi-Hits - The root div of the widget.
- * @themekey cvi-Hits-item - The hit list item
- * @themekey cvi-Hits-list - The list of results.
+ * @themekey cvi-hits - The root div of the widget.
+ * @themekey cvi-hits-item - The hit list item
+ * @themekey cvi-hits-list - The list of results.
  * @example
  * import React from 'react';
  * import cliniasearch from 'cliniasearch/lite';

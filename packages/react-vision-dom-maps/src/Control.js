@@ -18,10 +18,10 @@ const ControlPropTypes = {
  * @description Control to enable, disable or to manually trigger a search on map movement.
  * @alias module:Control
  * @kind widget
- * @themekey cvi-GeoSearch-control - The root div of the Control.
- * @themekey cvi-GeoSearch-label - The label of the checkbox.
- * @themekey cvi-GeoSearch-input - The checkbox.
- * @themekey cvi-GeoSearch-redo - The re-search button.
+ * @themekey cvi-geosearch-control - The root div of the Control.
+ * @themekey cvi-geosearch-label - The label of the checkbox.
+ * @themekey cvi-geosearch-input - The checkbox.
+ * @themekey cvi-geosearch-redo - The re-search button.
  * @example
  * ```js
  * <GoogleMapsLoader apiKey={apiKey} endpoint={endpoint}>
