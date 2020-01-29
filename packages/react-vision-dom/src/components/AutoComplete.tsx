@@ -228,7 +228,7 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
       if (suggestion.type === 'user') {
         return translate('userPosition');
       } else {
-        return this.props.suggestions[index].suggestion;
+        return suggestion.suggestion;
       }
     } else return '';
   };

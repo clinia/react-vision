@@ -95,6 +95,7 @@ Location.propTypes = {
   suggestions: PropTypes.arrayOf(PropTypes.object.isRequired),
   searchForLocations: PropTypes.func,
   enableUserLocation: PropTypes.bool,
+  onUserPositionError: PropTypes.func,
 };
 
 export default connectLocation(Location);
