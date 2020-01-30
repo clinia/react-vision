@@ -45,7 +45,7 @@ DefaultHit.propTypes = {
   }).isRequired,
 };
 
-const cx = createClassNames('Hits');
+const cx = createClassNames('hits');
 
 const Hits: React.FunctionComponent<Props> = ({
   records,

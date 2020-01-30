@@ -5,7 +5,7 @@ import { translatable } from 'react-vision-core';
 import { createClassNames } from '../core/utils';
 import { Translate } from 'react-vision-core/src';
 
-const cx = createClassNames('InfiniteHits');
+const cx = createClassNames('infinitehits');
 
 interface Props {
   className?: string;
@@ -94,7 +94,10 @@ class InfiniteHits extends PureComponent<Props> {
           ))}
         </ul>
         <button
-          className={cx('loadMore', hasMore ? '' : 'loadMore--disabled')}
+          className={classNames(
+            cx('loadmore'),
+            hasMore ? null : cx('loadmore--disabled')
+          )}
           onClick={() => refineNext()}
           disabled={!hasMore}
         >

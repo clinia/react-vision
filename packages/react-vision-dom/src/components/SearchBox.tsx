@@ -55,7 +55,7 @@ type State = {
   query: string | null;
 };
 
-const cx = createClassNames('SearchBox');
+const cx = createClassNames('searchbox');
 
 class SearchBox extends Component<PropsWithDefaults, State> {
   input!: HTMLInputElement;
@@ -285,7 +285,7 @@ class SearchBox extends Component<PropsWithDefaults, State> {
             {clear}
           </button>
           {this.props.showLoadingIndicator && (
-            <span hidden={!isSearchStalled} className={cx('loadingIndicator')}>
+            <span hidden={!isSearchStalled} className={cx('loadingindicator')}>
               {loadingIndicator}
             </span>
           )}

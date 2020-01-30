@@ -25,15 +25,15 @@ import SearchBox from '../components/SearchBox';
  * @prop {boolean} showLoadingIndicator=false - Display that the search is loading. This only happens after a certain amount of time to avoid a blinking effect. This timer can be configured with `stalledSearchDelay` props on <InstantSearch>. By default, the value is 200ms.
  * @prop {object} style - Add a custom React.CSSProperties object to SearchBox form container.
  * @prop {node} submit - Change the apparence of the default submit button (magnifying glass).
- * @themekey cvi-SearchBox - The root div of the widget.
- * @themekey cvi-SearchBox-clear - The reset button used to clear the content of the input.
- * @themekey cvi-SearchBox-clearIcon - The default reset icon used inside the reset button.
- * @themekey cvi-SearchBox-form - The wrapping form.
- * @themekey cvi-SearchBox-input - The search input.
- * @themekey cvi-SearchBox-loadingIndicator - The loading indicator container.
- * @themekey cvi-SearchBox-loadingIcon - The default loading icon.
- * @themekey cvi-SearchBox-submit - The submit button.
- * @themekey cvi-SearchBox-submitIcon - The default magnifier icon used with the search input.
+ * @themekey cvi-searchbox - The root div of the widget.
+ * @themekey cvi-searchbox-clear - The reset button used to clear the content of the input.
+ * @themekey cvi-searchbox-clearicon - The default reset icon used inside the reset button.
+ * @themekey cvi-searchbox-form - The wrapping form.
+ * @themekey cvi-searchbox-input - The search input.
+ * @themekey cvi-searchbox-loadingindicator - The loading indicator container.
+ * @themekey cvi-searchbox-loadingicon - The default loading icon.
+ * @themekey cvi-searchbox-submit - The submit button.
+ * @themekey cvi-searchbox-submiticon - The default magnifier icon used with the search input.
  * @example
  * import React from 'react';
  * import cliniasearch from 'cliniasearch/lite';

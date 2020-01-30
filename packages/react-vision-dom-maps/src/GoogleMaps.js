@@ -4,7 +4,7 @@ import { createClassNames } from 'react-vision-dom';
 import { LatLngPropType, BoundingBoxPropType } from './propTypes';
 import GoogleMapsContext from './GoogleMapsContext';
 
-const cx = createClassNames('GeoSearch');
+const cx = createClassNames('geosearch');
 
 class GoogleMaps extends Component {
   static propTypes = {

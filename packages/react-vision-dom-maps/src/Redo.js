@@ -4,7 +4,7 @@ import { createClassNames, translatable } from 'react-vision-dom';
 import GeoSearchContext from './GeoSearchContext';
 import withGoogleMaps from './withGoogleMaps';
 
-const cx = createClassNames('GeoSearch');
+const cx = createClassNames('geosearch');
 const RedoPropTypes = {
   googleMapsInstance: PropTypes.object.isRequired,
   translate: PropTypes.func.isRequired,
@@ -19,9 +19,9 @@ const RedoPropTypes = {
  * @alias module:Redo
  * @kind widget
  * @prop {function} translate - Should return the text to display in the button.
- * @themekey cvi-GeoSearch-control - The root div of the Control.
- * @themekey cvi-GeoSearch-redo - The re-search button.
- * @themekey cvi-GeoSearch-redo--disabled - The re-search button while disabled.
+ * @themekey cvi-geosearch-control - The root div of the Control.
+ * @themekey cvi-geosearch-redo - The re-search button.
+ * @themekey cvi-geosearch-redo--disabled - The re-search button while disabled.
  * @example
  * ```js
  * <GoogleMapsLoader apiKey={apiKey} endpoint={endpoint}>

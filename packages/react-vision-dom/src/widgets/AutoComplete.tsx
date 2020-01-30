@@ -12,6 +12,7 @@ import AutoComplete from '../components/AutoComplete';
  * @prop {boolean} autoFocus=false - Set autoFocus to the autocomplete input.
  * @prop {string} className - Add a custom CSS class to the AutoComplete form container.
  * @prop {node} clear - Change the apparence of the default reset button (cross).
+ * @prop {boolean} hideClear - hide clear button
  * @prop {string} clearTitle - The reset button title.
  * @prop {string} defaultRefinement - Provide default refinement value when component is mounted.
  * @prop {string} highlightPostTag - The post tag that will highlight the matched part of the query in each suggestion. Usually a html tag like `</strong>`.
@@ -21,7 +22,7 @@ import AutoComplete from '../components/AutoComplete';
  * @prop {function} onSubmit - Intercept submit event sent from the AutoComplete form container.
  * @prop {function} onSuggestionSelected - Executes every time that a suggestion is selected.
  * @prop {function} on* - Listen to any events sent from the search input itself.
- * @prop {string} placeholder - The label of the input placeholder.
+ * @prop {object} translations - translations for: { placeholder, searchTitle, clearTitle}
  * @prop {function} renderSuggestion - Define how suggestions will be rendered.
  * @prop {string} searchTitle - The submit button title.
  * @prop {number} size=5 - Number of suggestions to show.
@@ -29,15 +30,15 @@ import AutoComplete from '../components/AutoComplete';
  * @prop {node} submit - Change the apparence of the default submit button (magnifying glass).
  * @prop {object} style - Add a custom React.CSSProperties object to the AutoComplete form container.
  * @prop {boolean} triggerSubmitOnSuggestionSelected=false - Define if the AutoComplete form container should be submitted onSuggestionSelected.
- * @themekey cvi-AutoComplete - The root div of the widget.
- * @themekey cvi-AutoComplete-clear - The reset button used to clear the content of the input.
- * @themekey cvi-AutoComplete-clearIcon - The default reset icon used inside the reset button.
- * @themekey cvi-AutoComplete-form - The wrapping form.
- * @themekey cvi-AutoComplete-input - The search input.
- * @themekey cvi-AutoComplete-loadingIcon - The default loading icon.
- * @themekey cvi-AutoComplete-loadingIndicator - The loading indicator container.
- * @themekey cvi-AutoComplete-submit - The submit button.
- * @themekey cvi-AutoComplete-submitIcon - The default magnifier icon used with the search input.
+ * @themekey cvi-autocomplete - The root div of the widget.
+ * @themekey cvi-autocomplete-clear - The reset button used to clear the content of the input.
+ * @themekey cvi-autocomplete-clearicon - The default reset icon used inside the reset button.
+ * @themekey cvi-autocomplete-form - The wrapping form.
+ * @themekey cvi-autocomplete-input - The search input.
+ * @themekey cvi-autocomplete-loadingicon - The default loading icon.
+ * @themekey cvi-autocomplete-loadingindicator - The loading indicator container.
+ * @themekey cvi-autocomplete-submit - The submit button.
+ * @themekey cvi-autocomplete-submiticon - The default magnifier icon used with the search input.
  * @example
  * import React from 'react';
  * import cliniasearch from 'cliniasearch/lite';

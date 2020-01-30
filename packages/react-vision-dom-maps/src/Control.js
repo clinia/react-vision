@@ -4,7 +4,7 @@ import { createClassNames, translatable } from 'react-vision-dom';
 import GeoSearchContext from './GeoSearchContext';
 import withGoogleMaps from './withGoogleMaps';
 
-const cx = createClassNames('GeoSearch');
+const cx = createClassNames('geosearch');
 const ControlPropTypes = {
   googleMapsInstance: PropTypes.object.isRequired,
   translate: PropTypes.func.isRequired,
@@ -18,10 +18,11 @@ const ControlPropTypes = {
  * @description Control to enable, disable or to manually trigger a search on map movement.
  * @alias module:Control
  * @kind widget
- * @themekey cvi-GeoSearch-control - The root div of the Control.
- * @themekey cvi-GeoSearch-label - The label of the checkbox.
- * @themekey cvi-GeoSearch-input - The checkbox.
- * @themekey cvi-GeoSearch-redo - The re-search button.
+ * @themekey cvi-geosearch-control - The root div of the Control.
+ * @themekey cvi-geosearch-label - The label checkbox.
+ * @themekey cvi-geosearch-label-text - The label text.
+ * @themekey cvi-geosearch-input - The checkbox.
+ * @themekey cvi-geosearch-redo - The re-search button.
  * @example
  * ```js
  * <GoogleMapsLoader apiKey={apiKey} endpoint={endpoint}>
@@ -60,7 +61,7 @@ export const Control = ({
           checked={isRefineOnMapMove}
           onChange={toggleRefineOnMapMove}
         />
-        {translate('control')}
+        <span className={cx('label-text')}>{translate('control')}</span>
       </label>
     ) : (
       <button

@@ -11,7 +11,7 @@ export const defaultLoadingIndicator = cx => (
     viewBox="0 0 38 38"
     xmlns="http://www.w3.org/2000/svg"
     stroke="#444"
-    className={cx('loadingIcon')}
+    className={cx('loadingicon')}
   >
     <g fill="none" fillRule="evenodd">
       <g transform="translate(1 1)" strokeWidth="2">
@@ -33,7 +33,7 @@ export const defaultLoadingIndicator = cx => (
 
 export const defaultClear = cx => (
   <svg
-    className={cx('clearIcon')}
+    className={cx('clearicon')}
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
     width="10"
@@ -45,7 +45,7 @@ export const defaultClear = cx => (
 
 export const defaultSubmit = cx => (
   <svg
-    className={cx('submitIcon')}
+    className={cx('submiticon')}
     xmlns="http://www.w3.org/2000/svg"
     width="10"
     height="10"

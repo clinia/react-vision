@@ -62,7 +62,7 @@ to the Clinia API.</p>
 <p>This widget can be used either with react-dom and react-native. It will not render anything
 on screen, only configure some parameters.</p>
 
-**Kind**: Exported widget  
+**Kind**: Exported widget
 **Properties**
 
 | Name | Type | Default | Description |
@@ -70,7 +70,7 @@ on screen, only configure some parameters.</p>
 | queryType | <code>string</code> | <code>&quot;prefix_none&quot;</code> | <p>Sets the matching strategy for the search. Value is either <code>prefix_none</code> for complete word matching or <code>prefix_last</code> for partial word matching.</p> |
 | perPage | <code>perPage</code> |  | <p>Sets the number of search results to return per page.</p> |
 
-**Example**  
+**Example**
 ```js
 import React from 'react';
 import cliniasearch from 'cliniasearch/lite';
@@ -99,14 +99,14 @@ const App = () => (
 <p>The component that allows you to apply widgets to a dedicated index. It's
 useful if you want to build an interface that targets multiple indexes.</p>
 
-**Kind**: Exported widget  
+**Kind**: Exported widget
 **Properties**
 
 | Name | Type | Description |
 | --- | --- | --- |
 | indexName | <code>string</code> | <p>The name of the targeted index. Value is either <code>health_facility</code> or <code>professional</code>.</p> |
 
-**Example**  
+**Example**
 ```js
 import React from 'react';
 import cliniasearch from 'cliniasearch/lite';
@@ -139,8 +139,8 @@ const App = () => (
 It provides all the connected components (aka widgets) a mean to interact
 with the searchState.</p>
 
-**Kind**: Exported widget  
-**Requirements**: You will need to have an Clinia account to be able to use this widget.  
+**Kind**: Exported widget
+**Requirements**: You will need to have an Clinia account to be able to use this widget.
 **Properties**
 
 | Name | Type | Default | Description |
@@ -162,7 +162,7 @@ with the searchState.</p>
 
 <p>The AutoComplete component displays a search box that lets the user search for a specific query.</p>
 
-**Kind**: Exported widget  
+**Kind**: Exported widget
 **Properties**
 
 | Name | Type | Default | Description |
@@ -192,17 +192,17 @@ with the searchState.</p>
 
 | Name | Description |
 | --- | --- |
-| cvi-AutoComplete | <p>The root div of the widget.</p> |
-| cvi-AutoComplete-clear | <p>The reset button used to clear the content of the input.</p> |
-| cvi-AutoComplete-clearIcon | <p>The default reset icon used inside the reset button.</p> |
-| cvi-AutoComplete-form | <p>The wrapping form.</p> |
-| cvi-AutoComplete-input | <p>The search input.</p> |
-| cvi-AutoComplete-loadingIcon | <p>The default loading icon.</p> |
-| cvi-AutoComplete-loadingIndicator | <p>The loading indicator container.</p> |
-| cvi-AutoComplete-submit | <p>The submit button.</p> |
-| cvi-AutoComplete-submitIcon | <p>The default magnifier icon used with the search input.</p> |
+| cvi-autocomplete | <p>The root div of the widget.</p> |
+| cvi-autocomplete-clear | <p>The reset button used to clear the content of the input.</p> |
+| cvi-autocomplete-clearicon | <p>The default reset icon used inside the reset button.</p> |
+| cvi-autocomplete-form | <p>The wrapping form.</p> |
+| cvi-autocomplete-input | <p>The search input.</p> |
+| cvi-autocomplete-loadingicon | <p>The default loading icon.</p> |
+| cvi-autocomplete-loadingindicator | <p>The loading indicator container.</p> |
+| cvi-autocomplete-submit | <p>The submit button.</p> |
+| cvi-autocomplete-submiticon | <p>The default magnifier icon used with the search input.</p> |
 
-**Example**  
+**Example**
 ```js
 import React from 'react';
 import cliniasearch from 'cliniasearch/lite';
@@ -228,7 +228,7 @@ const App = () => (
 
 <p>Displays a list of hits.</p>
 
-**Kind**: Exported widget  
+**Kind**: Exported widget
 **Properties**
 
 | Name | Type | Description |
@@ -243,11 +243,11 @@ const App = () => (
 
 | Name | Description |
 | --- | --- |
-| cvi-Hits | <p>The root div of the widget.</p> |
-| cvi-Hits-item | <p>The hit list item</p> |
-| cvi-Hits-list | <p>The list of results.</p> |
+| cvi-hits | <p>The root div of the widget.</p> |
+| cvi-hits-item | <p>The hit list item</p> |
+| cvi-hits-list | <p>The list of results.</p> |
 
-**Example**  
+**Example**
 ```js
 import React from 'react';
 import cliniasearch from 'cliniasearch/lite';
@@ -273,7 +273,7 @@ const App = () => (
 
 <p>Displays an infinite list of hits along with a <strong>load more</strong> button.</p>
 
-**Kind**: Exported widget  
+**Kind**: Exported widget
 **Properties**
 
 | Name | Type | Default | Description |
@@ -288,13 +288,13 @@ const App = () => (
 
 | Name | Description |
 | --- | --- |
-| cvi-InfiniteHits | <p>The root div of the widget</p> |
-| cvi-InfiniteHits-item | <p>The hit list item</p> |
-| cvi-InfiniteHits-list | <p>The list of hits</p> |
-| cvi-InfiniteHits-loadMore | <p>The button used to display more results</p> |
-| cvi-InfiniteHits-loadMore--disabled | <p>The disabled button used to display more results</p> |
+| cvi-infinitehits | <p>The root div of the widget</p> |
+| cvi-infinitehits-item | <p>The hit list item</p> |
+| cvi-infinitehits-list | <p>The list of hits</p> |
+| cvi-infinitehits-loadmore | <p>The button used to display more results</p> |
+| cvi-infinitehits-loadmore--disabled | <p>The disabled button used to display more results</p> |
 
-**Example**  
+**Example**
 ```js
 import React from 'react';
 import cliniasearch from 'cliniasearch/lite';
@@ -321,7 +321,7 @@ const App = () => (
 
 <p>The Location component displays a search box that lets the user search for a specific location.</p>
 
-**Kind**: Exported widget  
+**Kind**: Exported widget
 **Properties**
 
 | Name | Type | Default | Description |
@@ -351,17 +351,17 @@ const App = () => (
 
 | Name | Description |
 | --- | --- |
-| cvi-Location | <p>The root div of the widget.</p> |
-| cvi-Location-clear | <p>The reset button used to clear the content of the input.</p> |
-| cvi-Location-clearIcon | <p>The default reset icon used inside the reset button.</p> |
-| cvi-Location-form | <p>The wrapping form.</p> |
-| cvi-Location-input | <p>The search input.</p> |
-| cvi-Location-loadingIcon | <p>The default loading icon.</p> |
-| cvi-Location-loadingIndicator | <p>The loading indicator container.</p> |
-| cvi-Location-submit | <p>The submit button.</p> |
-| cvi-Location-submitIcon | <p>The default magnifier icon used with the search input.</p> |
+| cvi-location | <p>The root div of the widget.</p> |
+| cvi-location-clear | <p>The reset button used to clear the content of the input.</p> |
+| cvi-location-clearicon | <p>The default reset icon used inside the reset button.</p> |
+| cvi-location-form | <p>The wrapping form.</p> |
+| cvi-location-input | <p>The search input.</p> |
+| cvi-location-loadingicon | <p>The default loading icon.</p> |
+| cvi-location-loadingindicator | <p>The loading indicator container.</p> |
+| cvi-location-submit | <p>The submit button.</p> |
+| cvi-location-submiticon | <p>The default magnifier icon used with the search input.</p> |
 
-**Example**  
+**Example**
 ```js
 import React from 'react';
 import cliniasearch from 'cliniasearch/lite';
@@ -387,7 +387,7 @@ const App = () => (
 
 <p>The SearchBox component displays a search box that lets the user search for a specific query.</p>
 
-**Kind**: Exported widget  
+**Kind**: Exported widget
 **Properties**
 
 | Name | Type | Default | Description |
@@ -413,17 +413,17 @@ const App = () => (
 
 | Name | Description |
 | --- | --- |
-| cvi-SearchBox | <p>The root div of the widget.</p> |
-| cvi-SearchBox-clear | <p>The reset button used to clear the content of the input.</p> |
-| cvi-SearchBox-clearIcon | <p>The default reset icon used inside the reset button.</p> |
-| cvi-SearchBox-form | <p>The wrapping form.</p> |
-| cvi-SearchBox-input | <p>The search input.</p> |
-| cvi-SearchBox-loadingIndicator | <p>The loading indicator container.</p> |
-| cvi-SearchBox-loadingIcon | <p>The default loading icon.</p> |
-| cvi-SearchBox-submit | <p>The submit button.</p> |
-| cvi-SearchBox-submitIcon | <p>The default magnifier icon used with the search input.</p> |
+| cvi-searchbox | <p>The root div of the widget.</p> |
+| cvi-searchbox-clear | <p>The reset button used to clear the content of the input.</p> |
+| cvi-searchbox-clearicon | <p>The default reset icon used inside the reset button.</p> |
+| cvi-searchbox-form | <p>The wrapping form.</p> |
+| cvi-searchbox-input | <p>The search input.</p> |
+| cvi-searchbox-loadingindicator | <p>The loading indicator container.</p> |
+| cvi-searchbox-loadingicon | <p>The default loading icon.</p> |
+| cvi-searchbox-submit | <p>The submit button.</p> |
+| cvi-searchbox-submiticon | <p>The default magnifier icon used with the search input.</p> |
 
-**Example**  
+**Example**
 ```js
 import React from 'react';
 import cliniasearch from 'cliniasearch/lite';
@@ -449,17 +449,17 @@ const App = () => (
 
 <p>Control to enable, disable or to manually trigger a search on map movement.</p>
 
-**Kind**: Exported widget  
+**Kind**: Exported widget
 **Themes**
 
 | Name | Description |
 | --- | --- |
-| cvi-GeoSearch-control | <p>The root div of the Control.</p> |
-| cvi-GeoSearch-label | <p>The label of the checkbox.</p> |
-| cvi-GeoSearch-input | <p>The checkbox.</p> |
-| cvi-GeoSearch-redo | <p>The re-search button.</p> |
+| cvi-geosearch-control | <p>The root div of the Control.</p> |
+| cvi-geosearch-label | <p>The label of the checkbox.</p> |
+| cvi-geosearch-input | <p>The checkbox.</p> |
+| cvi-geosearch-redo | <p>The re-search button.</p> |
 
-**Example**  
+**Example**
 ```js
 <GoogleMapsLoader apiKey={apiKey} endpoint={endpoint}>
   {google => (
@@ -486,7 +486,7 @@ const App = () => (
 
 <p>Allow the creation a custom map marker.</p>
 
-**Kind**: Exported widget  
+**Kind**: Exported widget
 **Properties**
 
 | Name | Type | Description |
@@ -497,7 +497,7 @@ const App = () => (
 | on* | <code>function</code> | <p>Listen to any mouse events sent from the marker.</p> |
 | record | [<code>GeolocHitPropType</code>](#GeolocHitPropType) | <p>Record to display.</p> |
 
-**Example**  
+**Example**
 ```js
 <GoogleMapsLoader apiKey={apiKey} endpoint={endpoint}>
   {google => (
@@ -530,7 +530,7 @@ const App = () => (
 
 <p>Map component to display search results.</p>
 
-**Kind**: Exported widget  
+**Kind**: Exported widget
 **Properties**
 
 | Name | Type | Description |
@@ -550,7 +550,7 @@ const App = () => (
 <p>Instantiate an instance of the Google maps client on the client side.
 Since this component rely on the <code>document</code> property, this won't be run on the server during any <a href="guide/Server-side_rendering.html">Server Side Rendering</a> phase.</p>
 
-**Kind**: Exported widget  
+**Kind**: Exported widget
 **Properties**
 
 | Name | Type | Default | Description |
@@ -558,7 +558,7 @@ Since this component rely on the <code>document</code> property, this won't be r
 | apiKey | <code>string</code> |  | <p>Your Google maps api key.</p> |
 | endpoint | <code>string</code> | <code>&quot;https://maps.googleapis.com/maps/api/js?v&#x3D;quarterly&quot;</code> | <p>The default endpoint to get the maps from.</p> |
 
-**Example**  
+**Example**
 ```js
 <GoogleMapsLoader apiKey={apiKey} endpoint={endpoint}>
   {google => (
@@ -587,7 +587,7 @@ Since this component rely on the <code>document</code> property, this won't be r
 
 <p>Map marker.</p>
 
-**Kind**: Exported widget  
+**Kind**: Exported widget
 **Properties**
 
 | Name | Type | Description |
@@ -596,7 +596,7 @@ Since this component rely on the <code>document</code> property, this won't be r
 | label | <code>string</code> | <p>Label to display.</p> |
 | on* | <code>function</code> | <p>Listen to any mouse events sent from the marker.</p> |
 
-**Example**  
+**Example**
 ```js
 <GoogleMapsLoader apiKey={apiKey} endpoint={endpoint}>
   {google => (
@@ -625,7 +625,7 @@ Since this component rely on the <code>document</code> property, this won't be r
 
 <p>Button that indicate triggers a search when clicked.</p>
 
-**Kind**: Exported widget  
+**Kind**: Exported widget
 **Properties**
 
 | Name | Type | Description |
@@ -636,11 +636,11 @@ Since this component rely on the <code>document</code> property, this won't be r
 
 | Name | Description |
 | --- | --- |
-| cvi-GeoSearch-control | <p>The root div of the Control.</p> |
-| cvi-GeoSearch-redo | <p>The re-search button.</p> |
-| cvi-GeoSearch-redo--disabled | <p>The re-search button while disabled.</p> |
+| cvi-geosearch-control | <p>The root div of the Control.</p> |
+| cvi-geosearch-redo | <p>The re-search button.</p> |
+| cvi-geosearch-redo--disabled | <p>The re-search button while disabled.</p> |
 
-**Example**  
+**Example**
 ```js
 <GoogleMapsLoader apiKey={apiKey} endpoint={endpoint}>
   {google => (
@@ -663,7 +663,7 @@ Since this component rely on the <code>document</code> property, this won't be r
 <a name="LatLngPropType"></a>
 
 ## LatLngPropType : <code>Object</code>
-**Kind**: global typedef  
+**Kind**: global typedef
 **Properties**
 
 | Name | Type | Description |
@@ -674,7 +674,7 @@ Since this component rely on the <code>document</code> property, this won't be r
 <a name="BoundingBoxPropType"></a>
 
 ## BoundingBoxPropType : <code>Object</code>
-**Kind**: global typedef  
+**Kind**: global typedef
 **Properties**
 
 | Name | Type | Description |
@@ -685,7 +685,7 @@ Since this component rely on the <code>document</code> property, this won't be r
 <a name="GeolocHitPropType"></a>
 
 ## GeolocHitPropType : <code>Object</code>
-**Kind**: global typedef  
+**Kind**: global typedef
 **Properties**
 
 | Name | Type | Description |
