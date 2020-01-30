@@ -1,3 +1,22 @@
+# [1.1.0](https://github.com/clinia/react-vision/compare/v1.0.0...v1.1.0) (2020-01-30)
+
+
+### Bug Fixes
+
+* integration tests ([5aeb511](https://github.com/clinia/react-vision/commit/5aeb5118dabde0224451d6ca6defee4be4f08efc))
+* lint issues ([f1f1e42](https://github.com/clinia/react-vision/commit/f1f1e425103657df8c8294030a7665fbcee84763))
+* lint issues ([163558a](https://github.com/clinia/react-vision/commit/163558af731e4d0c9271e90dd4e342aa336d3b73))
+* Removed indexes around Header component ([#27](https://github.com/clinia/react-vision/issues/27)) ([c02a98d](https://github.com/clinia/react-vision/commit/c02a98d9267668e309255c62a7db60fbb1c3fbe9))
+* type-check issues ([4a2a548](https://github.com/clinia/react-vision/commit/4a2a548a73fef11f80e8b3fdd06046ab4fbfaa70))
+
+
+### Features
+
+* Unified places endpoint ([#28](https://github.com/clinia/react-vision/issues/28)) ([d0e861a](https://github.com/clinia/react-vision/commit/d0e861ae02ae7e752a02b5ae91eaa9be54da603a))
+* Update vision widgets with demo ([#30](https://github.com/clinia/react-vision/issues/30)) ([325254e](https://github.com/clinia/react-vision/commit/325254eca5e379630fb4372c0adb1ada30947a6b))
+
+
+
 # 1.0.0 (2019-11-28)
 
 
