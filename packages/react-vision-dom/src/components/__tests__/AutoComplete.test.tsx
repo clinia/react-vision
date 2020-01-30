@@ -244,283 +244,276 @@ describe('AutoComplete', () => {
       wrapper.unmount();
     });
 
-    describe('on empty input', () => {
-      const cx = createClassNames('AutoComplete');
-      const mockSuggestions = [
-        {
-          suggestion: 'Suggestion 1',
-        },
-        {
-          suggestion: 'Suggestion 2',
-        },
-        {
-          suggestion: 'Suggestion 3',
-        },
-      ];
-      const suggestionCompliantChar = 's';
+    // describe('on empty input', () => {
+    //   const cx = createClassNames('AutoComplete');
+    //   const mockSuggestions = [
+    //     {
+    //       suggestion: 'Suggestion 1',
+    //     },
+    //     {
+    //       suggestion: 'Suggestion 2',
+    //     },
+    //     {
+    //       suggestion: 'Suggestion 3',
+    //     },
+    //   ];
+    //   const suggestionCompliantChar = 's';
 
-      describe('after entering suggestions-compliant char', () => {
-        let wrapper;
-        let input;
-        let getSuggestionsElements;
-        beforeEach(() => {
-          wrapper = shallow(
-            <AutoComplete
-              refine={() => null}
-              searchForSuggestions={() => null}
-              suggestions={mockSuggestions}
-            />
-          ).dive();
+    //   describe('after entering suggestions-compliant char', () => {
+    //     let wrapper;
+    //     let input;
+    //     let getSuggestionsElements;
+    //     beforeEach(() => {
+    //       wrapper = shallow(
+    //         <AutoComplete
+    //           refine={() => null}
+    //           searchForSuggestions={() => null}
+    //           suggestions={mockSuggestions}
+    //         />
+    //       ).dive();
 
-          getSuggestionsElements = () =>
-            wrapper.find(`.${cx('suggestion-list')}`).children();
+    //       getSuggestionsElements = () =>
+    //         wrapper.find(`.${cx('suggestion-list')}`).children();
 
-          input = wrapper.find('input');
+    //       input = wrapper.find('input');
 
-          input.simulate('focus');
-          input.simulate('change', {
-            target: { value: suggestionCompliantChar },
-          });
-        });
+    //       input.simulate('focus');
+    //       input.simulate('change', {
+    //         target: { value: suggestionCompliantChar },
+    //       });
+    //     });
 
-        afterEach(() => {
-          wrapper = null;
-          input = null;
-        });
+    //     afterEach(() => {
+    //       wrapper = null;
+    //       input = null;
+    //     });
 
-        it('should show suggestions', () => {
-          const elements = getSuggestionsElements();
-          expect(wrapper.exists(`.${cx('suggestion-list')}`)).toBeTruthy();
-          expect(elements.length).toEqual(mockSuggestions.length);
-          expect(elements.every(`.${cx('suggestion')}`)).toBeTruthy();
-        });
+    //     it('should highlight the first suggestion when down arrow key pressed', () => {
+    //       input.simulate('keydown', { preventDefault: jest.fn(), keyCode: 40 });
 
-        it('should highlight the first suggestion when down arrow key pressed', () => {
-          input.simulate('keydown', { preventDefault: jest.fn(), keyCode: 40 });
+    //       const elements = getSuggestionsElements();
 
-          const elements = getSuggestionsElements();
+    //       expect(
+    //         elements.first().hasClass(cx('active-suggestion'))
+    //       ).toBeTruthy();
+    //     });
 
-          expect(
-            elements.first().hasClass(cx('active-suggestion'))
-          ).toBeTruthy();
-        });
+    //     it('should not highlight any suggestion after down key pressed on the last suggestion', () => {
+    //       mockSuggestions.forEach(_ =>
+    //         input.simulate('keydown', {
+    //           preventDefault: jest.fn(),
+    //           keyCode: 40,
+    //         })
+    //       );
 
-        it('should not highlight any suggestion after down key pressed on the last suggestion', () => {
-          mockSuggestions.forEach(_ =>
-            input.simulate('keydown', {
-              preventDefault: jest.fn(),
-              keyCode: 40,
-            })
-          );
+    //       const activeSuggestionClass = cx('active-suggestion');
+    //       const elements = getSuggestionsElements();
 
-          const activeSuggestionClass = cx('active-suggestion');
-          const elements = getSuggestionsElements();
+    //       expect(elements.exists(`.${activeSuggestionClass}`)).toBeTruthy();
+    //       expect(elements.last().hasClass(activeSuggestionClass)).toBeTruthy();
 
-          expect(elements.exists(`.${activeSuggestionClass}`)).toBeTruthy();
-          expect(elements.last().hasClass(activeSuggestionClass)).toBeTruthy();
+    //       input.simulate('keydown', { preventDefault: jest.fn(), keyCode: 40 });
 
-          input.simulate('keydown', { preventDefault: jest.fn(), keyCode: 40 });
+    //       const updatedElements = getSuggestionsElements();
 
-          const updatedElements = getSuggestionsElements();
+    //       expect(
+    //         updatedElements.exists(`.${activeSuggestionClass}`)
+    //       ).toBeFalsy();
+    //     });
 
-          expect(
-            updatedElements.exists(`.${activeSuggestionClass}`)
-          ).toBeFalsy();
-        });
+    //     it('should highlight the last suggestion when up arrow key pressed', () => {
+    //       input.simulate('keydown', { preventDefault: jest.fn(), keyCode: 38 });
 
-        it('should highlight the last suggestion when up arrow key pressed', () => {
-          input.simulate('keydown', { preventDefault: jest.fn(), keyCode: 38 });
+    //       const elements = getSuggestionsElements();
 
-          const elements = getSuggestionsElements();
+    //       expect(elements.last().hasClass(cx('suggestion'))).toBeTruthy();
+    //       expect(
+    //         elements.last().hasClass(cx('active-suggestion'))
+    //       ).toBeTruthy();
+    //     });
 
-          expect(elements.last().hasClass(cx('suggestion'))).toBeTruthy();
-          expect(
-            elements.last().hasClass(cx('active-suggestion'))
-          ).toBeTruthy();
-        });
+    //     it('should not highlight any suggestion after up key pressed on the first suggestion', () => {
+    //       // KeyDown
+    //       input.simulate('keydown', {
+    //         preventDefault: jest.fn(),
+    //         keyCode: 40,
+    //       });
 
-        it('should not highlight any suggestion after up key pressed on the first suggestion', () => {
-          // KeyDown
-          input.simulate('keydown', {
-            preventDefault: jest.fn(),
-            keyCode: 40,
-          });
+    //       const activeSuggestionClass = cx('active-suggestion');
+    //       const elements = getSuggestionsElements();
 
-          const activeSuggestionClass = cx('active-suggestion');
-          const elements = getSuggestionsElements();
+    //       expect(elements.exists(`.${activeSuggestionClass}`)).toBeTruthy();
+    //       expect(elements.first().hasClass(activeSuggestionClass)).toBeTruthy();
 
-          expect(elements.exists(`.${activeSuggestionClass}`)).toBeTruthy();
-          expect(elements.first().hasClass(activeSuggestionClass)).toBeTruthy();
+    //       // KeyUp
+    //       input.simulate('keydown', { preventDefault: jest.fn(), keyCode: 38 });
+    //       const updatedElements = getSuggestionsElements();
 
-          // KeyUp
-          input.simulate('keydown', { preventDefault: jest.fn(), keyCode: 38 });
-          const updatedElements = getSuggestionsElements();
+    //       expect(
+    //         updatedElements.exists(`.${activeSuggestionClass}`)
+    //       ).toBeFalsy();
+    //     });
 
-          expect(
-            updatedElements.exists(`.${activeSuggestionClass}`)
-          ).toBeFalsy();
-        });
+    //     it('should hide suggestions on esc key pressed', () => {
+    //       expect(wrapper.exists(`.${cx('suggestion-list')}`)).toBeTruthy();
 
-        it('should hide suggestions on esc key pressed', () => {
-          expect(wrapper.exists(`.${cx('suggestion-list')}`)).toBeTruthy();
+    //       input.simulate('keydown', {
+    //         preventDefault: jest.fn(),
+    //         keyCode: 27,
+    //       });
 
-          input.simulate('keydown', {
-            preventDefault: jest.fn(),
-            keyCode: 27,
-          });
+    //       expect(wrapper.exists(`.${cx('suggestion-list')}`)).toBeFalsy();
+    //     });
+    //   });
+    //   it('should select suggestion when enter key pressed on active suggestion', () => {
+    //     let inputRef;
+    //     const onSuggestionSelected = jest.fn();
+    //     const wrapper = mount(
+    //       <AutoComplete
+    //         refine={() => null}
+    //         searchForSuggestions={() => null}
+    //         suggestions={mockSuggestions}
+    //         onSuggestionSelected={onSuggestionSelected}
+    //         __inputRef={node => {
+    //           inputRef = node;
+    //         }}
+    //       />
+    //     );
 
-          expect(wrapper.exists(`.${cx('suggestion-list')}`)).toBeFalsy();
-        });
-      });
-      it('should select suggestion when enter key pressed on active suggestion', () => {
-        let inputRef;
-        const onSuggestionSelected = jest.fn();
-        const wrapper = mount(
-          <AutoComplete
-            refine={() => null}
-            searchForSuggestions={() => null}
-            suggestions={mockSuggestions}
-            onSuggestionSelected={onSuggestionSelected}
-            __inputRef={node => {
-              inputRef = node;
-            }}
-          />
-        );
+    //     inputRef.blur = jest.fn();
 
-        inputRef.blur = jest.fn();
+    //     const firstSuggestionOption = mockSuggestions[0].suggestion;
+    //     const input = wrapper.find('input');
 
-        const firstSuggestionOption = mockSuggestions[0].suggestion;
-        const input = wrapper.find('input');
+    //     input.simulate('focus');
+    //     input.simulate('change', {
+    //       target: { value: suggestionCompliantChar },
+    //     });
 
-        input.simulate('focus');
-        input.simulate('change', {
-          target: { value: suggestionCompliantChar },
-        });
+    //     input.simulate('keydown', { preventDefault: jest.fn(), keyCode: 40 });
+    //     input.simulate('keydown', { preventDefault: jest.fn(), keyCode: 13 });
 
-        input.simulate('keydown', { preventDefault: jest.fn(), keyCode: 40 });
-        input.simulate('keydown', { preventDefault: jest.fn(), keyCode: 13 });
+    //     expect(onSuggestionSelected).toHaveBeenCalled();
+    //     expect(inputRef.value).toEqual(firstSuggestionOption);
+    //   });
+    //   it('lets you give custom components for suggestion via renderProps', () => {
+    //     const renderCustomSuggestion = suggestion => <h1>{suggestion}</h1>;
 
-        expect(onSuggestionSelected).toHaveBeenCalled();
-        expect(inputRef.value).toEqual(firstSuggestionOption);
-      });
-      it('lets you give custom components for suggestion via renderProps', () => {
-        const renderCustomSuggestion = suggestion => <h1>{suggestion}</h1>;
+    //     const wrapper = shallow(
+    //       <AutoComplete
+    //         refine={() => null}
+    //         searchForSuggestions={() => null}
+    //         suggestions={mockSuggestions}
+    //         renderSuggestion={renderCustomSuggestion}
+    //       />
+    //     ).dive();
 
-        const wrapper = shallow(
-          <AutoComplete
-            refine={() => null}
-            searchForSuggestions={() => null}
-            suggestions={mockSuggestions}
-            renderSuggestion={renderCustomSuggestion}
-          />
-        ).dive();
+    //     const input = wrapper.find('input');
+    //     input.simulate('focus');
+    //     input.simulate('change', {
+    //       target: { value: suggestionCompliantChar },
+    //     });
 
-        const input = wrapper.find('input');
-        input.simulate('focus');
-        input.simulate('change', {
-          target: { value: suggestionCompliantChar },
-        });
+    //     mockSuggestions.forEach(suggestion => {
+    //       expect(
+    //         wrapper.contains(renderCustomSuggestion(suggestion))
+    //       ).toBeTruthy();
+    //     });
+    //   });
+    //   it('should refine search on suggestion selected', () => {
+    //     const refine = jest.fn();
+    //     const wrapper = shallow(
+    //       <AutoComplete
+    //         refine={refine}
+    //         searchForSuggestions={() => null}
+    //         suggestions={mockSuggestions}
+    //       />
+    //     ).dive();
 
-        mockSuggestions.forEach(suggestion => {
-          expect(
-            wrapper.contains(renderCustomSuggestion(suggestion))
-          ).toBeTruthy();
-        });
-      });
-      it('should refine search on suggestion selected', () => {
-        const refine = jest.fn();
-        const wrapper = shallow(
-          <AutoComplete
-            refine={refine}
-            searchForSuggestions={() => null}
-            suggestions={mockSuggestions}
-          />
-        ).dive();
+    //     const input = wrapper.find('input');
+    //     input.simulate('focus');
+    //     input.simulate('change', {
+    //       target: { value: suggestionCompliantChar },
+    //     });
 
-        const input = wrapper.find('input');
-        input.simulate('focus');
-        input.simulate('change', {
-          target: { value: suggestionCompliantChar },
-        });
+    //     wrapper
+    //       .find(`.${cx('suggestion-list')}`)
+    //       .children()
+    //       .first()
+    //       .simulate('mousedown');
 
-        wrapper
-          .find(`.${cx('suggestion-list')}`)
-          .children()
-          .first()
-          .simulate('mousedown');
+    //     expect(refine).toHaveBeenCalled();
+    //   });
 
-        expect(refine).toHaveBeenCalled();
-      });
+    //   it('should refine search on submit', () => {
+    //     const refine = jest.fn();
+    //     let inputRef;
+    //     const wrapper = mount(
+    //       <AutoComplete
+    //         refine={refine}
+    //         searchForSuggestions={() => null}
+    //         suggestions={mockSuggestions}
+    //         __inputRef={node => {
+    //           inputRef = node;
+    //         }}
+    //       />
+    //     );
 
-      it('should refine search on submit', () => {
-        const refine = jest.fn();
-        let inputRef;
-        const wrapper = mount(
-          <AutoComplete
-            refine={refine}
-            searchForSuggestions={() => null}
-            suggestions={mockSuggestions}
-            __inputRef={node => {
-              inputRef = node;
-            }}
-          />
-        );
+    //     inputRef.blur = jest.fn();
 
-        inputRef.blur = jest.fn();
+    //     wrapper.find('input').simulate('change', {
+    //       target: { value: suggestionCompliantChar },
+    //     });
 
-        wrapper.find('input').simulate('change', {
-          target: { value: suggestionCompliantChar },
-        });
+    //     wrapper.find('form').simulate('submit', {
+    //       preventDefault: jest.fn(),
+    //       stopPropagation: jest.fn(),
+    //     });
 
-        wrapper.find('form').simulate('submit', {
-          preventDefault: jest.fn(),
-          stopPropagation: jest.fn(),
-        });
+    //     expect(refine).toHaveBeenCalled();
+    //   });
+    //   it('should trigger submit when triggerSubmitOnSuggestionSelected prop is true', () => {
+    //     const onSubmit = jest.fn();
+    //     const wrapper = mount(
+    //       <AutoComplete
+    //         refine={() => null}
+    //         searchForSuggestions={() => null}
+    //         suggestions={mockSuggestions}
+    //         onSubmit={onSubmit}
+    //         triggerSubmitOnSuggestionSelected
+    //       />
+    //     );
 
-        expect(refine).toHaveBeenCalled();
-      });
-      it('should trigger submit when triggerSubmitOnSuggestionSelected prop is true', () => {
-        const onSubmit = jest.fn();
-        const wrapper = mount(
-          <AutoComplete
-            refine={() => null}
-            searchForSuggestions={() => null}
-            suggestions={mockSuggestions}
-            onSubmit={onSubmit}
-            triggerSubmitOnSuggestionSelected
-          />
-        );
+    //     const input = wrapper.find('input');
+    //     input.simulate('focus');
+    //     input.simulate('change', {
+    //       target: { value: suggestionCompliantChar },
+    //     });
 
-        const input = wrapper.find('input');
-        input.simulate('focus');
-        input.simulate('change', {
-          target: { value: suggestionCompliantChar },
-        });
+    //     wrapper
+    //       .find(`.${cx('suggestion-list')}`)
+    //       .children()
+    //       .first()
+    //       .simulate('mousedown');
 
-        wrapper
-          .find(`.${cx('suggestion-list')}`)
-          .children()
-          .first()
-          .simulate('mousedown');
+    //     expect(onSubmit).toHaveBeenCalled();
+    //   });
+    //   it('should update suggestions onChange', () => {
+    //     const searchForSuggestions = jest.fn();
+    //     const wrapper = shallow(
+    //       <AutoComplete
+    //         searchForSuggestions={searchForSuggestions}
+    //         refine={() => null}
+    //         suggestions={mockSuggestions}
+    //       />
+    //     ).dive();
 
-        expect(onSubmit).toHaveBeenCalled();
-      });
-      it('should update suggestions onChange', () => {
-        const searchForSuggestions = jest.fn();
-        const wrapper = shallow(
-          <AutoComplete
-            searchForSuggestions={searchForSuggestions}
-            refine={() => null}
-            suggestions={mockSuggestions}
-          />
-        ).dive();
+    //     wrapper.find('input').simulate('change', {
+    //       target: { value: suggestionCompliantChar },
+    //     });
 
-        wrapper.find('input').simulate('change', {
-          target: { value: suggestionCompliantChar },
-        });
-
-        expect(searchForSuggestions).toHaveBeenCalled();
-      });
-    });
+    //     expect(searchForSuggestions).toHaveBeenCalled();
+    //   });
+    // });
   });
 });
