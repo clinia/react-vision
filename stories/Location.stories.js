@@ -21,23 +21,53 @@ stories.addParameters({ jest: ['Location'] }).add('User Location', () => (
     <Location
       translations={{ userPosition: 'Current location' }}
       enableUserLocation
+      onSuggestionSelected={suggestion => {
+        console.log(suggestion);
+      }}
     />
   </Vision>
 ));
 
-const renderSuggestion = suggestion => {
-  return (
-    <div>
-      <b>{suggestion.type}</b> - {suggestion.suggestion}
-    </div>
-  );
+const getSuggestionValue = suggestion => {
+  if (!suggestion) return null;
+
+  switch (suggestion.type) {
+    case 'postcode':
+      return suggestion.postalCode;
+    case 'place':
+      if (suggestion.regionCode) {
+        return `${suggestion.place}, ${suggestion.regionCode}`;
+      }
+      return suggestion.place;
+    case 'neighborhood':
+      if (suggestion.regionCode && suggestion.place) {
+        return `${suggestion.neighborhood}, ${suggestion.place}, ${suggestion.regionCode}`;
+      }
+      return suggestion.neighborhood;
+    default:
+      break;
+  }
+
+  return null;
+};
+
+const renderLocationSuggestion = suggestion => {
+  if (!suggestion) return null;
+  const value = getSuggestionValue(suggestion);
+
+  if (value) {
+    return <div>{value}</div>;
+  }
+
+  return null;
 };
 
 stories.addParameters({ jest: ['Location'] }).add('Custom Location', () => (
   <Vision searchClient={searchClient} indexName="health_facility">
     <Location
       translations={{ placeholder: 'Custom placeholder' }}
-      renderSuggestion={renderSuggestion}
+      renderSuggestion={renderLocationSuggestion}
+      suggestionValue={getSuggestionValue}
     />
   </Vision>
 ));
