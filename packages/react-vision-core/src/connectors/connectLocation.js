@@ -36,7 +36,7 @@ const getId = nextRefinement => {
   return isAroundLatLng(nextRefinement) ? getAroundLatLngId() : getLocationId();
 };
 
-const refine = (props, searchState, nextRefinement, context) => {
+const refine = (_props, searchState, nextRefinement, context) => {
   const id = getId(nextRefinement);
   const nextValue = { [id]: nextRefinement };
   const resetPage = true;
@@ -56,7 +56,7 @@ const refine = (props, searchState, nextRefinement, context) => {
   };
 };
 
-const cleanUp = (props, searchState, context) => {
+const cleanUp = (_props, searchState, context) => {
   return cleanUpValue(searchState, context, getId());
 };
 
@@ -157,7 +157,7 @@ export default createConnector({
       .setQueryParameter('location', currentRefinement);
   },
 
-  searchForLocations(props, searchState, nextRefinment) {
+  searchForLocations(props, _searchState, nextRefinment) {
     const params = {
       query: nextRefinment,
     };
