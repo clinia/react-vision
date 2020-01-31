@@ -86,7 +86,7 @@ const Location = props => {
       {...props}
       searchForSuggestions={props.searchForLocations}
       suggestions={locationSuggestions}
-      customThemeKey="Location"
+      customThemeKey="location"
     />
   );
 };
