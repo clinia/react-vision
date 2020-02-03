@@ -21,9 +21,6 @@ stories.addParameters({ jest: ['Location'] }).add('User Location', () => (
     <Location
       translations={{ userPosition: 'Current location' }}
       enableUserLocation
-      onSuggestionSelected={suggestion => {
-        console.log(suggestion);
-      }}
     />
   </Vision>
 ));
