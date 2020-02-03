@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, ChangeEvent } from 'react';
 import {
   escapeRegExp,
   createClassNames,
@@ -284,6 +284,7 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
       onSuggestionSelected,
       triggerSubmitOnSuggestionSelected,
       onUserPositionError,
+      onChange,
     } = this.props;
 
     const { type, suggestion: value } = suggestion;
@@ -296,7 +297,6 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
             const {
               coords: { latitude, longitude },
             } = position;
-
             this.setState(
               {
                 query: translate('userPosition'),
@@ -305,7 +305,11 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
                 userPosition: { lat: latitude, lng: longitude },
               },
               () => {
-                this.search();
+                if (onChange) {
+                  onChange({
+                    target: { value: 'user-position' },
+                  } as ChangeEvent<HTMLInputElement>);
+                }
                 if (triggerSubmitOnSuggestionSelected) {
                   this.formRef.dispatchEvent(new Event('submit'));
                 }
@@ -334,7 +338,11 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
           userPosition: null,
         },
         () => {
-          this.search();
+          if (onChange) {
+            onChange({
+              target: { value },
+            } as ChangeEvent<HTMLInputElement>);
+          }
           if (triggerSubmitOnSuggestionSelected) {
             this.formRef.dispatchEvent(new Event('submit'));
           }
