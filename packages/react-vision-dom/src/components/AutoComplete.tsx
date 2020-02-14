@@ -33,6 +33,7 @@ interface Props {
   hideClear?: boolean;
   submit?: React.ReactNode;
   renderSuggestion?: (suggestion: Suggestion) => React.ReactNode;
+  suggestionValue?: (suggestion: Suggestion) => string;
 
   autoFocus?: boolean;
   triggerSubmitOnSuggestionSelected?: boolean;
@@ -285,9 +286,16 @@ class AutoComplete extends Component<PropsWithDefaults, State> {
       triggerSubmitOnSuggestionSelected,
       onUserPositionError,
       onChange,
+      suggestionValue,
     } = this.props;
 
-    const { type, suggestion: value } = suggestion;
+    const { type } = suggestion;
+    let { suggestion: value } = suggestion;
+
+    // Override value if function is implemented
+    if (suggestionValue) {
+      value = suggestionValue(suggestion);
+    }
 
     if (type === 'user') {
       // try to get user position

@@ -25,14 +25,14 @@ function getCurrentRefinement(props, searchState, context) {
   return '';
 }
 
-function refine(props, searchState, nextRefinement, context) {
+function refine(_props, searchState, nextRefinement, context) {
   const id = getId();
   const nextValue = { [id]: nextRefinement };
   const resetPage = true;
   return refineValue(searchState, nextValue, context, resetPage);
 }
 
-function cleanUp(props, searchState, context) {
+function cleanUp(_props, searchState, context) {
   return cleanUpValue(searchState, context, getId());
 }
 
