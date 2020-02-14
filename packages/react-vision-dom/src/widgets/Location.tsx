@@ -17,7 +17,7 @@ import ExecutionEnvironment from 'exenv';
  * @prop {node} clear - Change the apparence of the default reset button (cross).
  * @prop {boolean} hideClear - hide clear button
  * @prop {string} clearTitle - The reset button title
- * @prop {string} country - Filter the suggestion to the given country codes. (The countries values must be formatted according to the ISO 3166, e.g. "CA").
+ * @prop {array.<string>} country - Filter the suggestion to the given country codes. (The countries values must be formatted according to the ISO 3166, e.g. "CA").
  * @prop {string} defaultRefinement - Provide default refinement value when component is mounted.
  * @prop {boolean} enableUserLocation - Append to suggestions user location. If this option is enabled, a new suggestion with { type: 'user' } can be handled in `renderSuggestion`
  * @prop {function} onUserPositionError - Execute when an error occur while fetching user position
@@ -86,7 +86,7 @@ const Location = props => {
       {...props}
       searchForSuggestions={props.searchForLocations}
       suggestions={locationSuggestions}
-      customThemeKey="Location"
+      customThemeKey="location"
     />
   );
 };
