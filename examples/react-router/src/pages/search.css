@@ -1,7 +1,7 @@
 @import '../static/fonts/fonts.css';
 
 /* CVI */
-.cvi-searchbox-input {
+.cvi-SearchBox-input {
   height: 48px;
   width: 361px;
   font-family: 'CircularStd';
@@ -17,14 +17,14 @@
   box-shadow: 0 0 5px 0 rgba(72, 89, 104, 0.23);
 }
 
-.cvi-location-clear,
-.cvi-searchbox-clear {
+.cvi-Location-clear,
+.cvi-SearchBox-clear {
   display: none;
 }
 
-.cvi-autocomplete-submit,
-.cvi-autocomplete-clear,
-.cvi-location-submit {
+.cvi-AutoComplete-submit,
+.cvi-AutoComplete-clear,
+.cvi-Location-submit {
   margin-right: 10px;
   height: 38px;
   width: 52px;
@@ -34,14 +34,14 @@
   outline: none;
 }
 
-.cvi-location-autocomplete,
-.cvi-autocomplete-autocomplete {
+.cvi-Location-autocomplete,
+.cvi-AutoComplete-autocomplete {
   position: relative;
   display: inline-block;
 }
 
-.cvi-location-suggestion-list,
-.cvi-autocomplete-suggestion-list {
+.cvi-Location-suggestion-list,
+.cvi-AutoComplete-suggestion-list {
   position: absolute;
   margin: 0;
   padding: 0;
@@ -51,21 +51,21 @@
   width: 100%;
 }
 
-.cvi-location-suggestion,
-.cvi-autocomplete-suggestion {
+.cvi-Location-suggestion,
+.cvi-AutoComplete-suggestion {
   padding: 5px 12px;
   cursor: pointer;
 }
 
-.cvi-location-suggestion:hover,
-.cvi-location-active-suggestion,
-.cvi-autocomplete-suggestion:hover,
-.cvi-autocomplete-active-suggestion {
+.cvi-Location-suggestion:hover,
+.cvi-Location-active-suggestion,
+.cvi-AutoComplete-suggestion:hover,
+.cvi-AutoComplete-active-suggestion {
   background-color: #f5f5f8;
 }
 
-.cvi-location-input,
-.cvi-autocomplete-input {
+.cvi-Location-input,
+.cvi-AutoComplete-input {
   height: 48px;
   width: 361px;
   font-family: 'CircularStd';
@@ -83,23 +83,23 @@
   outline: none;
 }
 
-.cvi-location-input {
+.cvi-Location-input {
   border-radius: 0px 8px 8px 0px;
 }
 
-.cvi-geosearch {
+.cvi-GeoSearch {
   width: 100%;
   height: 100%;
   position: relative;
 }
 
-.cvi-geosearch-map {
+.cvi-GeoSearch-map {
   height: 100%;
   width: 100%;
   overflow: hidden;
 }
 
-.cvi-geosearch-control {
+.cvi-GeoSearch-control {
   position: absolute;
   left: 50%;
   transform: translate(-50%, 0);
@@ -114,7 +114,7 @@
   justify-content: center;
 }
 
-.cvi-geosearch-label {
+.cvi-GeoSearch-label {
   padding: 12px 17px;
   font-family: 'CircularStd';
   font-size: 14px;
@@ -122,7 +122,7 @@
   line-height: 18px;
 }
 
-.cvi-geosearch-redo {
+.cvi-GeoSearch-redo {
   display: flex;
   border-radius: 50px;
   padding: 10px;

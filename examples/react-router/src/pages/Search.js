@@ -7,7 +7,7 @@ import { GoogleMapsLoader } from 'react-vision-dom-maps';
 import Map from '../components/Map';
 import Hits from '../components/Hits';
 
-const apiKey = 'GOOGLE_API_KEY';
+const apiKey = 'AIzaSyCinD8RBonNR0YccJKv6sHvT2_BGQiP2pw';
 const endpoint = 'https://maps.googleapis.com/maps/api/js?v=weekly';
 
 const Example = ({ location, history }) => {
@@ -30,7 +30,7 @@ const Example = ({ location, history }) => {
           <div className="autocomplete-label">Where</div>
           <Location
             types={['postcode', 'place', 'neighborhood']}
-            country={'CA'}
+            country={['CA']}
             locale="en"
             defaultRefinement={searchParams.get('location') || ''}
           />

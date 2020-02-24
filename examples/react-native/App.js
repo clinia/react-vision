@@ -18,9 +18,9 @@ const searchClient = cliniasearch(
   'KcLxBhVFP8ooPgQODlAxWqfNg657fTz9'
 );
 
-const ProfessionalsNavigation = createStackNavigator({
-  Professionals,
-});
+// const ProfessionalsNavigation = createStackNavigator({
+//   Professionals,
+// });
 
 const HealthFacilitiesNavigation = createStackNavigator({
   HealthFacilities,
@@ -33,7 +33,7 @@ const MapNavigation = createStackNavigator({
 const TabNavigator = createBottomTabNavigator(
   {
     HealthFacilities: HealthFacilitiesNavigation,
-    Professionals: ProfessionalsNavigation,
+    // Professionals: ProfessionalsNavigation,
     Map: MapNavigation,
   },
   {
@@ -48,9 +48,9 @@ const TabNavigator = createBottomTabNavigator(
           case 'HealthFacilities':
             icon = require('./assets/health_facilities.png');
             break;
-          case 'Professionals':
-            icon = require('./assets/professionals.png');
-            break;
+          // case 'Professionals':
+          //   icon = require('./assets/professionals.png');
+          //   break;
           default:
             break;
         }

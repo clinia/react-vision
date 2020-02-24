@@ -90,7 +90,9 @@ class LocationBox extends React.Component {
 
   onTextChange = text => {
     const { searchForLocations } = this.props;
-    searchForLocations(text);
+    if (text) {
+      searchForLocations(text);
+    }
     this.props.setLocation({
       text,
       coordinates: null,

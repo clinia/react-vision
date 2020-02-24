@@ -22,3 +22,5 @@ integration/screenshots/
 # Editors
 .vscode
 .idea
+
+coverage
