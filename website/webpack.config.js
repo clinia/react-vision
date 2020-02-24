@@ -4,7 +4,7 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const outputPath = __dirname;
-const examples = glob.sync(path.join('examples', '@(default-theme)'), {
+const examples = glob.sync(path.join('examples', '@(react-router)'), {
   cwd: path.join(__dirname, '..'),
 });
 
