@@ -16,14 +16,23 @@ export {
   default as connectAutoComplete,
 } from './connectors/connectAutoComplete';
 export { default as connectConfigure } from './connectors/connectConfigure';
+export {
+  default as connectCurrentRefinements,
+} from './connectors/connectCurrentRefinements';
 export { default as connectGeoSearch } from './connectors/connectGeoSearch';
-export { default as connectLocation } from './connectors/connectLocation';
+export { default as connectHighlight } from './connectors/connectHighlight';
+export { default as connectHitInsights } from './connectors/connectHitInsights';
 export { default as connectHits } from './connectors/connectHits';
 export { default as connectHitsPerPage } from './connectors/connectHitsPerPage';
 export {
   default as connectInfiniteHits,
 } from './connectors/connectInfiniteHits';
+export { default as connectPagination } from './connectors/connectPagination';
 export { default as connectSearchBox } from './connectors/connectSearchBox';
+export {
+  default as connectStateResults,
+} from './connectors/connectStateResults';
+export { default as connectStats } from './connectors/connectStats';
 
 // Types
 export * from './types';

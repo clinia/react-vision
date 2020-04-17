@@ -89,13 +89,7 @@ export class CustomMarker extends Component {
   };
 
   componentDidMount() {
-    const {
-      hit,
-      google,
-      googleMapsInstance,
-      className,
-      anchor,
-    } = this.props;
+    const { hit, google, googleMapsInstance, className, anchor } = this.props;
     // Not the best way to create the reference of the CustomMarker
     // but since the Google object is required didn't find another
     // solution. Ideas?
