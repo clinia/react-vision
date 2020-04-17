@@ -2,11 +2,11 @@
 
 exports[`SearchBox applies its default props 1`] = `
 <div
-  className="cvi-searchbox"
+  className="cvi-SearchBox"
 >
   <form
     action=""
-    className="cvi-searchbox-form cvi-searchbox"
+    className="cvi-SearchBox-form"
     noValidate={true}
     onReset={[Function]}
     onSubmit={[Function]}
@@ -17,22 +17,22 @@ exports[`SearchBox applies its default props 1`] = `
       autoComplete="off"
       autoCorrect="off"
       autoFocus={false}
-      className="cvi-searchbox-input"
-      maxLength={512}
+      className="cvi-SearchBox-input"
+      maxLength="512"
       onChange={[Function]}
-      placeholder="Default"
+      placeholder="Search here…"
       required={true}
-      spellCheck={false}
+      spellCheck="false"
       type="search"
       value=""
     />
     <button
-      className="cvi-searchbox-submit"
-      title="Search"
+      className="cvi-SearchBox-submit"
+      title="Submit your search query."
       type="submit"
     >
       <svg
-        className="cvi-searchbox-submiticon"
+        className="cvi-SearchBox-submitIcon"
         height="10"
         viewBox="0 0 40 40"
         width="10"
@@ -44,13 +44,13 @@ exports[`SearchBox applies its default props 1`] = `
       </svg>
     </button>
     <button
-      className="cvi-searchbox-clear"
+      className="cvi-SearchBox-reset"
       hidden={true}
-      title="Clear"
+      title="Clear the search query."
       type="reset"
     >
       <svg
-        className="cvi-searchbox-clearicon"
+        className="cvi-SearchBox-resetIcon"
         height="10"
         viewBox="0 0 20 20"
         width="10"
@@ -67,11 +67,11 @@ exports[`SearchBox applies its default props 1`] = `
 
 exports[`SearchBox applies its default props with custom className 1`] = `
 <div
-  className="cvi-searchbox custom"
+  className="cvi-SearchBox MyCustomSearchBox"
 >
   <form
     action=""
-    className="cvi-searchbox-form cvi-searchbox"
+    className="cvi-SearchBox-form"
     noValidate={true}
     onReset={[Function]}
     onSubmit={[Function]}
@@ -82,22 +82,22 @@ exports[`SearchBox applies its default props with custom className 1`] = `
       autoComplete="off"
       autoCorrect="off"
       autoFocus={false}
-      className="cvi-searchbox-input"
-      maxLength={512}
+      className="cvi-SearchBox-input"
+      maxLength="512"
       onChange={[Function]}
-      placeholder="Default"
+      placeholder="Search here…"
       required={true}
-      spellCheck={false}
+      spellCheck="false"
       type="search"
       value=""
     />
     <button
-      className="cvi-searchbox-submit"
-      title="Search"
+      className="cvi-SearchBox-submit"
+      title="Submit your search query."
       type="submit"
     >
       <svg
-        className="cvi-searchbox-submiticon"
+        className="cvi-SearchBox-submitIcon"
         height="10"
         viewBox="0 0 40 40"
         width="10"
@@ -109,83 +109,13 @@ exports[`SearchBox applies its default props with custom className 1`] = `
       </svg>
     </button>
     <button
-      className="cvi-searchbox-clear"
+      className="cvi-SearchBox-reset"
       hidden={true}
-      title="Clear"
+      title="Clear the search query."
       type="reset"
     >
       <svg
-        className="cvi-searchbox-clearicon"
-        height="10"
-        viewBox="0 0 20 20"
-        width="10"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M8.114 10L.944 2.83 0 1.885 1.886 0l.943.943L10 8.113l7.17-7.17.944-.943L20 1.886l-.943.943-7.17 7.17 7.17 7.17.943.944L18.114 20l-.943-.943-7.17-7.17-7.17 7.17-.944.943L0 18.114l.943-.943L8.113 10z"
-        />
-      </svg>
-    </button>
-  </form>
-</div>
-`;
-
-exports[`SearchBox applies its default props with custom style 1`] = `
-<div
-  className="cvi-searchbox"
-  style={
-    Object {
-      "color": "lightgray",
-    }
-  }
->
-  <form
-    action=""
-    className="cvi-searchbox-form cvi-searchbox"
-    noValidate={true}
-    onReset={[Function]}
-    onSubmit={[Function]}
-    role="search"
-  >
-    <input
-      autoCapitalize="off"
-      autoComplete="off"
-      autoCorrect="off"
-      autoFocus={false}
-      className="cvi-searchbox-input"
-      maxLength={512}
-      onChange={[Function]}
-      placeholder="Default"
-      required={true}
-      spellCheck={false}
-      type="search"
-      value=""
-    />
-    <button
-      className="cvi-searchbox-submit"
-      title="Search"
-      type="submit"
-    >
-      <svg
-        className="cvi-searchbox-submiticon"
-        height="10"
-        viewBox="0 0 40 40"
-        width="10"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M26.804 29.01c-2.832 2.34-6.465 3.746-10.426 3.746C7.333 32.756 0 25.424 0 16.378 0 7.333 7.333 0 16.378 0c9.046 0 16.378 7.333 16.378 16.378 0 3.96-1.406 7.594-3.746 10.426l10.534 10.534c.607.607.61 1.59-.004 2.202-.61.61-1.597.61-2.202.004L26.804 29.01zm-10.426.627c7.323 0 13.26-5.936 13.26-13.26 0-7.32-5.937-13.257-13.26-13.257C9.056 3.12 3.12 9.056 3.12 16.378c0 7.323 5.936 13.26 13.258 13.26z"
-        />
-      </svg>
-    </button>
-    <button
-      className="cvi-searchbox-clear"
-      hidden={true}
-      title="Clear"
-      type="reset"
-    >
-      <svg
-        className="cvi-searchbox-clearicon"
+        className="cvi-SearchBox-resetIcon"
         height="10"
         viewBox="0 0 20 20"
         width="10"
@@ -202,11 +132,11 @@ exports[`SearchBox applies its default props with custom style 1`] = `
 
 exports[`SearchBox lets you customize its theme 1`] = `
 <div
-  className="cvi-searchbox"
+  className="cvi-SearchBox"
 >
   <form
     action=""
-    className="cvi-searchbox-form cvi-searchbox"
+    className="cvi-SearchBox-form"
     noValidate={true}
     onReset={[Function]}
     onSubmit={[Function]}
@@ -217,22 +147,22 @@ exports[`SearchBox lets you customize its theme 1`] = `
       autoComplete="off"
       autoCorrect="off"
       autoFocus={false}
-      className="cvi-searchbox-input"
-      maxLength={512}
+      className="cvi-SearchBox-input"
+      maxLength="512"
       onChange={[Function]}
-      placeholder="Default"
+      placeholder="Search here…"
       required={true}
-      spellCheck={false}
+      spellCheck="false"
       type="search"
       value=""
     />
     <button
-      className="cvi-searchbox-submit"
-      title="Search"
+      className="cvi-SearchBox-submit"
+      title="Submit your search query."
       type="submit"
     >
       <svg
-        className="cvi-searchbox-submiticon"
+        className="cvi-SearchBox-submitIcon"
         height="10"
         viewBox="0 0 40 40"
         width="10"
@@ -244,13 +174,13 @@ exports[`SearchBox lets you customize its theme 1`] = `
       </svg>
     </button>
     <button
-      className="cvi-searchbox-clear"
+      className="cvi-SearchBox-reset"
       hidden={true}
-      title="Clear"
+      title="Clear the search query."
       type="reset"
     >
       <svg
-        className="cvi-searchbox-clearicon"
+        className="cvi-SearchBox-resetIcon"
         height="10"
         viewBox="0 0 20 20"
         width="10"
@@ -267,11 +197,11 @@ exports[`SearchBox lets you customize its theme 1`] = `
 
 exports[`SearchBox lets you customize its translations 1`] = `
 <div
-  className="cvi-searchbox"
+  className="cvi-SearchBox"
 >
   <form
     action=""
-    className="cvi-searchbox-form cvi-searchbox"
+    className="cvi-SearchBox-form"
     noValidate={true}
     onReset={[Function]}
     onSubmit={[Function]}
@@ -282,22 +212,22 @@ exports[`SearchBox lets you customize its translations 1`] = `
       autoComplete="off"
       autoCorrect="off"
       autoFocus={false}
-      className="cvi-searchbox-input"
-      maxLength={512}
+      className="cvi-SearchBox-input"
+      maxLength="512"
       onChange={[Function]}
       placeholder="PLACEHOLDER"
       required={true}
-      spellCheck={false}
+      spellCheck="false"
       type="search"
       value=""
     />
     <button
-      className="cvi-searchbox-submit"
-      title="Search"
+      className="cvi-SearchBox-submit"
+      title="Submit your search query."
       type="submit"
     >
       <svg
-        className="cvi-searchbox-submiticon"
+        className="cvi-SearchBox-submitIcon"
         height="10"
         viewBox="0 0 40 40"
         width="10"
@@ -309,13 +239,13 @@ exports[`SearchBox lets you customize its translations 1`] = `
       </svg>
     </button>
     <button
-      className="cvi-searchbox-clear"
+      className="cvi-SearchBox-reset"
       hidden={true}
-      title="CLEAR_TITLE"
+      title="RESET_TITLE"
       type="reset"
     >
       <svg
-        className="cvi-searchbox-clearicon"
+        className="cvi-SearchBox-resetIcon"
         height="10"
         viewBox="0 0 20 20"
         width="10"
@@ -330,13 +260,13 @@ exports[`SearchBox lets you customize its translations 1`] = `
 </div>
 `;
 
-exports[`SearchBox lets you give custom components for clear and submit 1`] = `
+exports[`SearchBox lets you give custom components for reset and submit 1`] = `
 <div
-  className="cvi-searchbox"
+  className="cvi-SearchBox"
 >
   <form
     action=""
-    className="cvi-searchbox-form cvi-searchbox"
+    className="cvi-SearchBox-form"
     noValidate={true}
     onReset={[Function]}
     onSubmit={[Function]}
@@ -347,18 +277,18 @@ exports[`SearchBox lets you give custom components for clear and submit 1`] = `
       autoComplete="off"
       autoCorrect="off"
       autoFocus={false}
-      className="cvi-searchbox-input"
-      maxLength={512}
+      className="cvi-SearchBox-input"
+      maxLength="512"
       onChange={[Function]}
-      placeholder="Default"
+      placeholder="Search here…"
       required={true}
-      spellCheck={false}
+      spellCheck="false"
       type="search"
       value=""
     />
     <button
-      className="cvi-searchbox-submit"
-      title="Search"
+      className="cvi-SearchBox-submit"
+      title="Submit your search query."
       type="submit"
     >
       <span>
@@ -366,9 +296,9 @@ exports[`SearchBox lets you give custom components for clear and submit 1`] = `
       </span>
     </button>
     <button
-      className="cvi-searchbox-clear"
+      className="cvi-SearchBox-reset"
       hidden={true}
-      title="Clear"
+      title="Clear the search query."
       type="reset"
     >
       <svg
@@ -385,11 +315,11 @@ exports[`SearchBox lets you give custom components for clear and submit 1`] = `
 
 exports[`SearchBox should render the loader if showLoadingIndicator is true 1`] = `
 <div
-  className="cvi-searchbox"
+  className="cvi-SearchBox"
 >
   <form
     action=""
-    className="cvi-searchbox-form cvi-searchbox"
+    className="cvi-SearchBox-form"
     noValidate={true}
     onReset={[Function]}
     onSubmit={[Function]}
@@ -400,22 +330,22 @@ exports[`SearchBox should render the loader if showLoadingIndicator is true 1`] 
       autoComplete="off"
       autoCorrect="off"
       autoFocus={false}
-      className="cvi-searchbox-input"
-      maxLength={512}
+      className="cvi-SearchBox-input"
+      maxLength="512"
       onChange={[Function]}
-      placeholder="Default"
+      placeholder="Search here…"
       required={true}
-      spellCheck={false}
+      spellCheck="false"
       type="search"
       value=""
     />
     <button
-      className="cvi-searchbox-submit"
-      title="Search"
+      className="cvi-SearchBox-submit"
+      title="Submit your search query."
       type="submit"
     >
       <svg
-        className="cvi-searchbox-submiticon"
+        className="cvi-SearchBox-submitIcon"
         height="10"
         viewBox="0 0 40 40"
         width="10"
@@ -427,13 +357,13 @@ exports[`SearchBox should render the loader if showLoadingIndicator is true 1`] 
       </svg>
     </button>
     <button
-      className="cvi-searchbox-clear"
+      className="cvi-SearchBox-reset"
       hidden={true}
-      title="Clear"
+      title="Clear the search query."
       type="reset"
     >
       <svg
-        className="cvi-searchbox-clearicon"
+        className="cvi-SearchBox-resetIcon"
         height="10"
         viewBox="0 0 20 20"
         width="10"
@@ -445,11 +375,11 @@ exports[`SearchBox should render the loader if showLoadingIndicator is true 1`] 
       </svg>
     </button>
     <span
-      className="cvi-searchbox-loadingindicator"
+      className="cvi-SearchBox-loadingIndicator"
       hidden={true}
     >
       <svg
-        className="cvi-searchbox-loadingicon"
+        className="cvi-SearchBox-loadingIcon"
         height="18"
         stroke="#444"
         viewBox="0 0 38 38"
@@ -492,11 +422,11 @@ exports[`SearchBox should render the loader if showLoadingIndicator is true 1`] 
 
 exports[`SearchBox should render the loader if showLoadingIndicator is true 2`] = `
 <div
-  className="cvi-searchbox"
+  className="cvi-SearchBox"
 >
   <form
     action=""
-    className="cvi-searchbox-form cvi-searchbox-form--stalledSearch"
+    className="cvi-SearchBox-form cvi-SearchBox-form--stalledSearch"
     noValidate={true}
     onReset={[Function]}
     onSubmit={[Function]}
@@ -507,22 +437,22 @@ exports[`SearchBox should render the loader if showLoadingIndicator is true 2`] 
       autoComplete="off"
       autoCorrect="off"
       autoFocus={false}
-      className="cvi-searchbox-input"
-      maxLength={512}
+      className="cvi-SearchBox-input"
+      maxLength="512"
       onChange={[Function]}
-      placeholder="Default"
+      placeholder="Search here…"
       required={true}
-      spellCheck={false}
+      spellCheck="false"
       type="search"
       value=""
     />
     <button
-      className="cvi-searchbox-submit"
-      title="Search"
+      className="cvi-SearchBox-submit"
+      title="Submit your search query."
       type="submit"
     >
       <svg
-        className="cvi-searchbox-submiticon"
+        className="cvi-SearchBox-submitIcon"
         height="10"
         viewBox="0 0 40 40"
         width="10"
@@ -534,13 +464,13 @@ exports[`SearchBox should render the loader if showLoadingIndicator is true 2`] 
       </svg>
     </button>
     <button
-      className="cvi-searchbox-clear"
+      className="cvi-SearchBox-reset"
       hidden={true}
-      title="Clear"
+      title="Clear the search query."
       type="reset"
     >
       <svg
-        className="cvi-searchbox-clearicon"
+        className="cvi-SearchBox-resetIcon"
         height="10"
         viewBox="0 0 20 20"
         width="10"
@@ -552,11 +482,11 @@ exports[`SearchBox should render the loader if showLoadingIndicator is true 2`] 
       </svg>
     </button>
     <span
-      className="cvi-searchbox-loadingindicator"
+      className="cvi-SearchBox-loadingIndicator"
       hidden={false}
     >
       <svg
-        className="cvi-searchbox-loadingicon"
+        className="cvi-SearchBox-loadingIcon"
         height="18"
         stroke="#444"
         viewBox="0 0 38 38"
@@ -599,11 +529,11 @@ exports[`SearchBox should render the loader if showLoadingIndicator is true 2`] 
 
 exports[`SearchBox transfers the autoFocus prop to the underlying input element 1`] = `
 <div
-  className="cvi-searchbox"
+  className="cvi-SearchBox"
 >
   <form
     action=""
-    className="cvi-searchbox-form cvi-searchbox"
+    className="cvi-SearchBox-form"
     noValidate={true}
     onReset={[Function]}
     onSubmit={[Function]}
@@ -614,22 +544,22 @@ exports[`SearchBox transfers the autoFocus prop to the underlying input element 
       autoComplete="off"
       autoCorrect="off"
       autoFocus={true}
-      className="cvi-searchbox-input"
-      maxLength={512}
+      className="cvi-SearchBox-input"
+      maxLength="512"
       onChange={[Function]}
-      placeholder="Default"
+      placeholder="Search here…"
       required={true}
-      spellCheck={false}
+      spellCheck="false"
       type="search"
       value=""
     />
     <button
-      className="cvi-searchbox-submit"
-      title="Search"
+      className="cvi-SearchBox-submit"
+      title="Submit your search query."
       type="submit"
     >
       <svg
-        className="cvi-searchbox-submiticon"
+        className="cvi-SearchBox-submitIcon"
         height="10"
         viewBox="0 0 40 40"
         width="10"
@@ -641,79 +571,13 @@ exports[`SearchBox transfers the autoFocus prop to the underlying input element 
       </svg>
     </button>
     <button
-      className="cvi-searchbox-clear"
+      className="cvi-SearchBox-reset"
       hidden={true}
-      title="Clear"
+      title="Clear the search query."
       type="reset"
     >
       <svg
-        className="cvi-searchbox-clearicon"
-        height="10"
-        viewBox="0 0 20 20"
-        width="10"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M8.114 10L.944 2.83 0 1.885 1.886 0l.943.943L10 8.113l7.17-7.17.944-.943L20 1.886l-.943.943-7.17 7.17 7.17 7.17.943.944L18.114 20l-.943-.943-7.17-7.17-7.17 7.17-.944.943L0 18.114l.943-.943L8.113 10z"
-        />
-      </svg>
-    </button>
-  </form>
-</div>
-`;
-
-exports[`SearchBox transfers the disabled prop to the underlying input element 1`] = `
-<div
-  className="cvi-searchbox"
->
-  <form
-    action=""
-    className="cvi-searchbox-form cvi-searchbox"
-    noValidate={true}
-    onReset={[Function]}
-    onSubmit={[Function]}
-    role="search"
-  >
-    <input
-      autoCapitalize="off"
-      autoComplete="off"
-      autoCorrect="off"
-      autoFocus={false}
-      className="cvi-searchbox-input"
-      disabled={true}
-      maxLength={512}
-      onChange={[Function]}
-      placeholder="Default"
-      required={true}
-      spellCheck={false}
-      type="search"
-      value=""
-    />
-    <button
-      className="cvi-searchbox-submit"
-      title="Search"
-      type="submit"
-    >
-      <svg
-        className="cvi-searchbox-submiticon"
-        height="10"
-        viewBox="0 0 40 40"
-        width="10"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M26.804 29.01c-2.832 2.34-6.465 3.746-10.426 3.746C7.333 32.756 0 25.424 0 16.378 0 7.333 7.333 0 16.378 0c9.046 0 16.378 7.333 16.378 16.378 0 3.96-1.406 7.594-3.746 10.426l10.534 10.534c.607.607.61 1.59-.004 2.202-.61.61-1.597.61-2.202.004L26.804 29.01zm-10.426.627c7.323 0 13.26-5.936 13.26-13.26 0-7.32-5.937-13.257-13.26-13.257C9.056 3.12 3.12 9.056 3.12 16.378c0 7.323 5.936 13.26 13.258 13.26z"
-        />
-      </svg>
-    </button>
-    <button
-      className="cvi-searchbox-clear"
-      hidden={true}
-      title="Clear"
-      type="reset"
-    >
-      <svg
-        className="cvi-searchbox-clearicon"
+        className="cvi-SearchBox-resetIcon"
         height="10"
         viewBox="0 0 20 20"
         width="10"
@@ -730,11 +594,11 @@ exports[`SearchBox transfers the disabled prop to the underlying input element 1
 
 exports[`SearchBox treats its query prop as its input value 1`] = `
 <div
-  className="cvi-searchbox"
+  className="cvi-SearchBox"
 >
   <form
     action=""
-    className="cvi-searchbox-form cvi-searchbox"
+    className="cvi-SearchBox-form"
     noValidate={true}
     onReset={[Function]}
     onSubmit={[Function]}
@@ -745,22 +609,22 @@ exports[`SearchBox treats its query prop as its input value 1`] = `
       autoComplete="off"
       autoCorrect="off"
       autoFocus={false}
-      className="cvi-searchbox-input"
-      maxLength={512}
+      className="cvi-SearchBox-input"
+      maxLength="512"
       onChange={[Function]}
-      placeholder="Default"
+      placeholder="Search here…"
       required={true}
-      spellCheck={false}
+      spellCheck="false"
       type="search"
       value="QUERY1"
     />
     <button
-      className="cvi-searchbox-submit"
-      title="Search"
+      className="cvi-SearchBox-submit"
+      title="Submit your search query."
       type="submit"
     >
       <svg
-        className="cvi-searchbox-submiticon"
+        className="cvi-SearchBox-submitIcon"
         height="10"
         viewBox="0 0 40 40"
         width="10"
@@ -772,13 +636,13 @@ exports[`SearchBox treats its query prop as its input value 1`] = `
       </svg>
     </button>
     <button
-      className="cvi-searchbox-clear"
+      className="cvi-SearchBox-reset"
       hidden={false}
-      title="Clear"
+      title="Clear the search query."
       type="reset"
     >
       <svg
-        className="cvi-searchbox-clearicon"
+        className="cvi-SearchBox-resetIcon"
         height="10"
         viewBox="0 0 20 20"
         width="10"
@@ -795,11 +659,11 @@ exports[`SearchBox treats its query prop as its input value 1`] = `
 
 exports[`SearchBox treats its query prop as its input value 2`] = `
 <div
-  className="cvi-searchbox"
+  className="cvi-SearchBox"
 >
   <form
     action=""
-    className="cvi-searchbox-form cvi-searchbox"
+    className="cvi-SearchBox-form"
     noValidate={true}
     onReset={[Function]}
     onSubmit={[Function]}
@@ -810,22 +674,22 @@ exports[`SearchBox treats its query prop as its input value 2`] = `
       autoComplete="off"
       autoCorrect="off"
       autoFocus={false}
-      className="cvi-searchbox-input"
-      maxLength={512}
+      className="cvi-SearchBox-input"
+      maxLength="512"
       onChange={[Function]}
-      placeholder="Default"
+      placeholder="Search here…"
       required={true}
-      spellCheck={false}
+      spellCheck="false"
       type="search"
       value="QUERY2"
     />
     <button
-      className="cvi-searchbox-submit"
-      title="Search"
+      className="cvi-SearchBox-submit"
+      title="Submit your search query."
       type="submit"
     >
       <svg
-        className="cvi-searchbox-submiticon"
+        className="cvi-SearchBox-submitIcon"
         height="10"
         viewBox="0 0 40 40"
         width="10"
@@ -837,13 +701,13 @@ exports[`SearchBox treats its query prop as its input value 2`] = `
       </svg>
     </button>
     <button
-      className="cvi-searchbox-clear"
+      className="cvi-SearchBox-reset"
       hidden={false}
-      title="Clear"
+      title="Clear the search query."
       type="reset"
     >
       <svg
-        className="cvi-searchbox-clearicon"
+        className="cvi-SearchBox-resetIcon"
         height="10"
         viewBox="0 0 20 20"
         width="10"

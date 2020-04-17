@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Enzyme, { mount } from 'enzyme';
+import Enzyme, { shallow, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import SearchBox from '../SearchBox';
 
@@ -17,17 +17,7 @@ describe('SearchBox', () => {
 
   it('applies its default props with custom className', () => {
     const instance = renderer.create(
-      <SearchBox refine={() => null} className="custom" />
-    );
-
-    expect(instance.toJSON()).toMatchSnapshot();
-
-    instance.unmount();
-  });
-
-  it('applies its default props with custom style', () => {
-    const instance = renderer.create(
-      <SearchBox refine={() => null} style={{ color: 'lightgray' }} />
+      <SearchBox className="MyCustomSearchBox" refine={() => null} />
     );
 
     expect(instance.toJSON()).toMatchSnapshot();
@@ -38,16 +28,6 @@ describe('SearchBox', () => {
   it('transfers the autoFocus prop to the underlying input element', () => {
     const instance = renderer.create(
       <SearchBox refine={() => null} autoFocus />
-    );
-
-    expect(instance.toJSON()).toMatchSnapshot();
-
-    instance.unmount();
-  });
-
-  it('transfers the disabled prop to the underlying input element', () => {
-    const instance = renderer.create(
-      <SearchBox refine={() => null} disabled />
     );
 
     expect(instance.toJSON()).toMatchSnapshot();
@@ -90,12 +70,12 @@ describe('SearchBox', () => {
     instance.unmount();
   });
 
-  it('lets you give custom components for clear and submit', () => {
+  it('lets you give custom components for reset and submit', () => {
     const instance = renderer.create(
       <SearchBox
         refine={() => null}
         submit={<span>🔍</span>}
-        clear={
+        reset={
           <svg viewBox="200 198 108 122">
             <path d="M200.8 220l45 46.7-20 47.4 31.7-34 50.4 39.3-34.3-52.6 30.2-68.3-49.7 51.7" />
           </svg>
@@ -113,7 +93,7 @@ describe('SearchBox', () => {
       <SearchBox
         refine={() => null}
         translations={{
-          clearTitle: 'CLEAR_TITLE',
+          resetTitle: 'RESET_TITLE',
           placeholder: 'PLACEHOLDER',
         }}
       />
@@ -122,23 +102,6 @@ describe('SearchBox', () => {
     expect(instance.toJSON()).toMatchSnapshot();
 
     instance.unmount();
-  });
-
-  it('should render the loader if showLoadingIndicator is true', () => {
-    const instanceWithoutLoadingIndicator = renderer.create(
-      <SearchBox refine={() => null} showLoadingIndicator />
-    );
-
-    expect(instanceWithoutLoadingIndicator.toJSON()).toMatchSnapshot();
-
-    const instanceWithLoadingIndicator = renderer.create(
-      <SearchBox refine={() => null} showLoadingIndicator isSearchStalled />
-    );
-
-    expect(instanceWithLoadingIndicator.toJSON()).toMatchSnapshot();
-
-    instanceWithoutLoadingIndicator.unmount();
-    instanceWithLoadingIndicator.unmount();
   });
 
   it('treats query as a default value when searchAsYouType=false', () => {
@@ -211,7 +174,7 @@ describe('SearchBox', () => {
       <SearchBox
         refine={() => null}
         focusShortcuts={['s', 84]}
-        __inputRef={node => {
+        inputRef={node => {
           input = node;
         }}
       />
@@ -219,30 +182,24 @@ describe('SearchBox', () => {
 
     input.focus = jest.fn();
 
-    const event1 = new KeyboardEvent('keydown', {
-      keyCode: 82,
-    } as KeyboardEventInit);
+    const event1 = new KeyboardEvent('keydown', { keyCode: 82 });
     document.dispatchEvent(event1);
     expect(input.focus.mock.calls).toHaveLength(0);
 
-    const event2 = new KeyboardEvent('keydown', {
-      keyCode: 83,
-    } as KeyboardEventInit);
+    const event2 = new KeyboardEvent('keydown', { keyCode: 83 });
     document.dispatchEvent(event2);
     expect(input.focus.mock.calls).toHaveLength(1);
 
-    const event3 = new KeyboardEvent('keydown', {
-      keyCode: 84,
-    } as KeyboardEventInit);
+    const event3 = new KeyboardEvent('keydown', { keyCode: 84 });
     document.dispatchEvent(event3);
     expect(input.focus.mock.calls).toHaveLength(2);
 
     wrapper.unmount();
   });
 
-  it('should accept `on*` events', () => {
+  it('should accept `onXXX` events', () => {
     const onSubmit = jest.fn();
-    const onClear = jest.fn();
+    const onReset = jest.fn();
 
     const inputEventsList = [
       'onChange',
@@ -262,17 +219,19 @@ describe('SearchBox', () => {
       <SearchBox
         refine={() => null}
         onSubmit={onSubmit}
-        onClear={onClear}
+        onReset={onReset}
         {...inputProps}
       />
     );
 
+    // simulate form events `onReset` && `onSubmit`
     wrapper.find('form').simulate('submit');
     expect(onSubmit).toHaveBeenCalled();
 
     wrapper.find('form').simulate('reset');
-    expect(onClear).toHaveBeenCalled();
+    expect(onReset).toHaveBeenCalled();
 
+    // simulate input search events
     inputEventsList.forEach(eventName => {
       wrapper
         .find('input')
@@ -282,5 +241,93 @@ describe('SearchBox', () => {
     });
 
     wrapper.unmount();
+  });
+
+  it('should render the loader if showLoadingIndicator is true', () => {
+    const instanceWithoutLoadingIndicator = renderer.create(
+      <SearchBox refine={() => null} showLoadingIndicator />
+    );
+
+    expect(instanceWithoutLoadingIndicator.toJSON()).toMatchSnapshot();
+
+    const instanceWithLoadingIndicator = renderer.create(
+      <SearchBox refine={() => null} showLoadingIndicator isSearchStalled />
+    );
+
+    expect(instanceWithLoadingIndicator.toJSON()).toMatchSnapshot();
+
+    instanceWithoutLoadingIndicator.unmount();
+    instanceWithLoadingIndicator.unmount();
+  });
+
+  it('expect to clear the query when the form is reset with searchAsYouType=true', () => {
+    const refine = jest.fn();
+
+    const wrapper = shallow(
+      <SearchBox refine={refine} searchAsYouType />
+    ).dive();
+
+    // Simulate the ref
+    wrapper.instance().input = { focus: jest.fn() };
+
+    wrapper.find('form').simulate('reset');
+
+    expect(refine).toHaveBeenCalledWith('');
+    expect(wrapper.instance().input.focus).toHaveBeenCalled();
+  });
+
+  it('expect to clear the query when the form is reset with searchAsYouType=false', () => {
+    const refine = jest.fn();
+
+    const wrapper = shallow(
+      <SearchBox refine={refine} searchAsYouType={false} />
+    ).dive();
+
+    // Simulate the ref
+    wrapper.instance().input = { focus: jest.fn() };
+
+    // Simulate change event
+    wrapper.setState({ query: 'Hello' });
+
+    wrapper.find('form').simulate('reset');
+
+    expect(refine).toHaveBeenCalledWith('');
+    expect(wrapper.instance().input.focus).toHaveBeenCalled();
+    expect(wrapper.state()).toEqual({ query: '' });
+  });
+
+  it('should point created refs to its input element', () => {
+    const inputRef = React.createRef();
+    const wrapper = mount(
+      <SearchBox refine={() => null} inputRef={inputRef} />
+    );
+
+    const refSpy = jest.spyOn(inputRef.current, 'focus');
+
+    // Trigger input.focus()
+    wrapper.find('form').simulate('reset');
+
+    expect(refSpy).toHaveBeenCalled();
+    expect(inputRef.current.tagName).toEqual('INPUT');
+  });
+
+  it('should return a ref when given a callback', () => {
+    let inputRef;
+    const wrapper = mount(
+      <SearchBox
+        refine={() => null}
+        inputRef={ref => {
+          inputRef = ref;
+        }}
+      />
+    );
+
+    const refSpy = jest.spyOn(inputRef, 'focus');
+
+    // Trigger input.focus()
+    wrapper.find('form').simulate('reset');
+
+    expect(refSpy).toHaveBeenCalled();
+    expect(inputRef.tagName).toEqual('INPUT');
   });
 });

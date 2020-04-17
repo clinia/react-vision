@@ -7,26 +7,20 @@ describe('Hits', () => {
 
   const Hit = ({ hit }: Props) => <div id={hit.id} />;
 
-  it('accepts a hit prop', () => {
-    const hits = [{ id: '0' }, { id: '1' }, { id: '2' }];
+  it('accepts a hitComponent prop', () => {
+    const hits = [{ id: 0 }, { id: 1 }, { id: 2 }];
 
-    const tree = renderer.create(<Hits hit={Hit} hits={hits} />);
+    const tree = renderer.create(<Hits hitComponent={Hit} hits={hits} />);
 
     expect(tree.toJSON()).toMatchSnapshot();
   });
 
   it('accepts a custom className', () => {
-    const hits = [{ id: '0' }, { id: '1' }, { id: '2' }];
+    const hits = [{ id: 0 }, { id: 1 }, { id: 2 }];
 
     const tree = renderer.create(
-      <Hits className="MyCustomHits" hit={Hit} hits={hits} />
+      <Hits className="MyCustomHits" hitComponent={Hit} hits={hits} />
     );
-
-    expect(tree.toJSON()).toMatchSnapshot();
-  });
-
-  it('shows loading indicator when loading prop is true', () => {
-    const tree = renderer.create(<Hits loading={true} />);
 
     expect(tree.toJSON()).toMatchSnapshot();
   });

@@ -55,7 +55,7 @@ export default createConnector({
 
   getProvidedProps(props, searchState, searchResults) {
     const results = getResults(searchResults, {
-      ais: props.contextValue,
+      cvi: props.contextValue,
       multiIndexContext: props.indexContextValue,
     });
 

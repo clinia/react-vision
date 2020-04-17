@@ -108,8 +108,8 @@ describe('findResultsState', () => {
     findResultsState(App, props);
 
     // The `addCliniaAgent` method is called 7 times:
-    // - 1 times with react-instantsearch-dom/server
-    // - 2 times with react-instantsearch-core/Vision
+    // - 1 times with @clinia/react-vision-dom/server
+    // - 2 times with @clinia/react-vision-core/Vision
     // - 4 times with the CliniasearchHelper
 
     expect(searchClient.addCliniaAgent).toHaveBeenCalledTimes(7);

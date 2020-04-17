@@ -39,7 +39,7 @@ const sortIndexWidgetsFirst = (firstWidget, secondWidget) => {
 };
 
 // This function is copied from the algoliasearch v4 API Client. If modified,
-// consider updating it also in `serializeQueryParameters` from `@algolia/transporter`.
+// consider updating it also in `serializeQueryParameters` from `@clinia/transporter`.
 function serializeQueryParameters(parameters) {
   const isObjectOrArray = value =>
     Object.prototype.toString.call(value) === '[object Object]' ||
