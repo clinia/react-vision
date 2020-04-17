@@ -33,13 +33,13 @@ class Professionals extends React.Component {
     },
   };
 
-  hit = (record, isLast) => (
+  hit = (hit, isLast) => (
     <View
       style={[Container.hit, isLast ? { marginBottom: Margin.normal } : {}]}
     >
-      <Text style={Typography.title}>{`${
-        record.title ? `${record.title} ` : ''
-      }${record.name}`}</Text>
+      <Text style={Typography.title}>{`${hit.title ? `${hit.title} ` : ''}${
+        hit.name
+      }`}</Text>
     </View>
   );
 

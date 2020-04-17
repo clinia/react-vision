@@ -1,5 +1,5 @@
 {
-  "name": "react-vision-dom-maps",
+  "name": "@clinia/react-vision-dom-maps",
   "version": "1.1.0",
   "description": "",
   "main": "dist/cjs/index.js",
@@ -12,8 +12,8 @@
     "url": "https://github.com/clinia/react-vision"
   },
   "author": {
-    "name": "Clinia Health, Inc.",
-    "url": "https://www.cliniahealth.ca"
+    "name": "Clinia",
+    "url": "https://www.clinia.com"
   },
   "keywords": [
     "clinia",
@@ -46,8 +46,8 @@
     "scriptjs": "^2.5.8"
   },
   "peerDependencies": {
+    "@clinia/react-vision-dom": ">= 1.0.0",
     "react": ">= 16.3.0 < 17",
-    "react-dom": ">= 16.3.0 < 17",
-    "react-vision-dom": ">= 1.0.0"
+    "react-dom": ">= 16.3.0 < 17"
   }
 }

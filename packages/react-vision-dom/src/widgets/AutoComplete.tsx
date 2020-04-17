@@ -1,4 +1,4 @@
-import { connectAutoComplete } from 'react-vision-core';
+import { connectAutoComplete } from '@clinia/react-vision-core';
 import AutoComplete from '../components/AutoComplete';
 
 /**
@@ -42,7 +42,7 @@ import AutoComplete from '../components/AutoComplete';
  * @example
  * import React from 'react';
  * import cliniasearch from 'cliniasearch/lite';
- * import { Vision, AutoComplete } from 'react-vision-dom';
+ * import { Vision, AutoComplete } from '@clinia/react-vision-dom';
  *
  * const searchClient = cliniasearch(
  *   'latency',

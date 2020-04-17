@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { storiesOf } from '@storybook/react';
-import { Hits } from 'react-vision-dom';
+import { Hits } from '@clinia/react-vision-dom';
 import { WrapWithHits } from './utils';
 
 const stories = storiesOf('Hits', module);
@@ -13,15 +13,15 @@ stories
     </WrapWithHits>
   ))
   .add('with custom rendering', () => {
-    function HealthFacility({ record }) {
+    function HealthFacility({ hit }) {
       return (
         <div>
-          <h4>{record.name}</h4>
+          <h4>{hit.name}</h4>
         </div>
       );
     }
     HealthFacility.propTypes = {
-      record: PropTypes.object.isRequired,
+      hit: PropTypes.object.isRequired,
     };
     return (
       <WrapWithHits linkedStoryGroup="Hits">

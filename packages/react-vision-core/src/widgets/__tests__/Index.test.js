@@ -1,7 +1,7 @@
 import React from 'react';
 import Enzyme, { shallow, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import { SearchParameters } from 'cliniasearch-helper';
+import { SearchParameters } from '@clinia/search-helper';
 import Index, { IndexComponentWithoutContext } from '../Index';
 import { IndexConsumer, VisionProvider } from '../../core/context';
 import createConnector from '../../core/createConnector';

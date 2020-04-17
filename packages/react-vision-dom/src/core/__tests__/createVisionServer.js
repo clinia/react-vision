@@ -1,8 +1,13 @@
 import React from 'react';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import { SearchParameters } from 'cliniasearch-helper';
-import { Vision, Index, createConnector, version } from 'react-vision-core';
+import { SearchParameters } from '@clinia/search-helper';
+import {
+  Vision,
+  Index,
+  createConnector,
+  version,
+} from '@clinia/react-vision-core';
 import { findResultsState } from '../createVisionServer';
 
 Enzyme.configure({ adapter: new Adapter() });

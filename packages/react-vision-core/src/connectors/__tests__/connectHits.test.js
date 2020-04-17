@@ -8,32 +8,42 @@ describe('connectHits', () => {
   describe('single index', () => {
     const contextValue = { mainTargetedIndex: 'index' };
 
-    it('provides the current records to the component', () => {
-      const records = [{}];
+    it('provides the current hits to the component', () => {
+      const hits = [{}];
       const props = connect.getProvidedProps({ contextValue }, null, {
-        results: { records, meta: { perPage: 2, page: 2 } },
+        results: { hits, meta: { perPage: 2, page: 2 } },
       });
 
       expect(props).toEqual({
-        records: records.map(record => expect.objectContaining(record)),
+        hits: hits.map(hit => expect.objectContaining(hit)),
       });
     });
 
-    it('adds positions to the records provided to the component', () => {
-      const records = [{}];
+    it('adds positions to the hits provided to the component', () => {
+      const hits = [{}];
       const props = connect.getProvidedProps({ contextValue }, null, {
-        results: { records, perPage: 2, page: 2 },
+        results: { hits, perPage: 2, page: 2 },
       });
       expect(props).toEqual({
-        records: [{ __position: 5 }],
+        hits: [{ __position: 5 }],
       });
     });
 
-    it("doesn't render when no records are available", () => {
+    it('adds queryID to the hits provided to the component', () => {
+      const hits = [{}];
+      const props = connect.getProvidedProps({ contextValue }, null, {
+        results: { hits, perPage: 2, page: 2, queryID: 'theQueryID' },
+      });
+      expect(props).toEqual({
+        hits: [expect.objectContaining({ __queryID: 'theQueryID' })],
+      });
+    });
+
+    it("doesn't render when no hits are available", () => {
       const props = connect.getProvidedProps({ contextValue }, null, {
         results: null,
       });
-      expect(props).toEqual({ records: [] });
+      expect(props).toEqual({ hits: [] });
     });
 
     it('should return the searchParameters unchanged', () => {
@@ -46,45 +56,61 @@ describe('connectHits', () => {
     const contextValue = { mainTargetedIndex: 'first' };
     const indexContextValue = { targetedIndex: 'second' };
 
-    it('provides the current records to the component', () => {
-      const records = [{}];
+    it('provides the current hits to the component', () => {
+      const hits = [{}];
       const props = connect.getProvidedProps(
         { contextValue, indexContextValue },
         null,
         {
           results: {
-            second: { records, meta: { perPage: 2, page: 2 } },
+            second: { hits, meta: { perPage: 2, page: 2 } },
           },
         }
       );
       expect(props).toEqual({
-        records: records.map(record => expect.objectContaining(record)),
+        hits: hits.map(hit => expect.objectContaining(hit)),
       });
     });
 
-    it('adds positions to the records provided to the component', () => {
-      const records = [{}];
+    it('adds positions to the hits provided to the component', () => {
+      const hits = [{}];
       const props = connect.getProvidedProps(
         { contextValue, indexContextValue },
         null,
         {
           results: {
-            second: { records, perPage: 2, page: 2 },
+            second: { hits, perPage: 2, page: 2 },
           },
         }
       );
       expect(props).toEqual({
-        records: [{ __position: 5 }],
+        hits: [{ __position: 5 }],
       });
     });
 
-    it("doesn't render when no records are available", () => {
+    it('adds queryID to the hits provided to the component', () => {
+      const hits = [{}];
+      const props = connect.getProvidedProps(
+        { contextValue, indexContextValue },
+        null,
+        {
+          results: {
+            second: { hits, perPage: 2, page: 2, queryID: 'theQueryID' },
+          },
+        }
+      );
+      expect(props).toEqual({
+        hits: [expect.objectContaining({ __queryID: 'theQueryID' })],
+      });
+    });
+
+    it("doesn't render when no hits are available", () => {
       const props = connect.getProvidedProps(
         { contextValue, indexContextValue },
         null,
         { results: { second: null } }
       );
-      expect(props).toEqual({ records: [] });
+      expect(props).toEqual({ hits: [] });
     });
 
     it('should return the searchParameters unchanged', () => {

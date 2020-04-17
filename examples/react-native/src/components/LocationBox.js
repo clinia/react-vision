@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import * as Permissions from 'expo-permissions';
 import * as Location from 'expo-location';
-import { connectLocation } from 'react-vision-core';
+import { connectLocation } from '@clinia/react-vision-core';
 import { withNavigation } from 'react-navigation';
 
 import { Input, Color, Margin } from '../styles';

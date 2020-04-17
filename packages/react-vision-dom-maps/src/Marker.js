@@ -28,7 +28,7 @@ const filterProps = createFilterProps(excludes);
  * @description Map marker.
  * @alias module:Marker
  * @kind widget
- * @prop {GeolocHitPropType} record - Record to display.
+ * @prop {GeolocHitPropType} hit - Record to display.
  * @prop {string} label - Label to display.
  * @prop {function} on* - Listen to any mouse events sent from the marker.
  * @example
@@ -36,13 +36,13 @@ const filterProps = createFilterProps(excludes);
  * <GoogleMapsLoader apiKey={apiKey} endpoint={endpoint}>
  *   {google => (
  *     <GeoSearch google={google}>
- *       {({ records }) => (
+ *       {({ hits }) => (
  *         <Fragment>
- *           {records.map(record => (
+ *           {hits.map(hit => (
  *             <Marker
- *               key={record.id}
- *               record={record}
- *               label={record.name}
+ *               key={hit.id}
+ *               hit={hit}
+ *               label={hit.name}
  *               onClick={() => {}}
  *               onDoubleClick={() => {}}
  *             />
@@ -59,16 +59,16 @@ export class Marker extends Component {
     ...createListenersPropTypes(eventTypes),
     google: PropTypes.object.isRequired,
     googleMapsInstance: PropTypes.object.isRequired,
-    record: GeolocHitPropType.isRequired,
+    hit: GeolocHitPropType.isRequired,
   };
 
   componentDidMount() {
-    const { google, googleMapsInstance, record, ...props } = this.props;
+    const { google, googleMapsInstance, hit, ...props } = this.props;
 
     this.instance = new google.maps.Marker({
       ...filterProps(props),
       map: googleMapsInstance,
-      position: record.geoPoint,
+      position: hit.geoPoint,
     });
 
     this.removeEventsListeners = registerEvents(

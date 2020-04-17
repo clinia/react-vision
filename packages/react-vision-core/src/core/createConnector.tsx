@@ -39,8 +39,6 @@ export type ConnectorDescription = {
    * hook when the widget will unmount. Receives (props, searchState) and return a cleaned state.
    */
   cleanUp?: (...args: any[]) => any;
-  searchForSuggestions?: (...args: any[]) => any;
-  searchForLocations?: (...args: any[]) => any;
   shouldComponentUpdate?: (...args: any[]) => boolean;
   /**
    * PropTypes forwarded to the wrapped component.
@@ -62,7 +60,7 @@ type ConnectorState = {
 
 /**
  * Connectors are the HOC used to transform React components
- * into VisionSearch widgets.
+ * into Vision widgets.
  * In order to simplify the construction of such connectors
  * `createConnector` takes a description and transform it into
  * a connector.
@@ -217,11 +215,7 @@ export function createConnectorWithoutContext(
         const {
           widgets,
           results,
-          resultsSuggestions,
-          resultsLocations,
           searching,
-          searchingForSuggestions,
-          searchingForLocations,
           isSearchStalled,
           metadata,
           error,
@@ -234,24 +228,12 @@ export function createConnectorWithoutContext(
           error,
         };
 
-        const searchForSuggestionsResults = {
-          results: resultsSuggestions,
-          searching: searchingForSuggestions,
-        };
-
-        const searchForLocationsResults = {
-          results: resultsLocations,
-          searching: searchingForLocations,
-        };
-
         return connectorDesc.getProvidedProps.call(
           this,
           props,
           widgets,
           searchResults,
-          metadata,
-          searchForSuggestionsResults,
-          searchForLocationsResults
+          metadata
         );
       }
 
@@ -305,30 +287,6 @@ export function createConnectorWithoutContext(
         );
       };
 
-      searchForSuggestions = (...args) => {
-        // searchForSuggestions will always be defined here because the prop is only given conditionally
-        this.props.contextValue.onSearchForSuggestions(
-          connectorDesc.searchForSuggestions!.call(
-            this,
-            this.props,
-            this.props.contextValue.store.getState().widgets,
-            ...args
-          )
-        );
-      };
-
-      searchForLocations = (...args) => {
-        // searchForLocations will always be defined here because the props is only given conditionally
-        this.props.contextValue.onSearchForLocations(
-          connectorDesc.searchForLocations!.call(
-            this,
-            this.props,
-            this.props.contextValue.store.getState().widgets,
-            ...args
-          )
-        );
-      };
-
       createURL = (...args) =>
         this.props.contextValue.createHrefForState(
           // refine will always be defined here because the prop is only given conditionally
@@ -353,25 +311,7 @@ export function createConnectorWithoutContext(
             ? { refine: this.refine, createURL: this.createURL }
             : {};
 
-        const searchForSuggestionsProps =
-          typeof connectorDesc.searchForSuggestions === 'function'
-            ? { searchForSuggestions: this.searchForSuggestions }
-            : {};
-
-        const searchForLocationsProps =
-          typeof connectorDesc.searchForLocations === 'function'
-            ? { searchForLocations: this.searchForLocations }
-            : {};
-
-        return (
-          <Composed
-            {...props}
-            {...providedProps}
-            {...refineProps}
-            {...searchForSuggestionsProps}
-            {...searchForLocationsProps}
-          />
-        );
+        return <Composed {...props} {...providedProps} {...refineProps} />;
       }
     }
 

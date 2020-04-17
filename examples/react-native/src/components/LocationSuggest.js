@@ -2,7 +2,7 @@ import * as React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { Keyboard } from 'react-native';
-import { connectLocation } from 'react-vision-core';
+import { connectLocation } from '@clinia/react-vision-core';
 
 import Suggestions from './Suggestions';
 import { setLocationBoxFocused, setLocation } from '../redux/actions';

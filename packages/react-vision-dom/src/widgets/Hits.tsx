@@ -1,4 +1,4 @@
-import { connectHits } from 'react-vision-core';
+import { connectHits } from '@clinia/react-vision-core';
 import Hits from '../components/Hits';
 
 /**
@@ -13,7 +13,7 @@ import Hits from '../components/Hits';
  * @prop {string} emptySearch - The text shown on empty results.
  * @prop {Component} hitComponent - Component used for rendering each hit from
  *   the results. If it is not provided the rendering defaults to displaying the
- *   hit in its JSON form. The component will be called with a `record` prop.
+ *   hit in its JSON form. The component will be called with a `hit` prop.
  * @prop {node} noResultsFound - Change the apparence of the default empty results found.
  * @prop {object} style - Add a custom React.CSSProperties object to the Hits container.
  * @themekey cvi-hits - The root div of the widget.
@@ -22,7 +22,7 @@ import Hits from '../components/Hits';
  * @example
  * import React from 'react';
  * import cliniasearch from 'cliniasearch/lite';
- * import { Vision, Hits } from 'react-vision-dom';
+ * import { Vision, Hits } from '@clinia/react-vision-dom';
  *
  * const searchClient = cliniasearch(
  *   'TODO',

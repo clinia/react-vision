@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { createClassNames, extractInputEventsFromProps } from '../core/utils';
 import classnames from 'classnames';
-import { translatable } from 'react-vision-core';
+import { translatable } from '@clinia/react-vision-core';
 import {
   defaultLoadingIndicator,
   defaultClear,

@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connectGeoSearch } from 'react-vision-dom';
+import { connectGeoSearch } from '@clinia/react-vision-dom';
 import { LatLngPropType, BoundingBoxPropType } from './propTypes';
 
 function isEqualPosition(a, b) {
@@ -31,7 +31,7 @@ function isEqualCurrentRefinement(a, b) {
 
 export class Connector extends Component {
   static propTypes = {
-    records: PropTypes.arrayOf(PropTypes.object).isRequired,
+    hits: PropTypes.arrayOf(PropTypes.object).isRequired,
     isRefinedWithMap: PropTypes.bool.isRequired,
     enableRefineOnMapMove: PropTypes.bool.isRequired,
     refine: PropTypes.func.isRequired,
@@ -91,7 +91,7 @@ export class Connector extends Component {
 
   render() {
     const {
-      records,
+      hits,
       isRefinedWithMap,
       position,
       currentRefinement,
@@ -104,7 +104,7 @@ export class Connector extends Component {
     return children({
       toggleRefineOnMapMove: this.toggleRefineOnMapMove,
       setMapMoveSinceLastRefine: this.setMapMoveSinceLastRefine,
-      records,
+      hits,
       isRefinedWithMap,
       isRefineOnMapMove,
       hasMapMoveSinceLastRefine,

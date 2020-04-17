@@ -1,11 +1,11 @@
 import React from 'react';
-import cliniasearch from 'cliniasearch/lite';
+import clinia from 'clinia/lite';
 import { storiesOf } from '@storybook/react';
-import { Vision, Hits, AutoComplete } from 'react-vision-dom';
+import { Vision, Hits, AutoComplete } from '@clinia/react-vision-dom';
 
 const stories = storiesOf('<Vision>', module);
 
-const searchClient = cliniasearch(
+const searchClient = clinia(
   'demo-pharmacies',
   'KcLxBhVFP8ooPgQODlAxWqfNg657fTz9'
 );
@@ -22,7 +22,7 @@ stories
       searchClient={{
         search() {
           return Promise.resolve({
-            results: [{ records: [{ name: 'Fake result' }] }],
+            results: [{ hits: [{ name: 'Fake result' }] }],
           });
         },
         initPlaces() {

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { createClassNames } from '../core/utils';
-import { translatable } from 'react-vision-core';
+import { translatable } from '@clinia/react-vision-core';
 import { defaultLoadingIndicator } from './defaultComponents';
 
 export type Record = {
@@ -10,11 +10,11 @@ export type Record = {
 };
 
 type HitProps = {
-  record: Record;
+  hit: Record;
 };
 
 type Props = {
-  records: Record[];
+  hits: Record[];
   loading?: boolean;
   className?: string;
   style?: React.CSSProperties;
@@ -23,7 +23,7 @@ type Props = {
   translate?: any;
 };
 
-const DefaultHit: React.FC<HitProps> = ({ record }) => {
+const DefaultHit: React.FC<HitProps> = ({ hit }) => {
   return (
     <div
       style={{
@@ -33,14 +33,14 @@ const DefaultHit: React.FC<HitProps> = ({ record }) => {
         wordBreak: 'break-all',
       }}
     >
-      <h4>{record.id}</h4>
-      <code>{JSON.stringify(record, null, 2)}</code>
+      <h4>{hit.id}</h4>
+      <code>{JSON.stringify(hit, null, 2)}</code>
     </div>
   );
 };
 
 DefaultHit.propTypes = {
-  record: PropTypes.shape({
+  hit: PropTypes.shape({
     id: PropTypes.string.isRequired,
   }).isRequired,
 };
@@ -48,7 +48,7 @@ DefaultHit.propTypes = {
 const cx = createClassNames('hits');
 
 const Hits: React.FunctionComponent<Props> = ({
-  records,
+  hits,
   className = '',
   style = {},
   hit: HitComponent = DefaultHit,
@@ -61,10 +61,10 @@ const Hits: React.FunctionComponent<Props> = ({
   ) : (
     <div className={classnames(cx(''), className)} style={style}>
       <div className={cx('list')}>
-        {Array.isArray(records) && records.length > 0
-          ? records.map(record => (
-              <div className={cx('item')} key={record.id}>
-                <HitComponent record={record} />
+        {Array.isArray(hits) && hits.length > 0
+          ? hits.map(hit => (
+              <div className={cx('item')} key={hit.id}>
+                <HitComponent hit={hit} />
               </div>
             ))
           : noResultsFound || (
@@ -80,7 +80,7 @@ const HitPropTypes = PropTypes.shape({
 });
 
 Hits.propTypes = {
-  records: PropTypes.arrayOf(HitPropTypes.isRequired).isRequired,
+  hits: PropTypes.arrayOf(HitPropTypes.isRequired).isRequired,
   className: PropTypes.string,
   noResultsFound: PropTypes.func,
   translate: PropTypes.func,

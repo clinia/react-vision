@@ -1,5 +1,5 @@
 {
-  "name": "react-vision-core",
+  "name": "@clinia/react-vision-core",
   "version": "1.1.0",
   "description": "",
   "main": "dist/cjs/index.js",
@@ -12,8 +12,8 @@
     "url": "https://github.com/clinia/react-vision"
   },
   "author": {
-    "name": "Clinia Health, Inc.",
-    "url": "https://www.cliniahealth.ca"
+    "name": "Clinia",
+    "url": "https://www.clinia.com"
   },
   "keywords": [
     "clinia",
@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.1.2",
-    "cliniasearch-helper": "^1.0.0",
+    "@clinia/search-helper": "2.0.0-beta.1",
     "fast-deep-equal": "^2.0.1",
     "prop-types": "^15.5.10"
   },

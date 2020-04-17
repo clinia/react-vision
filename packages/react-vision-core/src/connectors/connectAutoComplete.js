@@ -1,15 +1,15 @@
-import PropTypes from 'prop-types';
 import createConnector from '../core/createConnector';
 import {
   cleanUpValue,
   refineValue,
   getCurrentRefinementValue,
 } from '../core/indexUtils';
+import { addQueryID, addAbsolutePositions } from '../core/utils';
 
 const getId = () => 'query';
 
 function getCurrentRefinement(props, searchState, context) {
-  const id = getId(props);
+  const id = getId();
   const currentRefinement = getCurrentRefinementValue(
     props,
     searchState,
@@ -24,6 +24,41 @@ function getCurrentRefinement(props, searchState, context) {
   return '';
 }
 
+function getHits(searchResults) {
+  if (searchResults.results) {
+    if (
+      searchResults.results.hits &&
+      Array.isArray(searchResults.results.hits)
+    ) {
+      return addAbsolutePositions(
+        addQueryID(searchResults.results.hits, searchResults.results.queryID),
+        searchResults.results.perPage,
+        searchResults.results.page
+      );
+    } else {
+      return Object.keys(searchResults.results).reduce(
+        (hits, index) => [
+          ...hits,
+          {
+            index,
+            hits: addAbsolutePositions(
+              addQueryID(
+                searchResults.results[index].hits,
+                searchResults.results[index].queryID
+              ),
+              searchResults.results[index].perPage,
+              searchResults.results[index].page
+            ),
+          },
+        ],
+        []
+      );
+    }
+  } else {
+    return [];
+  }
+}
+
 function refine(props, searchState, nextRefinement, context) {
   const id = getId();
   const nextValue = { [id]: nextRefinement };
@@ -35,61 +70,31 @@ function cleanUp(props, searchState, context) {
   return cleanUpValue(searchState, context, getId());
 }
 
-function getResults(searchForSuggestionsResults) {
-  if (
-    searchForSuggestionsResults &&
-    searchForSuggestionsResults.results &&
-    searchForSuggestionsResults.results.suggestions
-  ) {
-    return searchForSuggestionsResults.results;
-  }
-
-  return null;
-}
-
 /**
- * connectAutoComplete connector provides the logic to build a widget that will
- * let the user search for a query
+ * connectAutoComplete connector provides the logic to create connected
+ * components that will render the results retrieved from
+ * Clinia.
+ *
+ * To configure the number of hits retrieved, use HitsPerPage widget,
+ * connectHitsPerPage connector or pass the hitsPerPage
+ * prop to a Configure widget.
  * @name connectAutoComplete
  * @kind connector
  * @propType {string} [defaultRefinement] - Provide a default value for the query
- * @providedPropType {function} refine - a function to change the current query
- * @providedPropType {function} searchForSuggestions - a function to search for suggestions
- * @providedPropType {string} currentRefinement - the current query used
- * @providedPropType {array} suggestions - the current suggestions
+ * @providedPropType {array.<object>} hits - the records that matched the search state
+ * @providedPropType {function} refine - a function to change the query
+ * @providedPropType {string} currentRefinement - the query to search for
  */
 export default createConnector({
   displayName: 'CliniaAutoComplete',
 
-  propTypes: {
-    defaultRefinement: PropTypes.string,
-  },
-
-  getProvidedProps(
-    props,
-    searchState,
-    searchResults,
-    _meta,
-    searchForSuggestionsResults
-  ) {
-    const results = getResults(searchForSuggestionsResults);
-    const currentRefinement = getCurrentRefinement(props, searchState, {
-      cvi: props.contextValue,
-      multiIndexContext: props.indexContextValue,
-    });
-
-    if (!results) {
-      return {
-        currentRefinement,
-        suggestions: [],
-        isSearchStalled: searchResults.isSearchStalled,
-      };
-    }
-
+  getProvidedProps(props, searchState, searchResults) {
     return {
-      currentRefinement,
-      suggestions: results.suggestions,
-      isSearchStalled: searchResults.isSearchStalled,
+      hits: getHits(searchResults),
+      currentRefinement: getCurrentRefinement(props, searchState, {
+        cvi: props.contextValue,
+        multiIndexContext: props.indexContextValue,
+      }),
     };
   },
 
@@ -107,6 +112,17 @@ export default createConnector({
     });
   },
 
+  /**
+   * AutoComplete needs to be considered as a widget to trigger a search,
+   * even if no other widgets are used.
+   *
+   * To be considered as a widget you need either:
+   * - getSearchParameters
+   * - getMetadata
+   * - transitionState
+   *
+   * See: createConnector.tsx
+   */
   getSearchParameters(searchParameters, props, searchState) {
     return searchParameters.setQuery(
       getCurrentRefinement(props, searchState, {
@@ -114,18 +130,5 @@ export default createConnector({
         multiIndexContext: props.indexContextValue,
       })
     );
-  },
-
-  searchForSuggestions(props, searchState, nextRefinement) {
-    const params = {
-      query: nextRefinement,
-    };
-
-    if (props.highlightPreTag) params.highlightPreTag = props.highlightPreTag;
-    if (props.highlightPostTag)
-      params.highlightPostTag = props.highlightPostTag;
-    if (props.size) params.size = props.size;
-
-    return params;
   },
 });

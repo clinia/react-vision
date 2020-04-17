@@ -13,16 +13,19 @@ import {
  * It also provides a way to search for results based on their position.
  * @name connectGeoSearch
  * @kind connector
- * @requirements Note that the GeoSearch connector uses the geosearch capabilities of Google Maps
- * Your records **must** have a `geoPoint` attribute in order to be passed to the rendering function.
+ * @requirements Note that the GeoSearch connector uses the geosearch capabilities of Clinia
+ * Your hits **must** have a `_geoPoint` attribute in order to be passed to the rendering function.
  * @propType {{ northEast: { lat: number, lng: number }, southWest: {lat: number, lng:number } }} [defaultRefinement] - Default search state of the widget containing the bounds for the map
  * @providedPropType {function({ northEast: { lat: number, lng: number }, southWest: {lat: number, lng:number } })} refine - a function to toggle the refinement
  * @providedPropType {function} createURL - a function to generate a URl for the corresponding search state
+ * @providedPropType {array.<object>} hits - the records that matched the search
  * @providedPropType {boolean} isRefinedWithMap - true if the current refinement is set with the maps bounds
  * @providedPropType {{ northEast: { lat: number, lng: number }, southWest: { lat: number, lng: number } }} [currentRefinement] - the refinement currently applied
  * @providedPropType {{ lat: number, lng: number }} [position] - the position of the search
  */
 
+// To control the map with an external widget the other widget
+// **must** write the value in the attribute `aroundLatLng`
 const getBoundingBoxId = () => 'boundingBox';
 const getAroundLatLngId = () => 'aroundLatLng';
 const getConfigureAroundLatLngId = () => 'configure.aroundLatLng';
@@ -131,6 +134,15 @@ export default createConnector({
 
     const results = getResults(searchResults, context);
 
+    // We read it from both because the SearchParameters & the searchState are not always
+    // in sync. When we set the refinement the searchState is used but when we clear the refinement
+    // the SearchParameters is used. In the first case when we render, the results are not there
+    // so we can't find the value from the results. The most up to date value is the searchState.
+    // But when we clear the refinement the searchState is immediately cleared even when the items
+    // retrieved are still the one from the previous query with the bounding box. It leads to some
+    // issue with the position of the map. We should rely on 1 source of truth or at least always
+    // be sync.
+
     const currentRefinementFromSearchState = getCurrentRefinement(
       props,
       searchState,
@@ -164,7 +176,7 @@ export default createConnector({
       currentPositionFromSearchState || currentPositionFromSearchParameters;
 
     return {
-      records: !results ? [] : results.records.filter(_ => Boolean(_.geoPoint)),
+      hits: !results ? [] : results.hits.filter(_ => Boolean(_._geoPoint)),
       isRefinedWithMap: Boolean(currentRefinement),
       currentRefinement,
       position,
@@ -188,13 +200,10 @@ export default createConnector({
       return searchParameters;
     }
 
-    return searchParameters
-      .setQueryParameter('aroundLatLng')
-      .setQueryParameter('location')
-      .setQueryParameter(
-        'insideBoundingBox',
-        currentRefinementToString(currentRefinement)
-      );
+    return searchParameters.setQueryParameter(
+      'insideBoundingBox',
+      currentRefinementToString(currentRefinement)
+    );
   },
 
   cleanUp(props, searchState) {

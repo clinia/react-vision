@@ -134,7 +134,7 @@ export const IndexComponentWithoutContext = Index;
  * @example
  * import React from 'react';
  * import cliniasearch from 'cliniasearch/lite';
- * import { Vision. Index, SearcbBox, Hits, Configure } from 'react-vision-dom';
+ * import { Vision. Index, SearcbBox, Hits, Configure } from '@clinia/react-vision-dom';
  *
  * const searchClient = cliniasearch(
  *  'TODO',

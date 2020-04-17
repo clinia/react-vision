@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import './search.css';
-import { AutoComplete, Location } from 'react-vision-dom';
+import { AutoComplete, Location } from '@clinia/react-vision-dom';
 import logo from '../static/images/logo.svg';
 import { withRouter } from 'react-router';
-import { GoogleMapsLoader } from 'react-vision-dom-maps';
+import { GoogleMapsLoader } from '@clinia/react-vision-dom-maps';
 import Map from '../components/Map';
 import Hits from '../components/Hits';
 

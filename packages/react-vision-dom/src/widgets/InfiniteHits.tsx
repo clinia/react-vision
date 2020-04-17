@@ -1,4 +1,4 @@
-import { connectInfiniteHits } from 'react-vision-core';
+import { connectInfiniteHits } from '@clinia/react-vision-core';
 import InfiniteHits from '../components/InfiniteHits';
 
 /**
@@ -10,9 +10,9 @@ import InfiniteHits from '../components/InfiniteHits';
  * @alias module:InfiniteHits
  * @kind widget
  * @prop {string} className - Add a custom CSS class to the component.
- * @prop {Component} hitComponent - Component used for rendering each record from
+ * @prop {Component} hitComponent - Component used for rendering each hit from
  *   the results. If it is not provided the rendering defaults to displaying the
- *   record in its JSON form. The component will be called with a `record` prop.
+ *   hit in its JSON form. The component will be called with a `hit` prop.
  * @prop {object} translations - translations for: { loadMore, loadPrevious }
  * @prop {boolean} showPrevious=false - Define if button of `load previous` should be shown.
  * @themekey cvi-infinitehits - The root div of the widget
@@ -23,7 +23,7 @@ import InfiniteHits from '../components/InfiniteHits';
  * @example
  * import React from 'react';
  * import cliniasearch from 'cliniasearch/lite';
- * import { Vision, InfiniteHits } from 'react-vision-dom';
+ * import { Vision, InfiniteHits } from '@clinia/react-vision-dom';
  *
  * const searchClient = cliniasearch(
  *   'TODO',

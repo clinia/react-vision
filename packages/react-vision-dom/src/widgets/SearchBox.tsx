@@ -1,4 +1,4 @@
-import { connectSearchBox } from 'react-vision-core';
+import { connectSearchBox } from '@clinia/react-vision-core';
 import SearchBox from '../components/SearchBox';
 
 /**
@@ -37,7 +37,7 @@ import SearchBox from '../components/SearchBox';
  * @example
  * import React from 'react';
  * import cliniasearch from 'cliniasearch/lite';
- * import { Vision, SearchBox } from 'react-vision-dom';
+ * import { Vision, SearchBox } from '@clinia/react-vision-dom';
  *
  * const searchClient = cliniasearch(
  *   'latency',

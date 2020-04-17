@@ -1,21 +1,38 @@
 import React, { Component, Children } from 'react';
-import isEqual from 'fast-deep-equal';
+import isEqual from 'react-fast-compare';
 import PropTypes from 'prop-types';
-import createVisionManager, {
-  VisionManager,
-} from '../core/createVisionManager';
+import createVisionManager from '../core/createVisionManager';
 import { VisionProvider, VisionContext } from '../core/context';
-import { PlainSearchParameters } from 'cliniasearch-helper';
-import { MultiResponse } from 'cliniasearch';
+import { PlainSearchParameters, SearchParameters } from '@clinia/search-helper';
+import { MultiResponse } from '../types';
+import { Store } from '../core/createStore';
 
 type ResultsState = {
   state: PlainSearchParameters;
   rawResults: MultiResponse;
 };
 
+// @TODO: move to createVisionManager when it's TS
+type VisionManager = {
+  store: Store;
+  widgetsManager: any;
+  getWidgetsIds: any;
+  getSearchParameters: (
+    ...args: any[]
+  ) => {
+    mainParameters: SearchParameters;
+    derivedParameters: SearchParameters;
+  };
+  onExternalStateUpdate: (...args: any[]) => any;
+  transitionState: any;
+  updateClient: any;
+  updateIndex: any;
+  clearCache: () => void;
+  skipSearch: any;
+};
+
 type SearchClient = {
   search: (requests: Array<{}>) => Promise<{}>;
-  suggest: (request: any) => Promise<{}>;
 };
 
 type SearchState = any;
@@ -57,22 +74,23 @@ function isControlled(props: Props) {
  * with the searchState.
  * @alias module:Vision
  * @kind widget
+ * @name <Vision>
  * @requirements You will need to have an Clinia account to be able to use this widget.
- * @prop {func} createURL - Function to call when creating links, useful for [URL Routing](guide/Routing.html).
- * @prop {string} indexName - Main index in which to search.
- * @prop {func} onSearchStateChange - Function to be called everytime a new search is done. Useful for [URL Routing](guide/Routing.html).
- * @prop {boolean} refresh=false - Flag to activate when the cache needs to be cleared so that the front-end is updated when a change occurs in the index.
- * @prop {SearchResults|SearchResults[]} resultsState - Use this to inject the results that will be used at first rendering. Those results are found by using the `findResultsState` function. Useful for [Server Side Rendering](guide/Server-side_rendering.html).
- * @prop {{ Root: string|function, props: object }} root - Use this to customize the root element. Default value: `{ Root: 'div' }`
- * @prop {object} searchClient - Provide a custom search client.
- * @prop {object} searchState - Object to inject some search state. Switches the Vision component in controlled mode. Useful for [URL Routing](guide/Routing.html).
- * @prop {number} stalledSearchDelay=200 - The amount of time before considering that the search takes too much time. The time is expressed in milliseconds.
+ * @propType {string} indexName - Main index in which to search.
+ * @propType {boolean} [refresh=false] - Flag to activate when the cache needs to be cleared so that the front-end is updated when a change occurs in the index.
+ * @propType {object} [searchClient] - Provide a custom search client.
+ * @propType {func} [onSearchStateChange] - Function to be called everytime a new search is done. Useful for.
+ * @propType {object} [searchState] - Object to inject some search state. Switches the Vision component in controlled mode.
+ * @propType {func} [createURL] - Function to call when creating links, useful for URL Routing.
+ * @propType {SearchResults|SearchResults[]} [resultsState] - Use this to inject the results that will be used at first rendering. Those results are found by using the `findResultsState` function. Useful for [Server Side Rendering](guide/Server-side_rendering.html).
+ * @propType {number} [stalledSearchDelay=200] - The amount of time before considering that the search takes too much time. The time is expressed in milliseconds.
+ * @propType {{ Root: string|function, props: object }} [root] - Use this to customize the root element. Default value: `{ Root: 'div' }`
  * @example
  * import React from 'react';
- * import cliniasearch from 'cliniasearch/lite';
- * import { Vision, SearchBox, Hits } from 'react-vision-dom';
+ * import clinia from 'clinia/lite';
+ * import { Vision, SearchBox, Hits } from '@clinia/react-vision-dom';
  *
- * const searchClient = cliniasearch(
+ * const searchClient = clinia(
  *   'TODO',
  *   'test'
  * );
@@ -156,8 +174,6 @@ export default class Vision extends Component<Props, State> {
       store: visionManager.store,
       widgetsManager: visionManager.widgetsManager,
       mainTargetedIndex: this.props.indexName,
-      onSearchForSuggestions: this.onSearchForSuggestions.bind(this),
-      onSearchForLocations: this.onSearchForLocations.bind(this),
       onInternalStateUpdate: this.onWidgetsInternalStateUpdate.bind(this),
       createHrefForState: this.createHrefForState.bind(this),
       onSearchStateChange: this.onSearchStateChange.bind(this),
@@ -237,14 +253,6 @@ export default class Vision extends Component<Props, State> {
         searchState
       );
     }
-  }
-
-  onSearchForSuggestions(suggestState) {
-    this.state.visionManager.onSearchForSuggestions(suggestState);
-  }
-
-  onSearchForLocations(locationState) {
-    this.state.visionManager.onSearchForLocations(locationState);
   }
 
   getKnownKeys() {

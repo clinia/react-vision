@@ -1,18 +1,17 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { translatable } from 'react-vision-core';
+import { translatable, Translate } from '@clinia/react-vision-core';
 import { createClassNames } from '../core/utils';
-import { Translate } from 'react-vision-core/src';
 
 const cx = createClassNames('infinitehits');
 
 interface Props {
   className?: string;
-  hitComponent?: (record: any) => JSX.Element;
+  hitComponent?: (hit: any) => JSX.Element;
   showPrevious?: boolean;
 
-  records: any[];
+  hits: any[];
   hasPrevious: boolean;
   hasMore: boolean;
   refinePrevious: () => void;
@@ -22,7 +21,7 @@ interface Props {
 
 interface DefaultProps {
   className: string;
-  hitComponent: (record: any) => JSX.Element;
+  hitComponent: (hit: any) => JSX.Element;
   showPrevious: boolean;
 }
 
@@ -30,7 +29,7 @@ type PropsWithDefaults = Props & DefaultProps;
 
 class InfiniteHits extends PureComponent<Props> {
   static propTypes = {
-    records: PropTypes.arrayOf(PropTypes.object).isRequired,
+    hits: PropTypes.arrayOf(PropTypes.object).isRequired,
     showPrevious: PropTypes.bool.isRequired,
     hasPrevious: PropTypes.bool.isRequired,
     hasMore: PropTypes.bool.isRequired,
@@ -44,7 +43,7 @@ class InfiniteHits extends PureComponent<Props> {
   static defaultProps: DefaultProps = {
     className: '',
     showPrevious: false,
-    hitComponent: record => (
+    hitComponent: hit => (
       <div
         style={{
           borderBottom: '1px solid #bbb',
@@ -53,7 +52,7 @@ class InfiniteHits extends PureComponent<Props> {
           wordBreak: 'break-all',
         }}
       >
-        {JSON.stringify(record).slice(0, 100)}
+        {JSON.stringify(hit).slice(0, 100)}
         ...
       </div>
     ),
@@ -62,7 +61,7 @@ class InfiniteHits extends PureComponent<Props> {
   render() {
     const {
       hitComponent: HitComponent,
-      records,
+      hits,
       showPrevious,
       hasPrevious,
       hasMore,
@@ -87,9 +86,9 @@ class InfiniteHits extends PureComponent<Props> {
           </button>
         )}
         <ul className={cx('list')}>
-          {records.map(record => (
-            <li key={record.id} className={cx('item')}>
-              <HitComponent record={record} />
+          {hits.map(hit => (
+            <li key={hit.id} className={cx('item')}>
+              <HitComponent hit={hit} />
             </li>
           ))}
         </ul>

@@ -6,7 +6,7 @@ import GeoSearchContext from './GeoSearchContext';
 class Provider extends Component {
   static propTypes = {
     google: PropTypes.object.isRequired,
-    records: PropTypes.arrayOf(PropTypes.object).isRequired,
+    hits: PropTypes.arrayOf(PropTypes.object).isRequired,
     isRefineOnMapMove: PropTypes.bool.isRequired,
     hasMapMoveSinceLastRefine: PropTypes.bool.isRequired,
     isRefineEnable: PropTypes.bool.isRequired,
@@ -58,11 +58,11 @@ class Provider extends Component {
     return this.mapValue;
   };
 
-  createBoundingBoxFromRecords(records) {
+  createBoundingBoxFromRecords(hits) {
     const { google } = this.props;
 
-    const latLngBounds = records.reduce(
-      (acc, record) => acc.extend(record.geoPoint),
+    const latLngBounds = hits.reduce(
+      (acc, hit) => acc.extend(hit.geoPoint),
       new google.maps.LatLngBounds()
     );
 
@@ -103,7 +103,7 @@ class Provider extends Component {
   };
 
   render() {
-    const { records, currentRefinement, children } = this.props;
+    const { hits, currentRefinement, children } = this.props;
 
     // We use this value for differentiate the padding to apply during
     // fitBounds. When we don't have a currenRefinement (boundingBox)
@@ -112,8 +112,8 @@ class Provider extends Component {
     // to `0` otherwise the map will decrease the zoom on each refine.
     const boundingBoxPadding = !currentRefinement ? undefined : 0;
     const boundingBox =
-      !currentRefinement && Boolean(records.length)
-        ? this.createBoundingBoxFromRecords(records)
+      !currentRefinement && Boolean(hits.length)
+        ? this.createBoundingBoxFromRecords(hits)
         : currentRefinement;
 
     return (

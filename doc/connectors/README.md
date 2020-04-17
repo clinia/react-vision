@@ -20,12 +20,12 @@ Let's use the `connectHits` connector to access and display search results obtai
 ```js
 class Hits extends React.Component {
   render() {
-    const { records } = this.props
-    return records.map(record => (
+    const { hits } = this.props
+    return hits.map(hits => (
       <div>
-        {record.item.id}
+        {hits.item.id}
       </div>
-    ))      
+    ))
   }
 }
 export default connectHits(Hits)
@@ -65,7 +65,7 @@ It is also possible to specify some properties while using the exported componen
  6.3. [Exposed Props](#63-exposed-props)<br/>
 
 ## 1 `connectSearchBox`
-This connector provides the logic to build a component that will let the user search for a query. 
+This connector provides the logic to build a component that will let the user search for a query.
 
 ## 1.1 Initialization
 ### `connectSearchBox(component)`
@@ -84,7 +84,7 @@ Once connected, the component will have access to the following properties and f
 <br/><br/>
 
 ### `indexContextValue`
-The name of the targeted index, if a single index is targeted. 
+The name of the targeted index, if a single index is targeted.
 
 | Type | Default |
 |------|---------|
@@ -149,14 +149,14 @@ Once connected, the component will have access to the following properties and f
 <br/><br/>
 
 ### `indexContextValue`
-The name of the targeted index, if a single index is targeted. 
+The name of the targeted index, if a single index is targeted.
 
 | Type | Default |
 |------|---------|
 | _string_ | `undefined` |
 <br/>
 
-### `records`
+### `hits`
 The search results.
 
 | Type | Default |
@@ -185,14 +185,14 @@ Once connected, the component will have access to the following properties and f
 <br/><br/>
 
 ### `indexContextValue`
-The name of the targeted index, if a single index is targeted. 
+The name of the targeted index, if a single index is targeted.
 
 | Type | Default |
 |------|---------|
 | _string_ | `undefined` |
 <br/>
 
-### `records`
+### `hits`
 The search results.
 
 | Type | Default |
@@ -443,7 +443,7 @@ The current search bounds.
 | _Bounds_ | `undefined` |
 <br/>
 
-### `records`
+### `hits`
 The search results.
 
 | Type | Default |
@@ -620,7 +620,7 @@ Provide a default value for the bounding box.
 | `lng` | _double_ | Longitude ||
 <br/>
 
-### 11 `LocationTranslation` 
+### 11 `LocationTranslation`
 | Field name | Type | Description | Possible Values |
 |------------|------|-------------|-----------------|
 | `formattedAddress` | _string_ | Formatted address, ready to display. ||

@@ -1,6 +1,6 @@
 import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
-import { createClassNames } from 'react-vision-dom';
+import { createClassNames } from '@clinia/react-vision-dom';
 import { LatLngPropType, BoundingBoxPropType } from './propTypes';
 import GoogleMapsContext from './GoogleMapsContext';
 

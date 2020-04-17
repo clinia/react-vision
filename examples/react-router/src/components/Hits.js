@@ -1,15 +1,15 @@
 import notFound from '../static/images/empty-search@2x.png';
 import React from 'react';
 import { OpeningHours } from './OpeningHours';
-import { connectHits } from 'react-vision-dom';
+import { connectHits } from '@clinia/react-vision-dom';
 
-const Hit = ({ record, onRecordOver }) => {
+const Hit = ({ hit, onRecordOver }) => {
   const {
     type,
     address: { streetAddress, place, regionCode },
     phones,
     openingHours,
-  } = record;
+  } = hit;
 
   const mapLink = `https://www.google.ca/maps/dir//${streetAddress.replace(
     ' ',
@@ -19,15 +19,15 @@ const Hit = ({ record, onRecordOver }) => {
   return (
     <div
       className="card"
-      key={record.id}
-      onMouseEnter={() => onRecordOver(record)}
+      key={hit.id}
+      onMouseEnter={() => onRecordOver(hit)}
       onMouseLeave={() => onRecordOver(null)}
     >
       <div className="card-body">
         <div className="card-badge">
           <span>{type}</span>
         </div>
-        <h3>{record.name}</h3>
+        <h3>{hit.name}</h3>
         <div>
           <p
             style={{ marginTop: 10 }}
@@ -68,14 +68,14 @@ export const NotFound = () => (
   </div>
 );
 
-export default connectHits(({ records, selectedRecord, onRecordOver }) => (
+export default connectHits(({ hits, selectedRecord, onRecordOver }) => (
   <div className="hits">
-    {Array.isArray(records) && records.length > 0 ? (
-      records.map(record => {
+    {Array.isArray(hits) && hits.length > 0 ? (
+      hits.map(hit => {
         return (
           <Hit
-            key={record.id}
-            record={record}
+            key={hit.id}
+            hit={hit}
             selectedRecord={selectedRecord}
             onRecordOver={onRecordOver}
           />

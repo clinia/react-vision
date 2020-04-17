@@ -8,14 +8,14 @@ describe('connectInfiniteHits', () => {
       mainTargetedIndex: 'index',
     };
 
-    it('provides the current records to the component', () => {
-      const records = [{}];
+    it('provides the current hits to the component', () => {
+      const hits = [{}];
       const props = connect.getProvidedProps.call({}, { contextValue }, null, {
-        results: { records, page: 0, perPage: 2, numPages: 3 },
+        results: { hits, page: 0, perPage: 2, numPages: 3 },
       });
 
       expect(props).toEqual({
-        records: records.map(hit => expect.objectContaining(hit)),
+        hits: hits.map(hit => expect.objectContaining(hit)),
         hasPrevious: false,
         hasMore: true,
         refinePrevious: expect.any(Function),
@@ -23,8 +23,8 @@ describe('connectInfiniteHits', () => {
       });
     });
 
-    it('accumulate records internally', () => {
-      const records = [{}, {}];
+    it('accumulate hits internally', () => {
+      const hits = [{}, {}];
       const records2 = [{}, {}];
       const instance = {};
 
@@ -33,13 +33,11 @@ describe('connectInfiniteHits', () => {
         { contextValue },
         null,
         {
-          results: { records, page: 0, perPage: 2, numPages: 3 },
+          results: { hits, page: 0, perPage: 2, numPages: 3 },
         }
       );
 
-      expect(res1.records).toEqual(
-        records.map(record => expect.objectContaining(record))
-      );
+      expect(res1.hits).toEqual(hits.map(hit => expect.objectContaining(hit)));
       expect(res1.hasMore).toBe(true);
 
       const res2 = connect.getProvidedProps.call(
@@ -48,7 +46,7 @@ describe('connectInfiniteHits', () => {
         null,
         {
           results: {
-            records: records2,
+            hits: records2,
             page: 1,
             perPage: 2,
             numPages: 3,
@@ -56,13 +54,13 @@ describe('connectInfiniteHits', () => {
         }
       );
 
-      expect(res2.records).toEqual(
-        [...records, ...records2].map(record => expect.objectContaining(record))
+      expect(res2.hits).toEqual(
+        [...hits, ...records2].map(hit => expect.objectContaining(hit))
       );
       expect(res2.hasMore).toBe(true);
     });
 
-    it('prepend records internally', () => {
+    it('prepend hits internally', () => {
       const instance = {};
       const initialPageRecords = [{}, {}];
       const previousPageRecords = [{}, {}];
@@ -72,7 +70,7 @@ describe('connectInfiniteHits', () => {
         null,
         {
           results: {
-            records: initialPageRecords,
+            hits: initialPageRecords,
             page: 1,
             perPage: 2,
             numPages: 3,
@@ -80,8 +78,8 @@ describe('connectInfiniteHits', () => {
         }
       );
 
-      expect(initialPageProps.records).toEqual(
-        initialPageRecords.map(record => expect.objectContaining(record))
+      expect(initialPageProps.hits).toEqual(
+        initialPageRecords.map(hit => expect.objectContaining(hit))
       );
       expect(initialPageProps.hasPrevious).toBe(true);
 
@@ -91,7 +89,7 @@ describe('connectInfiniteHits', () => {
         null,
         {
           results: {
-            records: previousPageRecords,
+            hits: previousPageRecords,
             page: 0,
             perPage: 2,
             numPages: 3,
@@ -99,16 +97,16 @@ describe('connectInfiniteHits', () => {
         }
       );
 
-      expect(previousPageProps.records).toEqual(
-        [...previousPageRecords, ...initialPageRecords].map(record =>
-          expect.objectContaining(record)
+      expect(previousPageProps.hits).toEqual(
+        [...previousPageRecords, ...initialPageRecords].map(hit =>
+          expect.objectContaining(hit)
         )
       );
       expect(previousPageProps.hasPrevious).toBe(false);
     });
 
-    it('accumulate records internally while changing perPage configuration', () => {
-      const records = [{}, {}, {}, {}, {}, {}];
+    it('accumulate hits internally while changing perPage configuration', () => {
+      const hits = [{}, {}, {}, {}, {}, {}];
       const records2 = [{}, {}, {}, {}, {}, {}];
       const records3 = [{}, {}, {}, {}, {}, {}, {}, {}];
       const instance = {};
@@ -119,7 +117,7 @@ describe('connectInfiniteHits', () => {
         null,
         {
           results: {
-            records,
+            hits,
             page: 0,
             perPage: 6,
             numPages: 10,
@@ -127,17 +125,8 @@ describe('connectInfiniteHits', () => {
         }
       );
 
-      expect(res1.records).toEqual(
-        records.map(record => expect.objectContaining(record))
-      );
-      expect(res1.records.map(record => record.__position)).toEqual([
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-      ]);
+      expect(res1.hits).toEqual(hits.map(hit => expect.objectContaining(hit)));
+      expect(res1.hits.map(hit => hit.__position)).toEqual([1, 2, 3, 4, 5, 6]);
       expect(res1.hasMore).toBe(true);
 
       const res2 = connect.getProvidedProps.call(
@@ -146,7 +135,7 @@ describe('connectInfiniteHits', () => {
         null,
         {
           results: {
-            records: records2,
+            hits: records2,
             page: 1,
             perPage: 6,
             numPages: 10,
@@ -154,10 +143,10 @@ describe('connectInfiniteHits', () => {
         }
       );
 
-      expect(res2.records).toEqual(
-        [...records, ...records2].map(record => expect.objectContaining(record))
+      expect(res2.hits).toEqual(
+        [...hits, ...records2].map(hit => expect.objectContaining(hit))
       );
-      expect(res2.records.map(record => record.__position)).toEqual([
+      expect(res2.hits.map(hit => hit.__position)).toEqual([
         // page 0
         1,
         2,
@@ -181,7 +170,7 @@ describe('connectInfiniteHits', () => {
         null,
         {
           results: {
-            records: records3,
+            hits: records3,
             page: 2,
             perPage: 8,
             numPages: 10,
@@ -189,12 +178,12 @@ describe('connectInfiniteHits', () => {
         }
       );
 
-      expect(res3.records).toEqual(
-        [...records, ...records2, ...records3].map(record =>
-          expect.objectContaining(record)
+      expect(res3.hits).toEqual(
+        [...hits, ...records2, ...records3].map(hit =>
+          expect.objectContaining(hit)
         )
       );
-      expect(res3.records.map(record => record.__position)).toEqual([
+      expect(res3.hits.map(hit => hit.__position)).toEqual([
         // page: 0, hitsPerPage: 6
         1,
         2,
@@ -225,19 +214,19 @@ describe('connectInfiniteHits', () => {
       // re-render with the same property
       res3 = connect.getProvidedProps.call(instance, { contextValue }, null, {
         results: {
-          records: records3,
+          hits: records3,
           page: 2,
           perPage: 8,
           numPages: 10,
         },
       });
 
-      expect(res3.records).toEqual(
-        [...records, ...records2, ...records3].map(record =>
-          expect.objectContaining(record)
+      expect(res3.hits).toEqual(
+        [...hits, ...records2, ...records3].map(hit =>
+          expect.objectContaining(hit)
         )
       );
-      expect(res3.records.map(record => record.__position)).toEqual([
+      expect(res3.hits.map(hit => hit.__position)).toEqual([
         // page: 0, hitsPerPage: 6
         1,
         2,
@@ -267,13 +256,13 @@ describe('connectInfiniteHits', () => {
     });
 
     it('should not reset while accumulating results', () => {
-      const records = [{}, {}];
+      const hits = [{}, {}];
       const numPages = 5;
       const instance = {};
 
       let allRecords = [];
       for (let page = 0; page < numPages - 1; page++) {
-        allRecords = [...allRecords, ...records];
+        allRecords = [...allRecords, ...hits];
 
         const res = connect.getProvidedProps.call(
           instance,
@@ -281,22 +270,22 @@ describe('connectInfiniteHits', () => {
           null,
           {
             results: {
-              records,
+              hits,
               page,
-              perPage: records.length,
+              perPage: hits.length,
               numPages,
             },
           }
         );
 
-        expect(res.records).toEqual(
-          allRecords.map(record => expect.objectContaining(record))
+        expect(res.hits).toEqual(
+          allRecords.map(hit => expect.objectContaining(hit))
         );
-        expect(res.records).toHaveLength((page + 1) * 2);
+        expect(res.hits).toHaveLength((page + 1) * 2);
         expect(res.hasMore).toBe(true);
       }
 
-      allRecords = [...allRecords, ...records];
+      allRecords = [...allRecords, ...hits];
 
       const res = connect.getProvidedProps.call(
         instance,
@@ -304,19 +293,19 @@ describe('connectInfiniteHits', () => {
         null,
         {
           results: {
-            records,
+            hits,
             page: numPages - 1,
-            perPage: records.length,
+            perPage: hits.length,
             numPages,
           },
         }
       );
 
-      expect(res.records).toHaveLength(numPages * 2);
-      expect(res.records).toEqual(
-        allRecords.map(record => expect.objectContaining(record))
+      expect(res.hits).toHaveLength(numPages * 2);
+      expect(res.hits).toEqual(
+        allRecords.map(hit => expect.objectContaining(hit))
       );
-      expect(res.records.map(record => record.__position)).toEqual([
+      expect(res.hits.map(hit => hit.__position)).toEqual([
         1,
         2,
         3,
@@ -332,18 +321,18 @@ describe('connectInfiniteHits', () => {
     });
 
     it('Indicates the last page after several pages', () => {
-      const records = [{}, {}];
+      const hits = [{}, {}];
       const records2 = [{}, {}];
       const records3 = [{}];
       const instance = {};
 
       connect.getProvidedProps.call(instance, { contextValue }, null, {
-        results: { records, page: 0, perPage: 2, numPages: 3 },
+        results: { hits, page: 0, perPage: 2, numPages: 3 },
       });
 
       connect.getProvidedProps.call(instance, { contextValue }, null, {
         results: {
-          records: records2,
+          hits: records2,
           page: 1,
           perPage: 2,
           numPages: 3,
@@ -356,7 +345,7 @@ describe('connectInfiniteHits', () => {
         null,
         {
           results: {
-            records: records3,
+            hits: records3,
             page: 2,
             perPage: 2,
             numPages: 3,
@@ -364,8 +353,8 @@ describe('connectInfiniteHits', () => {
         }
       );
 
-      expect(props.records).toEqual(
-        [...records, ...records2, ...records3].map(hit =>
+      expect(props.hits).toEqual(
+        [...hits, ...records2, ...records3].map(hit =>
           expect.objectContaining(hit)
         )
       );
@@ -374,7 +363,7 @@ describe('connectInfiniteHits', () => {
 
     it('calls refine with next page when calling refineNext', () => {
       const instance = { refine: jest.fn() };
-      const records = [{}, {}];
+      const hits = [{}, {}];
       const event = new Event('click');
 
       const props = connect.getProvidedProps.call(
@@ -383,7 +372,7 @@ describe('connectInfiniteHits', () => {
         {},
         {
           results: {
-            records,
+            hits,
             page: 2,
             perPage: 2,
             numPages: 3,
@@ -399,7 +388,7 @@ describe('connectInfiniteHits', () => {
 
     it('calls refine with previous page when calling refinePrevious', () => {
       const instance = { refine: jest.fn() };
-      const records = [{}, {}];
+      const hits = [{}, {}];
       const event = new Event('click');
 
       const props = connect.getProvidedProps.call(
@@ -408,7 +397,7 @@ describe('connectInfiniteHits', () => {
         {},
         {
           results: {
-            records,
+            hits,
             page: 2,
             perPage: 2,
             numPages: 3,
@@ -452,7 +441,7 @@ describe('connectInfiniteHits', () => {
       expect(state1).toEqual({ page: 1 });
     });
 
-    it('expect to always return an array of records', () => {
+    it('expect to always return an array of hits', () => {
       const props = { contextValue };
       const searchState = {};
 
@@ -460,7 +449,7 @@ describe('connectInfiniteHits', () => {
       // the page it's not zero on the first render
       const searchResults = {
         results: {
-          records: [{}, {}, {}],
+          hits: [{}, {}, {}],
           perPage: 3,
           page: 1,
           numPages: 3,
@@ -468,7 +457,7 @@ describe('connectInfiniteHits', () => {
       };
 
       const expectation = {
-        records: [{}, {}, {}].map(record => expect.objectContaining(record)),
+        hits: [{}, {}, {}].map(hit => expect.objectContaining(hit)),
         hasPrevious: true,
         hasMore: true,
         refinePrevious: expect.any(Function),
@@ -494,21 +483,21 @@ describe('connectInfiniteHits', () => {
       targetedIndex: 'second',
     };
 
-    it('provides the current records to the component', () => {
-      const records = [{}];
+    it('provides the current hits to the component', () => {
+      const hits = [{}];
       const props = connect.getProvidedProps.call(
         {},
         { contextValue, indexContextValue },
         null,
         {
           results: {
-            second: { records, page: 0, perPage: 2, numPages: 3 },
+            second: { hits, page: 0, perPage: 2, numPages: 3 },
           },
         }
       );
 
       expect(props).toEqual({
-        records: records.map(record => expect.objectContaining(record)),
+        hits: hits.map(hit => expect.objectContaining(hit)),
         hasPrevious: false,
         hasMore: true,
         refinePrevious: expect.any(Function),
@@ -516,9 +505,9 @@ describe('connectInfiniteHits', () => {
       });
     });
 
-    it('accumulate records internally', () => {
-      const records = [{}, {}];
-      const records2 = [{}, {}];
+    it('accumulate hits internally', () => {
+      const hits = [{}, {}];
+      const hits2 = [{}, {}];
 
       const instance = {};
 
@@ -528,14 +517,12 @@ describe('connectInfiniteHits', () => {
         null,
         {
           results: {
-            second: { records, page: 0, perPage: 2, numPages: 3 },
+            second: { hits, page: 0, perPage: 2, numPages: 3 },
           },
         }
       );
 
-      expect(res1.records).toEqual(
-        records.map(record => expect.objectContaining(record))
-      );
+      expect(res1.hits).toEqual(hits.map(hit => expect.objectContaining(hit)));
       expect(res1.hasMore).toBe(true);
 
       const res2 = connect.getProvidedProps.call(
@@ -545,7 +532,7 @@ describe('connectInfiniteHits', () => {
         {
           results: {
             second: {
-              records: records2,
+              hits: hits2,
               page: 1,
               perPage: 2,
               numPages: 3,
@@ -554,13 +541,13 @@ describe('connectInfiniteHits', () => {
         }
       );
 
-      expect(res2.records).toEqual(
-        [...records, ...records2].map(hit => expect.objectContaining(hit))
+      expect(res2.hits).toEqual(
+        [...hits, ...hits2].map(hit => expect.objectContaining(hit))
       );
       expect(res2.hasMore).toBe(true);
     });
 
-    it('prepend records internally', () => {
+    it('prepend hits internally', () => {
       const initialPageRecords = [{}, {}];
       const previousPageRecords = [{}, {}];
       const instance = {};
@@ -571,7 +558,7 @@ describe('connectInfiniteHits', () => {
         {
           results: {
             second: {
-              records: initialPageRecords,
+              hits: initialPageRecords,
               page: 1,
               perPage: 2,
               numPages: 3,
@@ -580,8 +567,8 @@ describe('connectInfiniteHits', () => {
         }
       );
 
-      expect(initialPageProps.records).toEqual(
-        initialPageRecords.map(record => expect.objectContaining(record))
+      expect(initialPageProps.hits).toEqual(
+        initialPageRecords.map(hit => expect.objectContaining(hit))
       );
       expect(initialPageProps.hasPrevious).toBe(true);
 
@@ -592,7 +579,7 @@ describe('connectInfiniteHits', () => {
         {
           results: {
             second: {
-              records: previousPageRecords,
+              hits: previousPageRecords,
               page: 0,
               perPage: 2,
               numPages: 3,
@@ -601,7 +588,7 @@ describe('connectInfiniteHits', () => {
         }
       );
 
-      expect(previousPageProps.records).toEqual(
+      expect(previousPageProps.hits).toEqual(
         [...previousPageRecords, ...initialPageRecords].map(hit =>
           expect.objectContaining(hit)
         )
@@ -609,10 +596,10 @@ describe('connectInfiniteHits', () => {
       expect(previousPageProps.hasPrevious).toBe(false);
     });
 
-    it('accumulate records internally while changing perPage configuration', () => {
-      const records = [{}, {}, {}, {}, {}, {}];
-      const records2 = [{}, {}, {}, {}, {}, {}];
-      const records3 = [{}, {}, {}, {}, {}, {}, {}, {}];
+    it('accumulate hits internally while changing perPage configuration', () => {
+      const hits = [{}, {}, {}, {}, {}, {}];
+      const hits2 = [{}, {}, {}, {}, {}, {}];
+      const hits3 = [{}, {}, {}, {}, {}, {}, {}, {}];
       const instance = {};
 
       const res1 = connect.getProvidedProps.call(
@@ -621,14 +608,12 @@ describe('connectInfiniteHits', () => {
         null,
         {
           results: {
-            second: { records, page: 0, perPage: 6, numPages: 10 },
+            second: { hits, page: 0, perPage: 6, numPages: 10 },
           },
         }
       );
 
-      expect(res1.records).toEqual(
-        records.map(record => expect.objectContaining(record))
-      );
+      expect(res1.hits).toEqual(hits.map(hit => expect.objectContaining(hit)));
       expect(res1.hasMore).toBe(true);
 
       const res2 = connect.getProvidedProps.call(
@@ -638,7 +623,7 @@ describe('connectInfiniteHits', () => {
         {
           results: {
             second: {
-              records: records2,
+              hits: hits2,
               page: 1,
               perPage: 6,
               numPages: 10,
@@ -647,8 +632,8 @@ describe('connectInfiniteHits', () => {
         }
       );
 
-      expect(res2.records).toEqual(
-        [...records, ...records2].map(record => expect.objectContaining(record))
+      expect(res2.hits).toEqual(
+        [...hits, ...hits2].map(hit => expect.objectContaining(hit))
       );
       expect(res2.hasMore).toBe(true);
 
@@ -659,7 +644,7 @@ describe('connectInfiniteHits', () => {
         {
           results: {
             second: {
-              records: records3,
+              hits: hits3,
               page: 2,
               perPage: 8,
               numPages: 10,
@@ -668,10 +653,8 @@ describe('connectInfiniteHits', () => {
         }
       );
 
-      expect(res3.records).toEqual(
-        [...records, ...records2, ...records3].map(record =>
-          expect.objectContaining(record)
-        )
+      expect(res3.hits).toEqual(
+        [...hits, ...hits2, ...hits3].map(hit => expect.objectContaining(hit))
       );
       expect(res3.hasMore).toBe(true);
 
@@ -683,7 +666,7 @@ describe('connectInfiniteHits', () => {
         {
           results: {
             second: {
-              records: records3,
+              hits: hits3,
               page: 2,
               perPage: 8,
               numPages: 10,
@@ -692,18 +675,16 @@ describe('connectInfiniteHits', () => {
         }
       );
 
-      expect(res3.records).toEqual(
-        [...records, ...records2, ...records3].map(record =>
-          expect.objectContaining(record)
-        )
+      expect(res3.hits).toEqual(
+        [...hits, ...hits2, ...hits3].map(hit => expect.objectContaining(hit))
       );
       expect(res3.hasMore).toBe(true);
     });
 
-    it('should not accumulate records internally while changing query', () => {
+    it('should not accumulate hits internally while changing query', () => {
       const instance = {};
-      const records = [{}, {}, {}, {}, {}, {}];
-      const records2 = [{}, {}, {}, {}, {}, {}];
+      const hits = [{}, {}, {}, {}, {}, {}];
+      const hits2 = [{}, {}, {}, {}, {}, {}];
 
       const res1 = connect.getProvidedProps.call(
         instance,
@@ -712,7 +693,7 @@ describe('connectInfiniteHits', () => {
         {
           results: {
             second: {
-              records,
+              hits,
               page: 0,
               perPage: 6,
               numPages: 10,
@@ -722,9 +703,7 @@ describe('connectInfiniteHits', () => {
         }
       );
 
-      expect(res1.records).toEqual(
-        records.map(record => expect.objectContaining(record))
-      );
+      expect(res1.hits).toEqual(hits.map(hit => expect.objectContaining(hit)));
       expect(res1.hasMore).toBe(true);
 
       const res2 = connect.getProvidedProps.call(
@@ -734,7 +713,7 @@ describe('connectInfiniteHits', () => {
         {
           results: {
             second: {
-              records: records2,
+              hits: hits2,
               page: 0,
               perPage: 6,
               numPages: 10,
@@ -744,20 +723,18 @@ describe('connectInfiniteHits', () => {
         }
       );
 
-      expect(res2.records).toEqual(
-        records2.map(record => expect.objectContaining(record))
-      );
+      expect(res2.hits).toEqual(hits2.map(hit => expect.objectContaining(hit)));
       expect(res2.hasMore).toBe(true);
     });
 
     it('should not reset while accumulating results', () => {
-      const records = [{}, {}];
+      const hits = [{}, {}];
       const numPages = 100;
       const instance = {};
 
-      let allRecords = [];
+      let allHits = [];
       for (let page = 0; page < numPages - 1; page++) {
-        allRecords = [...allRecords, ...records];
+        allHits = [...allHits, ...hits];
 
         const res = connect.getProvidedProps.call(
           instance,
@@ -766,23 +743,23 @@ describe('connectInfiniteHits', () => {
           {
             results: {
               second: {
-                records,
+                hits,
                 page,
-                perPage: records.length,
+                perPage: hits.length,
                 numPages,
               },
             },
           }
         );
 
-        expect(res.records).toEqual(
-          allRecords.map(record => expect.objectContaining(record))
+        expect(res.hits).toEqual(
+          allHits.map(hit => expect.objectContaining(hit))
         );
-        expect(res.records).toHaveLength((page + 1) * 2);
+        expect(res.hits).toHaveLength((page + 1) * 2);
         expect(res.hasMore).toBe(true);
       }
 
-      allRecords = [...allRecords, ...records];
+      allHits = [...allHits, ...hits];
 
       const res = connect.getProvidedProps.call(
         instance,
@@ -791,26 +768,26 @@ describe('connectInfiniteHits', () => {
         {
           results: {
             second: {
-              records,
+              hits,
               page: numPages - 1,
-              perPage: records.length,
+              perPage: hits.length,
               numPages,
             },
           },
         }
       );
 
-      expect(res.records).toHaveLength(numPages * 2);
-      expect(res.records).toEqual(
-        allRecords.map(hit => expect.objectContaining(hit))
+      expect(res.hits).toHaveLength(numPages * 2);
+      expect(res.hits).toEqual(
+        allHits.map(hit => expect.objectContaining(hit))
       );
       expect(res.hasMore).toBe(false);
     });
 
     it('Indicates the last page after several pages', () => {
-      const records = [{}, {}];
-      const records2 = [{}, {}];
-      const records3 = [{}];
+      const hits = [{}, {}];
+      const hits2 = [{}, {}];
+      const hits3 = [{}];
       const instance = {};
 
       connect.getProvidedProps.call(
@@ -819,7 +796,7 @@ describe('connectInfiniteHits', () => {
         null,
         {
           results: {
-            second: { records, page: 0, perPage: 2, numPages: 3 },
+            second: { hits, page: 0, perPage: 2, numPages: 3 },
           },
         }
       );
@@ -831,7 +808,7 @@ describe('connectInfiniteHits', () => {
         {
           results: {
             second: {
-              records: records2,
+              hits: hits2,
               page: 1,
               perPage: 2,
               numPages: 3,
@@ -847,7 +824,7 @@ describe('connectInfiniteHits', () => {
         {
           results: {
             second: {
-              records: records3,
+              hits: hits3,
               page: 2,
               perPage: 2,
               numPages: 3,
@@ -856,10 +833,8 @@ describe('connectInfiniteHits', () => {
         }
       );
 
-      expect(props.records).toEqual(
-        [...records, ...records2, ...records3].map(record =>
-          expect.objectContaining(record)
-        )
+      expect(props.hits).toEqual(
+        [...hits, ...hits2, ...hits3].map(hit => expect.objectContaining(hit))
       );
       expect(props.hasMore).toBe(false);
     });

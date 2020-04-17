@@ -1,1 +1,1 @@
-export { createVision } from 'react-vision-dom/server';
+export { createVision } from '@clinia/react-vision-dom/server';

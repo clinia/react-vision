@@ -42,14 +42,14 @@ class HealthFacilities extends React.Component {
     </View>
   );
 
-  hit = (record, isLast) => (
+  hit = (hit, isLast) => (
     <View
       style={[Container.hit, isLast ? { marginBottom: Margin.normal } : {}]}
     >
-      {this.tag(record.type)}
-      <Text style={styles.title}>{record.name}</Text>
+      {this.tag(hit.type)}
+      <Text style={styles.title}>{hit.name}</Text>
       <Text style={styles.text}>
-        {`${record.address.streetAddress} ${record.address.place}, ${record.address.regionCode}`}
+        {`${hit.address.streetAddress} ${hit.address.place}, ${hit.address.regionCode}`}
       </Text>
     </View>
   );

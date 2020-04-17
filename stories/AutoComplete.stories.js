@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cliniasearch from 'cliniasearch/lite';
+import clinia from 'clinia/lite';
 import { storiesOf } from '@storybook/react';
-import { Vision, AutoComplete } from 'react-vision-dom';
+import { Vision, AutoComplete } from '@clinia/react-vision-dom';
 import { action } from '@storybook/addon-actions';
 import { boolean } from '@storybook/addon-knobs';
 import { WrapWithHits } from './utils';
 
 const stories = storiesOf('AutoComplete', module);
 
-const searchClient = cliniasearch(
+const searchClient = clinia(
   'demo-pharmacies',
   'KcLxBhVFP8ooPgQODlAxWqfNg657fTz9'
 );

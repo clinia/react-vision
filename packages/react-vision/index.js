@@ -1,1 +1,1 @@
-export { createConnector } from 'react-vision-core';
+export { createConnector } from '@clinia/react-vision-core';

@@ -1,17 +1,22 @@
 import React, { useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { linkTo } from '@storybook/addon-links';
-import cliniasearch from 'cliniasearch/lite';
-import { Vision, Configure, SearchBox, connectHits } from 'react-vision-dom';
+import clinia from 'clinia/lite';
+import {
+  Vision,
+  Configure,
+  SearchBox,
+  connectHits,
+} from '@clinia/react-vision-dom';
 import './style.css';
 
-const Hits = ({ records }) => (
+const Hits = ({ hits }) => (
   <div className="hits">
-    {records.map(record => (
-      <div key={record.id} className="record">
+    {hits.map(hit => (
+      <div key={hit.id} className="hit">
         <div className="hit-content">
           <div>
-            <h4>{record.name}</h4>
+            <h4>{hit.name}</h4>
           </div>
         </div>
       </div>
@@ -20,7 +25,7 @@ const Hits = ({ records }) => (
 );
 
 Hits.propTypes = {
-  records: PropTypes.array.isRequired,
+  hits: PropTypes.array.isRequired,
 };
 
 export const CustomHits = connectHits(Hits);
@@ -40,7 +45,7 @@ export const WrapWithHits = ({
   onSearchStateChange,
 }) => {
   const searchClient = useMemo(() => {
-    return cliniasearch(appId, apiKey);
+    return clinia(appId, apiKey);
   }, [appId, apiKey]);
 
   const sourceCodeUrl = `https://github.com/clinia/react-vision/tree/develop/stories/${linkedStoryGroup}.stories.js`;

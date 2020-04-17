@@ -48,7 +48,7 @@ class Suggestions extends React.Component {
         keyboardShouldPersistTaps="always"
         data={results}
         keyExtractor={() => randomId()}
-        renderItem={record => this.suggestion(record.item)}
+        renderItem={hit => this.suggestion(hit.item)}
       />
     );
   }

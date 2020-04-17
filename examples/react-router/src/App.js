@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import qs from 'qs';
 import { SearchPage } from './pages';
-import { Vision } from 'react-vision-dom';
+import { Vision } from '@clinia/react-vision-dom';
 import cliniasearch from 'cliniasearch/lite';
 import './App.css';
 

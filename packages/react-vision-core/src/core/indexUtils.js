@@ -8,7 +8,7 @@ export function getIndexId(context) {
 
 export function getResults(searchResults, context) {
   if (searchResults.results) {
-    if (searchResults.results.records) {
+    if (searchResults.results.hits) {
       return searchResults.results;
     }
 

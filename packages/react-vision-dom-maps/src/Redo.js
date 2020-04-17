@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { createClassNames, translatable } from 'react-vision-dom';
+import { createClassNames, translatable } from '@clinia/react-vision-dom';
 import GeoSearchContext from './GeoSearchContext';
 import withGoogleMaps from './withGoogleMaps';
 
@@ -27,13 +27,13 @@ const RedoPropTypes = {
  * <GoogleMapsLoader apiKey={apiKey} endpoint={endpoint}>
  *   {google => (
  *     <GeoSearch google={google}>
- *       {({ records }) => (
+ *       {({ hits }) => (
  *         <Fragment>
  *           <Redo />
- *           {records.map(record => (
+ *           {hits.map(hit => (
  *             <Marker
- *               key={record.id}
- *               record={record}
+ *               key={hit.id}
+ *               hit={hit}
  *             />
  *           ))}
  *         </Fragment>

@@ -39,7 +39,7 @@ export default class GeoSearch extends Component {
     defaultRefinement: null,
   };
 
-  renderChildrenWithBoundFunction = ({ records, position, ...rest }) => {
+  renderChildrenWithBoundFunction = ({ hits, position, ...rest }) => {
     const {
       google,
       children,
@@ -56,7 +56,7 @@ export default class GeoSearch extends Component {
         {...rest}
         testID="Provider"
         google={google}
-        records={records}
+        hits={hits}
         position={position}
         isRefineEnable={enableRefine}
       >
@@ -79,7 +79,7 @@ export default class GeoSearch extends Component {
             onIdle={onIdle}
             shouldUpdate={shouldUpdate}
           >
-            {children({ records })}
+            {children({ hits })}
           </GoogleMaps>
         )}
       </Provider>

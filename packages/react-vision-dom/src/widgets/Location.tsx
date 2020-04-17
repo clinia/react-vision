@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connectLocation } from 'react-vision-core';
+import { connectLocation } from '@clinia/react-vision-core';
 import AutoComplete from '../components/AutoComplete';
 import ExecutionEnvironment from 'exenv';
 
@@ -47,7 +47,7 @@ import ExecutionEnvironment from 'exenv';
  * @example
  * import React from 'react';
  * import cliniasearch from 'cliniasearch/lite';
- * import { Vision, Location } from 'react-vision-dom';
+ * import { Vision, Location } from '@clinia/react-vision-dom';
  *
  * const searchClient = cliniasearch(
  *   'latency',

@@ -1,4 +1,4 @@
-import { SearchResults, SearchParameters } from 'cliniasearch-helper';
+import { SearchResults, SearchParameters } from '@clinia/search-helper';
 import connector from '../connectGeoSearch';
 
 jest.mock('../../core/createConnector', () => x => x);
@@ -11,11 +11,11 @@ describe('connectGeoSearch', () => {
       mainTargetedIndex: 'index',
     };
 
-    const createSingleIndexSearchResults = (records = [], state) => ({
+    const createSingleIndexSearchResults = (hits = [], state) => ({
       results: new SearchResults(new SearchParameters(state), [
         {
           meta: {},
-          records,
+          hits,
         },
       ]),
     });
@@ -33,7 +33,7 @@ describe('connectGeoSearch', () => {
         );
 
         const expectation = {
-          records: [],
+          hits: [],
           position: undefined,
           currentRefinement: undefined,
           isRefinedWithMap: false,
@@ -42,18 +42,18 @@ describe('connectGeoSearch', () => {
         expect(actual).toEqual(expectation);
       });
 
-      describe('records', () => {
-        it('expect to return records when we hare results', () => {
-          const records = [
-            { id: '1', geoPoint: {} },
-            { id: '2', geoPoint: {} },
-            { id: '3', geoPoint: {} },
-            { id: '4', geoPoint: {} },
+      describe('hits', () => {
+        it('expect to return hits when we hare results', () => {
+          const hits = [
+            { id: '1', _geoPoint: {} },
+            { id: '2', _geoPoint: {} },
+            { id: '3', _geoPoint: {} },
+            { id: '4', _geoPoint: {} },
           ];
 
           const props = { contextValue };
           const searchState = {};
-          const searchResults = createSingleIndexSearchResults(records);
+          const searchResults = createSingleIndexSearchResults(hits);
 
           const actual = connector.getProvidedProps(
             props,
@@ -62,25 +62,25 @@ describe('connectGeoSearch', () => {
           );
 
           const expectation = [
-            { id: '1', geoPoint: {} },
-            { id: '2', geoPoint: {} },
-            { id: '3', geoPoint: {} },
-            { id: '4', geoPoint: {} },
+            { id: '1', _geoPoint: {} },
+            { id: '2', _geoPoint: {} },
+            { id: '3', _geoPoint: {} },
+            { id: '4', _geoPoint: {} },
           ];
 
-          expect(actual.records).toEqual(expectation);
+          expect(actual.hits).toEqual(expectation);
         });
 
-        it('expect to return records with only "geoPoint" when we have results', () => {
-          const records = [
-            { id: '1', geoPoint: {} },
+        it('expect to return hits with only "_geoPoint" when we have results', () => {
+          const hits = [
+            { id: '1', _geoPoint: {} },
             { id: '2' },
-            { id: '3', geoPoint: {} },
+            { id: '3', _geoPoint: {} },
           ];
 
           const props = { contextValue };
           const searchState = {};
-          const searchResults = createSingleIndexSearchResults(records);
+          const searchResults = createSingleIndexSearchResults(hits);
 
           const actual = connector.getProvidedProps(
             props,
@@ -89,11 +89,11 @@ describe('connectGeoSearch', () => {
           );
 
           const expectation = [
-            { id: '1', geoPoint: {} },
-            { id: '3', geoPoint: {} },
+            { id: '1', _geoPoint: {} },
+            { id: '3', _geoPoint: {} },
           ];
 
-          expect(actual.records).toEqual(expectation);
+          expect(actual.hits).toEqual(expectation);
         });
 
         it("expect to return empty hits when we don't have results", () => {
@@ -109,7 +109,7 @@ describe('connectGeoSearch', () => {
 
           const expectation = [];
 
-          expect(actual.records).toEqual(expectation);
+          expect(actual.hits).toEqual(expectation);
         });
       });
 
@@ -329,14 +329,14 @@ describe('connectGeoSearch', () => {
 
       describe('isRefinedWithMap', () => {
         it("expect to return true when it's refined with the map (from the searchState)", () => {
-          const records = [
-            { id: '1', geoPoint: {} },
-            { id: '2', geoPoint: {} },
-            { id: '3', geoPoint: {} },
+          const hits = [
+            { id: '1', _geoPoint: {} },
+            { id: '2', _geoPoint: {} },
+            { id: '3', _geoPoint: {} },
           ];
 
           const props = { contextValue };
-          const searchResults = createSingleIndexSearchResults(records);
+          const searchResults = createSingleIndexSearchResults(hits);
           const searchState = {
             boundingBox: {
               northEast: {
@@ -360,15 +360,15 @@ describe('connectGeoSearch', () => {
         });
 
         it("expect to return true when it's refined with the map (from the searchParameters)", () => {
-          const records = [
-            { id: '1', geoPoint: {} },
-            { id: '2', geoPoint: {} },
-            { id: '3', geoPoint: {} },
+          const hits = [
+            { id: '1', _geoPoint: {} },
+            { id: '2', _geoPoint: {} },
+            { id: '3', _geoPoint: {} },
           ];
 
           const props = { contextValue };
           const searchState = {};
-          const searchResults = createSingleIndexSearchResults(records, {
+          const searchResults = createSingleIndexSearchResults(hits, {
             insideBoundingBox: '47, 74, 49, 76',
           });
 
@@ -382,15 +382,15 @@ describe('connectGeoSearch', () => {
         });
 
         it("expect to return false when it's not refined with the map", () => {
-          const records = [
-            { id: '1', geoPoint: {} },
-            { id: '2', geoPoint: {} },
-            { id: '3', geoPoint: {} },
+          const hits = [
+            { id: '1', _geoPoint: {} },
+            { id: '2', _geoPoint: {} },
+            { id: '3', _geoPoint: {} },
           ];
 
           const props = { contextValue };
           const searchState = {};
-          const searchResults = createSingleIndexSearchResults(records);
+          const searchResults = createSingleIndexSearchResults(hits);
 
           const actual = connector.getProvidedProps(
             props,
@@ -681,12 +681,12 @@ describe('connectGeoSearch', () => {
       },
     });
 
-    const createMultiIndexSearchResults = (records = [], state) => ({
+    const createMultiIndexSearchResults = (hits = [], state) => ({
       results: {
         second: new SearchResults(new SearchParameters(state), [
           {
             meta: {},
-            records,
+            hits,
           },
         ]),
       },
@@ -706,7 +706,7 @@ describe('connectGeoSearch', () => {
         );
 
         const expectation = {
-          records: [],
+          hits: [],
           position: undefined,
           currentRefinement: undefined,
           isRefinedWithMap: false,
@@ -715,17 +715,17 @@ describe('connectGeoSearch', () => {
         expect(actual).toEqual(expectation);
       });
 
-      describe('records', () => {
-        it('expect to return records when we have results', () => {
-          const records = [
-            { id: '1', geoPoint: {} },
-            { id: '2', geoPoint: {} },
-            { id: '3', geoPoint: {} },
+      describe('hits', () => {
+        it('expect to return hits when we have results', () => {
+          const hits = [
+            { id: '1', _geoPoint: {} },
+            { id: '2', _geoPoint: {} },
+            { id: '3', _geoPoint: {} },
           ];
 
           const props = { contextValue, indexContextValue };
           const searchState = createMultiIndexSearchState();
-          const searchResults = createMultiIndexSearchResults(records);
+          const searchResults = createMultiIndexSearchResults(hits);
 
           const actual = connector.getProvidedProps(
             props,
@@ -734,24 +734,24 @@ describe('connectGeoSearch', () => {
           );
 
           const expectation = [
-            { id: '1', geoPoint: {} },
-            { id: '2', geoPoint: {} },
-            { id: '3', geoPoint: {} },
+            { id: '1', _geoPoint: {} },
+            { id: '2', _geoPoint: {} },
+            { id: '3', _geoPoint: {} },
           ];
 
-          expect(actual.records).toEqual(expectation);
+          expect(actual.hits).toEqual(expectation);
         });
 
-        it('expect to return records with only "geoPoint" when we have results', () => {
-          const records = [
-            { id: '1', geoPoint: {} },
+        it('expect to return hits with only "_geoPoint" when we have results', () => {
+          const hits = [
+            { id: '1', _geoPoint: {} },
             { id: '2' },
-            { id: '3', geoPoint: {} },
+            { id: '3', _geoPoint: {} },
           ];
 
           const props = { contextValue, indexContextValue };
           const searchState = createMultiIndexSearchState();
-          const searchResults = createMultiIndexSearchResults(records);
+          const searchResults = createMultiIndexSearchResults(hits);
 
           const actual = connector.getProvidedProps(
             props,
@@ -760,14 +760,14 @@ describe('connectGeoSearch', () => {
           );
 
           const expectation = [
-            { id: '1', geoPoint: {} },
-            { id: '3', geoPoint: {} },
+            { id: '1', _geoPoint: {} },
+            { id: '3', _geoPoint: {} },
           ];
 
-          expect(actual.records).toEqual(expectation);
+          expect(actual.hits).toEqual(expectation);
         });
 
-        it("expect to return empty records when we don't have results", () => {
+        it("expect to return empty hits when we don't have results", () => {
           const props = { contextValue, indexContextValue };
           const searchState = createMultiIndexSearchState();
           const searchResults = empty;
@@ -780,7 +780,7 @@ describe('connectGeoSearch', () => {
 
           const expectation = [];
 
-          expect(actual.records).toEqual(expectation);
+          expect(actual.hits).toEqual(expectation);
         });
       });
 
@@ -1017,14 +1017,14 @@ describe('connectGeoSearch', () => {
 
       describe('isRefinedWithMap', () => {
         it("expect to return true when it's refined with the map (from the searchState)", () => {
-          const records = [
-            { id: '1', geoPoint: {} },
-            { id: '2', geoPoint: {} },
-            { id: '3', geoPoint: {} },
+          const hits = [
+            { id: '1', _geoPoint: {} },
+            { id: '2', _geoPoint: {} },
+            { id: '3', _geoPoint: {} },
           ];
 
           const props = { contextValue, indexContextValue };
-          const searchResults = createMultiIndexSearchResults(records);
+          const searchResults = createMultiIndexSearchResults(hits);
           const searchState = createMultiIndexSearchState({
             boundingBox: {
               northEast: {
@@ -1048,15 +1048,15 @@ describe('connectGeoSearch', () => {
         });
 
         it("expect to return true when it's refined with the map (from the searchParameters)", () => {
-          const records = [
-            { id: '1', geoPoint: {} },
-            { id: '2', geoPoint: {} },
-            { id: '3', geoPoint: {} },
+          const hits = [
+            { id: '1', _geoPoint: {} },
+            { id: '2', _geoPoint: {} },
+            { id: '3', _geoPoint: {} },
           ];
 
           const props = { contextValue, indexContextValue };
           const searchState = createMultiIndexSearchState();
-          const searchResults = createMultiIndexSearchResults(records, {
+          const searchResults = createMultiIndexSearchResults(hits, {
             insideBoundingBox: '46, 74, 49, 76',
           });
 
@@ -1070,15 +1070,15 @@ describe('connectGeoSearch', () => {
         });
 
         it("expect to return false when it's not refined with the map", () => {
-          const records = [
-            { id: '1', geoPoint: {} },
-            { id: '2', geoPoint: {} },
-            { id: '3', geoPoint: {} },
+          const hits = [
+            { id: '1', _geoPoint: {} },
+            { id: '2', _geoPoint: {} },
+            { id: '3', _geoPoint: {} },
           ];
 
           const props = { contextValue, indexContextValue };
           const searchState = createMultiIndexSearchState();
-          const searchResults = createMultiIndexSearchResults(records);
+          const searchResults = createMultiIndexSearchResults(hits);
 
           const actual = connector.getProvidedProps(
             props,

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="9" failures="0" time="124.979">
+  <testsuite name="parseCliniaHit()" errors="0" failures="0" skipped="8" timestamp="2020-04-17T21:41:50" time="123.562" tests="9">
+    <testcase classname="parseCliniaHit() it does not break when there is a missing attribute" name="parseCliniaHit() it does not break when there is a missing attribute" time="0.001">
+      <skipped/>
+    </testcase>
+    <testcase classname="parseCliniaHit() creates a single element when there is no tag" name="parseCliniaHit() creates a single element when there is no tag" time="0">
+      <skipped/>
+    </testcase>
+    <testcase classname="parseCliniaHit() creates a single element when there is only a tag" name="parseCliniaHit() creates a single element when there is only a tag" time="0">
+      <skipped/>
+    </testcase>
+    <testcase classname="parseCliniaHit() fetches and parses a deep attribute" name="parseCliniaHit() fetches and parses a deep attribute" time="0">
+      <skipped/>
+    </testcase>
+    <testcase classname="parseCliniaHit() parses the string and returns the part that are highlighted - 1 big highlight" name="parseCliniaHit() parses the string and returns the part that are highlighted - 1 big highlight" time="0">
+      <skipped/>
+    </testcase>
+    <testcase classname="parseCliniaHit() supports the array format, parses it and returns the part that is highlighted" name="parseCliniaHit() supports the array format, parses it and returns the part that is highlighted" time="0">
+      <skipped/>
+    </testcase>
+    <testcase classname="parseCliniaHit() parses the string and returns the part that are highlighted - same pre and post tag" name="parseCliniaHit() parses the string and returns the part that are highlighted - same pre and post tag" time="121.471">
+    </testcase>
+    <testcase classname="parseCliniaHit() throws when hit is `null`" name="parseCliniaHit() throws when hit is `null`" time="0">
+      <skipped/>
+    </testcase>
+    <testcase classname="parseCliniaHit() throws when hit is `undefined`" name="parseCliniaHit() throws when hit is `undefined`" time="0">
+      <skipped/>
+    </testcase>
+  </testsuite>
+</testsuites>

@@ -30,24 +30,24 @@ const eventTypes = {
  * @prop {string} className - Classname for the custom marker.
  * @prop {string} label - Label to display.
  * @prop {function} on* - Listen to any mouse events sent from the marker.
- * @prop {GeolocHitPropType} record - Record to display.
+ * @prop {GeolocHitPropType} hit - Record to display.
  * @example
  * ```js
  * <GoogleMapsLoader apiKey={apiKey} endpoint={endpoint}>
  *   {google => (
  *     <GeoSearch google={google}>
- *       {({ records }) => (
+ *       {({ hits }) => (
  *         <Fragment>
- *           {records.map(record => (
+ *           {hits.map(hit => (
  *              <CustomMarker
- *                key={record.id}
- *                record={record}
+ *                key={hit.id}
+ *                hit={hit}
  *                anchor={{ x: 5, y: 0 }}
  *                onMouseEnter={() => {}}
  *                onMouseLeave={() => {}}
  *              >
  *                <div className={classNames.join(' ').trim()}>
- *                  <span>{record.name}</span>
+ *                  <span>{hit.name}</span>
  *                </div>
  *              </CustomMarker>
  *           ))}
@@ -61,7 +61,7 @@ const eventTypes = {
 export class CustomMarker extends Component {
   static propTypes = {
     ...createListenersPropTypes(eventTypes),
-    record: GeolocHitPropType.isRequired,
+    hit: GeolocHitPropType.isRequired,
     children: PropTypes.node.isRequired,
     google: PropTypes.object.isRequired,
     googleMapsInstance: PropTypes.object.isRequired,
@@ -90,7 +90,7 @@ export class CustomMarker extends Component {
 
   componentDidMount() {
     const {
-      record,
+      hit,
       google,
       googleMapsInstance,
       className,
@@ -103,7 +103,7 @@ export class CustomMarker extends Component {
 
     const marker = new Marker({
       map: googleMapsInstance,
-      position: record.geoPoint,
+      position: hit.geoPoint,
       className,
       anchor,
     });

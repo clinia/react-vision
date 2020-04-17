@@ -11,10 +11,10 @@ export const HIGHLIGHT_TAGS = {
  *
  * @param {string} preTag - string used to identify the start of an highlighted value
  * @param {string} postTag - string used to identify the end of an highlighted value
- * @param {string} highlightedValue - highlighted attribute as returned by Clinia highlight feature
+ * @param {string} highlightedValue - highlighted property as returned by Clinia highlight feature
  * @return {object[]} - An array of {value: string, isHighlighted: boolean}.
  */
-function parseHighlightedAttribute({ preTag, postTag, highlightedValue = '' }) {
+function parseHighlightedProperty({ preTag, postTag, highlightedValue = '' }) {
   const splitByPreTag = highlightedValue.split(preTag);
   const firstValue = splitByPreTag.shift();
   const elements =
@@ -59,7 +59,7 @@ function parseHighlightedAttribute({ preTag, postTag, highlightedValue = '' }) {
  * @param {string} preTag - string used to identify the start of an highlighted value
  * @param {string} postTag - string used to identify the end of an highlighted value
  * @param {string} highlightProperty - the property that contains the highlight structure in the results
- * @param {string} attribute - the highlighted attribute to look for
+ * @param {string} property - the highlighted property to look for
  * @param {object} hit - the actual hit returned by Clinia.
  * @return {object[]} - An array of {value: string, isHighlighted: boolean}.
  */
@@ -67,17 +67,17 @@ export function parseCliniaHit({
   preTag = '<em>',
   postTag = '</em>',
   highlightProperty,
-  attribute,
+  property,
   hit,
 }) {
-  if (!hit) throw new Error('`hit`, the matching record, must be provided');
+  if (!hit) throw new Error('`hit`, the matching hit, must be provided');
 
   const highlightObject =
-    getPropertyByPath(hit[highlightProperty], attribute) || {};
+    getPropertyByPath(hit[highlightProperty], property) || {};
 
   if (Array.isArray(highlightObject)) {
     return highlightObject.map(item =>
-      parseHighlightedAttribute({
+      parseHighlightedProperty({
         preTag,
         postTag,
         highlightedValue: item.value,
@@ -85,7 +85,7 @@ export function parseCliniaHit({
     );
   }
 
-  return parseHighlightedAttribute({
+  return parseHighlightedProperty({
     preTag,
     postTag,
     highlightedValue: highlightObject.value,

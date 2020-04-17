@@ -2,7 +2,7 @@ import React, { Fragment, Component } from 'react';
 import PropTypes from 'prop-types';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { Configure, connectHits } from 'react-vision-dom';
+import { Configure, connectHits } from '@clinia/react-vision-dom';
 import {
   GoogleMapsLoader,
   GeoSearch,
@@ -10,7 +10,7 @@ import {
   CustomMarker,
   Redo,
   Control,
-} from 'react-vision-dom-maps';
+} from '@clinia/react-vision-dom-maps';
 import { WrapWithHits } from './utils';
 
 const stories = storiesOf('GeoSearch', module);
@@ -37,10 +37,10 @@ stories
         <GoogleMapsLoader apiKey={apiKey} endpoint={endpoint}>
           {google => (
             <GeoSearch google={google}>
-              {({ records }) => (
+              {({ hits }) => (
                 <Fragment>
-                  {records.map(record => (
-                    <Marker key={record.id} record={record} />
+                  {hits.map(hit => (
+                    <Marker key={hit.id} hit={hit} />
                   ))}
                 </Fragment>
               )}
@@ -64,10 +64,10 @@ stories
                 southWest: { lat: 45.410246, lng: -73.986345 },
               }}
             >
-              {({ records }) => (
+              {({ hits }) => (
                 <Fragment>
-                  {records.map(record => (
-                    <Marker key={record.id} record={record} />
+                  {hits.map(hit => (
+                    <Marker key={hit.id} hit={hit} />
                   ))}
                 </Fragment>
               )}
@@ -90,10 +90,10 @@ stories
               zoomControl={false}
               gestureHandling="none"
             >
-              {({ records }) => (
+              {({ hits }) => (
                 <Fragment>
-                  {records.map(record => (
-                    <Marker key={record.id} record={record} />
+                  {hits.map(hit => (
+                    <Marker key={hit.id} hit={hit} />
                   ))}
                 </Fragment>
               )}
@@ -117,10 +117,10 @@ stories
               initialZoom={initialZoom}
               initialPosition={initialPosition}
             >
-              {({ records }) => (
+              {({ hits }) => (
                 <Fragment>
-                  {records.map(record => (
-                    <Marker key={record.id} record={record} />
+                  {hits.map(hit => (
+                    <Marker key={hit.id} hit={hit} />
                   ))}
                 </Fragment>
               )}
@@ -138,10 +138,10 @@ stories
         <GoogleMapsLoader apiKey={apiKey} endpoint={endpoint}>
           {google => (
             <GeoSearch google={google} streetViewControl>
-              {({ records }) => (
+              {({ hits }) => (
                 <Fragment>
-                  {records.map(record => (
-                    <Marker key={record.id} record={record} />
+                  {hits.map(hit => (
+                    <Marker key={hit.id} hit={hit} />
                   ))}
                 </Fragment>
               )}
@@ -159,13 +159,13 @@ stories
         <GoogleMapsLoader apiKey={apiKey} endpoint={endpoint}>
           {google => (
             <GeoSearch google={google}>
-              {({ records }) => (
+              {({ hits }) => (
                 <Fragment>
-                  {records.map(record => (
+                  {hits.map(hit => (
                     <Marker
-                      key={record.id}
-                      record={record}
-                      label={record.name}
+                      key={hit.id}
+                      hit={hit}
+                      label={hit.name}
                       onClick={() => {}}
                     />
                   ))}
@@ -185,14 +185,10 @@ stories
         <GoogleMapsLoader apiKey={apiKey} endpoint={endpoint}>
           {google => (
             <GeoSearch google={google}>
-              {({ records }) => (
+              {({ hits }) => (
                 <Fragment>
-                  {records.map(record => (
-                    <Marker
-                      key={record.id}
-                      record={record}
-                      onClick={action('click')}
-                    />
+                  {hits.map(hit => (
+                    <Marker key={hit.id} hit={hit} onClick={action('click')} />
                   ))}
                 </Fragment>
               )}
@@ -210,12 +206,12 @@ stories
         <GoogleMapsLoader apiKey={apiKey} endpoint={endpoint}>
           {google => (
             <GeoSearch google={google} enableRefineOnMapMove={false}>
-              {({ records }) => (
+              {({ hits }) => (
                 <Fragment>
                   <Redo />
 
-                  {records.map(record => (
-                    <Marker key={record.id} record={record} />
+                  {hits.map(hit => (
+                    <Marker key={hit.id} hit={hit} />
                   ))}
                 </Fragment>
               )}
@@ -233,12 +229,12 @@ stories
         <GoogleMapsLoader apiKey={apiKey} endpoint={endpoint}>
           {google => (
             <GeoSearch google={google}>
-              {({ records }) => (
+              {({ hits }) => (
                 <Fragment>
                   <Control />
 
-                  {records.map(record => (
-                    <Marker key={record.id} record={record} />
+                  {hits.map(hit => (
+                    <Marker key={hit.id} hit={hit} />
                   ))}
                 </Fragment>
               )}
@@ -256,12 +252,12 @@ stories
         <GoogleMapsLoader apiKey={apiKey} endpoint={endpoint}>
           {google => (
             <GeoSearch google={google} enableRefineOnMapMove={false}>
-              {({ records }) => (
+              {({ hits }) => (
                 <Fragment>
                   <Control />
 
-                  {records.map(record => (
-                    <Marker key={record.id} record={record} />
+                  {hits.map(hit => (
+                    <Marker key={hit.id} hit={hit} />
                   ))}
                 </Fragment>
               )}
@@ -279,18 +275,18 @@ stories
         <GoogleMapsLoader apiKey={apiKey} endpoint={endpoint}>
           {google => (
             <GeoSearch google={google}>
-              {({ records }) => (
+              {({ hits }) => (
                 <Fragment>
                   <Control />
 
-                  {records.map(record => (
-                    <Fragment key={record.id}>
+                  {hits.map(hit => (
+                    <Fragment key={hit.id}>
                       <CustomMarker
-                        record={record}
+                        hit={hit}
                         className="my-custom-marker"
                         anchor={{ x: 0, y: 5 }}
                       >
-                        {record.name}
+                        {hit.name}
                       </CustomMarker>
                     </Fragment>
                   ))}
@@ -310,19 +306,19 @@ stories
         <GoogleMapsLoader apiKey={apiKey} endpoint={endpoint}>
           {google => (
             <GeoSearch google={google}>
-              {({ records }) => (
+              {({ hits }) => (
                 <Fragment>
                   <Control />
 
-                  {records.map(record => (
-                    <Fragment key={record.id}>
+                  {hits.map(hit => (
+                    <Fragment key={hit.id}>
                       <CustomMarker
-                        record={record}
+                        hit={hit}
                         className="my-custom-marker"
                         anchor={{ x: 0, y: 5 }}
                         onClick={action('click')}
                       >
-                        <span>{record.name}</span>
+                        <span>{hit.name}</span>
                       </CustomMarker>
                     </Fragment>
                   ))}
@@ -343,24 +339,24 @@ stories.add('with InfoWindow', () => {
 
     InfoWindow = new this.props.google.maps.InfoWindow();
 
-    onClickMarker = ({ record, marker }) => {
+    onClickMarker = ({ hit, marker }) => {
       if (this.InfoWindow.getMap()) {
         this.InfoWindow.close();
       }
 
-      this.InfoWindow.setContent(record.name);
+      this.InfoWindow.setContent(hit.name);
 
       this.InfoWindow.open(marker.getMap(), marker);
     };
 
-    renderGeoHit = record => (
+    renderGeoHit = hit => (
       <Marker
-        key={record.id}
-        record={record}
+        key={hit.id}
+        hit={hit}
         anchor={{ x: 0, y: 5 }}
         onClick={({ marker }) => {
           this.onClickMarker({
-            record,
+            hit,
             marker,
           });
         }}
@@ -376,9 +372,7 @@ stories.add('with InfoWindow', () => {
 
           <Container>
             <GeoSearch google={google}>
-              {({ records }) => (
-                <Fragment>{records.map(this.renderGeoHit)}</Fragment>
-              )}
+              {({ hits }) => <Fragment>{hits.map(this.renderGeoHit)}</Fragment>}
             </GeoSearch>
           </Container>
         </WrapWithHits>
@@ -394,67 +388,65 @@ stories.add('with InfoWindow', () => {
 });
 
 stories.add('with hits communication (custom)', () => {
-  const CustomHits = connectHits(
-    ({ records, selectedRecord, onRecordOver }) => (
-      <div className="hits">
-        {records.map(record => {
-          const classNames = [
-            'hit',
-            'hit--health-facility',
-            selectedRecord && selectedRecord.id === record.objectID
-              ? 'hit--health-facility'
-              : '',
-          ];
+  const CustomHits = connectHits(({ hits, selectedRecord, onRecordOver }) => (
+    <div className="hits">
+      {hits.map(hit => {
+        const classNames = [
+          'hit',
+          'hit--health-facility',
+          selectedRecord && selectedRecord.id === hit.objectID
+            ? 'hit--health-facility'
+            : '',
+        ];
 
-          return (
-            <div
-              key={record.id}
-              className={classNames.join(' ').trim()}
-              onMouseEnter={() => onRecordOver(record)}
-              onMouseLeave={() => onRecordOver(null)}
-            >
-              <div className="hit-content">
-                <div>
-                  <span>{record.name}</span>
-                </div>
+        return (
+          <div
+            key={hit.id}
+            className={classNames.join(' ').trim()}
+            onMouseEnter={() => onRecordOver(hit)}
+            onMouseLeave={() => onRecordOver(null)}
+          >
+            <div className="hit-content">
+              <div>
+                <span>{hit.name}</span>
               </div>
             </div>
-          );
-        })}
-      </div>
-    )
-  );
+          </div>
+        );
+      })}
+    </div>
+  ));
 
   class Example extends Component {
     state = {
       selectedRecord: null,
     };
 
-    onRecordOver = record =>
+    onRecordOver = hit =>
       this.setState(() => ({
-        selectedRecord: record,
+        selectedRecord: hit,
       }));
 
-    renderGeoRecord = record => {
+    renderGeoRecord = hit => {
       const { selectedRecord } = this.state;
 
       const classNames = [
         'my-custom-marker',
-        selectedRecord && selectedRecord.id === record.id
+        selectedRecord && selectedRecord.id === hit.id
           ? 'my-custom-marker--active'
           : '',
       ];
 
       return (
         <CustomMarker
-          key={record.id}
-          record={record}
+          key={hit.id}
+          hit={hit}
           anchor={{ x: 0, y: 5 }}
-          onMouseEnter={() => this.onRecordOver(record)}
+          onMouseEnter={() => this.onRecordOver(hit)}
           onMouseLeave={() => this.onRecordOver(null)}
         >
           <div className={classNames.join(' ').trim()}>
-            <span>{record.name}</span>
+            <span>{hit.name}</span>
           </div>
         </CustomMarker>
       );
@@ -480,8 +472,8 @@ stories.add('with hits communication (custom)', () => {
             <GoogleMapsLoader apiKey={apiKey} endpoint={endpoint}>
               {google => (
                 <GeoSearch google={google}>
-                  {({ records }) => (
-                    <Fragment>{records.map(this.renderGeoRecord)}</Fragment>
+                  {({ hits }) => (
+                    <Fragment>{hits.map(this.renderGeoRecord)}</Fragment>
                   )}
                 </GeoSearch>
               )}

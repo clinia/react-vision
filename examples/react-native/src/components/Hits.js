@@ -22,15 +22,13 @@ class Hits extends React.Component {
   };
 
   render() {
-    const { records, hit } = this.props;
+    const { hits, hit } = this.props;
 
     return (
       <FlatList
-        data={records}
-        keyExtractor={record => record.id}
-        renderItem={record =>
-          hit(record.item, record.index === records.length - 1)
-        }
+        data={hits}
+        keyExtractor={hits => hits.id}
+        renderItem={hits => hit(hits.item, hits.index === hits.length - 1)}
         onEndReachedThreshold={0.05}
         onEndReached={this.onEndReached}
         ListEmptyComponent={

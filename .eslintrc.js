@@ -16,6 +16,10 @@ const config = {
     // https://github.com/benmosher/eslint-plugin-import/issues/1174
     'import/no-extraneous-dependencies': 'off',
     '@typescript-eslint/explicit-member-accessibility': ['off'],
+    '@typescript-eslint/camelcase': [
+      'error',
+      { allow: ['^EXPERIMENTAL_', 'free_shipping'] },
+    ],
   },
   settings: {
     react: {
@@ -26,7 +30,7 @@ const config = {
         // The migration is an incremental process so we import TypeScript modules
         // from JavaScript files.
         // By default, `import/resolver` only supports JavaScript modules.
-        extensions: ['.js', '.ts', '.tsx'],
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
       },
     },
   },
@@ -38,6 +42,12 @@ const config = {
         // these sorts of errors anyway.
         // See: https://github.com/typescript-eslint/typescript-eslint/issues/342
         'no-undef': 'off',
+      },
+    },
+    {
+      files: ['*.stories.tsx'],
+      rules: {
+        'react/prop-types': 'off',
       },
     },
   ],

@@ -6,7 +6,7 @@ import {
   refineValue,
   getResults,
 } from '../core/indexUtils';
-import { addAbsolutePositions } from '../core/utils';
+import { addAbsolutePositions, addQueryID } from '../core/utils';
 
 function getId() {
   return 'page';
@@ -32,7 +32,7 @@ function getCurrentRefinement(props, searchState, context) {
 /**
  * InfiniteHits connector provides the logic to create connected
  * components that will render an continuous list of results retrieved from
- * Algolia. This connector provides a function to load more results.
+ * Clinia. This connector provides a function to load more results.
  * @name connectInfiniteHits
  * @kind connector
  * @providedPropType {array.<object>} hits - the records that matched the search state
@@ -53,7 +53,7 @@ export default createConnector({
 
     if (!results) {
       return {
-        records: [],
+        hits: [],
         hasPrevious: false,
         hasMore: false,
         refine: () => {},
@@ -63,27 +63,31 @@ export default createConnector({
     }
 
     const {
-      records,
+      hits,
       page,
       perPage,
       numPages,
       _state: { page: p, ...currentState } = {},
     } = results;
 
-    const recordsWithPositions = addAbsolutePositions(records, perPage, page);
+    const hitsWithPositions = addAbsolutePositions(hits, perPage, page);
+    const hitsWithPositionsAndQueryID = addQueryID(
+      hitsWithPositions,
+      results.queryID
+    );
 
     if (
       this._firstReceivedPage === undefined ||
       !isEqual(currentState, this._prevState)
     ) {
-      this._allResults = [...recordsWithPositions];
+      this._allResults = [...hitsWithPositionsAndQueryID];
       this._firstReceivedPage = page;
       this._lastReceivedPage = page;
     } else if (this._lastReceivedPage < page) {
-      this._allResults = [...this._allResults, ...recordsWithPositions];
+      this._allResults = [...this._allResults, ...hitsWithPositionsAndQueryID];
       this._lastReceivedPage = page;
     } else if (this._firstReceivedPage > page) {
-      this._allResults = [...recordsWithPositions, ...this._allResults];
+      this._allResults = [...hitsWithPositionsAndQueryID, ...this._allResults];
       this._firstReceivedPage = page;
     }
 
@@ -97,7 +101,7 @@ export default createConnector({
     const refineNext = event => this.refine(event, this._lastReceivedPage + 1);
 
     return {
-      records: this._allResults,
+      hits: this._allResults,
       hasPrevious,
       hasMore,
       refinePrevious,

@@ -1,18 +1,12 @@
 type SearchState = any;
 type ResultsState = any;
-type SuggestionsState = any;
-type LocationsState = any;
 type Listener = () => void;
 type State = {
   widgets: SearchState;
   metadata: any[];
   results: ResultsState | null;
-  resultsSuggestions: SuggestionsState | null;
-  resultsLocations: LocationsState | null;
   error: Error | null;
   searching: boolean;
-  searchingForSuggestions: boolean;
-  searchingForLocations: boolean;
   isSearchStalled: boolean;
 };
 export default function createStore(initialState: State) {

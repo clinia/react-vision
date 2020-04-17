@@ -1,11 +1,15 @@
 import createConnector from '../core/createConnector';
 import { getResults } from '../core/indexUtils';
-import { addAbsolutePositions } from '../core/utils';
+import { addAbsolutePositions, addQueryID } from '../core/utils';
 
 /**
  * connectHits connector provides the logic to create connected
  * components that will render the results retrieved from
  * Clinia.
+ *
+ * To configure the number of hits retrieved, use [HitsPerPage widget](widgets/HitsPerPage.html),
+ * [connectHitsPerPage connector](connectors/connectHitsPerPage.html) or pass the hitsPerPage
+ * prop to a [Configure](guide/Search_parameters.html) widget.
  *
  * **Warning:** you will need to use the **id** property available on every hit as a key
  * when iterating over them. This will ensure you have the best possible UI experience
@@ -15,18 +19,18 @@ import { addAbsolutePositions } from '../core/utils';
  * @providedPropType {array.<object>} hits - the records that matched the search state
  * @example
  * import React from 'react';
- * import cliniasearch from 'cliniasearch/lite';
- * import { Vision, Highlight, connectHits } from 'react-vision-dom';
+ * import clinia from 'clinia/lite';
+ * import { Vision, Highlight, connectHits } from '@clinia/react-vision-dom';
  *
- * const searchClient = cliniasearch(
+ * const searchClient = clinia(
  *   'TODO',
  *   'test'
  * );
- * const CustomHits = connectHits(({ records }) => (
+ * const CustomHits = connectHits(({ hits }) => (
  *   <div>
- *     {records.map(record =>
- *       <p key={record.id}>
- *         {record.name}
+ *     {hits.map(hit =>
+ *       <p key={hit.id}>
+ *         {hit.name}
  *       </p>
  *     )}
  *   </div>
@@ -35,7 +39,7 @@ import { addAbsolutePositions } from '../core/utils';
  * const App = () => (
  *   <Vision
  *     searchClient={searchClient}
- *     indexName="health_facility"
+ *     indexName="pharmacy"
  *   >
  *     <CustomHits />
  *   </Vision>
@@ -51,17 +55,20 @@ export default createConnector({
     });
 
     if (!results) {
-      return { records: [] };
+      return { hits: [] };
     }
-    const recordsWithPositions = addAbsolutePositions(
-      results.records,
+    const hitsWithPositions = addAbsolutePositions(
+      results.hits,
       results.perPage,
       results.page
     );
+    const hitsWithPositionsAndQueryID = addQueryID(
+      hitsWithPositions,
+      results.queryID
+    );
 
     return {
-      records: recordsWithPositions,
-      loading: searchResults.searching,
+      hits: hitsWithPositionsAndQueryID,
     };
   },
 

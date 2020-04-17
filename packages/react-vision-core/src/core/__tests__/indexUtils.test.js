@@ -270,11 +270,11 @@ describe('utility method for manipulating the search state', () => {
     });
 
     it('get results', () => {
-      const searchResults = { results: { records: ['some'] } };
+      const searchResults = { results: { hits: ['some'] } };
 
       const results = getResults(searchResults, context);
 
-      expect(results).toEqual({ records: ['some'] });
+      expect(results).toEqual({ hits: ['some'] });
     });
   });
 

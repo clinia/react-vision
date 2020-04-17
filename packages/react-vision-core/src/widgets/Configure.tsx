@@ -17,7 +17,7 @@ import connectConfigure from '../connectors/connectConfigure';
  * @example
  * import React from 'react';
  * import cliniasearch from 'cliniasearch/lite';
- * import { Vision, Configure, Hits } from 'react-vision-dom';
+ * import { Vision, Configure, Hits } from '@clinia/react-vision-dom';
  *
  * const searchClient = cliniasearch(
  *   'TODO',

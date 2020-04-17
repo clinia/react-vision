@@ -11,7 +11,7 @@ import {
   defaultClear,
   defaultSubmit,
 } from './defaultComponents';
-import { translatable } from 'react-vision-core';
+import { translatable } from '@clinia/react-vision-core';
 
 type Suggestion = {
   id: string;

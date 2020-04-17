@@ -23,10 +23,10 @@ import PropTypes from 'prop-types';
  *         southWest: { lat: 45.410246, lng: -73.986345 },
  *       }}
  *     >
- *       {({ records }) => (
+ *       {({ hits }) => (
  *         <Fragment>
- *           {records.map(record => (
- *             <Marker key={record.id} record={record} />
+ *           {hits.map(hit => (
+ *             <Marker key={hit.id} hit={hit} />
  *           ))}
  *         </Fragment>
  *       )}

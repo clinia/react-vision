@@ -1,4 +1,4 @@
-import cliniasearchHelper from 'cliniasearch-helper';
+import searchHelper from '@clinia/search-helper';
 import createWidgetsManager from './createWidgetsManager';
 import createStore from './createStore';
 import { HIGHLIGHT_TAGS } from './highlight';
@@ -15,12 +15,15 @@ function addCliniaAgents(searchClient) {
 
 const isMultiIndexContext = widget =>
   hasMultipleIndices({
-    vci: widget.props.contextValue,
+    cvi: widget.props.contextValue,
     multiIndexContext: widget.props.indexContextValue,
   });
 const isTargetedIndexEqualIndex = (widget, indexId) =>
   widget.props.indexContextValue.targetedIndex === indexId;
 
+// Relying on the `indexId` is a bit brittle to detect the `Index` widget.
+// Since it's a class we could rely on `instanceof` or similar. We never
+// had an issue though. Works for now.
 const isIndexWidget = widget => Boolean(widget.props.indexId);
 const isIndexWidgetEqualIndex = (widget, indexId) =>
   widget.props.indexId === indexId;
@@ -34,6 +37,31 @@ const sortIndexWidgetsFirst = (firstWidget, secondWidget) => {
   }
   return 0;
 };
+
+// This function is copied from the algoliasearch v4 API Client. If modified,
+// consider updating it also in `serializeQueryParameters` from `@algolia/transporter`.
+function serializeQueryParameters(parameters) {
+  const isObjectOrArray = value =>
+    Object.prototype.toString.call(value) === '[object Object]' ||
+    Object.prototype.toString.call(value) === '[object Array]';
+
+  const encode = (format, ...args) => {
+    let i = 0;
+    return format.replace(/%s/g, () => encodeURIComponent(args[i++]));
+  };
+
+  return Object.keys(parameters)
+    .map(key =>
+      encode(
+        '%s=%s',
+        key,
+        isObjectOrArray(parameters[key])
+          ? JSON.stringify(parameters[key])
+          : parameters[key]
+      )
+    )
+    .join('&');
+}
 
 /**
  * Creates a new instance of the VisionManager which controls the widgets and
@@ -51,7 +79,7 @@ export default function createVisionManager({
   resultsState,
   stalledSearchDelay,
 }) {
-  const helper = cliniasearchHelper(searchClient, indexName, {
+  const helper = searchHelper(searchClient, indexName, {
     ...HIGHLIGHT_TAGS,
   });
 
@@ -62,10 +90,8 @@ export default function createVisionManager({
     .on('result', handleSearchSuccess({ indexId: indexName }))
     .on('error', handleSearchError);
 
-  const locationClient = searchClient.initPlaces();
-
   let skip = false;
-  let stalledSearchTimer: NodeJS.Timeout | null = null;
+  let stalledSearchTimer = null;
   let initialSearchParameters = helper.state;
 
   const widgetsManager = createWidgetsManager(onWidgetsUpdate);
@@ -76,12 +102,8 @@ export default function createVisionManager({
     widgets: initialState,
     metadata: [],
     results: hydrateResultsState(resultsState),
-    resultsSuggestions: null,
-    resultsLocations: null,
     error: null,
     searching: false,
-    searchingForSuggestions: false,
-    searchingForLocations: false,
     isSearchStalled: true,
   });
 
@@ -130,6 +152,8 @@ export default function createVisionManager({
 
         return targetedIndexEqualMainIndex || subIndexEqualMainIndex;
       })
+      // We have to sort the `Index` widgets first so the `index` parameter
+      // is correctly set in the `reduce` function for the following widgets
       .sort(sortIndexWidgetsFirst)
       .reduce(
         (res, widget) => widget.getSearchParameters(res),
@@ -149,6 +173,8 @@ export default function createVisionManager({
 
         return targetedIndexNotEqualMainIndex || subIndexNotEqualMainIndex;
       })
+      // We have to sort the `Index` widgets first so the `index` parameter
+      // is correctly set in the `reduce` function for the following widgets
       .sort(sortIndexWidgetsFirst)
       .reduce((indices, widget) => {
         const indexId = isMultiIndexContext(widget)
@@ -157,7 +183,10 @@ export default function createVisionManager({
 
         const widgets = indices[indexId] || [];
 
-        return { ...indices, [indexId]: widgets.concat(widget) };
+        return {
+          ...indices,
+          [indexId]: widgets.concat(widget),
+        };
       }, {});
 
     const derivedParameters = Object.keys(derivedIndices).map(indexId => ({
@@ -171,72 +200,30 @@ export default function createVisionManager({
     return { mainParameters, derivedParameters };
   }
 
-  function onSearchForSuggestions({ query, args }) {
-    store.setState({
-      ...store.getState(),
-      searchingForSuggestions: true,
-    });
-
-    searchClient
-      .suggest(query, args)
-      .then(content => {
-        store.setState({
-          ...store.getState(),
-          searchingForSuggestions: false,
-          resultsSuggestions: {
-            suggestions: content,
-            query,
-          },
-        });
-      })
-      .catch(error => {
-        // Since setState is synchronous, any error that occurs in the render of a
-        // component will be swallowed by this promise.
-        // This is a trick to make the error show up correctly in the console.
-        // See http://stackoverflow.com/a/30741722/969302
-        setTimeout(() => {
-          throw error;
-        });
-      });
-  }
-
-  function onSearchForLocations({ query, ...args }) {
-    store.setState({
-      ...store.getState(),
-      searchingForLocations: true,
-    });
-
-    if (locationClient) {
-      locationClient!
-        .suggest(query, args)
-        .then(content => {
-          store.setState({
-            ...store.getState(),
-            searchingForLocations: false,
-            resultsLocations: {
-              suggestions: content,
-              query,
-            },
-          });
-        })
-        .catch(error => {
-          // Since setState is synchronous, any error that occurs in the render of a
-          // component will be swallowed by this promise.
-          // This is a trick to make the error show up correctly in the console.
-          // See http://stackoverflow.com/a/30741722/969302
-          setTimeout(() => {
-            throw error;
-          });
-        });
-    }
-  }
-
   function search() {
     if (skip) return;
 
     const { mainParameters, derivedParameters } = getSearchParameters();
 
+    // We have to call `slice` because the method `detach` on the derived
+    // helpers mutates the value `derivedHelpers`. The `forEach` loop does
+    // not iterate on each value and we're not able to correctly clear the
+    // previous derived helpers (memory leak + useless requests).
     helper.derivedHelpers.slice().forEach(derivedHelper => {
+      // Since we detach the derived helpers on **every** new search they
+      // won't receive intermediate results in case of a stalled search.
+      // Only the last result is dispatched by the derived helper because
+      // they are not detached yet:
+      //
+      // - a -> main helper receives results
+      // - ap -> main helper receives results
+      // - app -> main helper + derived helpers receive results
+      //
+      // The quick fix is to avoid to detach them on search but only once they
+      // received the results. But it means that in case of a stalled search
+      // all the derived helpers not detached yet register a new search inside
+      // the helper. The number grows fast in case of a bad network and it's
+      // not deterministic.
       derivedHelper.detach();
     });
 
@@ -256,20 +243,25 @@ export default function createVisionManager({
   function handleSearchSuccess({ indexId }) {
     return event => {
       const state = store.getState();
-      const isDerivedHelperEmpty = !helper.derivedHelpers.length;
+      const isDerivedHelpersEmpty = !helper.derivedHelpers.length;
 
       let results = state.results ? state.results : {};
 
-      if (!isDerivedHelperEmpty) {
-        results[indexId] = event;
+      // Switching from mono index to multi index and vice versa must reset the
+      // results to an empty object, otherwise we keep reference of stalled and
+      // unused results.
+      results = !isDerivedHelpersEmpty && results.getFacetByName ? {} : results;
+
+      if (!isDerivedHelpersEmpty) {
+        results[indexId] = event.results;
       } else {
-        results = event;
+        results = event.results;
       }
 
       const currentState = store.getState();
       let nextIsSearchStalled = currentState.isSearchStalled;
       if (!helper.hasPendingRequests()) {
-        clearTimeout(stalledSearchTimer!);
+        clearTimeout(stalledSearchTimer);
         stalledSearchTimer = null;
         nextIsSearchStalled = false;
       }
@@ -291,7 +283,7 @@ export default function createVisionManager({
 
     let nextIsSearchStalled = currentState.isSearchStalled;
     if (!helper.hasPendingRequests()) {
-      clearTimeout(stalledSearchTimer!);
+      clearTimeout(stalledSearchTimer);
       nextIsSearchStalled = false;
     }
 
@@ -321,9 +313,41 @@ export default function createVisionManager({
   function hydrateSearchClient(client, results) {
     if (!results) return;
 
-    if (!client._useCache || typeof client.addCliniaAgent !== 'function') {
-      // Avoid hydrating the client when cache is disable or the client is not ours
+    // Disable cache hydration on:
+    // - Algoliasearch API Client < v4 with cache disabled
+    // - Third party clients (detected by the `addAlgoliaAgent` function missing)
+    if (
+      !client.transporter &&
+      (!client._useCache || typeof client.addCliniaAgent !== 'function')
+    ) {
       return;
+    }
+
+    // Algoliasearch API Client >= v4
+    // To hydrate the client we need to populate the cache with the data from
+    // the server (done in `hydrateSearchClientWithMultiIndexRequest` or
+    // `hydrateSearchClientWithSingleIndexRequest`). But since there is no way
+    // for us to compute the key the same way as `algoliasearch-client` we need
+    // to populate it on a custom key and override the `search` method to
+    // search on it first.
+    if (client.transporter) {
+      const baseMethod = client.search;
+      client.search = (requests, ...methodArgs) => {
+        const requestsWithSerializedParams = requests.map(request => ({
+          ...request,
+          params: serializeQueryParameters(request.params),
+        }));
+
+        return client.transporter.responsesCache.get(
+          {
+            method: 'search',
+            args: [requestsWithSerializedParams, ...methodArgs],
+          },
+          () => {
+            return baseMethod(requests, ...methodArgs);
+          }
+        );
+      };
     }
 
     if (Array.isArray(results)) {
@@ -335,6 +359,40 @@ export default function createVisionManager({
   }
 
   function hydrateSearchClientWithMultiIndexRequest(client, results) {
+    // Algoliasearch API Client >= v4
+    // Populate the cache with the data from the server
+    if (client.transporter) {
+      client.transporter.responsesCache.set(
+        {
+          method: 'search',
+          args: [
+            results.reduce(
+              (acc, result) =>
+                acc.concat(
+                  result.rawResults.map(request => ({
+                    indexName: request.index,
+                    params: request.params,
+                  }))
+                ),
+              []
+            ),
+          ],
+        },
+        {
+          results: results.reduce(
+            (acc, result) => acc.concat(result.rawResults),
+            []
+          ),
+        }
+      );
+      return;
+    }
+
+    // Algoliasearch API Client < v4
+    // Prior to client v4 we didn't have a proper API to hydrate the client
+    // cache from the outside. The following code populates the cache with
+    // a single-index result. You can find more information about the
+    // computation of the key inside the client (see link below).
     const key = `/1/indexes/*/queries_body_${JSON.stringify({
       requests: results.reduce((acc, result) =>
         acc.concat(
@@ -380,8 +438,8 @@ export default function createVisionManager({
       return results.reduce(
         (acc, result) => ({
           ...acc,
-          [result._internalIndexId]: new cliniasearchHelper.SearchResults(
-            new cliniasearchHelper.SearchParameters(result.state),
+          [result._internalIndexId]: new searchHelper.SearchResults(
+            new searchHelper.SearchParameters(result.state),
             result.rawResults
           ),
         }),
@@ -389,8 +447,8 @@ export default function createVisionManager({
       );
     }
 
-    return new cliniasearchHelper.SearchResults(
-      new cliniasearchHelper.SearchParameters(results.state),
+    return new searchHelper.SearchResults(
+      new searchHelper.SearchParameters(results.state),
       results.rawResults
     );
   }
@@ -455,8 +513,6 @@ export default function createVisionManager({
     widgetsManager,
     getWidgetsIds,
     getSearchParameters,
-    onSearchForSuggestions,
-    onSearchForLocations,
     onExternalStateUpdate,
     transitionState,
     updateClient,
@@ -465,5 +521,3 @@ export default function createVisionManager({
     skipSearch,
   };
 }
-
-export type VisionManager = ReturnType<typeof createVisionManager>;

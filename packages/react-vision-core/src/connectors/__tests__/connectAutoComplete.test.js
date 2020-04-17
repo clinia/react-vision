@@ -1,58 +1,98 @@
-import { SearchParameters } from 'cliniasearch-helper';
+import { SearchParameters } from '@clinia/search-helper';
 import connect from '../connectAutoComplete';
 
 jest.mock('../../core/createConnector', () => x => x);
 
-let props;
-let params;
-
 describe('connectAutoComplete', () => {
-  describe('suggestions', () => {
-    const contextValue = { mainTargetedIndex: 'index' };
-
-    it('provides the current suggestions to the component', () => {
-      const suggestions = [{}];
-      const providedProps = connect.getProvidedProps(
-        { contextValue },
-        {},
-        {},
-        {},
-        {
-          results: { suggestions },
-        }
-      );
-
-      expect(providedProps).toEqual({
-        suggestions: suggestions.map(suggestion =>
-          expect.objectContaining(suggestion)
-        ),
-        currentRefinement: '',
-      });
-    });
-
-    it("doesn't render when no suggestions are available", () => {
-      const providedProps = connect.getProvidedProps(
-        { contextValue },
-        {},
-        {},
-        {},
-        {
-          results: null,
-        }
-      );
-      expect(providedProps).toEqual({ suggestions: [], currentRefinement: '' });
-    });
-  });
-
   describe('single index', () => {
     const contextValue = { mainTargetedIndex: 'index' };
 
-    it('provides the correct props to the component', () => {
-      props = connect.getProvidedProps({ contextValue }, {}, {});
-      expect(props).toEqual({ currentRefinement: '', suggestions: [] });
+    it('provides current hits to the component', () => {
+      const hits = [{}];
+      let props = connect.getProvidedProps(
+        { contextValue },
+        {},
+        {
+          results: { hits, page: 0, perPage: 20 },
+        }
+      );
+      expect(props).toEqual({
+        hits: [{ __position: 1 }],
+        currentRefinement: '',
+      });
 
-      props = connect.getProvidedProps({ contextValue }, { query: 'yep' }, {});
-      expect(props).toEqual({ currentRefinement: 'yep', suggestions: [] });
+      props = connect.getProvidedProps(
+        { contextValue },
+        { query: 'query' },
+        {
+          results: { hits, page: 0, perPage: 20 },
+        }
+      );
+      expect(props).toEqual({
+        hits: [{ __position: 1 }],
+        currentRefinement: 'query',
+      });
+
+      props = connect.getProvidedProps(
+        { defaultRefinement: 'query', contextValue },
+        {},
+        {
+          results: { hits, page: 0, perPage: 20 },
+        }
+      );
+      expect(props).toEqual({
+        hits: [{ __position: 1 }],
+        currentRefinement: 'query',
+      });
+    });
+
+    it('provides current hits to the component with queryID & position', () => {
+      const hits = [{}];
+      const hitsWithExtraInfo = [{ __queryID: 'zombo.com', __position: 1 }];
+      let props = connect.getProvidedProps(
+        { contextValue },
+        {},
+        {
+          results: { hits, page: 0, perPage: 20, queryID: 'zombo.com' },
+        }
+      );
+      expect(props).toEqual({
+        hits: hitsWithExtraInfo,
+        currentRefinement: '',
+      });
+
+      props = connect.getProvidedProps(
+        { contextValue },
+        { query: 'query' },
+        {
+          results: { hits, page: 0, perPage: 20, queryID: 'zombo.com' },
+        }
+      );
+      expect(props).toEqual({
+        hits: hitsWithExtraInfo,
+        currentRefinement: 'query',
+      });
+
+      props = connect.getProvidedProps(
+        { defaultRefinement: 'query', contextValue },
+        {},
+        {
+          results: { hits, page: 0, perPage: 20, queryID: 'zombo.com' },
+        }
+      );
+      expect(props).toEqual({
+        hits: hitsWithExtraInfo,
+        currentRefinement: 'query',
+      });
+    });
+
+    it('refines the query parameter', () => {
+      const params = connect.getSearchParameters(
+        new SearchParameters(),
+        { contextValue },
+        { query: 'bar' }
+      );
+      expect(params.query).toBe('bar');
     });
 
     it("calling refine updates the widget's search state", () => {
@@ -63,50 +103,9 @@ describe('connectAutoComplete', () => {
       );
       expect(nextState).toEqual({
         otherKey: 'val',
-        page: 1,
         query: 'yep',
+        page: 1,
       });
-    });
-
-    it('supports defaultRefinement', () => {
-      expect(
-        connect.getProvidedProps(
-          { defaultRefinement: 'yaw', contextValue },
-          {},
-          {}
-        )
-      ).toEqual({
-        currentRefinement: 'yaw',
-        suggestions: [],
-      });
-    });
-
-    it('refines the query parameter', () => {
-      params = connect.getSearchParameters(
-        new SearchParameters(),
-        { contextValue },
-        {
-          query: 'bar',
-        }
-      );
-      expect(params.query).toBe('bar');
-    });
-
-    it('refines properties for the autocomplete', () => {
-      params = connect.searchForSuggestions(
-        {
-          query: 'bar',
-          highlightPreTag: '<strong>',
-          highlightPostTag: '</strong>',
-          size: 5,
-        },
-        {},
-        'bar'
-      );
-      expect(params.query).toBe('bar');
-      expect(params.highlightPreTag).toBe('<strong>');
-      expect(params.highlightPostTag).toBe('</strong>');
-      expect(params.size).toBe(5);
     });
 
     it('should return the right searchState when clean up', () => {
@@ -125,24 +124,118 @@ describe('connectAutoComplete', () => {
     const contextValue = { mainTargetedIndex: 'first' };
     const indexContextValue = { targetedIndex: 'second' };
 
-    it('provides the correct props to the component', () => {
-      props = connect.getProvidedProps(
+    it('provides current hits to the component', () => {
+      const firstHits = [{}];
+      const secondHits = [{}];
+      const firstHitsWithExtraInfo = [
+        { __queryID: 'zombo.com', __position: 1 },
+      ];
+      const secondHitsWithExtraInfo = [
+        { __queryID: 'html5zombo.com', __position: 1 },
+      ];
+      let props = connect.getProvidedProps(
         { contextValue, indexContextValue },
         {},
-        {}
+        {
+          results: {
+            first: {
+              hits: firstHits,
+              page: 0,
+              perPage: 20,
+              queryID: 'zombo.com',
+            },
+            second: {
+              hits: secondHits,
+              page: 0,
+              perPage: 20,
+              queryID: 'html5zombo.com',
+            },
+          },
+        }
       );
-      expect(props).toEqual({ currentRefinement: '', suggestions: [] });
+      expect(props).toEqual({
+        hits: [
+          {
+            hits: firstHitsWithExtraInfo,
+            index: 'first',
+          },
+          {
+            hits: secondHitsWithExtraInfo,
+
+            index: 'second',
+          },
+        ],
+        currentRefinement: '',
+      });
 
       props = connect.getProvidedProps(
         { contextValue, indexContextValue },
-        { indices: { second: { query: 'yep' } } },
-        {}
+        { indices: { second: { query: 'query' } } },
+        {
+          results: {
+            first: {
+              hits: firstHits,
+              page: 0,
+              perPage: 20,
+              queryID: 'zombo.com',
+            },
+            second: {
+              hits: secondHits,
+              page: 0,
+              perPage: 20,
+              queryID: 'html5zombo.com',
+            },
+          },
+        }
       );
-      expect(props).toEqual({ currentRefinement: 'yep', suggestions: [] });
+      expect(props).toEqual({
+        hits: [
+          { hits: firstHitsWithExtraInfo, index: 'first' },
+          { hits: secondHitsWithExtraInfo, index: 'second' },
+        ],
+        currentRefinement: 'query',
+      });
+
+      props = connect.getProvidedProps(
+        { defaultRefinement: 'query', contextValue, indexContextValue },
+        {},
+        {
+          results: {
+            first: {
+              hits: firstHits,
+              page: 0,
+              perPage: 20,
+              queryID: 'zombo.com',
+            },
+            second: {
+              hits: secondHits,
+              page: 0,
+              perPage: 20,
+              queryID: 'html5zombo.com',
+            },
+          },
+        }
+      );
+      expect(props).toEqual({
+        hits: [
+          { hits: firstHitsWithExtraInfo, index: 'first' },
+          { hits: secondHitsWithExtraInfo, index: 'second' },
+        ],
+        currentRefinement: 'query',
+      });
+    });
+
+    it('refines the query parameter', () => {
+      const params = connect.getSearchParameters(
+        new SearchParameters(),
+        { contextValue, indexContextValue },
+        { indices: { second: { query: 'bar' } } }
+      );
+      expect(params.query).toBe('bar');
     });
 
     it("calling refine updates the widget's search state", () => {
-      let nextState = connect.refine(
+      const nextState = connect.refine(
         { contextValue, indexContextValue },
         { otherKey: 'val' },
         'yep'
@@ -151,48 +244,6 @@ describe('connectAutoComplete', () => {
         otherKey: 'val',
         indices: { second: { query: 'yep', page: 1 } },
       });
-
-      nextState = connect.refine(
-        {
-          contextValue: { mainTargetedIndex: 'first' },
-          indexContextValue: { targetedIndex: 'first' },
-        },
-        {
-          indices: {
-            first: { query: 'yep' },
-          },
-          otherKey: 'val',
-        },
-        'yip'
-      );
-      expect(nextState).toEqual({
-        otherKey: 'val',
-        indices: {
-          first: { query: 'yip', page: 1 },
-        },
-      });
-    });
-
-    it('supports defaultRefinement', () => {
-      expect(
-        connect.getProvidedProps(
-          { defaultRefinement: 'yaw', contextValue, indexContextValue },
-          {},
-          {}
-        )
-      ).toEqual({
-        currentRefinement: 'yaw',
-        suggestions: [],
-      });
-    });
-
-    it('refines the query parameter', () => {
-      params = connect.getSearchParameters(
-        new SearchParameters(),
-        { contextValue, indexContextValue },
-        { indices: { second: { query: 'bar' } } }
-      );
-      expect(params.query).toBe('bar');
     });
 
     it('should return the right searchState when clean up', () => {

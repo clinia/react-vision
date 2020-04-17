@@ -9,7 +9,6 @@ import { Provider } from 'react-redux';
 
 import store from './src/redux/store';
 import HealthFacilities from './src/pages/HealthFacilities';
-import Professionals from './src/pages/Professionals';
 import Map from './src/pages/Map';
 import { Color } from './src/styles';
 
@@ -48,9 +47,6 @@ const TabNavigator = createBottomTabNavigator(
           case 'HealthFacilities':
             icon = require('./assets/health_facilities.png');
             break;
-          // case 'Professionals':
-          //   icon = require('./assets/professionals.png');
-          //   break;
           default:
             break;
         }

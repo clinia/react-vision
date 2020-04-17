@@ -1,7 +1,7 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import cliniasearchHelper from 'cliniasearch-helper';
-import { version, HIGHLIGHT_TAGS } from 'react-vision-core';
+import cliniasearchHelper from '@clinia/search-helper';
+import { version, HIGHLIGHT_TAGS } from '@clinia/react-vision-core';
 
 const hasMultipleIndices = context => context && context.multiIndexContext;
 

@@ -74,7 +74,7 @@ on screen, only configure some parameters.</p>
 ```js
 import React from 'react';
 import cliniasearch from 'cliniasearch/lite';
-import { Vision, Configure, Hits } from 'react-vision-dom';
+import { Vision, Configure, Hits } from '@clinia/react-vision-dom';
 
 const searchClient = cliniasearch(
   'TODO',
@@ -110,7 +110,7 @@ useful if you want to build an interface that targets multiple indexes.</p>
 ```js
 import React from 'react';
 import cliniasearch from 'cliniasearch/lite';
-import { Vision. Index, SearcbBox, Hits, Configure } from 'react-vision-dom';
+import { Vision. Index, SearcbBox, Hits, Configure } from '@clinia/react-vision-dom';
 
 const searchClient = cliniasearch(
  'TODO',
@@ -206,7 +206,7 @@ with the searchState.</p>
 ```js
 import React from 'react';
 import cliniasearch from 'cliniasearch/lite';
-import { Vision, AutoComplete } from 'react-vision-dom';
+import { Vision, AutoComplete } from '@clinia/react-vision-dom';
 
 const searchClient = cliniasearch(
   'latency',
@@ -235,7 +235,7 @@ const App = () => (
 | --- | --- | --- |
 | className | <code>string</code> | <p>Add a custom CSS class to the component.</p> |
 | emptySearch | <code>string</code> | <p>The text shown on empty results.</p> |
-| hitComponent | <code>Component</code> | <p>Component used for rendering each hit from the results. If it is not provided the rendering defaults to displaying the hit in its JSON form. The component will be called with a <code>record</code> prop.</p> |
+| hitComponent | <code>Component</code> | <p>Component used for rendering each hit from the results. If it is not provided the rendering defaults to displaying the hit in its JSON form. The component will be called with a <code>hit</code> prop.</p> |
 | noResultsFound | <code>node</code> | <p>Change the apparence of the default empty results found.</p> |
 | style | <code>object</code> | <p>Add a custom React.CSSProperties object to the Hits container.</p> |
 
@@ -251,7 +251,7 @@ const App = () => (
 ```js
 import React from 'react';
 import cliniasearch from 'cliniasearch/lite';
-import { Vision, Hits } from 'react-vision-dom';
+import { Vision, Hits } from '@clinia/react-vision-dom';
 
 const searchClient = cliniasearch(
   'TODO',
@@ -279,7 +279,7 @@ const App = () => (
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
 | className | <code>string</code> |  | <p>Add a custom CSS class to the component.</p> |
-| hitComponent | <code>Component</code> |  | <p>Component used for rendering each record from the results. If it is not provided the rendering defaults to displaying the record in its JSON form. The component will be called with a <code>record</code> prop.</p> |
+| hitComponent | <code>Component</code> |  | <p>Component used for rendering each hit from the results. If it is not provided the rendering defaults to displaying the hit in its JSON form. The component will be called with a <code>hit</code> prop.</p> |
 | loadMore | <code>string</code> |  | <p>The label of load more button.</p> |
 | loadPrevious | <code>string</code> |  | <p>The label of load previous button.</p> |
 | showPrevious | <code>boolean</code> | <code>false</code> | <p>Define if button of <code>load previous</code> should be shown.</p> |
@@ -298,7 +298,7 @@ const App = () => (
 ```js
 import React from 'react';
 import cliniasearch from 'cliniasearch/lite';
-import { Vision, InfiniteHits } from 'react-vision-dom';
+import { Vision, InfiniteHits } from '@clinia/react-vision-dom';
 
 const searchClient = cliniasearch(
   'TODO',
@@ -365,7 +365,7 @@ const App = () => (
 ```js
 import React from 'react';
 import cliniasearch from 'cliniasearch/lite';
-import { Vision, Location } from 'react-vision-dom';
+import { Vision, Location } from '@clinia/react-vision-dom';
 
 const searchClient = cliniasearch(
   'latency',
@@ -427,7 +427,7 @@ const App = () => (
 ```js
 import React from 'react';
 import cliniasearch from 'cliniasearch/lite';
-import { Vision, SearchBox } from 'react-vision-dom';
+import { Vision, SearchBox } from '@clinia/react-vision-dom';
 
 const searchClient = cliniasearch(
   'latency',
@@ -464,13 +464,13 @@ const App = () => (
 <GoogleMapsLoader apiKey={apiKey} endpoint={endpoint}>
   {google => (
     <GeoSearch google={google}>
-      {({ records }) => (
+      {({ hits }) => (
         <Fragment>
           <Control />
-          {records.map(record => (
+          {hits.map(hit => (
             <Marker
-              key={record.id}
-              record={record}
+              key={hit.id}
+              hit={hit}
             />
           ))}
         </Fragment>
@@ -495,25 +495,25 @@ const App = () => (
 | className | <code>string</code> | <p>Classname for the custom marker.</p> |
 | label | <code>string</code> | <p>Label to display.</p> |
 | on* | <code>function</code> | <p>Listen to any mouse events sent from the marker.</p> |
-| record | [<code>GeolocHitPropType</code>](#GeolocHitPropType) | <p>Record to display.</p> |
+| hit | [<code>GeolocHitPropType</code>](#GeolocHitPropType) | <p>Record to display.</p> |
 
 **Example**
 ```js
 <GoogleMapsLoader apiKey={apiKey} endpoint={endpoint}>
   {google => (
     <GeoSearch google={google}>
-      {({ records }) => (
+      {({ hits }) => (
         <Fragment>
-          {records.map(record => (
+          {hits.map(hit => (
              <CustomMarker
-               key={record.id}
-               record={record}
+               key={hit.id}
+               hit={hit}
                anchor={{ x: 5, y: 0 }}
                onMouseEnter={() => {}}
                onMouseLeave={() => {}}
              >
                <div className={classNames.join(' ').trim()}>
-                 <span>{record.name}</span>
+                 <span>{hit.name}</span>
                </div>
              </CustomMarker>
           ))}
@@ -569,10 +569,10 @@ Since this component rely on the <code>document</code> property, this won't be r
         southWest: { lat: 45.410246, lng: -73.986345 },
       }}
     >
-      {({ records }) => (
+      {({ hits }) => (
         <Fragment>
-          {records.map(record => (
-            <Marker key={record.id} record={record} />
+          {hits.map(hit => (
+            <Marker key={hit.id} hit={hit} />
           ))}
         </Fragment>
       )}
@@ -592,7 +592,7 @@ Since this component rely on the <code>document</code> property, this won't be r
 
 | Name | Type | Description |
 | --- | --- | --- |
-| record | [<code>GeolocHitPropType</code>](#GeolocHitPropType) | <p>Record to display.</p> |
+| hit | [<code>GeolocHitPropType</code>](#GeolocHitPropType) | <p>Record to display.</p> |
 | label | <code>string</code> | <p>Label to display.</p> |
 | on* | <code>function</code> | <p>Listen to any mouse events sent from the marker.</p> |
 
@@ -601,13 +601,13 @@ Since this component rely on the <code>document</code> property, this won't be r
 <GoogleMapsLoader apiKey={apiKey} endpoint={endpoint}>
   {google => (
     <GeoSearch google={google}>
-      {({ records }) => (
+      {({ hits }) => (
         <Fragment>
-          {records.map(record => (
+          {hits.map(hit => (
             <Marker
-              key={record.id}
-              record={record}
-              label={record.name}
+              key={hit.id}
+              hit={hit}
+              label={hit.name}
               onClick={() => {}}
               onDoubleClick={() => {}}
             />
@@ -645,13 +645,13 @@ Since this component rely on the <code>document</code> property, this won't be r
 <GoogleMapsLoader apiKey={apiKey} endpoint={endpoint}>
   {google => (
     <GeoSearch google={google}>
-      {({ records }) => (
+      {({ hits }) => (
         <Fragment>
           <Redo />
-          {records.map(record => (
+          {hits.map(hit => (
             <Marker
-              key={record.id}
-              record={record}
+              key={hit.id}
+              hit={hit}
             />
           ))}
         </Fragment>

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { storiesOf } from '@storybook/react';
-import { InfiniteHits, connectInfiniteHits } from 'react-vision-dom';
+import { InfiniteHits, connectInfiniteHits } from '@clinia/react-vision-dom';
 import { WrapWithHits } from './utils';
 import { action } from '@storybook/addon-actions';
 
@@ -32,7 +32,7 @@ stories
     const urlLogger = action('Routing state');
 
     const MyInfiniteHits = ({
-      records,
+      hits,
       hasMore,
       hasPrevious,
       refine,
@@ -43,8 +43,8 @@ stories
           Show previous
         </button>
         <ol>
-          {records.map(record => (
-            <li key={record.id}>{record.name}</li>
+          {hits.map(hit => (
+            <li key={hit.id}>{hit.name}</li>
           ))}
         </ol>
         <button disabled={!hasMore} onClick={refine}>
@@ -54,7 +54,7 @@ stories
     );
 
     MyInfiniteHits.propTypes = {
-      records: PropTypes.array.isRequired,
+      hits: PropTypes.array.isRequired,
       hasMore: PropTypes.bool.isRequired,
       hasPrevious: PropTypes.bool.isRequired,
       refine: PropTypes.func.isRequired,
@@ -77,16 +77,16 @@ stories
     );
   })
   .add('with custom hitComponent', () => {
-    function HealthFacility({ record }) {
+    function HealthFacility({ hit }) {
       return (
         <div>
-          <h4>{record.name}</h4>
+          <h4>{hit.name}</h4>
         </div>
       );
     }
 
     HealthFacility.propTypes = {
-      record: PropTypes.object.isRequired,
+      hit: PropTypes.object.isRequired,
     };
 
     return (
