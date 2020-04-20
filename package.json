@@ -151,5 +151,9 @@
       "path": "packages/react-vizion-dom-maps/dist/umd/ReactVizionDOMMaps.min.js",
       "maxSize": "7 kB"
     }
-  ]
+  ],
+  "dependencies": {
+    "@clinia/react-vizion-dom": "2.0.0-beta.0",
+    "@clinia/react-vizion-dom-maps": "2.0.0-beta.0"
+  }
 }

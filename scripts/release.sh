@@ -113,9 +113,9 @@ printf "\n\nRelease: pushed to GitHub, publish on NPM\n"
 
 if $beta
 then
-  VERSION=$newVersion lerna run release:beta --scope react-*
+  VERSION=$newVersion lerna run release:beta --scope @clinia/react-*
 else
-  VERSION=$newVersion lerna run release --scope react-*
+  VERSION=$newVersion lerna run release --scope @clinia/react-*
 fi
 
 printf "\nRelease: Package was published to NPM\n\n"
@@ -127,8 +127,8 @@ sleep 2.5
 # of the Workspaces. Another solution is to move out the stories
 # from the top level package (will be done at some point).
 yarn
-yarn upgrade react-vizion-dom@$newVersion -D
-yarn upgrade react-vizion-dom-maps@$newVersion -D
+yarn upgrade @clinia/react-vizion-dom@$newVersion -D
+yarn upgrade @clinia/react-vizion-dom-maps@$newVersion -D
 
 node scripts/update-examples.js $newVersion
 

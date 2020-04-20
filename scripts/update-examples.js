@@ -10,9 +10,12 @@ const examplesPath = path.join(__dirname, '..', 'examples');
   const examples = glob.sync(path.join(examplesPath, '!(react-native*)'));
 
   examples.forEach(example => {
-    execSync(`cd ${example} && yarn upgrade react-vizion-dom@${version}`, {
-      stdio: 'inherit',
-    });
+    execSync(
+      `cd ${example} && yarn upgrade @clinia/react-vizion-dom@${version}`,
+      {
+        stdio: 'inherit',
+      }
+    );
   });
 }
 
@@ -22,19 +25,22 @@ const examplesPath = path.join(__dirname, '..', 'examples');
 
   examples.forEach(example => {
     // @TODO: update to react-vizion-native
-    execSync(`cd ${example} && yarn upgrade react-vizion@${version}`, {
+    execSync(`cd ${example} && yarn upgrade @clinia/react-vizion@${version}`, {
       stdio: 'inherit',
     });
   });
 }
 
-{
-  // Update React Vizion DOM Maps
-  const examples = glob.sync(path.join(examplesPath, 'geo-search'));
+// {
+//   // Update React Vizion DOM Maps
+//   const examples = glob.sync(path.join(examplesPath, 'geo-search'));
 
-  examples.forEach(example => {
-    execSync(`cd ${example} && yarn upgrade react-vizion-dom-maps@${version}`, {
-      stdio: 'inherit',
-    });
-  });
-}
+//   examples.forEach(example => {
+//     execSync(
+//       `cd ${example} && yarn upgrade @clinia/react-vizion-dom-maps@${version}`,
+//       {
+//         stdio: 'inherit',
+//       }
+//     );
+//   });
+// }
