@@ -1,3 +1,19 @@
+# [2.0.0-beta.0](https://github.com/clinia/react-vision/compare/v1.1.0...v2.0.0-beta.0) (2020-04-20)
+
+
+### Bug Fixes
+
+* Fix location style class to lowercase ([#31](https://github.com/clinia/react-vision/issues/31)) ([0fc2706](https://github.com/clinia/react-vision/commit/0fc270691cac90afc98372444c513555fda2e191))
+
+
+### Features
+
+* Propagate onchange event in autocomplete if user click on suggestion ([#32](https://github.com/clinia/react-vision/issues/32)) ([e508191](https://github.com/clinia/react-vision/commit/e508191a1890516aec2493ced777ef5c3216f309))
+* **connectors:** current refinements, pagination, state results and stats ([9e7789b](https://github.com/clinia/react-vision/commit/9e7789bd5588a84bdd0a27207ad094ad2ca3dbb1))
+* **dom:** higlight, clear refinements, per page, pagination, stats ([d0bcd4b](https://github.com/clinia/react-vision/commit/d0bcd4bb9aa905604870a0d4e1dce724fab314a1))
+
+
+
 # [1.1.0](https://github.com/clinia/react-vizion/compare/v1.0.0...v1.1.0) (2020-01-30)
 
 

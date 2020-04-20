@@ -1,6 +1,6 @@
 {
   "name": "@clinia/react-vizion-dom-maps",
-  "version": "1.1.0",
+  "version": "2.0.0-beta.0",
   "description": "",
   "main": "dist/cjs/index.js",
   "module": "dist/es/index.js",
