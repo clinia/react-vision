@@ -1,6 +1,6 @@
 {
   "name": "@clinia/react-vizion-core",
-  "version": "2.0.0-beta.0",
+  "version": "2.0.0-beta.1",
   "description": "",
   "main": "dist/cjs/index.js",
   "module": "dist/es/index.js",
@@ -40,8 +40,8 @@
   "dependencies": {
     "@babel/runtime": "^7.1.2",
     "@clinia/search-helper": "2.0.0-beta.2",
-    "react-fast-compare": "^3.0.0",
-    "prop-types": "^15.5.10"
+    "prop-types": "^15.5.10",
+    "react-fast-compare": "^3.0.0"
   },
   "peerDependencies": {
     "react": ">= 16.3.0 < 17"

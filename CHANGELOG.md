@@ -1,3 +1,7 @@
+# [2.0.0-beta.1](https://github.com/clinia/react-vision/compare/v2.0.0-beta.0...v2.0.0-beta.1) (2020-04-20)
+
+
+
 # [2.0.0-beta.0](https://github.com/clinia/react-vision/compare/v1.1.0...v2.0.0-beta.0) (2020-04-20)
 
 
