@@ -4,7 +4,7 @@ import { createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createStackNavigator } from 'react-navigation-stack';
 import cliniasearch from 'cliniasearch/lite';
-import { Vision } from 'react-vision-native';
+import { Vizion } from 'react-vizion-native';
 import { Provider } from 'react-redux';
 
 import store from './src/redux/store';
@@ -73,8 +73,8 @@ const TabNavigator = createBottomTabNavigator(
       inactiveTintColor: 'gray',
     },
     // This forces all the tabs to render immediately instead of when they are first made active.
-    // This is necessary in order for the `Vision` component to interpret the `Index` present on each tabs.
-    // If rendering is lazy, problems may arise where the internal state of the `Vision` component does not reflect the structure found in the code.
+    // This is necessary in order for the `Vizion` component to interpret the `Index` present on each tabs.
+    // If rendering is lazy, problems may arise where the internal state of the `Vizion` component does not reflect the structure found in the code.
     lazy: false,
   }
 );
@@ -83,10 +83,10 @@ const AppContainer = createAppContainer(TabNavigator);
 
 export default function App() {
   return (
-    <Vision searchClient={searchClient} indexName="health_facility">
+    <Vizion searchClient={searchClient} indexName="health_facility">
       <Provider store={store}>
         <AppContainer />
       </Provider>
-    </Vision>
+    </Vizion>
   );
 }

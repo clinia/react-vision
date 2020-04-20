@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import qs from 'qs';
 import { SearchPage } from './pages';
-import { Vision } from '@clinia/react-vision-dom';
+import { Vizion } from '@clinia/react-vizion-dom';
 import cliniasearch from 'cliniasearch/lite';
 import './App.css';
 
@@ -45,7 +45,7 @@ class App extends Component {
 
   render() {
     return (
-      <Vision
+      <Vizion
         searchClient={searchClient}
         indexName="health_facility"
         searchState={this.state.searchState}
@@ -53,7 +53,7 @@ class App extends Component {
         createURL={createURL}
       >
         <SearchPage />
-      </Vision>
+      </Vizion>
     );
   }
 }

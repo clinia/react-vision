@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Highlight parses an highlighted property of hit object 1`] = `
+<span
+  className="cvi-highlight"
+>
+  <span
+    className="cvi-highlight-nonHighlighted"
+  >
+    awesome 
+  </span>
+  <em
+    className="cvi-highlight-highlighted"
+  >
+    hi
+  </em>
+  <span
+    className="cvi-highlight-nonHighlighted"
+  >
+    ghlighted 
+  </span>
+  <em
+    className="cvi-highlight-highlighted"
+  >
+    hi
+  </em>
+  <span
+    className="cvi-highlight-nonHighlighted"
+  >
+    t!
+  </span>
+</span>
+`;
+
+exports[`Highlight renders a hit with a custom className 1`] = `
+<span
+  className="cvi-highlight MyCustomHighlight"
+>
+  <span
+    className="cvi-highlight-nonHighlighted"
+  >
+    awesome 
+  </span>
+  <em
+    className="cvi-highlight-highlighted"
+  >
+    hi
+  </em>
+  <span
+    className="cvi-highlight-nonHighlighted"
+  >
+    ghlighted 
+  </span>
+  <em
+    className="cvi-highlight-highlighted"
+  >
+    hi
+  </em>
+  <span
+    className="cvi-highlight-nonHighlighted"
+  >
+    t!
+  </span>
+</span>
+`;
+
+exports[`Highlight renders a hit with a custom tag correctly 1`] = `
+<span
+  className="cvi-highlight"
+>
+  <span
+    className="cvi-highlight-nonHighlighted"
+  >
+    awesome 
+  </span>
+  <marquee
+    className="cvi-highlight-highlighted"
+  >
+    hi
+  </marquee>
+  <span
+    className="cvi-highlight-nonHighlighted"
+  >
+    ghlighted 
+  </span>
+  <marquee
+    className="cvi-highlight-highlighted"
+  >
+    hi
+  </marquee>
+  <span
+    className="cvi-highlight-nonHighlighted"
+  >
+    t!
+  </span>
+</span>
+`;

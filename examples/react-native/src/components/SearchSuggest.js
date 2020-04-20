@@ -2,7 +2,7 @@ import * as React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { Keyboard } from 'react-native';
-import { connectAutoComplete } from '@clinia/react-vision-core';
+import { connectAutoComplete } from '@clinia/react-vizion-core';
 
 import Suggestions from './Suggestions';
 import { setSearchBoxFocused, setQuery } from '../redux/actions';

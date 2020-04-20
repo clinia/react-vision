@@ -1,0 +1,240 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CurrentRefinements - Connected expect to render a list of current refinements 1`] = `
+<div
+  className="cvi-currentrefinements"
+>
+  <ul
+    className="cvi-currentrefinements-list"
+  >
+    <li
+      className="cvi-currentrefinements-item"
+      key="color: Red"
+    >
+      <span
+        className="cvi-currentrefinements-label"
+      >
+        color: Red
+      </span>
+      <span
+        className="cvi-currentrefinements-category"
+      >
+        <button
+          className="cvi-currentrefinements-delete"
+          onClick={[Function]}
+        >
+          ✕
+        </button>
+      </span>
+    </li>
+    <li
+      className="cvi-currentrefinements-item"
+      key="category:"
+    >
+      <span
+        className="cvi-currentrefinements-label"
+      >
+        category:
+      </span>
+      <span
+        className="cvi-currentrefinements-category"
+        key="iPhone"
+      >
+        <span
+          className="cvi-currentrefinements-categoryLabel"
+        >
+          iPhone
+        </span>
+        <button
+          className="cvi-currentrefinements-delete"
+          onClick={[Function]}
+        >
+          ✕
+        </button>
+      </span>
+      <span
+        className="cvi-currentrefinements-category"
+        key="iPad"
+      >
+        <span
+          className="cvi-currentrefinements-categoryLabel"
+        >
+          iPad
+        </span>
+        <button
+          className="cvi-currentrefinements-delete"
+          onClick={[Function]}
+        >
+          ✕
+        </button>
+      </span>
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`CurrentRefinements - Connected expect to render a list of current refinements with custom translations 1`] = `
+<div
+  className="cvi-currentrefinements"
+>
+  <ul
+    className="cvi-currentrefinements-list"
+  >
+    <li
+      className="cvi-currentrefinements-item"
+      key="color: Red"
+    >
+      <span
+        className="cvi-currentrefinements-label"
+      >
+        color: Red
+      </span>
+      <span
+        className="cvi-currentrefinements-category"
+      >
+        <button
+          className="cvi-currentrefinements-delete"
+          onClick={[Function]}
+        >
+          DELETE
+        </button>
+      </span>
+    </li>
+    <li
+      className="cvi-currentrefinements-item"
+      key="category:"
+    >
+      <span
+        className="cvi-currentrefinements-label"
+      >
+        category:
+      </span>
+      <span
+        className="cvi-currentrefinements-category"
+        key="iPhone"
+      >
+        <span
+          className="cvi-currentrefinements-categoryLabel"
+        >
+          iPhone
+        </span>
+        <button
+          className="cvi-currentrefinements-delete"
+          onClick={[Function]}
+        >
+          DELETE
+        </button>
+      </span>
+      <span
+        className="cvi-currentrefinements-category"
+        key="iPad"
+      >
+        <span
+          className="cvi-currentrefinements-categoryLabel"
+        >
+          iPad
+        </span>
+        <button
+          className="cvi-currentrefinements-delete"
+          onClick={[Function]}
+        >
+          DELETE
+        </button>
+      </span>
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`CurrentRefinements expect to render a list of current refinements 1`] = `
+<div
+  className="cvi-currentrefinements"
+>
+  <ul
+    className="cvi-currentrefinements-list"
+  >
+    <li
+      className="cvi-currentrefinements-item"
+      key="color: Red"
+    >
+      <span
+        className="cvi-currentrefinements-label"
+      >
+        color: Red
+      </span>
+      <span
+        className="cvi-currentrefinements-category"
+      >
+        <button
+          className="cvi-currentrefinements-delete"
+          onClick={[Function]}
+        >
+          clearFilter
+        </button>
+      </span>
+    </li>
+    <li
+      className="cvi-currentrefinements-item"
+      key="category:"
+    >
+      <span
+        className="cvi-currentrefinements-label"
+      >
+        category:
+      </span>
+      <span
+        className="cvi-currentrefinements-category"
+        key="iPhone"
+      >
+        <span
+          className="cvi-currentrefinements-categoryLabel"
+        >
+          iPhone
+        </span>
+        <button
+          className="cvi-currentrefinements-delete"
+          onClick={[Function]}
+        >
+          clearFilter
+        </button>
+      </span>
+      <span
+        className="cvi-currentrefinements-category"
+        key="iPad"
+      >
+        <span
+          className="cvi-currentrefinements-categoryLabel"
+        >
+          iPad
+        </span>
+        <button
+          className="cvi-currentrefinements-delete"
+          onClick={[Function]}
+        >
+          clearFilter
+        </button>
+      </span>
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`CurrentRefinements expect to render a list with a custom className 1`] = `
+<div
+  className="cvi-currentrefinements MyCustomCurrentRefinements"
+>
+  <ul
+    className="cvi-currentrefinements-list"
+  />
+</div>
+`;
+
+exports[`CurrentRefinements expect to render a list without refinements 1`] = `
+<div
+  className="cvi-currentrefinements cvi-currentrefinements--noRefinement"
+>
+  <ul
+    className="cvi-currentrefinements-list cvi-currentrefinements-list--noRefinement"
+  />
+</div>
+`;

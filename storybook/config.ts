@@ -8,8 +8,8 @@ addParameters({
     panelPosition: 'bottom',
     theme: create({
       base: 'light',
-      brandTitle: 'react-vision',
-      brandUrl: 'https://github.com/clinia/react-vision',
+      brandTitle: 'react-vizion',
+      brandUrl: 'https://github.com/clinia/react-vizion',
     }),
   },
 });

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { storiesOf } from '@storybook/react';
-import { InfiniteHits, connectInfiniteHits } from '@clinia/react-vision-dom';
+import { InfiniteHits, connectInfiniteHits } from '@clinia/react-vizion-dom';
 import { WrapWithHits } from './utils';
 import { action } from '@storybook/addon-actions';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Index } from 'react-vision-native';
+import { Index } from 'react-vizion-native';
 
 import Content from '../components/Content';
 import MapView from '../components/MapView';

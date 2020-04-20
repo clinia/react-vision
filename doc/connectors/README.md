@@ -1,6 +1,6 @@
 <div align="center">
   <img src="../../.github/clinia-logo.svg" width="250">
-  <h1>React Vision Connectors</h1>
+  <h1>React Vizion Connectors</h1>
   <h4>Connectors are React hooks allowing the partner to connect its own components with Clinia's search logic.</h4>
   <a href="#features">Features</a> •
   <a href="#getting-started">Getting Started</a> •
@@ -100,7 +100,7 @@ The current query used for searches.
 <br/>
 
 ### `isSearchStalled`
-A flag that indicates if Vision has detected that searches are stalled.
+A flag that indicates if Vizion has detected that searches are stalled.
 
 | Type | Default |
 |------|---------|
@@ -250,7 +250,7 @@ The current query used for searches.
 <br/>
 
 ### `isSearchStalled`
-A flag that indicates if Vision has detected that searches are stalled.
+A flag that indicates if Vizion has detected that searches are stalled.
 
 | Type | Default |
 |------|---------|
@@ -517,7 +517,7 @@ Provide a default value for the bounding box.
 | `id` | _string_ | Identifier of the resource. ||
 | `type` | _string_ | Type of resource. ||
 | `address` | _Address_ | Address. ||
-| `geoPoint` | _GeoPoint_ | Coordinate of the resource, if applicable. ||
+| `_geoPoint` | _GeoPoint_ | Coordinate of the resource, if applicable. ||
 | `onlineBookingUrl` | _string_ | Online booking url. ||
 | `distance` | _double_ | Distance (in meters) from the center of the location search parameter. ||
 | `openingHours` | _Map<string, Interval[]>_ | Opening hours. | The keys are strings from `1` to `7`.<br/>`1: Monday`<br/>`2: Tuesday`<br/>`3: Wednesday`<br/>`4: Thursday`<br/>`5: Friday`<br/>`6: Saturday`<br/>`7: Sunday` |

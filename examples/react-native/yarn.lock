@@ -7515,9 +7515,9 @@ react-transform-hmr@^1.0.4:
     global "^4.3.0"
     react-proxy "^1.1.7"
 
-react-vision-core@^1.0.0:
+react-vizion-core@^1.0.0:
   version "1.0.0"
-  resolved "https://registry.yarnpkg.com/react-vision-core/-/react-vision-core-1.0.0.tgz#d8b935de2a21eb193bd91e88fc3988205bedb464"
+  resolved "https://registry.yarnpkg.com/react-vizion-core/-/react-vizion-core-1.0.0.tgz#d8b935de2a21eb193bd91e88fc3988205bedb464"
   integrity sha512-9TlEkZNmtWidAI4ulmBfh4rnjZcWZFVNwWIriMI3uTftsFblC7z3p9Lt5pQWr2brzdVRH0YlafFU/NOFgCYfrQ==
   dependencies:
     "@babel/runtime" "^7.1.2"
@@ -7525,33 +7525,33 @@ react-vision-core@^1.0.0:
     fast-deep-equal "^2.0.1"
     prop-types "^15.5.10"
 
-react-vision-dom@^1.0.0:
+react-vizion-dom@^1.0.0:
   version "1.0.0"
-  resolved "https://registry.yarnpkg.com/react-vision-dom/-/react-vision-dom-1.0.0.tgz#6a114f16517570014c5e9349e031fce116ea47c2"
+  resolved "https://registry.yarnpkg.com/react-vizion-dom/-/react-vizion-dom-1.0.0.tgz#6a114f16517570014c5e9349e031fce116ea47c2"
   integrity sha512-P7HAdp6hLNHd37eTjQRlyKSS4wDC6ViYGmB6KdZ1cxhBsdn7WI/iHKFheOyeSx/KtK7vLommoKYCZ/gj8k6pMQ==
   dependencies:
     "@babel/runtime" "^7.6.3"
     classnames "^2.2.6"
     prop-types "^15.7.2"
-    react-vision-core "^1.0.0"
+    react-vizion-core "^1.0.0"
 
-react-vision-native@^1.0.0:
+react-vizion-native@^1.0.0:
   version "1.0.0"
-  resolved "https://registry.yarnpkg.com/react-vision-native/-/react-vision-native-1.0.0.tgz#67cf0c51aa3a35eebd5ebc628e97b800a5b26c7b"
+  resolved "https://registry.yarnpkg.com/react-vizion-native/-/react-vizion-native-1.0.0.tgz#67cf0c51aa3a35eebd5ebc628e97b800a5b26c7b"
   integrity sha512-9BylqwuDIsFHI4ep9xEdd6TOYi2jKdx2YUmByPGdt6ZTzX510n4lBFQvQY4S5EYGRyEzhZYPQAfTKa7IuCKbZw==
   dependencies:
     "@babel/runtime" "^7.6.3"
-    react-vision-core "^1.0.0"
+    react-vizion-core "^1.0.0"
 
-react-vision@1.0.0:
+react-vizion@1.0.0:
   version "1.0.0"
-  resolved "https://registry.yarnpkg.com/react-vision/-/react-vision-1.0.0.tgz#21453a81e7a3479f36b28729f8ab1e2b93137419"
+  resolved "https://registry.yarnpkg.com/react-vizion/-/react-vizion-1.0.0.tgz#21453a81e7a3479f36b28729f8ab1e2b93137419"
   integrity sha512-tMnwZ8NR3HsWLId64EgEjBY215KupBdLuc257N4aGtfuBQEFXJ8xb1RhJCSw0x/n53svZ6lVUeSGtFbYg2r7tg==
   dependencies:
     "@babel/runtime" "^7.6.3"
-    react-vision-core "^1.0.0"
-    react-vision-dom "^1.0.0"
-    react-vision-native "^1.0.0"
+    react-vizion-core "^1.0.0"
+    react-vizion-dom "^1.0.0"
+    react-vizion-native "^1.0.0"
 
 react@16.8.3:
   version "16.8.3"

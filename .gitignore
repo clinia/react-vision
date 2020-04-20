@@ -24,3 +24,5 @@ integration/screenshots/
 .idea
 
 coverage
+
+junit.xml

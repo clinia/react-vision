@@ -7,7 +7,7 @@ To run this project, you will need:
 
 ## Development
 
-We use the [Storybook](https://storybook.js.org/) as the main way to develop React InstantSearch.
+We use the [Storybook](https://storybook.js.org/) as the main way to develop React Vizion.
 
 ```sh
 yarn
@@ -24,7 +24,7 @@ yarn watch
 
 ## Code
 
-The code for React Vision is located in [packages](packages).
+The code for React Vizion is located in [packages](packages).
 
 ## Test
 

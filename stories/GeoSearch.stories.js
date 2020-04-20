@@ -2,7 +2,7 @@ import React, { Fragment, Component } from 'react';
 import PropTypes from 'prop-types';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { Configure, connectHits } from '@clinia/react-vision-dom';
+import { Configure, connectHits } from '@clinia/react-vizion-dom';
 import {
   GoogleMapsLoader,
   GeoSearch,
@@ -10,7 +10,7 @@ import {
   CustomMarker,
   Redo,
   Control,
-} from '@clinia/react-vision-dom-maps';
+} from '@clinia/react-vizion-dom-maps';
 import { WrapWithHits } from './utils';
 
 const stories = storiesOf('GeoSearch', module);

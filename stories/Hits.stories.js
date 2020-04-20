@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { storiesOf } from '@storybook/react';
-import { Hits } from '@clinia/react-vision-dom';
+import { Hits } from '@clinia/react-vizion-dom';
 import { WrapWithHits } from './utils';
 
 const stories = storiesOf('Hits', module);

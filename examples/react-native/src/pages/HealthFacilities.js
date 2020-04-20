@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
-import { Index } from 'react-vision-native';
+import { Index } from 'react-vizion-native';
 
 import Content from '../components/Content';
 import Hits from '../components/Hits';

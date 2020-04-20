@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { TextInput, StyleSheet } from 'react-native';
-import { connectAutoComplete } from '@clinia/react-vision-core';
+import { connectAutoComplete } from '@clinia/react-vizion-core';
 import { withNavigation } from 'react-navigation';
 
 import { setQuery, setSearchBoxFocused } from '../redux/actions';

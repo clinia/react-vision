@@ -1,6 +1,6 @@
 import MapView from 'react-native-maps';
 import React from 'react';
-import { connectGeoSearch } from '@clinia/react-vision-core';
+import { connectGeoSearch } from '@clinia/react-vizion-core';
 import { withNavigation } from 'react-navigation';
 import { compose } from 'redux';
 
@@ -63,12 +63,12 @@ class Map extends React.Component {
         onRegionChangeComplete={this.onRegionChangeComplete}
       >
         {hits.map(hit => {
-          const { geoPoint } = hit;
+          const { _geoPoint } = hit;
           return (
             <MapView.Marker
               id={hit.id}
               key={hit.id}
-              coordinate={{ latitude: geoPoint.lat, longitude: geoPoint.lng }}
+              coordinate={{ latitude: _geoPoint.lat, longitude: _geoPoint.lng }}
               title={hit.name}
               image={require('../../assets/pin.png')}
             />

@@ -1,6 +1,6 @@
 <div align="center">
   <img src="../../.github/clinia-logo.svg" width="250">
-  <h1>React Vision Widgets</h1>
+  <h1>React Vizion Widgets</h1>
   <h4>Widgets provide bare UI components to ease the integration Clinia's API suite inside a provider's application.</h4>
   <h4>This documentation is generated using <a href="https://github.com/jsdoc/jsdoc">JSDoc</a></h4>
 </div>
@@ -15,7 +15,7 @@ All properties in the different modules are either optional or are provided with
 <dd></dd>
 <dt><a href="#module_Index">Index</a></dt>
 <dd></dd>
-<dt><a href="#module_Vision">Vision</a></dt>
+<dt><a href="#module_Vizion">Vizion</a></dt>
 <dd></dd>
 <dt><a href="#module_AutoComplete">AutoComplete</a></dt>
 <dd></dd>
@@ -74,7 +74,7 @@ on screen, only configure some parameters.</p>
 ```js
 import React from 'react';
 import cliniasearch from 'cliniasearch/lite';
-import { Vision, Configure, Hits } from '@clinia/react-vision-dom';
+import { Vizion, Configure, Hits } from '@clinia/react-vizion-dom';
 
 const searchClient = cliniasearch(
   'TODO',
@@ -82,13 +82,13 @@ const searchClient = cliniasearch(
 );
 
 const App = () => (
-  <Vision
+  <Vizion
     searchClient={searchClient}
     indexName="health_facility"
   >
     <Configure perPage={5} queryType="prefix_last" />
     <Hits />
-  </Vision>
+  </Vizion>
 );
 ```
 <a name="module_Index"></a>
@@ -110,7 +110,7 @@ useful if you want to build an interface that targets multiple indexes.</p>
 ```js
 import React from 'react';
 import cliniasearch from 'cliniasearch/lite';
-import { Vision. Index, SearcbBox, Hits, Configure } from '@clinia/react-vision-dom';
+import { Vizion. Index, SearcbBox, Hits, Configure } from '@clinia/react-vizion-dom';
 
 const searchClient = cliniasearch(
  'TODO',
@@ -118,7 +118,7 @@ const searchClient = cliniasearch(
 );
 
 const App = () => (
-  <Vision searchClient={searchClient} indexName="health_facility">
+  <Vizion searchClient={searchClient} indexName="health_facility">
     <Configure perPage={5} />
     <SearchBox />
     <Index indexName="health_facility">
@@ -127,15 +127,15 @@ const App = () => (
     <Index indexName="professional">
       <Hits />
     </Index>
-  </Vision>
+  </Vizion>
 );
 ```
-<a name="module_Vision"></a>
+<a name="module_Vizion"></a>
 
-## Vision
-<a name="exp_module_Vision--Vision"></a>
+## Vizion
+<a name="exp_module_Vizion--Vizion"></a>
 
-<p><code>Vision</code> is the root component of all React Vision implementations.
+<p><code>Vizion</code> is the root component of all React Vizion implementations.
 It provides all the connected components (aka widgets) a mean to interact
 with the searchState.</p>
 
@@ -152,7 +152,7 @@ with the searchState.</p>
 | resultsState | <code>SearchResults</code> \| <code>Array.&lt;SearchResults&gt;</code> |  | <p>Use this to inject the results that will be used at first rendering. Those results are found by using the <code>findResultsState</code> function. Useful for <a href="guide/Server-side_rendering.html">Server Side Rendering</a>.</p> |
 | root | <code>Object</code> |  | <p>Use this to customize the root element. Default value: <code>{ Root: 'div' }</code></p> |
 | searchClient | <code>object</code> |  | <p>Provide a custom search client.</p> |
-| searchState | <code>object</code> |  | <p>Object to inject some search state. Switches the Vision component in controlled mode. Useful for <a href="guide/Routing.html">URL Routing</a>.</p> |
+| searchState | <code>object</code> |  | <p>Object to inject some search state. Switches the Vizion component in controlled mode. Useful for <a href="guide/Routing.html">URL Routing</a>.</p> |
 | stalledSearchDelay | <code>number</code> | <code>200</code> | <p>The amount of time before considering that the search takes too much time. The time is expressed in milliseconds.</p> |
 
 <a name="module_AutoComplete"></a>
@@ -183,7 +183,7 @@ with the searchState.</p>
 | renderSuggestion | <code>function</code> |  | <p>Define how suggestions will be rendered.</p> |
 | searchTitle | <code>string</code> |  | <p>The submit button title.</p> |
 | size | <code>number</code> | <code>5</code> | <p>Number of suggestions to show.</p> |
-| showLoadingIndicator | <code>boolean</code> | <code>false</code> | <p>Display that the search is loading. This only happens after a certain amount of time to avoid a blinking effect. This timer can be configured with <code>stalledSearchDelay</code> props on <InstantSearch>. By default, the value is 200ms.</p> |
+| showLoadingIndicator | <code>boolean</code> | <code>false</code> | <p>Display that the search is loading. This only happens after a certain amount of time to avoid a blinking effect. This timer can be configured with <code>stalledSearchDelay</code> props on <Vizion>. By default, the value is 200ms.</p> |
 | submit | <code>node</code> |  | <p>Change the apparence of the default submit button (magnifying glass).</p> |
 | style | <code>object</code> |  | <p>Add a custom React.CSSProperties object to the AutoComplete form container.</p> |
 | triggerSubmitOnSuggestionSelected | <code>boolean</code> | <code>false</code> | <p>Define if the AutoComplete form container should be submitted onSuggestionSelected.</p> |
@@ -206,7 +206,7 @@ with the searchState.</p>
 ```js
 import React from 'react';
 import cliniasearch from 'cliniasearch/lite';
-import { Vision, AutoComplete } from '@clinia/react-vision-dom';
+import { Vizion, AutoComplete } from '@clinia/react-vizion-dom';
 
 const searchClient = cliniasearch(
   'latency',
@@ -214,11 +214,11 @@ const searchClient = cliniasearch(
 );
 
 const App = () => (
-  <Vision
+  <Vizion
     searchClient={searchClient}
   >
     <AutoComplete />
-  </Vision>
+  </Vizion>
 );
 ```
 <a name="module_Hits"></a>
@@ -251,19 +251,19 @@ const App = () => (
 ```js
 import React from 'react';
 import cliniasearch from 'cliniasearch/lite';
-import { Vision, Hits } from '@clinia/react-vision-dom';
+import { Vizion, Hits } from '@clinia/react-vizion-dom';
 
 const searchClient = cliniasearch(
   'TODO',
   'test'
 );
 const App = () => (
-  <Vision
+  <Vizion
     searchClient={searchClient}
     indexName="health_facility"
   >
     <Hits />
-  </Vision>
+  </Vizion>
 );
 ```
 <a name="module_InfiniteHits"></a>
@@ -298,7 +298,7 @@ const App = () => (
 ```js
 import React from 'react';
 import cliniasearch from 'cliniasearch/lite';
-import { Vision, InfiniteHits } from '@clinia/react-vision-dom';
+import { Vizion, InfiniteHits } from '@clinia/react-vizion-dom';
 
 const searchClient = cliniasearch(
   'TODO',
@@ -306,12 +306,12 @@ const searchClient = cliniasearch(
 );
 
 const App = () => (
-  <Vision
+  <Vizion
     searchClient={searchClient}
     indexName="health_facility"
   >
     <InfiniteHits />
-  </Vision>
+  </Vizion>
 );
 ```
 <a name="module_Location"></a>
@@ -342,7 +342,7 @@ const App = () => (
 | placeholder | <code>string</code> |  | <p>The label of the input placeholder</p> |
 | renderSuggestion | <code>function</code> |  | <p>Define how suggestions will be rendered.</p> |
 | searchTitle | <code>string</code> |  | <p>The submit button title</p> |
-| showLoadingIndicator | <code>boolean</code> | <code>false</code> | <p>Display that the search is loading. This only happens after a certain amount of time to avoid a blinking effect. This timer can be configured with <code>stalledSearchDelay</code> props on <InstantSearch>. By default, the value is 200ms.</p> |
+| showLoadingIndicator | <code>boolean</code> | <code>false</code> | <p>Display that the search is loading. This only happens after a certain amount of time to avoid a blinking effect. This timer can be configured with <code>stalledSearchDelay</code> props on <Vizion>. By default, the value is 200ms.</p> |
 | style | <code>object</code> |  | <p>Add a custom React.CSSProperties object to the Location form container</p> |
 | submit | <code>node</code> |  | <p>Change the apparence of the default submit button (magnifying glass).</p> |
 | triggerSubmitOnSuggestionSelected | <code>boolean</code> | <code>false</code> | <p>Define if the Location form container should be submitted onSuggestionSelected</p> |
@@ -365,7 +365,7 @@ const App = () => (
 ```js
 import React from 'react';
 import cliniasearch from 'cliniasearch/lite';
-import { Vision, Location } from '@clinia/react-vision-dom';
+import { Vizion, Location } from '@clinia/react-vizion-dom';
 
 const searchClient = cliniasearch(
   'latency',
@@ -373,11 +373,11 @@ const searchClient = cliniasearch(
 );
 
 const App = () => (
-  <Vision
+  <Vizion
     searchClient={searchClient}
   >
     <Location />
-  </Vision>
+  </Vizion>
 );
 ```
 <a name="module_SearchBox"></a>
@@ -405,7 +405,7 @@ const App = () => (
 | placeholder | <code>string</code> |  | <p>The label of the input placeholder.</p> |
 | searchAsYouType | <code>boolean</code> | <code>true</code> | <p>Should we search on every change to the query? If you disable this option, new searches will only be triggered by clicking the search button or by pressing the enter key while the search box is focused.</p> |
 | searchTitle | <code>string</code> |  | <p>The submit button title.</p> |
-| showLoadingIndicator | <code>boolean</code> | <code>false</code> | <p>Display that the search is loading. This only happens after a certain amount of time to avoid a blinking effect. This timer can be configured with <code>stalledSearchDelay</code> props on <InstantSearch>. By default, the value is 200ms.</p> |
+| showLoadingIndicator | <code>boolean</code> | <code>false</code> | <p>Display that the search is loading. This only happens after a certain amount of time to avoid a blinking effect. This timer can be configured with <code>stalledSearchDelay</code> props on <Vizion>. By default, the value is 200ms.</p> |
 | style | <code>object</code> |  | <p>Add a custom React.CSSProperties object to SearchBox form container.</p> |
 | submit | <code>node</code> |  | <p>Change the apparence of the default submit button (magnifying glass).</p> |
 
@@ -427,7 +427,7 @@ const App = () => (
 ```js
 import React from 'react';
 import cliniasearch from 'cliniasearch/lite';
-import { Vision, SearchBox } from '@clinia/react-vision-dom';
+import { Vizion, SearchBox } from '@clinia/react-vizion-dom';
 
 const searchClient = cliniasearch(
   'latency',
@@ -435,11 +435,11 @@ const searchClient = cliniasearch(
 );
 
 const App = () => (
-  <Vision
+  <Vizion
     searchClient={searchClient}
   >
     <SearchBox />
-  </Vision>
+  </Vizion>
 );
 ```
 <a name="module_Control"></a>
@@ -690,5 +690,5 @@ Since this component rely on the <code>document</code> property, this won't be r
 
 | Name | Type | Description |
 | --- | --- | --- |
-| geoPoint | [<code>LatLngPropType</code>](#LatLngPropType) | <p>Coordinate of the hit.</p> |
+| _geoPoint | [<code>LatLngPropType</code>](#LatLngPropType) | <p>Coordinate of the hit.</p> |
 

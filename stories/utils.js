@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import { linkTo } from '@storybook/addon-links';
 import clinia from 'clinia/lite';
 import {
-  Vision,
+  Vizion,
   Configure,
   SearchBox,
   connectHits,
-} from '@clinia/react-vision-dom';
+} from '@clinia/react-vizion-dom';
 import './style.css';
 
 const Hits = ({ hits }) => (
@@ -48,7 +48,7 @@ export const WrapWithHits = ({
     return clinia(appId, apiKey);
   }, [appId, apiKey]);
 
-  const sourceCodeUrl = `https://github.com/clinia/react-vision/tree/develop/stories/${linkedStoryGroup}.stories.js`;
+  const sourceCodeUrl = `https://github.com/clinia/react-vizion/tree/develop/stories/${linkedStoryGroup}.stories.js`;
   const playgroundLink = hasPlayground ? (
     <button
       onClick={linkTo(linkedStoryGroup, 'playground')}
@@ -87,7 +87,7 @@ export const WrapWithHits = ({
   };
 
   return (
-    <Vision
+    <Vizion
       searchClient={searchClient}
       indexName={indexName}
       searchState={searchState}
@@ -115,7 +115,7 @@ export const WrapWithHits = ({
           {footer}
         </div>
       </div>
-    </Vision>
+    </Vizion>
   );
 };
 

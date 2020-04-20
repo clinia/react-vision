@@ -6,34 +6,34 @@ const [version] = process.argv.slice(2);
 const examplesPath = path.join(__dirname, '..', 'examples');
 
 {
-  // Update React Vision DOM
+  // Update React Vizion DOM
   const examples = glob.sync(path.join(examplesPath, '!(react-native*)'));
 
   examples.forEach(example => {
-    execSync(`cd ${example} && yarn upgrade react-vision-dom@${version}`, {
+    execSync(`cd ${example} && yarn upgrade react-vizion-dom@${version}`, {
       stdio: 'inherit',
     });
   });
 }
 
 {
-  // Update React Vision Native
+  // Update React Vizion Native
   const examples = glob.sync(path.join(examplesPath, '+(react-native*)'));
 
   examples.forEach(example => {
-    // @TODO: update to react-vision-native
-    execSync(`cd ${example} && yarn upgrade react-vision@${version}`, {
+    // @TODO: update to react-vizion-native
+    execSync(`cd ${example} && yarn upgrade react-vizion@${version}`, {
       stdio: 'inherit',
     });
   });
 }
 
 {
-  // Update React Vision DOM Maps
+  // Update React Vizion DOM Maps
   const examples = glob.sync(path.join(examplesPath, 'geo-search'));
 
   examples.forEach(example => {
-    execSync(`cd ${example} && yarn upgrade react-vision-dom-maps@${version}`, {
+    execSync(`cd ${example} && yarn upgrade react-vizion-dom-maps@${version}`, {
       stdio: 'inherit',
     });
   });

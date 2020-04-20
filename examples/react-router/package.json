@@ -16,8 +16,8 @@
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-router-dom": "^5.1.2",
-    "react-vision-dom": "^1.0.0",
-    "react-vision-dom-maps": "^1.0.0"
+    "react-vizion-dom": "^1.0.0",
+    "react-vizion-dom-maps": "^1.0.0"
   },
   "devDependencies": {
     "react-scripts": "3.1.2"

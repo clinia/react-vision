@@ -1,6 +1,6 @@
 import React from 'react';
 import { FlatList, Text, StyleSheet } from 'react-native';
-import { connectInfiniteHits } from 'react-vision-native';
+import { connectInfiniteHits } from 'react-vizion-native';
 
 import { Typography, Margin } from '../styles';
 

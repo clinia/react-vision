@@ -1,5 +1,5 @@
 import React from 'react';
-import { Index } from 'react-vision-native';
+import { Index } from 'react-vizion-native';
 import { Text, View, StyleSheet } from 'react-native';
 
 import Content from '../components/Content';

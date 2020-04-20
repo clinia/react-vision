@@ -71,7 +71,7 @@ if [[ "$newVersion" == "" ]]; then
   exit 1
 fi
 
-versionFilePath='packages/react-vision-core/src/core/version.js'
+versionFilePath='packages/react-vizion-core/src/core/version.js'
 if [[ ! -f "$versionFilePath" ]]; then
   printf "\nRelease: Unable to bump the version at:\n"
   printf "$versionFilePath\n"
@@ -127,18 +127,18 @@ sleep 2.5
 # of the Workspaces. Another solution is to move out the stories
 # from the top level package (will be done at some point).
 yarn
-yarn upgrade react-vision-dom@$newVersion -D
-yarn upgrade react-vision-dom-maps@$newVersion -D
+yarn upgrade react-vizion-dom@$newVersion -D
+yarn upgrade react-vizion-dom-maps@$newVersion -D
 
 node scripts/update-examples.js $newVersion
 
-commitMessage="chore(deps): update examples to react-vision v$newVersion"
+commitMessage="chore(deps): update examples to react-vizion v$newVersion"
 git add examples package.json yarn.lock
 printf "$commitMessage" | git commit --file -
 
-printf "\n\nUpdate of react-vision version in all examples\n"
+printf "\n\nUpdate of react-vizion version in all examples\n"
 printf "\n\nalmost done, check everything in another terminal tab if you want."
 
-read -p "=> Update of react-vision version in all examples: when ready, press [ENTER] to push to github"
+read -p "=> Update of react-vizion version in all examples: when ready, press [ENTER] to push to github"
 
 git push origin master

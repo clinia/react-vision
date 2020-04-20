@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { Location } from '@clinia/react-vision-dom';
+import { Location } from '@clinia/react-vizion-dom';
 import { WrapWithHits } from './utils';
 
 const stories = storiesOf('Location', module);

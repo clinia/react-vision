@@ -1,7 +1,7 @@
 import notFound from '../static/images/empty-search@2x.png';
 import React from 'react';
 import { OpeningHours } from './OpeningHours';
-import { connectHits } from '@clinia/react-vision-dom';
+import { connectHits } from '@clinia/react-vizion-dom';
 
 const Hit = ({ hit, onRecordOver }) => {
   const {

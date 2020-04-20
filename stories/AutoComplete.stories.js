@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clinia from 'clinia/lite';
 import { storiesOf } from '@storybook/react';
-import { Vision, AutoComplete } from '@clinia/react-vision-dom';
+import { Vizion, AutoComplete } from '@clinia/react-vizion-dom';
 import { action } from '@storybook/addon-actions';
 import { boolean } from '@storybook/addon-knobs';
 import { WrapWithHits } from './utils';
@@ -68,7 +68,7 @@ CustomSuggestion.propTypes = {
 stories
   .addParameters({ jest: ['AutoComplete'] })
   .add('Custom AutoComplete', () => (
-    <Vision searchClient={searchClient} indexName="health_facility">
+    <Vizion searchClient={searchClient} indexName="health_facility">
       <AutoComplete
         onSubmit={e => {
           e.preventDefault();
@@ -94,5 +94,5 @@ stories
         )}
         translations={{ placeholder: 'Custom placeholder' }}
       />
-    </Vision>
+    </Vizion>
   ));

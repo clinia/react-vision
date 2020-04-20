@@ -24,13 +24,13 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'react-vision-dom': path.resolve(
+      'react-vizion-dom': path.resolve(
         __dirname,
-        '../packages/react-vision-dom'
+        '../packages/react-vizion-dom'
       ),
-      'react-vision-dom-maps': path.resolve(
+      'react-vizion-dom-maps': path.resolve(
         __dirname,
-        '../packages/react-vision-dom-maps'
+        '../packages/react-vizion-dom-maps'
       ),
     },
   },

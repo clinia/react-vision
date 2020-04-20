@@ -1248,10 +1248,10 @@
   dependencies:
     "@clinia/requester-common" "2.0.0-beta.2"
 
-"@clinia/search-helper@2.0.0-beta.1":
-  version "2.0.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@clinia/search-helper/-/search-helper-2.0.0-beta.1.tgz#87feeae3d7eae0bca1e4a6de4121df241117f0a0"
-  integrity sha512-DV0/5xB4k34w0mJJPh6tonuVeFaDHC1k1InwnSlNp0Lx07dz7TALL+F430ysUI3ess3yB1Qe+LH3/w6xdvg6xw==
+"@clinia/search-helper@2.0.0-beta.2":
+  version "2.0.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@clinia/search-helper/-/search-helper-2.0.0-beta.2.tgz#bdb75348ed8ea75dba0d08091e7710a9432076e7"
+  integrity sha512-k/WfTG2MZA8qYi+EEb3oAU/BJcj5KdoPL4c5ij9/gEl3HlDHLVNwvdtnOAo+/LrTcUYswEKuwAl8H0TbK90ciw==
   dependencies:
     events "^1.1.1"
 

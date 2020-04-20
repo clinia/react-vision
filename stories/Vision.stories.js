@@ -1,9 +1,9 @@
 import React from 'react';
 import clinia from 'clinia/lite';
 import { storiesOf } from '@storybook/react';
-import { Vision, Hits, AutoComplete } from '@clinia/react-vision-dom';
+import { Vizion, Hits, AutoComplete } from '@clinia/react-vizion-dom';
 
-const stories = storiesOf('<Vision>', module);
+const stories = storiesOf('<Vizion>', module);
 
 const searchClient = clinia(
   'demo-pharmacies',
@@ -12,13 +12,13 @@ const searchClient = clinia(
 
 stories
   .add('default', () => (
-    <Vision searchClient={searchClient} indexName="health_facility">
+    <Vizion searchClient={searchClient} indexName="health_facility">
       <AutoComplete />
       <Hits />
-    </Vision>
+    </Vizion>
   ))
   .add('with custom search client', () => (
-    <Vision
+    <Vizion
       searchClient={{
         search() {
           return Promise.resolve({
@@ -33,5 +33,5 @@ stories
     >
       <AutoComplete />
       <Hits />
-    </Vision>
+    </Vizion>
   ));

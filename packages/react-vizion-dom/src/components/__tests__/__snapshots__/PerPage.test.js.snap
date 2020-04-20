@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PerPage renders 1`] = `
+<div
+  className="cvi-perpage"
+>
+  <select
+    className="cvi-perpage-select"
+    onChange={[Function]}
+    value={5}
+  >
+    <option
+      className="cvi-perpage-option"
+      value={5}
+    >
+      show 5 hits
+    </option>
+    <option
+      className="cvi-perpage-option"
+      value={10}
+    >
+      show 10 hits
+    </option>
+  </select>
+</div>
+`;
+
+exports[`PerPage renders with a custom className 1`] = `
+<div
+  className="cvi-perpage MyCusomPerPage"
+>
+  <select
+    className="cvi-perpage-select"
+    onChange={[Function]}
+    value={5}
+  >
+    <option
+      className="cvi-perpage-option"
+      value={5}
+    >
+      show 5 hits
+    </option>
+    <option
+      className="cvi-perpage-option"
+      value={10}
+    >
+      show 10 hits
+    </option>
+  </select>
+</div>
+`;

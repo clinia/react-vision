@@ -8354,9 +8354,9 @@ react-scripts@3.1.2:
   optionalDependencies:
     fsevents "2.0.7"
 
-react-vision-core@^1.0.0:
+react-vizion-core@^1.0.0:
   version "1.0.0"
-  resolved "https://registry.yarnpkg.com/react-vision-core/-/react-vision-core-1.0.0.tgz#d8b935de2a21eb193bd91e88fc3988205bedb464"
+  resolved "https://registry.yarnpkg.com/react-vizion-core/-/react-vizion-core-1.0.0.tgz#d8b935de2a21eb193bd91e88fc3988205bedb464"
   integrity sha512-9TlEkZNmtWidAI4ulmBfh4rnjZcWZFVNwWIriMI3uTftsFblC7z3p9Lt5pQWr2brzdVRH0YlafFU/NOFgCYfrQ==
   dependencies:
     "@babel/runtime" "^7.1.2"
@@ -8364,24 +8364,24 @@ react-vision-core@^1.0.0:
     fast-deep-equal "^2.0.1"
     prop-types "^15.5.10"
 
-react-vision-dom-maps@^1.0.0:
+react-vizion-dom-maps@^1.0.0:
   version "1.0.0"
-  resolved "https://registry.yarnpkg.com/react-vision-dom-maps/-/react-vision-dom-maps-1.0.0.tgz#5dc96f0e602271f3c398dd7152d39c4a6b81297e"
+  resolved "https://registry.yarnpkg.com/react-vizion-dom-maps/-/react-vizion-dom-maps-1.0.0.tgz#5dc96f0e602271f3c398dd7152d39c4a6b81297e"
   integrity sha512-XlJEx3CPE78WX3kQxAvKvmuYtIfntI+8KOQiTsKdO69/RhQCb13VOyhixaw4Qf2WHu079ch0zswDWMMYVIRyqg==
   dependencies:
     "@babel/runtime" "^7.1.2"
     prop-types "^15.5.10"
     scriptjs "^2.5.8"
 
-react-vision-dom@^1.0.0:
+react-vizion-dom@^1.0.0:
   version "1.0.0"
-  resolved "https://registry.yarnpkg.com/react-vision-dom/-/react-vision-dom-1.0.0.tgz#6a114f16517570014c5e9349e031fce116ea47c2"
+  resolved "https://registry.yarnpkg.com/react-vizion-dom/-/react-vizion-dom-1.0.0.tgz#6a114f16517570014c5e9349e031fce116ea47c2"
   integrity sha512-P7HAdp6hLNHd37eTjQRlyKSS4wDC6ViYGmB6KdZ1cxhBsdn7WI/iHKFheOyeSx/KtK7vLommoKYCZ/gj8k6pMQ==
   dependencies:
     "@babel/runtime" "^7.6.3"
     classnames "^2.2.6"
     prop-types "^15.7.2"
-    react-vision-core "^1.0.0"
+    react-vizion-core "^1.0.0"
 
 react@^16.11.0:
   version "16.12.0"

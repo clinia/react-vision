@@ -1,6 +1,6 @@
 <div align="center">
   <img src=".github/clinia-logo.svg" width="250">
-  <h1>React Vision</h1>
+  <h1>React Vizion</h1>
   <h4>React library that lets you create a healthcare search experience using Clinia's search API.</h4>
   <p>
     <a href="#why">Why</a> •
@@ -20,7 +20,7 @@
 
 # Why
 
-#### React Vision is the result of Clinia's effort to make its expertise more accessible to its partners. The Vision tools allow partners to create their own healthcare search experience, for internal or external use, using Clinia's search API.
+#### React Vizion is the result of Clinia's effort to make its expertise more accessible to its partners. The Vizion tools allow partners to create their own healthcare search experience, for internal or external use, using Clinia's search API.
 
 # Features
 
@@ -31,12 +31,12 @@
 
 # Getting Started
 
-React Vision is available on [npm](https://www.npmjs.com/get-npm) registry. It relies on [`cliniasearch`](https://github.com/clinia/cliniasearch-client-javascript) to communicate with Clinia APIs.
+React Vizion is available on [npm](https://www.npmjs.com/get-npm) registry. It relies on [`clinia`](https://github.com/clinia/clinia-client-javascript) to communicate with Clinia APIs.
 
 ```
-npm install react-vision-dom cliniasearch
+npm install @clinia/react-vizion-dom clinia
 OR
-yarn add react-vision-dom cliniasearch
+yarn add @clinia/react-vizion-dom clinia
 ```
 
 # Examples
@@ -81,15 +81,15 @@ We welcome all contributors, from casual to regular. You are only one command aw
 
 # 📄 License
 
-React Vision is an open-sourced software licensed under the [MIT license](LICENSE).
+React Vizion is an open-sourced software licensed under the [MIT license](LICENSE).
 
 <!-- Links -->
 
-[ci-svg]: https://circleci.com/gh/clinia/react-vision.svg?style=svg
-[ci-url]: https://circleci.com/gh/clinia/react-vision
+[ci-svg]: https://circleci.com/gh/clinia/react-vizion.svg?style=svg
+[ci-url]: https://circleci.com/gh/clinia/react-vizion
 [license-image]: http://img.shields.io/badge/license-MIT-green.svg?style=flat-square
 [license-url]: LICENSE
-[downloads-image]: https://img.shields.io/npm/dm/react-vision.svg?style=flat-square
-[downloads-url]: http://npm-stat.com/charts.html?package=react-vision
-[version-svg]: https://img.shields.io/npm/v/react-vision.svg?style=flat-square
-[package-url]: https://yarnpkg.com/en/package/react-vision
+[downloads-image]: https://img.shields.io/npm/dm/react-vizion.svg?style=flat-square
+[downloads-url]: http://npm-stat.com/charts.html?package=react-vizion
+[version-svg]: https://img.shields.io/npm/v/react-vizion.svg?style=flat-square
+[package-url]: https://yarnpkg.com/en/package/react-vizion
