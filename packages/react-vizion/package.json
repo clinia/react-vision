@@ -32,7 +32,7 @@
     "build:umd": "BABEL_ENV=rollup rollup -c rollup.config.js",
     "preparePackageFolder": "mkdir -p dist && cp {package.json,README.md} dist",
     "release": "yarn clean && yarn preparePackageFolder && yarn build && cd dist && yarn publish --non-interactive",
-    "release:beta": "yarn clean && yarn preparePackageFolder && yarn build && cd dist && yarn publish --tag beta --non-interactive"
+    "release:beta": "yarn clean && yarn preparePackageFolder && yarn build && cd dist && yarn publish --tag beta --non-interactive --access public"
   },
   "dependencies": {
     "@babel/runtime": "^7.6.3",
