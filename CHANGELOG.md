@@ -1,3 +1,12 @@
+# [2.0.0-beta.2](https://github.com/clinia/react-vision/compare/v2.0.0-beta.1...v2.0.0-beta.2) (2020-04-21)
+
+
+### Bug Fixes
+
+* **maps:** wrong type mapping from clinia _geoPoint to google LatLng ([0dee1f8](https://github.com/clinia/react-vision/commit/0dee1f87b24ce2c10f19fb62f9ccbbf343dfd6e9))
+
+
+
 # [2.0.0-beta.1](https://github.com/clinia/react-vision/compare/v2.0.0-beta.0...v2.0.0-beta.1) (2020-04-20)
 
 
