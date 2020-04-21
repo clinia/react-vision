@@ -149,7 +149,7 @@
     },
     {
       "path": "packages/react-vizion-dom-maps/dist/umd/ReactVizionDOMMaps.min.js",
-      "maxSize": "10.14 kB"
+      "maxSize": "10.15 kB"
     }
   ],
   "dependencies": {
