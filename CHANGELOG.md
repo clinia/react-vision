@@ -1,3 +1,12 @@
+# [2.0.0-beta.3](https://github.com/clinia/react-vision/compare/v2.0.0-beta.2...v2.0.0-beta.3) (2020-04-21)
+
+
+### Bug Fixes
+
+* **dom-maps:** wrong mappinf of clinia _geoPoint in maps provider extend bounds ([0e24d54](https://github.com/clinia/react-vision/commit/0e24d54b2d19fd6b3c86879342ef1776179c5f15))
+
+
+
 # [2.0.0-beta.2](https://github.com/clinia/react-vision/compare/v2.0.0-beta.1...v2.0.0-beta.2) (2020-04-21)
 
 
