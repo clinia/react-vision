@@ -130,7 +130,8 @@ yarn
 yarn upgrade @clinia/react-vizion-dom@$newVersion -D
 yarn upgrade @clinia/react-vizion-dom-maps@$newVersion -D
 
-node scripts/update-examples.js $newVersion
+# Skip for now
+# node scripts/update-examples.js $newVersion
 
 commitMessage="chore(deps): update examples to react-vizion v$newVersion"
 git add examples package.json yarn.lock

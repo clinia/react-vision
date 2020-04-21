@@ -153,7 +153,7 @@
     }
   ],
   "dependencies": {
-    "@clinia/react-vizion-dom": "2.0.0-beta.0",
-    "@clinia/react-vizion-dom-maps": "2.0.0-beta.0"
+    "@clinia/react-vizion-dom": "2.0.0-beta.2",
+    "@clinia/react-vizion-dom-maps": "2.0.0-beta.2"
   }
 }

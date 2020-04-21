@@ -1229,26 +1229,6 @@
   dependencies:
     "@clinia/logger-common" "2.0.0-beta.2"
 
-"@clinia/react-vizion-dom-maps@2.0.0-beta.0":
-  version "2.0.0-beta.0"
-  resolved "https://registry.yarnpkg.com/@clinia/react-vizion-dom-maps/-/react-vizion-dom-maps-2.0.0-beta.0.tgz#82c55c8f044911273c09ef7a8626ec4d89ee2090"
-  integrity sha512-2Ul0KpaLNbSNY7MV3prohU/nPBkGe+PEay4VPUbX0HeCOjkMO26Op7gkAMJpMwaDoIb9DLEfVolTorNbbvxSfw==
-  dependencies:
-    "@babel/runtime" "^7.1.2"
-    prop-types "^15.5.10"
-    scriptjs "^2.5.8"
-
-"@clinia/react-vizion-dom@2.0.0-beta.0":
-  version "2.0.0-beta.0"
-  resolved "https://registry.yarnpkg.com/@clinia/react-vizion-dom/-/react-vizion-dom-2.0.0-beta.0.tgz#5e636a70fa3feac63370978130092e1213c74c64"
-  integrity sha512-Q0Pv3WuvRNe6hSRF++dgFuWrzqX4oiQ9Gyvhb+2kDqnJS6fRrMH3e7C2WJNbYonXmTrekK8iG0yFpvsrLM9fQg==
-  dependencies:
-    "@babel/runtime" "^7.6.3"
-    "@clinia/react-vizion-core" "^2.0.0-beta.0"
-    classnames "^2.2.6"
-    exenv "^1.2.2"
-    prop-types "^15.7.2"
-
 "@clinia/requester-browser-xhr@2.0.0-beta.2":
   version "2.0.0-beta.2"
   resolved "https://registry.yarnpkg.com/@clinia/requester-browser-xhr/-/requester-browser-xhr-2.0.0-beta.2.tgz#c5d94db19eb7c4efb57dbcf0329a8c03c97eeacd"
