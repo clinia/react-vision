@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
  */
 export const LatLngPropType = PropTypes.shape({
   lat: PropTypes.number.isRequired,
-  lng: PropTypes.number.isRequired,
+  lon: PropTypes.number.isRequired,
 });
 
 /**

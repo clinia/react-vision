@@ -68,7 +68,10 @@ export class Marker extends Component {
     this.instance = new google.maps.Marker({
       ...filterProps(props),
       map: googleMapsInstance,
-      position: hit._geoPoint,
+      position: {
+        lat: hit._geoPoint.lat,
+        lng: hit._geoPoint.lon,
+      },
     });
 
     this.removeEventsListeners = registerEvents(

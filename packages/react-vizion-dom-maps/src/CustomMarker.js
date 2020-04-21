@@ -97,7 +97,10 @@ export class CustomMarker extends Component {
 
     const marker = new Marker({
       map: googleMapsInstance,
-      position: hit._geoPoint,
+      position: {
+        lat: hit._geoPoint.lat,
+        lng: hit._geoPoint.lon,
+      },
       className,
       anchor,
     });
