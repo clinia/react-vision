@@ -1,5 +1,5 @@
 {
-  "name": "@clinia/react-vizion-dom-maps",
+  "name": "@clinia/react-vizion-dom-gmaps",
   "version": "2.0.0-beta.3",
   "description": "",
   "main": "dist/cjs/index.js",
@@ -23,8 +23,7 @@
     "react-dom",
     "search",
     "geo search",
-    "google maps",
-    "mapbox"
+    "google maps"
   ],
   "files": [
     "README.md",

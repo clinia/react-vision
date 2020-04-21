@@ -48,7 +48,14 @@ module.exports = api => {
         ],
       },
       {
-        test: 'packages/react-vizion-dom-maps',
+        test: 'packages/react-vizion-dom-gmaps',
+        plugins: clean([
+          '@babel/plugin-syntax-dynamic-import',
+          !isRollup && 'babel-plugin-dynamic-import-node',
+        ]),
+      },
+      {
+        test: 'packages/react-vizion-dom-mapbox',
         plugins: clean([
           '@babel/plugin-syntax-dynamic-import',
           !isRollup && 'babel-plugin-dynamic-import-node',

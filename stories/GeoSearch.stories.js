@@ -10,7 +10,7 @@ import {
   CustomMarker,
   Redo,
   Control,
-} from '@clinia/react-vizion-dom-maps';
+} from '@clinia/react-vizion-dom-gmaps';
 import { WrapWithHits } from './utils';
 
 const stories = storiesOf('GeoSearch', module);

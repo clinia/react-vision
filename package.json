@@ -10,7 +10,7 @@
     "postinstall": "lerna run build:cjs --scope @clinia/react-vizion-*",
     "start": "yarn storybook",
     "build": "lerna run build --scope @clinia/react-*",
-    "docs": "jsdoc2md --no-cache --template ./doc/jsdoc2md/README.hbs --partial ./doc/jsdoc2md/body.hbs ./doc/jsdoc2md/themes.hbs --files ./packages/react-vizion-core/src/widgets/* ./packages/react-vizion-dom/src/widgets/* ./packages/react-vizion-dom-maps/src/* --configure ./doc/jsdoc2md/jsdoc2md.json > ./doc/widgets/README-generated.md",
+    "docs": "jsdoc2md --no-cache --template ./doc/jsdoc2md/README.hbs --partial ./doc/jsdoc2md/body.hbs ./doc/jsdoc2md/themes.hbs --files ./packages/react-vizion-core/src/widgets/* ./packages/react-vizion-dom/src/widgets/* ./packages/react-vizion-dom-gmaps/src/* --configure ./doc/jsdoc2md/jsdoc2md.json > ./doc/widgets/README-generated.md",
     "watch": "lerna run watch --scope @clinia/react-vizion-* --parallel",
     "release": "scripts/release.sh",
     "lint": "eslint --ext .js,.ts,.tsx .",
@@ -54,6 +54,7 @@
     "@types/enzyme-adapter-react-16": "^1.0.3",
     "@types/googlemaps": "^3.30.16",
     "@types/jest": "^24.0.0",
+    "@types/mapbox-gl": "^1.9.0",
     "@types/prop-types": "^15.5.8",
     "@types/react": "^16.7.18",
     "@types/react-dom": "^16.0.11",
@@ -148,7 +149,11 @@
       "maxSize": "35.50 kB"
     },
     {
-      "path": "packages/react-vizion-dom-maps/dist/umd/ReactVizionDOMMaps.min.js",
+      "path": "packages/react-vizion-dom-gmaps/dist/umd/ReactVizionDOMGMaps.min.js",
+      "maxSize": "10.15 kB"
+    },
+    {
+      "path": "packages/react-vizion-dom-gmaps/dist/umd/ReactVizionDOMMapbox.min.js",
       "maxSize": "10.15 kB"
     }
   ],

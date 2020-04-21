@@ -67,11 +67,11 @@ const createConfiguration = ({ name, minify = false } = {}) => ({
 
 export default [
   createConfiguration({
-    name: 'DOMMaps',
+    name: 'DOMMapbox',
   }),
 
   createConfiguration({
-    name: 'DOMMaps',
+    name: 'DOMMapbox',
     minify: true,
   }),
 ];
