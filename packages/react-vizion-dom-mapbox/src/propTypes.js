@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
  */
 export const LatLngPropType = PropTypes.shape({
   lat: PropTypes.number.isRequired,
-  lng: PropTypes.number.isRequired,
+  lon: PropTypes.number.isRequired,
 });
 
 /**
@@ -25,8 +25,5 @@ export const BoundingBoxPropType = PropTypes.shape({
  * @prop {LatLngPropType} _geoPoint - Coordinate of the hit.
  */
 export const GeoPointHitPropType = PropTypes.shape({
-  _geoPoint: PropTypes.shape({
-    lat: PropTypes.number.isRequired,
-    lon: PropTypes.number.isRequired,
-  }),
+  _geoPoint: LatLngPropType,
 });

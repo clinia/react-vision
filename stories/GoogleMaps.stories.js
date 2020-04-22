@@ -13,7 +13,7 @@ import {
 } from '@clinia/react-vizion-dom-gmaps';
 import { WrapWithHits } from './utils';
 
-const stories = storiesOf('GeoSearch', module);
+const stories = storiesOf('GoogleMaps', module);
 
 const Container = ({ children }) => (
   <div style={{ height: 500 }}>{children}</div>

@@ -43,10 +43,7 @@ class MapboxLoader extends Component {
   };
 
   static defaultProps = {
-    endpoints: [
-      'https://api.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.js',
-      'https://api.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.css',
-    ],
+    endpoints: ['https://api.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.js'],
   };
 
   state = {
@@ -65,6 +62,7 @@ class MapboxLoader extends Component {
       injectScript(endpoints, () => {
         if (!this.isUnmounting) {
           window.mapboxgl.accessToken = accessToken;
+          // console.log(window.mapboxgl);
           this.setState(() => ({
             mapboxgl: window.mapboxgl,
           }));
