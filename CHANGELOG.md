@@ -1,3 +1,13 @@
+# [2.0.0-beta.4](https://github.com/clinia/react-vision/compare/v2.0.0-beta.3...v2.0.0-beta.4) (2020-04-22)
+
+
+### Features
+
+* **dom:** added a new parameter to disable rendering on the server ([e67d546](https://github.com/clinia/react-vision/commit/e67d546072bb879a85cfa8ca37b20fbcdb45b3db))
+* **maps:** added mapbox integration and react mappings ([#35](https://github.com/clinia/react-vision/issues/35)) ([f4d5ceb](https://github.com/clinia/react-vision/commit/f4d5ceb204c03786291a726eba7d254ed798ee40))
+
+
+
 # [2.0.0-beta.3](https://github.com/clinia/react-vision/compare/v2.0.0-beta.2...v2.0.0-beta.3) (2020-04-21)
 
 
