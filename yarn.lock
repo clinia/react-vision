@@ -1238,17 +1238,6 @@
     prop-types "^15.5.10"
     scriptjs "^2.5.8"
 
-"@clinia/react-vizion-dom@2.0.0-beta.2":
-  version "2.0.0-beta.2"
-  resolved "https://registry.yarnpkg.com/@clinia/react-vizion-dom/-/react-vizion-dom-2.0.0-beta.2.tgz#5f54af214e406a044a73916ae3b75348df5bea60"
-  integrity sha512-dUckmVeZoqApkPtbs+iVKOGYxtvX1/E3zrtwkyXWF/qjCWFC4rZ/aHBlx2eGcAoRE4jJFYi5QFx7IMwyqlED4Q==
-  dependencies:
-    "@babel/runtime" "^7.6.3"
-    "@clinia/react-vizion-core" "^2.0.0-beta.2"
-    classnames "^2.2.6"
-    exenv "^1.2.2"
-    prop-types "^15.7.2"
-
 "@clinia/requester-browser-xhr@2.0.0-beta.2":
   version "2.0.0-beta.2"
   resolved "https://registry.yarnpkg.com/@clinia/requester-browser-xhr/-/requester-browser-xhr-2.0.0-beta.2.tgz#c5d94db19eb7c4efb57dbcf0329a8c03c97eeacd"
