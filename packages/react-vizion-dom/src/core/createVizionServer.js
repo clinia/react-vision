@@ -100,7 +100,7 @@ const multiIndexSearch = (
   );
 };
 
-export const findResultsState = function(App, props) {
+export const findResultsState = function(App, props, render = true) {
   if (!props) {
     throw new Error(
       'The function `findResultsState` must be called with props: `findResultsState(App, props)`'
@@ -123,12 +123,14 @@ export const findResultsState = function(App, props) {
 
   const searchParameters = [];
 
-  renderToString(
-    <App
-      {...props}
-      onSearchParameters={createSearchParametersCollector(searchParameters)}
-    />
-  );
+  if (render) {
+    renderToString(
+      <App
+        {...props}
+        onSearchParameters={createSearchParametersCollector(searchParameters)}
+      />
+    );
+  }
 
   const { sharedParameters, derivedParameters } = getSearchParameters(
     indexName,
