@@ -1,10 +1,10 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
-// import {
-//   registerEvents,
-//   createListenersPropTypes,
-//   createFilterProps,
-// } from './utils';
+import {
+  registerEvents,
+  createListenersPropTypes,
+  createFilterProps,
+} from './utils';
 import { GeoPointHitPropType } from './propTypes';
 import withMapbox from './withMapbox';
 
@@ -17,8 +17,10 @@ const eventTypes = {
   onMouseUp: 'mouseup',
 };
 
-// const excludes = ['children'].concat(Object.keys(eventTypes));
-// const filterProps = createFilterProps(excludes);
+const excludes = ['children', 'draggable', 'element'].concat(
+  Object.keys(eventTypes)
+);
+const filterProps = createFilterProps(excludes);
 
 /**
  * @module Marker
@@ -56,42 +58,20 @@ const eventTypes = {
  */
 export class Marker extends Component {
   static propTypes = {
-    // ...createListenersPropTypes(eventTypes),
+    ...createListenersPropTypes(eventTypes),
     mapboxgl: PropTypes.object.isRequired,
     mapboxglInstance: PropTypes.object.isRequired,
     hit: GeoPointHitPropType.isRequired,
   };
 
   componentDidMount() {
-    const { mapboxgl, mapboxglInstance, hit } = this.props;
+    const { mapboxgl, mapboxglInstance, hit, ...props } = this.props;
 
-    // this.instance = new mapboxgl.Marker({
-    //   ...filterProps(props),
-    //   map: mapboxglInstance,
-    //   position: {
-    //     lat: hit._geoPoint.lat,
-    //     lng: hit._geoPoint.lon,
-    //   },
-    // });
-
-    this.instance = new mapboxgl.Marker()
+    this.instance = new mapboxgl.Marker({ ...filterProps(props) })
       .setLngLat([hit._geoPoint.lon, hit._geoPoint.lat])
       .addTo(mapboxglInstance);
 
-    // this.removeEventsListeners = registerEvents(
-    //   eventTypes,
-    //   this.props,
-    //   this.instance
-    // );
-  }
-
-  componentDidUpdate() {
-    // this.removeEventsListeners();
-    // this.removeEventsListeners = registerEvents(
-    //   eventTypes,
-    //   this.props,
-    //   this.instance
-    // );
+    registerEvents(eventTypes, this.props, this.instance._element);
   }
 
   componentWillUnmount() {

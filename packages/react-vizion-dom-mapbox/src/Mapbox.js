@@ -35,22 +35,16 @@ class Mapbox extends Component {
     this.instance = new mapboxgl.Map({
       container: this.mapRef.current,
       style: 'mapbox://styles/mapbox/streets-v11',
-      // mapTypeControl: false,
-      // fullscreenControl: false,
-      // streetViewControl: false,
-      // clickableIcons: false,
-      // zoomControlOptions: {
-      //   position: google.maps.ControlPosition.LEFT_TOP,
-      // },
       ...mapOptions,
     });
 
-    this.instance.on('idle', this.setupListenersWhenMapIsReady);
-    this.listeners.push('idle');
+    this.instance.on('load', this.setupListenersWhenMapIsReady);
+    this.listeners.push('load');
   }
 
   componentDidUpdate() {
     const {
+      mapboxgl,
       initialZoom,
       initialPosition,
       boundingBox,
@@ -64,7 +58,19 @@ class Mapbox extends Component {
 
     if (boundingBox) {
       this.lockUserInteration(() => {
-        this.instance.fitBounds(boundingBox, boundingBoxPadding);
+        this.instance.fitBounds(
+          new mapboxgl.LngLatBounds(
+            new mapboxgl.LngLat(
+              boundingBox.southWest.lng,
+              boundingBox.southWest.lat
+            ),
+            new mapboxgl.LngLat(
+              boundingBox.northEast.lng,
+              boundingBox.northEast.lat
+            )
+          ),
+          boundingBoxPadding
+        );
       });
     } else {
       this.lockUserInteration(() => {
@@ -96,25 +102,12 @@ class Mapbox extends Component {
     const onChange = () => {
       if (this.isUserInteraction) {
         this.props.onChange();
+        this.props.onIdle(this.instance);
       }
     };
 
-    this.instance.on('center_changed', onChange);
-    this.listeners.push('center_changed');
-
-    this.instance.on('zoomend', onChange);
-    this.listeners.push('zoomend');
-
-    this.instance.on('dragstart', onChange);
-    this.listeners.push('dragstart');
-
-    this.instance.on('idle', () => {
-      if (this.isUserInteraction) {
-        this.props.onIdle({
-          instance: this.instance,
-        });
-      }
-    });
+    this.instance.on('moveend', onChange);
+    this.listeners.push('moveend');
   };
 
   lockUserInteration(functionThatAltersTheMapPosition) {

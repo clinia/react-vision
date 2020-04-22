@@ -31,7 +31,7 @@
   ],
   "scripts": {
     "clean": "rm -rf dist",
-    "watch": "yarn build:cjs --watch",
+    "watch": "yarn build:es --watch",
     "build": "yarn build:cjs && yarn build:es && yarn build:umd",
     "build:cjs": "babel src --root-mode upward --extensions '.js,.ts,.tsx' --out-dir dist/cjs --ignore '**/__tests__/**/*','**/__mocks__/**/*' --quiet",
     "build:es": "BABEL_ENV=es babel src --root-mode upward --extensions '.js,.ts,.tsx' --out-dir dist/es --ignore '**/__tests__/**/*','**/__mocks__/**/*' --quiet",

@@ -26,10 +26,7 @@ describe('MapboxLoader', () => {
 
     return runAllMicroTasks().then(() => {
       expect(injectScript).toHaveBeenLastCalledWith(
-        [
-          'https://api.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.js',
-          'https://api.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.css',
-        ],
+        ['https://api.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.js'],
         expect.any(Function)
       );
     });

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { LatLngPropType, BoundingBoxPropType } from './propTypes';
 import GeoSearchContext from './GeoSearchContext';
+import { isValidCoordinates } from './utils';
 
 class Provider extends Component {
   static propTypes = {
@@ -61,14 +62,16 @@ class Provider extends Component {
   createBoundingBoxFromRecords(hits) {
     const { google } = this.props;
 
-    const latLngBounds = hits.reduce(
-      (acc, hit) =>
-        acc.extend({
+    const latLngBounds = hits.reduce((acc, hit) => {
+      if (isValidCoordinates(hit._geoPoint.lat, hit._geoPoint.lon)) {
+        return acc.extend({
           lat: hit._geoPoint.lat,
           lng: hit._geoPoint.lon,
-        }),
-      new google.maps.LatLngBounds()
-    );
+        });
+      } else {
+        return acc;
+      }
+    }, new google.maps.LatLngBounds());
 
     return {
       northEast: latLngBounds.getNorthEast().toJSON(),

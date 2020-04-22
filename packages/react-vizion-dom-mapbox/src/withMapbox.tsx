@@ -7,6 +7,7 @@ type Subtract<TProps, TSubstractedProps> = Omit<
 >;
 
 export interface WithMapboxProps {
+  // @ts-ignore
   mapboxgl: typeof mapboxgl;
   mapboxglInstance: mapboxgl.Map;
 }

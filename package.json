@@ -150,11 +150,11 @@
     },
     {
       "path": "packages/react-vizion-dom-gmaps/dist/umd/ReactVizionDOMGMaps.min.js",
-      "maxSize": "10.15 kB"
+      "maxSize": "10.21 kB"
     },
     {
-      "path": "packages/react-vizion-dom-gmaps/dist/umd/ReactVizionDOMMapbox.min.js",
-      "maxSize": "10.15 kB"
+      "path": "packages/react-vizion-dom-mapbox/dist/umd/ReactVizionDOMMapbox.min.js",
+      "maxSize": "10.34 kB"
     }
   ],
   "dependencies": {

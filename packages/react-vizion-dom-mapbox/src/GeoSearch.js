@@ -33,7 +33,7 @@ export default class GeoSearch extends Component {
 
   static defaultProps = {
     initialZoom: 1,
-    initialPosition: { lat: 0, lon: 0 },
+    initialPosition: { lat: 0, lng: 0 },
     enableRefine: true,
     enableRefineOnMapMove: true,
     defaultRefinement: null,
@@ -68,7 +68,7 @@ export default class GeoSearch extends Component {
           shouldUpdate,
         }) => (
           <Mapbox
-            testID="GoogleMaps"
+            testID="Mapbox"
             mapboxgl={mapboxgl}
             initialZoom={initialZoom}
             initialPosition={position || initialPosition}

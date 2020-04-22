@@ -30,7 +30,7 @@ const initialPosition = { lat: 45.410246, lng: -73.986345 };
 
 stories
   .add('default', () => (
-    <WrapWithHits indexName="health_facility" linkedStoryGroup="GeoSearch">
+    <WrapWithHits indexName="meta" linkedStoryGroup="GeoSearch">
       <Configure perPage={20} />
 
       <Container>
@@ -51,7 +51,7 @@ stories
     </WrapWithHits>
   ))
   .add('with default refinement', () => (
-    <WrapWithHits indexName="health_facility" linkedStoryGroup="GeoSearch">
+    <WrapWithHits indexName="meta" linkedStoryGroup="GeoSearch">
       <Configure perPage={20} />
 
       <Container>
@@ -78,7 +78,7 @@ stories
     </WrapWithHits>
   ))
   .add('with refine disabled', () => (
-    <WrapWithHits indexName="health_facility" linkedStoryGroup="GeoSearch">
+    <WrapWithHits indexName="meta" linkedStoryGroup="GeoSearch">
       <Configure perPage={20} />
 
       <Container>
@@ -106,7 +106,7 @@ stories
 
 stories
   .add('with zoom & center', () => (
-    <WrapWithHits indexName="health_facility" linkedStoryGroup="GeoSearch">
+    <WrapWithHits indexName="meta" linkedStoryGroup="GeoSearch">
       <Configure perPage={20} />
 
       <Container>
@@ -131,7 +131,7 @@ stories
     </WrapWithHits>
   ))
   .add('with map options', () => (
-    <WrapWithHits indexName="health_facility" linkedStoryGroup="GeoSearch">
+    <WrapWithHits indexName="meta" linkedStoryGroup="GeoSearch">
       <Configure perPage={20} />
 
       <Container>
@@ -152,7 +152,7 @@ stories
     </WrapWithHits>
   ))
   .add('with <Marker> options', () => (
-    <WrapWithHits indexName="health_facility" linkedStoryGroup="GeoSearch">
+    <WrapWithHits indexName="meta" linkedStoryGroup="GeoSearch">
       <Configure perPage={20} />
 
       <Container>
@@ -178,7 +178,7 @@ stories
     </WrapWithHits>
   ))
   .add('with <Marker> events', () => (
-    <WrapWithHits indexName="health_facility" linkedStoryGroup="GeoSearch">
+    <WrapWithHits indexName="meta" linkedStoryGroup="GeoSearch">
       <Configure perPage={20} />
 
       <Container>
@@ -199,7 +199,7 @@ stories
     </WrapWithHits>
   ))
   .add('with <Redo> component', () => (
-    <WrapWithHits indexName="health_facility" linkedStoryGroup="GeoSearch">
+    <WrapWithHits indexName="meta" linkedStoryGroup="GeoSearch">
       <Configure perPage={20} />
 
       <Container>
@@ -222,7 +222,7 @@ stories
     </WrapWithHits>
   ))
   .add('with <Control> component', () => (
-    <WrapWithHits indexName="health_facility" linkedStoryGroup="GeoSearch">
+    <WrapWithHits indexName="meta" linkedStoryGroup="GeoSearch">
       <Configure perPage={20} />
 
       <Container>
@@ -245,7 +245,7 @@ stories
     </WrapWithHits>
   ))
   .add('with <Control> component disabled', () => (
-    <WrapWithHits indexName="health_facility" linkedStoryGroup="GeoSearch">
+    <WrapWithHits indexName="meta" linkedStoryGroup="GeoSearch">
       <Configure perPage={20} />
 
       <Container>
@@ -268,7 +268,7 @@ stories
     </WrapWithHits>
   ))
   .add('with <CustomMarker>', () => (
-    <WrapWithHits indexName="health_facility" linkedStoryGroup="GeoSearch">
+    <WrapWithHits indexName="meta" linkedStoryGroup="GeoSearch">
       <Configure perPage={20} />
 
       <Container>
@@ -299,7 +299,7 @@ stories
     </WrapWithHits>
   ))
   .add('with <CustomMarker> events', () => (
-    <WrapWithHits indexName="health_facility" linkedStoryGroup="GeoSearch">
+    <WrapWithHits indexName="meta" linkedStoryGroup="GeoSearch">
       <Configure perPage={20} />
 
       <Container>
@@ -367,7 +367,7 @@ stories.add('with InfoWindow', () => {
       const { google } = this.props;
 
       return (
-        <WrapWithHits indexName="health_facility" linkedStoryGroup="GeoSearch">
+        <WrapWithHits indexName="meta" linkedStoryGroup="GeoSearch">
           <Configure perPage={20} />
 
           <Container>
@@ -457,7 +457,7 @@ stories.add('with hits communication (custom)', () => {
 
       return (
         <WrapWithHits
-          indexName="health_facility"
+          indexName="meta"
           linkedStoryGroup="GeoSearch"
           hitsElement={
             <CustomHits
