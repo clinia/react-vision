@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { LatLngPropType, BoundingBoxPropType } from './propTypes';
 import GeoSearchContext from './GeoSearchContext';
+import { isValidCoordinates } from './utils';
+import { getBoundingBox } from './geo';
 
 class Provider extends Component {
   static propTypes = {
-    google: PropTypes.object.isRequired,
+    mapboxgl: PropTypes.object.isRequired,
     hits: PropTypes.arrayOf(PropTypes.object).isRequired,
     isRefineOnMapMove: PropTypes.bool.isRequired,
     hasMapMoveSinceLastRefine: PropTypes.bool.isRequired,
@@ -26,10 +28,18 @@ class Provider extends Component {
     const { refine } = this.props;
 
     const bounds = instance.getBounds();
+    const boundsNe = bounds.getNorthEast();
+    const boundsSw = bounds.getSouthWest();
 
     refine({
-      northEast: bounds.getNorthEast().toJSON(),
-      southWest: bounds.getSouthWest().toJSON(),
+      northEast: {
+        lat: boundsNe.lat,
+        lng: boundsNe.lng,
+      },
+      southWest: {
+        lat: boundsSw.lat,
+        lng: boundsSw.lng,
+      },
     });
   };
 
@@ -59,20 +69,24 @@ class Provider extends Component {
   };
 
   createBoundingBoxFromRecords(hits) {
-    const { google } = this.props;
+    const locations = hits.reduce((acc, hit) => {
+      if (isValidCoordinates) {
+        acc.push(hit._geoPoint);
+      }
 
-    const latLngBounds = hits.reduce(
-      (acc, hit) =>
-        acc.extend({
-          lat: hit._geoPoint.lat,
-          lng: hit._geoPoint.lon,
-        }),
-      new google.maps.LatLngBounds()
-    );
+      return acc;
+    }, []);
+    const boundingBox = getBoundingBox(locations);
 
     return {
-      northEast: latLngBounds.getNorthEast().toJSON(),
-      southWest: latLngBounds.getSouthWest().toJSON(),
+      northEast: {
+        lat: boundingBox.topLeft.lat,
+        lng: boundingBox.bottomRight.lon,
+      },
+      southWest: {
+        lat: boundingBox.bottomRight.lat,
+        lng: boundingBox.topLeft.lon,
+      },
     };
   }
 
@@ -92,10 +106,8 @@ class Provider extends Component {
     }
   };
 
-  onIdle = ({ instance }) => {
+  onIdle = instance => {
     if (this.isPendingRefine) {
-      this.isPendingRefine = false;
-
       this.refineWithInstance(instance);
     }
   };
@@ -111,7 +123,7 @@ class Provider extends Component {
 
     // We use this value for differentiate the padding to apply during
     // fitBounds. When we don't have a currenRefinement (boundingBox)
-    // we let GoogleMaps compute the automatic padding. But when we
+    // we let Mapbox compute the automatic padding. But when we
     // provide the currentRefinement we explicitly set the padding
     // to `0` otherwise the map will decrease the zoom on each refine.
     const boundingBoxPadding = !currentRefinement ? undefined : 0;

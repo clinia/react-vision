@@ -10,14 +10,13 @@
   },
   "dependencies": {
     "classnames": "^2.2.6",
-    "cliniasearch": "1.0.0",
+    "clinia": "2.0.0-beta.2",
     "moment": "^2.24.0",
     "qs": "^6.9.1",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-router-dom": "^5.1.2",
-    "react-vizion-dom": "^1.0.0",
-    "react-vizion-dom-maps": "^1.0.0"
+    "@clinia/react-vizion-dom": "2.0.0-beta.3"
   },
   "devDependencies": {
     "react-scripts": "3.1.2"

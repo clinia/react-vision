@@ -109,9 +109,7 @@ class GoogleMaps extends Component {
       }
     };
 
-    this.listeners.push(this.instance.addListener('center_changed', onChange));
-    this.listeners.push(this.instance.addListener('zoom_changed', onChange));
-    this.listeners.push(this.instance.addListener('dragstart', onChange));
+    this.listeners.push(this.instance.addListener('bounds_changed', onChange));
 
     this.listeners.push(
       this.instance.addListener('idle', () => {

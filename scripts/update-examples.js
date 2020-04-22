@@ -37,7 +37,7 @@ const examplesPath = path.join(__dirname, '..', 'examples');
 
 //   examples.forEach(example => {
 //     execSync(
-//       `cd ${example} && yarn upgrade @clinia/react-vizion-dom-maps@${version}`,
+//       `cd ${example} && yarn upgrade @clinia/react-vizion-dom-gmaps@${version}`,
 //       {
 //         stdio: 'inherit',
 //       }

@@ -3,7 +3,7 @@ import './search.css';
 import { AutoComplete, Location } from '@clinia/react-vizion-dom';
 import logo from '../static/images/logo.svg';
 import { withRouter } from 'react-router';
-import { GoogleMapsLoader } from '@clinia/react-vizion-dom-maps';
+import { GoogleMapsLoader } from '@clinia/react-vizion-dom-gmaps';
 import Map from '../components/Map';
 import Hits from '../components/Hits';
 

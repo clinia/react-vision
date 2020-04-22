@@ -4,7 +4,7 @@ import {
   GeoSearch,
   CustomMarker,
   Control,
-} from '@clinia/react-vizion-dom-maps';
+} from '@clinia/react-vizion-dom-gmaps';
 import { OpeningHours } from './OpeningHours';
 import classnames from 'classnames';
 import mapStyles from '../static/mapStyle.json';

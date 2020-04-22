@@ -24,13 +24,13 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'react-vizion-dom': path.resolve(
+      '@clinia/react-vizion-dom': path.resolve(
         __dirname,
         '../packages/react-vizion-dom'
       ),
-      'react-vizion-dom-maps': path.resolve(
+      '@clinia/react-vizion-dom-gmaps': path.resolve(
         __dirname,
-        '../packages/react-vizion-dom-maps'
+        '../packages/react-vizion-dom-gmaps'
       ),
     },
   },

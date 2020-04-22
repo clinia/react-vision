@@ -128,7 +128,7 @@ sleep 2.5
 # from the top level package (will be done at some point).
 yarn
 yarn upgrade @clinia/react-vizion-dom@$newVersion -D
-yarn upgrade @clinia/react-vizion-dom-maps@$newVersion -D
+yarn upgrade @clinia/react-vizion-dom-gmaps@$newVersion -D
 
 # Skip for now
 # node scripts/update-examples.js $newVersion

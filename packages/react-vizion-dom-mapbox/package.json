@@ -1,5 +1,5 @@
 {
-  "name": "@clinia/react-vizion-core",
+  "name": "@clinia/react-vizion-dom-mapbox",
   "version": "2.0.0-beta.3",
   "description": "",
   "main": "dist/cjs/index.js",
@@ -18,10 +18,12 @@
   "keywords": [
     "clinia",
     "components",
-    "fast",
     "vizion",
     "react",
-    "search"
+    "react-dom",
+    "search",
+    "geo search",
+    "mapbox"
   ],
   "files": [
     "README.md",
@@ -39,11 +41,12 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.1.2",
-    "@clinia/search-helper": "2.0.0-beta.2",
     "prop-types": "^15.5.10",
-    "react-fast-compare": "^3.0.0"
+    "scriptjs": "^2.5.8"
   },
   "peerDependencies": {
-    "react": ">= 16.3.0 < 17"
+    "@clinia/react-vizion-dom": ">= 1.0.0",
+    "react": ">= 16.3.0 < 17",
+    "react-dom": ">= 16.3.0 < 17"
   }
 }
