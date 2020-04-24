@@ -1,3 +1,13 @@
+# [2.0.0-beta.5](https://github.com/clinia/react-vision/compare/v2.0.0-beta.4...v2.0.0-beta.5) (2020-04-24)
+
+
+### Features
+
+* **filters:** refinement list widget and connector ([2d4b55c](https://github.com/clinia/react-vision/commit/2d4b55cd8e1cb528537d91efa93f1e7097957e67))
+* **filters:** toggle widgets and connector & menu, menu select widget and connector ([739c22b](https://github.com/clinia/react-vision/commit/739c22b9064337256989d5334a77c630e6e3baeb))
+
+
+
 # [2.0.0-beta.4](https://github.com/clinia/react-vision/compare/v2.0.0-beta.3...v2.0.0-beta.4) (2020-04-22)
 
 
