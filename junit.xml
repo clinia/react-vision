@@ -1,74 +1,1187 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="21" failures="1" time="3.153">
-  <testsuite name="createVizionManager" errors="0" failures="1" skipped="20" timestamp="2020-04-20T13:51:46" time="2.227" tests="21">
-    <testcase classname="createVizionManager initializes the manager with an empty state" name="createVizionManager initializes the manager with an empty state" time="0.001">
-      <skipped/>
+<testsuites name="jest tests" tests="462" failures="7" time="112.464">
+  <testsuite name="createVizionManager" errors="0" failures="1" skipped="0" timestamp="2020-04-24T15:29:31" time="24.72" tests="21">
+    <testcase classname="createVizionManager initializes the manager with an empty state" name="createVizionManager initializes the manager with an empty state" time="0.004">
     </testcase>
-    <testcase classname="client hydratation hydrates the `searchClient` for a single index results" name="client hydratation hydrates the `searchClient` for a single index results" time="0">
-      <skipped/>
+    <testcase classname="client hydratation hydrates the `searchClient` for a single index results" name="client hydratation hydrates the `searchClient` for a single index results" time="0.001">
     </testcase>
-    <testcase classname="client hydratation hydrates the `searchClient` for a multi index results" name="client hydratation hydrates the `searchClient` for a multi index results" time="0">
-      <skipped/>
+    <testcase classname="client hydratation hydrates the `searchClient` for a multi index results" name="client hydratation hydrates the `searchClient` for a multi index results" time="0.001">
     </testcase>
     <testcase classname="client hydratation does not hydrate the `searchClient` without results" name="client hydratation does not hydrate the `searchClient` without results" time="0">
-      <skipped/>
     </testcase>
-    <testcase classname="client hydratation does not hydrate the `searchClient` if it&apos;s not an Clinia client" name="client hydratation does not hydrate the `searchClient` if it&apos;s not an Clinia client" time="0">
-      <skipped/>
+    <testcase classname="client hydratation does not hydrate the `searchClient` if it&apos;s not an Clinia client" name="client hydratation does not hydrate the `searchClient` if it&apos;s not an Clinia client" time="0.001">
     </testcase>
     <testcase classname="client hydratation does not hydrate the `searchClient` without cache enabled" name="client hydratation does not hydrate the `searchClient` without cache enabled" time="0">
-      <skipped/>
     </testcase>
-    <testcase classname="results hydratation initializes the manager with a single index hydrated results" name="results hydratation initializes the manager with a single index hydrated results" time="0">
-      <skipped/>
+    <testcase classname="results hydratation initializes the manager with a single index hydrated results" name="results hydratation initializes the manager with a single index hydrated results" time="0.001">
     </testcase>
-    <testcase classname="results hydratation initializes the manager with a multi index hydrated results" name="results hydratation initializes the manager with a multi index hydrated results" time="0">
-      <skipped/>
+    <testcase classname="results hydratation initializes the manager with a multi index hydrated results" name="results hydratation initializes the manager with a multi index hydrated results" time="0.001">
     </testcase>
-    <testcase classname="widget manager triggers a search when a widget is added" name="widget manager triggers a search when a widget is added" time="0">
-      <skipped/>
+    <testcase classname="widget manager triggers a search when a widget is added" name="widget manager triggers a search when a widget is added" time="0.004">
     </testcase>
-    <testcase classname="transitionState executes widgets hook" name="transitionState executes widgets hook" time="0">
-      <skipped/>
+    <testcase classname="transitionState executes widgets hook" name="transitionState executes widgets hook" time="0.001">
     </testcase>
-    <testcase classname="getWidgetsIds returns the list of ids of all registered widgets" name="getWidgetsIds returns the list of ids of all registered widgets" time="0">
-      <skipped/>
+    <testcase classname="getWidgetsIds returns the list of ids of all registered widgets" name="getWidgetsIds returns the list of ids of all registered widgets" time="0.002">
     </testcase>
-    <testcase classname="getSearchParameters expects a widget top level to be shared between main and derived parameters" name="getSearchParameters expects a widget top level to be shared between main and derived parameters" time="0">
-      <skipped/>
+    <testcase classname="getSearchParameters expects a widget top level to be shared between main and derived parameters" name="getSearchParameters expects a widget top level to be shared between main and derived parameters" time="0.001">
     </testcase>
     <testcase classname="getSearchParameters expects a widget with the same id than the indexName to be a main parameters" name="getSearchParameters expects a widget with the same id than the indexName to be a main parameters" time="0">
-      <skipped/>
     </testcase>
-    <testcase classname="getSearchParameters expects a widget with a different id than the indexName to be a derived parameters" name="getSearchParameters expects a widget with a different id than the indexName to be a derived parameters" time="0">
-      <skipped/>
+    <testcase classname="getSearchParameters expects a widget with a different id than the indexName to be a derived parameters" name="getSearchParameters expects a widget with a different id than the indexName to be a derived parameters" time="0.001">
     </testcase>
-    <testcase classname="getSearchParameters expects a widget within a mutli index context with the same id than the indexName to be a main parameters" name="getSearchParameters expects a widget within a mutli index context with the same id than the indexName to be a main parameters" time="0">
-      <skipped/>
+    <testcase classname="getSearchParameters expects a widget within a mutli index context with the same id than the indexName to be a main parameters" name="getSearchParameters expects a widget within a mutli index context with the same id than the indexName to be a main parameters" time="0.001">
     </testcase>
-    <testcase classname="getSearchParameters expects a widget within a mutli index context with a different id than the indexName to be a derived parameters" name="getSearchParameters expects a widget within a mutli index context with a different id than the indexName to be a derived parameters" time="0">
-      <skipped/>
+    <testcase classname="getSearchParameters expects a widget within a mutli index context with a different id than the indexName to be a derived parameters" name="getSearchParameters expects a widget within a mutli index context with a different id than the indexName to be a derived parameters" time="0.001">
     </testcase>
-    <testcase classname="getSearchParameters expects widgets main parameters and derived parameters to be correctly calculated within a multi index context" name="getSearchParameters expects widgets main parameters and derived parameters to be correctly calculated within a multi index context" time="0.034">
-      <failure>TypeError: Cannot read property &apos;getSearchParameters&apos; of undefined
-    at Object.&lt;anonymous&gt; (/Users/etienne/Projects/clinia-workspace/vizion/react-vizion/packages/react-vizion-core/src/core/__tests__/createVizionManager.test.js:672:9)
+    <testcase classname="getSearchParameters expects widgets main parameters and derived parameters to be correctly calculated within a multi index context" name="getSearchParameters expects widgets main parameters and derived parameters to be correctly calculated within a multi index context" time="22.311">
+      <failure>Error: expect(received).toEqual(expected) // deep equality
+
+- Expected
++ Received
+
+  Array [
+-   ObjectContaining {
+-     &quot;indexId&quot;: &quot;bestbuy&quot;,
+-     &quot;parameters&quot;: ObjectContaining {
+-       &quot;index&quot;: &quot;bestbuy&quot;,
++   Object {
++     &quot;indexId&quot;: &quot;instant_search_microsoft&quot;,
++     &quot;parameters&quot;: SearchParameters {
++       &quot;disjunctiveFacets&quot;: Array [],
++       &quot;disjunctiveFacetsRefinements&quot;: Object {},
++       &quot;facets&quot;: Array [],
++       &quot;facetsExcludes&quot;: Object {},
++       &quot;facetsRefinements&quot;: Object {},
++       &quot;filters&quot;: &quot;brand:Microsoft&quot;,
++       &quot;highlightPostTag&quot;: &quot;&lt;/cvi-highlight-0000000000&gt;&quot;,
++       &quot;highlightPreTag&quot;: &quot;&lt;cvi-highlight-0000000000&gt;&quot;,
++       &quot;index&quot;: &quot;instant_search&quot;,
++       &quot;numericRefinements&quot;: Object {},
+      },
+    },
+-   ObjectContaining {
+-     &quot;indexId&quot;: &quot;instant_search&quot;,
+-     &quot;parameters&quot;: ObjectContaining {
++   Object {
++     &quot;indexId&quot;: &quot;instant_search_samsung&quot;,
++     &quot;parameters&quot;: SearchParameters {
++       &quot;disjunctiveFacets&quot;: Array [],
++       &quot;disjunctiveFacetsRefinements&quot;: Object {},
++       &quot;facets&quot;: Array [],
++       &quot;facetsExcludes&quot;: Object {},
++       &quot;facetsRefinements&quot;: Object {},
++       &quot;filters&quot;: &quot;brand:Samsung&quot;,
++       &quot;highlightPostTag&quot;: &quot;&lt;/cvi-highlight-0000000000&gt;&quot;,
++       &quot;highlightPreTag&quot;: &quot;&lt;cvi-highlight-0000000000&gt;&quot;,
+        &quot;index&quot;: &quot;instant_search&quot;,
++       &quot;numericRefinements&quot;: Object {},
+      },
+    },
+-   ObjectContaining {
++   Object {
+      &quot;indexId&quot;: &quot;instant_search_apple&quot;,
+-     &quot;parameters&quot;: ObjectContaining {
++     &quot;parameters&quot;: SearchParameters {
++       &quot;disjunctiveFacets&quot;: Array [],
++       &quot;disjunctiveFacetsRefinements&quot;: Object {},
++       &quot;facets&quot;: Array [],
++       &quot;facetsExcludes&quot;: Object {},
++       &quot;facetsRefinements&quot;: Object {},
+        &quot;filters&quot;: &quot;brand:Apple&quot;,
++       &quot;highlightPostTag&quot;: &quot;&lt;/cvi-highlight-0000000000&gt;&quot;,
++       &quot;highlightPreTag&quot;: &quot;&lt;cvi-highlight-0000000000&gt;&quot;,
+        &quot;index&quot;: &quot;instant_search&quot;,
++       &quot;numericRefinements&quot;: Object {},
+      },
+    },
+-   ObjectContaining {
+-     &quot;indexId&quot;: &quot;instant_search_samsung&quot;,
+-     &quot;parameters&quot;: ObjectContaining {
+-       &quot;filters&quot;: &quot;brand:Samsung&quot;,
++   Object {
++     &quot;indexId&quot;: &quot;instant_search&quot;,
++     &quot;parameters&quot;: SearchParameters {
++       &quot;disjunctiveFacets&quot;: Array [],
++       &quot;disjunctiveFacetsRefinements&quot;: Object {},
++       &quot;facets&quot;: Array [],
++       &quot;facetsExcludes&quot;: Object {},
++       &quot;facetsRefinements&quot;: Object {},
++       &quot;highlightPostTag&quot;: &quot;&lt;/cvi-highlight-0000000000&gt;&quot;,
++       &quot;highlightPreTag&quot;: &quot;&lt;cvi-highlight-0000000000&gt;&quot;,
+        &quot;index&quot;: &quot;instant_search&quot;,
++       &quot;numericRefinements&quot;: Object {},
+      },
+    },
+-   ObjectContaining {
+-     &quot;indexId&quot;: &quot;instant_search_microsoft&quot;,
+-     &quot;parameters&quot;: ObjectContaining {
+-       &quot;filters&quot;: &quot;brand:Microsoft&quot;,
+-       &quot;index&quot;: &quot;instant_search&quot;,
++   Object {
++     &quot;indexId&quot;: &quot;bestbuy&quot;,
++     &quot;parameters&quot;: SearchParameters {
++       &quot;disjunctiveFacets&quot;: Array [],
++       &quot;disjunctiveFacetsRefinements&quot;: Object {},
++       &quot;facets&quot;: Array [],
++       &quot;facetsExcludes&quot;: Object {},
++       &quot;facetsRefinements&quot;: Object {},
++       &quot;highlightPostTag&quot;: &quot;&lt;/cvi-highlight-0000000000&gt;&quot;,
++       &quot;highlightPreTag&quot;: &quot;&lt;cvi-highlight-0000000000&gt;&quot;,
++       &quot;index&quot;: &quot;bestbuy&quot;,
++       &quot;numericRefinements&quot;: Object {},
+      },
+    },
+  ]
+    at Object.&lt;anonymous&gt; (/Users/etienne/Projects/clinia-workspace/vizion/react-vizion/packages/react-vizion-core/src/core/__tests__/createVizionManager.test.js:680:31)
     at Object.asyncJestTest (/Users/etienne/Projects/clinia-workspace/vizion/react-vizion/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:102:37)
     at /Users/etienne/Projects/clinia-workspace/vizion/react-vizion/node_modules/jest-jasmine2/build/queueRunner.js:43:12
     at new Promise (&lt;anonymous&gt;)
     at mapper (/Users/etienne/Projects/clinia-workspace/vizion/react-vizion/node_modules/jest-jasmine2/build/queueRunner.js:26:19)
     at /Users/etienne/Projects/clinia-workspace/vizion/react-vizion/node_modules/jest-jasmine2/build/queueRunner.js:73:41</failure>
     </testcase>
-    <testcase classname="searchStalled should be updated if search is stalled" name="searchStalled should be updated if search is stalled" time="0">
-      <skipped/>
+    <testcase classname="searchStalled should be updated if search is stalled" name="searchStalled should be updated if search is stalled" time="0.004">
     </testcase>
-    <testcase classname="client.search should be called when there is a new widget" name="client.search should be called when there is a new widget" time="0">
-      <skipped/>
+    <testcase classname="client.search should be called when there is a new widget" name="client.search should be called when there is a new widget" time="0.002">
     </testcase>
-    <testcase classname="client.search should be called when there is a new client" name="client.search should be called when there is a new client" time="0">
-      <skipped/>
+    <testcase classname="client.search should be called when there is a new client" name="client.search should be called when there is a new client" time="0.002">
     </testcase>
-    <testcase classname="client.search should not be called when the search is skipped" name="client.search should not be called when the search is skipped" time="0">
-      <skipped/>
+    <testcase classname="client.search should not be called when the search is skipped" name="client.search should not be called when the search is skipped" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="connectMenu" errors="0" failures="6" skipped="0" timestamp="2020-04-24T15:29:56" time="71.579" tests="22">
+    <testcase classname="connectMenu single index provides the correct props to the component" name="connectMenu single index provides the correct props to the component" time="0.006">
+    </testcase>
+    <testcase classname="connectMenu single index if an item is equal to the currentRefinement, its value should be an empty string" name="connectMenu single index if an item is equal to the currentRefinement, its value should be an empty string" time="0.001">
+    </testcase>
+    <testcase classname="connectMenu single index calling refine updates the widget&apos;s search state" name="connectMenu single index calling refine updates the widget&apos;s search state" time="0">
+    </testcase>
+    <testcase classname="connectMenu single index increases maxValuesPerFacet when it isn&apos;t big enough" name="connectMenu single index increases maxValuesPerFacet when it isn&apos;t big enough" time="0.01">
+      <failure>TypeError: Cannot read property &apos;mainTargetedIndex&apos; of undefined
+    at getIndexId (/Users/etienne/Projects/clinia-workspace/vizion/react-vizion/packages/react-vizion-core/src/core/indexUtils.js:6:19)
+    at getCurrentRefinementValue (/Users/etienne/Projects/clinia-workspace/vizion/react-vizion/packages/react-vizion-core/src/core/indexUtils.js:226:19)
+    at getCurrentRefinement (/Users/etienne/Projects/clinia-workspace/vizion/react-vizion/packages/react-vizion-core/src/connectors/connectMenu.js:18:29)
+    at Object.getSearchParameters (/Users/etienne/Projects/clinia-workspace/vizion/react-vizion/packages/react-vizion-core/src/connectors/connectMenu.js:163:31)
+    at Object.&lt;anonymous&gt; (/Users/etienne/Projects/clinia-workspace/vizion/react-vizion/packages/react-vizion-core/src/connectors/__tests__/connectMenu.test.js:212:24)
+    at Object.asyncJestTest (/Users/etienne/Projects/clinia-workspace/vizion/react-vizion/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:102:37)
+    at /Users/etienne/Projects/clinia-workspace/vizion/react-vizion/node_modules/jest-jasmine2/build/queueRunner.js:43:12
+    at new Promise (&lt;anonymous&gt;)
+    at mapper (/Users/etienne/Projects/clinia-workspace/vizion/react-vizion/node_modules/jest-jasmine2/build/queueRunner.js:26:19)
+    at /Users/etienne/Projects/clinia-workspace/vizion/react-vizion/node_modules/jest-jasmine2/build/queueRunner.js:73:41</failure>
+    </testcase>
+    <testcase classname="connectMenu single index correctly applies its state to search parameters" name="connectMenu single index correctly applies its state to search parameters" time="70.551">
+      <failure>TypeError: Cannot read property &apos;mainTargetedIndex&apos; of undefined
+    at getIndexId (/Users/etienne/Projects/clinia-workspace/vizion/react-vizion/packages/react-vizion-core/src/core/indexUtils.js:6:19)
+    at getCurrentRefinementValue (/Users/etienne/Projects/clinia-workspace/vizion/react-vizion/packages/react-vizion-core/src/core/indexUtils.js:226:19)
+    at getCurrentRefinement (/Users/etienne/Projects/clinia-workspace/vizion/react-vizion/packages/react-vizion-core/src/connectors/connectMenu.js:18:29)
+    at Object.getSearchParameters (/Users/etienne/Projects/clinia-workspace/vizion/react-vizion/packages/react-vizion-core/src/connectors/connectMenu.js:163:31)
+    at Object.&lt;anonymous&gt; (/Users/etienne/Projects/clinia-workspace/vizion/react-vizion/packages/react-vizion-core/src/connectors/__tests__/connectMenu.test.js:258:24)
+    at Object.asyncJestTest (/Users/etienne/Projects/clinia-workspace/vizion/react-vizion/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:102:37)
+    at /Users/etienne/Projects/clinia-workspace/vizion/react-vizion/node_modules/jest-jasmine2/build/queueRunner.js:43:12
+    at new Promise (&lt;anonymous&gt;)
+    at mapper (/Users/etienne/Projects/clinia-workspace/vizion/react-vizion/node_modules/jest-jasmine2/build/queueRunner.js:26:19)
+    at /Users/etienne/Projects/clinia-workspace/vizion/react-vizion/node_modules/jest-jasmine2/build/queueRunner.js:73:41</failure>
+    </testcase>
+    <testcase classname="connectMenu single index registers its id in metadata" name="connectMenu single index registers its id in metadata" time="0.001">
+    </testcase>
+    <testcase classname="connectMenu single index registers its filter in metadata" name="connectMenu single index registers its filter in metadata" time="0.001">
+    </testcase>
+    <testcase classname="connectMenu single index items value function should clear it from the search state" name="connectMenu single index items value function should clear it from the search state" time="0.001">
+    </testcase>
+    <testcase classname="connectMenu single index should return the right searchState when clean up" name="connectMenu single index should return the right searchState when clean up" time="0.001">
+    </testcase>
+    <testcase classname="connectMenu single index calling searchForItems return the right searchForItems parameters with limit" name="connectMenu single index calling searchForItems return the right searchForItems parameters with limit" time="0.001">
+      <failure>TypeError: _connectMenu.default.searchForFacetValues is not a function
+    at Object.&lt;anonymous&gt; (/Users/etienne/Projects/clinia-workspace/vizion/react-vizion/packages/react-vizion-core/src/connectors/__tests__/connectMenu.test.js:340:34)
+    at Object.asyncJestTest (/Users/etienne/Projects/clinia-workspace/vizion/react-vizion/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:102:37)
+    at /Users/etienne/Projects/clinia-workspace/vizion/react-vizion/node_modules/jest-jasmine2/build/queueRunner.js:43:12
+    at new Promise (&lt;anonymous&gt;)
+    at mapper (/Users/etienne/Projects/clinia-workspace/vizion/react-vizion/node_modules/jest-jasmine2/build/queueRunner.js:26:19)
+    at /Users/etienne/Projects/clinia-workspace/vizion/react-vizion/node_modules/jest-jasmine2/build/queueRunner.js:73:41</failure>
+    </testcase>
+    <testcase classname="connectMenu single index calling searchForItems return the right searchForItems parameters with showMoreLimit" name="connectMenu single index calling searchForItems return the right searchForItems parameters with showMoreLimit" time="0">
+      <failure>TypeError: _connectMenu.default.searchForFacetValues is not a function
+    at Object.&lt;anonymous&gt; (/Users/etienne/Projects/clinia-workspace/vizion/react-vizion/packages/react-vizion-core/src/connectors/__tests__/connectMenu.test.js:354:34)
+    at Object.asyncJestTest (/Users/etienne/Projects/clinia-workspace/vizion/react-vizion/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:102:37)
+    at /Users/etienne/Projects/clinia-workspace/vizion/react-vizion/node_modules/jest-jasmine2/build/queueRunner.js:43:12
+    at new Promise (&lt;anonymous&gt;)
+    at mapper (/Users/etienne/Projects/clinia-workspace/vizion/react-vizion/node_modules/jest-jasmine2/build/queueRunner.js:26:19)
+    at /Users/etienne/Projects/clinia-workspace/vizion/react-vizion/node_modules/jest-jasmine2/build/queueRunner.js:73:41</failure>
+    </testcase>
+    <testcase classname="connectMenu single index if not searchable: uses a static sortBy order" name="connectMenu single index if not searchable: uses a static sortBy order" time="0.002">
+    </testcase>
+    <testcase classname="connectMenu single index if searchable: use the default sortBy order" name="connectMenu single index if searchable: use the default sortBy order" time="0.001">
+    </testcase>
+    <testcase classname="connectMenu single index computes canRefine based on the length of the transformed items list" name="connectMenu single index computes canRefine based on the length of the transformed items list" time="0.001">
+    </testcase>
+    <testcase classname="connectMenu multi index provides the correct props to the component" name="connectMenu multi index provides the correct props to the component" time="0.004">
+      <failure>Error: expect(received).toEqual(expected) // deep equality
+
+- Expected
++ Received
+
+  Object {
+    &quot;canRefine&quot;: false,
+    &quot;currentRefinement&quot;: null,
+-   &quot;isFromSearch&quot;: false,
+    &quot;items&quot;: Array [],
+-   &quot;searchForItems&quot;: undefined,
+  }
+    at Object.&lt;anonymous&gt; (/Users/etienne/Projects/clinia-workspace/vizion/react-vizion/packages/react-vizion-core/src/connectors/__tests__/connectMenu.test.js:492:21)
+    at Object.asyncJestTest (/Users/etienne/Projects/clinia-workspace/vizion/react-vizion/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:102:37)
+    at /Users/etienne/Projects/clinia-workspace/vizion/react-vizion/node_modules/jest-jasmine2/build/queueRunner.js:43:12
+    at new Promise (&lt;anonymous&gt;)
+    at mapper (/Users/etienne/Projects/clinia-workspace/vizion/react-vizion/node_modules/jest-jasmine2/build/queueRunner.js:26:19)
+    at /Users/etienne/Projects/clinia-workspace/vizion/react-vizion/node_modules/jest-jasmine2/build/queueRunner.js:73:41</failure>
+    </testcase>
+    <testcase classname="connectMenu multi index if an item is equal to the currentRefinement, its value should be an empty string" name="connectMenu multi index if an item is equal to the currentRefinement, its value should be an empty string" time="0.001">
+    </testcase>
+    <testcase classname="connectMenu multi index calling refine updates the widget&apos;s search state" name="connectMenu multi index calling refine updates the widget&apos;s search state" time="0.002">
+    </testcase>
+    <testcase classname="connectMenu multi index correctly applies its state to search parameters" name="connectMenu multi index correctly applies its state to search parameters" time="0.002">
+    </testcase>
+    <testcase classname="connectMenu multi index registers its filter in metadata" name="connectMenu multi index registers its filter in metadata" time="0.002">
+    </testcase>
+    <testcase classname="connectMenu multi index items value function should clear it from the search state" name="connectMenu multi index items value function should clear it from the search state" time="0">
+    </testcase>
+    <testcase classname="connectMenu multi index should return the right searchState when clean up" name="connectMenu multi index should return the right searchState when clean up" time="0.001">
+    </testcase>
+    <testcase classname="connectMenu multi index errors if searchable is used in a multi index context" name="connectMenu multi index errors if searchable is used in a multi index context" time="0.003">
+      <failure>Error: expect(received).toThrowErrorMatchingInlineSnapshot(snapshot)
+
+Received function did not throw
+    at _toThrowErrorMatchingSnapshot (/Users/etienne/Projects/clinia-workspace/vizion/react-vizion/node_modules/jest-snapshot/build/index.js:502:11)
+    at Object.toThrowErrorMatchingInlineSnapshot (/Users/etienne/Projects/clinia-workspace/vizion/react-vizion/node_modules/jest-snapshot/build/index.js:448:10)
+    at Object.toThrowErrorMatchingInlineSnapshot (/Users/etienne/Projects/clinia-workspace/vizion/react-vizion/node_modules/expect/build/index.js:342:33)
+    at Object.&lt;anonymous&gt; (/Users/etienne/Projects/clinia-workspace/vizion/react-vizion/packages/react-vizion-core/src/connectors/__tests__/connectMenu.test.js:876:10)
+    at Object.asyncJestTest (/Users/etienne/Projects/clinia-workspace/vizion/react-vizion/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:102:37)
+    at /Users/etienne/Projects/clinia-workspace/vizion/react-vizion/node_modules/jest-jasmine2/build/queueRunner.js:43:12
+    at new Promise (&lt;anonymous&gt;)
+    at mapper (/Users/etienne/Projects/clinia-workspace/vizion/react-vizion/node_modules/jest-jasmine2/build/queueRunner.js:26:19)
+    at /Users/etienne/Projects/clinia-workspace/vizion/react-vizion/node_modules/jest-jasmine2/build/queueRunner.js:73:41</failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="SearchBox" errors="0" failures="0" skipped="0" timestamp="2020-04-24T15:31:07" time="0.914" tests="18">
+    <testcase classname="SearchBox applies its default props" name="SearchBox applies its default props" time="0.013">
+    </testcase>
+    <testcase classname="SearchBox applies its default props with custom className" name="SearchBox applies its default props with custom className" time="0.002">
+    </testcase>
+    <testcase classname="SearchBox transfers the autoFocus prop to the underlying input element" name="SearchBox transfers the autoFocus prop to the underlying input element" time="0.002">
+    </testcase>
+    <testcase classname="SearchBox treats its query prop as its input value" name="SearchBox treats its query prop as its input value" time="0.004">
+    </testcase>
+    <testcase classname="SearchBox lets you customize its theme" name="SearchBox lets you customize its theme" time="0.001">
+    </testcase>
+    <testcase classname="SearchBox lets you give custom components for reset and submit" name="SearchBox lets you give custom components for reset and submit" time="0.002">
+    </testcase>
+    <testcase classname="SearchBox lets you customize its translations" name="SearchBox lets you customize its translations" time="0.002">
+    </testcase>
+    <testcase classname="SearchBox treats query as a default value when searchAsYouType=false" name="SearchBox treats query as a default value when searchAsYouType=false" time="0.043">
+    </testcase>
+    <testcase classname="SearchBox refines its value on change when searchAsYouType=true" name="SearchBox refines its value on change when searchAsYouType=true" time="0.005">
+    </testcase>
+    <testcase classname="SearchBox only refines its query on submit when searchAsYouType=false" name="SearchBox only refines its query on submit when searchAsYouType=false" time="0.009">
+    </testcase>
+    <testcase classname="SearchBox onSubmit behavior should be override if provided as props" name="SearchBox onSubmit behavior should be override if provided as props" time="0.004">
+    </testcase>
+    <testcase classname="SearchBox focuses the input when one of the keys in focusShortcuts is pressed" name="SearchBox focuses the input when one of the keys in focusShortcuts is pressed" time="0.009">
+    </testcase>
+    <testcase classname="SearchBox should accept `onXXX` events" name="SearchBox should accept `onXXX` events" time="0.013">
+    </testcase>
+    <testcase classname="SearchBox should render the loader if showLoadingIndicator is true" name="SearchBox should render the loader if showLoadingIndicator is true" time="0.004">
+    </testcase>
+    <testcase classname="SearchBox expect to clear the query when the form is reset with searchAsYouType=true" name="SearchBox expect to clear the query when the form is reset with searchAsYouType=true" time="0.003">
+    </testcase>
+    <testcase classname="SearchBox expect to clear the query when the form is reset with searchAsYouType=false" name="SearchBox expect to clear the query when the form is reset with searchAsYouType=false" time="0.003">
+    </testcase>
+    <testcase classname="SearchBox should point created refs to its input element" name="SearchBox should point created refs to its input element" time="0.004">
+    </testcase>
+    <testcase classname="SearchBox should return a ref when given a callback" name="SearchBox should return a ref when given a callback" time="0.004">
+    </testcase>
+  </testsuite>
+  <testsuite name="Pagination" errors="0" failures="0" skipped="0" timestamp="2020-04-24T15:31:08" time="0.769" tests="18">
+    <testcase classname="Pagination applies its default props" name="Pagination applies its default props" time="0.007">
+    </testcase>
+    <testcase classname="Pagination applies its default props without refinement" name="Pagination applies its default props without refinement" time="0.004">
+    </testcase>
+    <testcase classname="Pagination applies its default props with custom className" name="Pagination applies its default props with custom className" time="0.004">
+    </testcase>
+    <testcase classname="Pagination displays the correct padding of links" name="Pagination displays the correct padding of links" time="0.012">
+    </testcase>
+    <testcase classname="Pagination allows toggling display of the first page button on and off" name="Pagination allows toggling display of the first page button on and off" time="0.006">
+    </testcase>
+    <testcase classname="Pagination indicates when first button is relevant" name="Pagination indicates when first button is relevant" time="0.005">
+    </testcase>
+    <testcase classname="Pagination allows toggling display of the last page button on and off" name="Pagination allows toggling display of the last page button on and off" time="0.005">
+    </testcase>
+    <testcase classname="Pagination allows toggling display of the previous page button on and off" name="Pagination allows toggling display of the previous page button on and off" time="0.004">
+    </testcase>
+    <testcase classname="Pagination allows toggling display of the next page button on and off" name="Pagination allows toggling display of the next page button on and off" time="0.012">
+    </testcase>
+    <testcase classname="Pagination lets you force a maximum of pages" name="Pagination lets you force a maximum of pages" time="0.007">
+    </testcase>
+    <testcase classname="Pagination lets you customize its theme" name="Pagination lets you customize its theme" time="0.003">
+    </testcase>
+    <testcase classname="Pagination lets you customize its translations" name="Pagination lets you customize its translations" time="0.004">
+    </testcase>
+    <testcase classname="Pagination disabled all button if no results" name="Pagination disabled all button if no results" time="0.005">
+    </testcase>
+    <testcase classname="Pagination refines its value when clicking on a page link" name="Pagination refines its value when clicking on a page link" time="0.081">
+    </testcase>
+    <testcase classname="Pagination ignores special clicks" name="Pagination ignores special clicks" time="0.023">
+    </testcase>
+    <testcase classname="Pagination padding behaviour should be adjusted when currentPage &lt; padding (at the very beginning)" name="Pagination padding behaviour should be adjusted when currentPage &lt; padding (at the very beginning)" time="0.016">
+    </testcase>
+    <testcase classname="Pagination padding behaviour should be adjusted when currentPage &lt; totalPages - padding (at the end)" name="Pagination padding behaviour should be adjusted when currentPage &lt; totalPages - padding (at the end)" time="0.014">
+    </testcase>
+    <testcase classname="Pagination padding behaviour should render the correct padding in every other case" name="Pagination padding behaviour should render the correct padding in every other case" time="0.012">
+    </testcase>
+  </testsuite>
+  <testsuite name="createConnector" errors="0" failures="0" skipped="0" timestamp="2020-04-24T15:31:09" time="0.703" tests="35">
+    <testcase classname="createConnector state computes provided props" name="createConnector state computes provided props" time="0.01">
+    </testcase>
+    <testcase classname="createConnector state computes provided props on props change" name="createConnector state computes provided props on props change" time="0.015">
+    </testcase>
+    <testcase classname="createConnector state computes provided props with the correct value for `canRender` on props change" name="createConnector state computes provided props with the correct value for `canRender` on props change" time="0.016">
+    </testcase>
+    <testcase classname="createConnector state computes provided props on search state change" name="createConnector state computes provided props on search state change" time="0.009">
+    </testcase>
+    <testcase classname="createConnector state computes provided props with latest props on search state change" name="createConnector state computes provided props with latest props on search state change" time="0.015">
+    </testcase>
+    <testcase classname="createConnector state does not compute provided props when props do not change" name="createConnector state does not compute provided props when props do not change" time="0.002">
+    </testcase>
+    <testcase classname="createConnector state use shouldComponentUpdate when provided" name="createConnector state use shouldComponentUpdate when provided" time="0.023">
+    </testcase>
+    <testcase classname="createConnector state subscribes to the store once mounted" name="createConnector state subscribes to the store once mounted" time="0.009">
+    </testcase>
+    <testcase classname="createConnector state unsubscribes from the store on unmount" name="createConnector state unsubscribes from the store on unmount" time="0.002">
+    </testcase>
+    <testcase classname="createConnector state does not throw an error on unmount before mount" name="createConnector state does not throw an error on unmount before mount" time="0.001">
+    </testcase>
+    <testcase classname="createConnector state does not throw an error on dispatch after unmount" name="createConnector state does not throw an error on dispatch after unmount" time="0.002">
+    </testcase>
+    <testcase classname="createConnector widget registers itself as a widget with getMetadata" name="createConnector widget registers itself as a widget with getMetadata" time="0.003">
+    </testcase>
+    <testcase classname="createConnector widget registers itself as a widget with getSearchParameters" name="createConnector widget registers itself as a widget with getSearchParameters" time="0.001">
+    </testcase>
+    <testcase classname="createConnector widget registers itself as a widget once mounted" name="createConnector widget registers itself as a widget once mounted" time="0.001">
+    </testcase>
+    <testcase classname="createConnector widget does not register itself as a widget without getMetadata nor getSearchParameters" name="createConnector widget does not register itself as a widget without getMetadata nor getSearchParameters" time="0.001">
+    </testcase>
+    <testcase classname="createConnector widget calls onSearchParameters on mount with getSearchParameters" name="createConnector widget calls onSearchParameters on mount with getSearchParameters" time="0.001">
+    </testcase>
+    <testcase classname="createConnector widget does not call onSearchParameters on mount without getSearchParameters" name="createConnector widget does not call onSearchParameters on mount without getSearchParameters" time="0.001">
+    </testcase>
+    <testcase classname="createConnector widget binds getSearchParameters to the connector instance with onSearchParameters" name="createConnector widget binds getSearchParameters to the connector instance with onSearchParameters" time="0.001">
+    </testcase>
+    <testcase classname="createConnector widget triggers a widgetManager update on props change" name="createConnector widget triggers a widgetManager update on props change" time="0.001">
+    </testcase>
+    <testcase classname="createConnector widget does not trigger a widgetManager update when props do not change" name="createConnector widget does not trigger a widgetManager update when props do not change" time="0.002">
+    </testcase>
+    <testcase classname="createConnector widget triggers an onSearchStateChange on props change with transitionState" name="createConnector widget triggers an onSearchStateChange on props change with transitionState" time="0.001">
+    </testcase>
+    <testcase classname="createConnector widget does not trigger an onSearchStateChange on props change without transitionState" name="createConnector widget does not trigger an onSearchStateChange on props change without transitionState" time="0.001">
+    </testcase>
+    <testcase classname="createConnector widget unregisters itself on unmount" name="createConnector widget unregisters itself on unmount" time="0.001">
+    </testcase>
+    <testcase classname="createConnector widget calls onSearchStateChange with cleanUp on unmount" name="createConnector widget calls onSearchStateChange with cleanUp on unmount" time="0.002">
+    </testcase>
+    <testcase classname="createConnector widget calls onSearchStateChange with cleanUp without empty keys on unmount" name="createConnector widget calls onSearchStateChange with cleanUp without empty keys on unmount" time="0">
+    </testcase>
+    <testcase classname="createConnector widget does not throw an error on unmount before mount" name="createConnector widget does not throw an error on unmount before mount" time="0.001">
+    </testcase>
+    <testcase classname="createConnector getSearchParameters returns the widget search parameters when getSearchParameters is provided" name="createConnector getSearchParameters returns the widget search parameters when getSearchParameters is provided" time="0.002">
+    </testcase>
+    <testcase classname="createConnector getSearchParameters returns null when getSearchParameters is not provided" name="createConnector getSearchParameters returns null when getSearchParameters is not provided" time="0.001">
+    </testcase>
+    <testcase classname="createConnector getMetadata returns the widget metadata when getMetadata is provided" name="createConnector getMetadata returns the widget metadata when getMetadata is provided" time="0.001">
+    </testcase>
+    <testcase classname="createConnector getMetadata returns an empty object when getMetadata is not provided" name="createConnector getMetadata returns an empty object when getMetadata is not provided" time="0">
+    </testcase>
+    <testcase classname="createConnector transitionState returns the widget transitionState when transitionState is provided" name="createConnector transitionState returns the widget transitionState when transitionState is provided" time="0.004">
+    </testcase>
+    <testcase classname="createConnector transitionState returns the given next state when transitionState is not provided" name="createConnector transitionState returns the given next state when transitionState is not provided" time="0.001">
+    </testcase>
+    <testcase classname="createConnector refine passes a refine method to the component" name="createConnector refine passes a refine method to the component" time="0.004">
+    </testcase>
+    <testcase classname="createConnector createURL passes a createURL method to the component" name="createConnector createURL passes a createURL method to the component" time="0.007">
+    </testcase>
+    <testcase classname="createConnector wrapped with VizionProvider default export reads from context" name="createConnector wrapped with VizionProvider default export reads from context" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="connectGeoSearch" errors="0" failures="0" skipped="0" timestamp="2020-04-24T15:31:10" time="0.506" tests="53">
+    <testcase classname="connectGeoSearch single index getProvidedProps expect to return default provided props" name="connectGeoSearch single index getProvidedProps expect to return default provided props" time="0.001">
+    </testcase>
+    <testcase classname="connectGeoSearch single index getProvidedProps hits expect to return hits when we hare results" name="connectGeoSearch single index getProvidedProps hits expect to return hits when we hare results" time="0.001">
+    </testcase>
+    <testcase classname="connectGeoSearch single index getProvidedProps hits expect to return hits with only &quot;_geoPoint&quot; when we have results" name="connectGeoSearch single index getProvidedProps hits expect to return hits with only &quot;_geoPoint&quot; when we have results" time="0">
+    </testcase>
+    <testcase classname="connectGeoSearch single index getProvidedProps hits expect to return empty hits when we don&apos;t have results" name="connectGeoSearch single index getProvidedProps hits expect to return empty hits when we don&apos;t have results" time="0.001">
+    </testcase>
+    <testcase classname="connectGeoSearch single index getProvidedProps position expect to return the position from the searchState (aroundLatLng)" name="connectGeoSearch single index getProvidedProps position expect to return the position from the searchState (aroundLatLng)" time="0.001">
+    </testcase>
+    <testcase classname="connectGeoSearch single index getProvidedProps position expect to return the position from the searchState (configure.aroundLatLng)" name="connectGeoSearch single index getProvidedProps position expect to return the position from the searchState (configure.aroundLatLng)" time="0">
+    </testcase>
+    <testcase classname="connectGeoSearch single index getProvidedProps position expect to return the position from the SearchResults" name="connectGeoSearch single index getProvidedProps position expect to return the position from the SearchResults" time="0.001">
+    </testcase>
+    <testcase classname="connectGeoSearch single index getProvidedProps position expect to return undefined from an empty searchState" name="connectGeoSearch single index getProvidedProps position expect to return undefined from an empty searchState" time="0">
+    </testcase>
+    <testcase classname="connectGeoSearch single index getProvidedProps position expect to return undefined with the default refinement" name="connectGeoSearch single index getProvidedProps position expect to return undefined with the default refinement" time="0.001">
+    </testcase>
+    <testcase classname="connectGeoSearch single index getProvidedProps currentRefinement expect to return the boundingBox from the searchState" name="connectGeoSearch single index getProvidedProps currentRefinement expect to return the boundingBox from the searchState" time="0.001">
+    </testcase>
+    <testcase classname="connectGeoSearch single index getProvidedProps currentRefinement expect to return the boundingBox from the SearchResults" name="connectGeoSearch single index getProvidedProps currentRefinement expect to return the boundingBox from the SearchResults" time="0">
+    </testcase>
+    <testcase classname="connectGeoSearch single index getProvidedProps currentRefinement expect to return the default refinement" name="connectGeoSearch single index getProvidedProps currentRefinement expect to return the default refinement" time="0.001">
+    </testcase>
+    <testcase classname="connectGeoSearch single index getProvidedProps currentRefinement expect to return undefined from an empty searchState" name="connectGeoSearch single index getProvidedProps currentRefinement expect to return undefined from an empty searchState" time="0">
+    </testcase>
+    <testcase classname="connectGeoSearch single index getProvidedProps isRefinedWithMap expect to return true when it&apos;s refined with the map (from the searchState)" name="connectGeoSearch single index getProvidedProps isRefinedWithMap expect to return true when it&apos;s refined with the map (from the searchState)" time="0.001">
+    </testcase>
+    <testcase classname="connectGeoSearch single index getProvidedProps isRefinedWithMap expect to return true when it&apos;s refined with the map (from the searchParameters)" name="connectGeoSearch single index getProvidedProps isRefinedWithMap expect to return true when it&apos;s refined with the map (from the searchParameters)" time="0">
+    </testcase>
+    <testcase classname="connectGeoSearch single index getProvidedProps isRefinedWithMap expect to return false when it&apos;s not refined with the map" name="connectGeoSearch single index getProvidedProps isRefinedWithMap expect to return false when it&apos;s not refined with the map" time="0.001">
+    </testcase>
+    <testcase classname="connectGeoSearch single index refine expect to set the boundingBox when boundingBox is provided" name="connectGeoSearch single index refine expect to set the boundingBox when boundingBox is provided" time="0.001">
+    </testcase>
+    <testcase classname="connectGeoSearch single index refine expect to replace the previous value when boundingBox is provided" name="connectGeoSearch single index refine expect to replace the previous value when boundingBox is provided" time="0">
+    </testcase>
+    <testcase classname="connectGeoSearch single index refine expect to clear the previous value when boundingBox is omit" name="connectGeoSearch single index refine expect to clear the previous value when boundingBox is omit" time="0">
+    </testcase>
+    <testcase classname="connectGeoSearch single index getSearchParameters expect to set the parameter &quot;insideBoundingBox&quot; when boundingBox is provided" name="connectGeoSearch single index getSearchParameters expect to set the parameter &quot;insideBoundingBox&quot; when boundingBox is provided" time="0">
+    </testcase>
+    <testcase classname="connectGeoSearch single index getSearchParameters expect to return the given searchParameters when boundingBox is omit" name="connectGeoSearch single index getSearchParameters expect to return the given searchParameters when boundingBox is omit" time="0.001">
+    </testcase>
+    <testcase classname="connectGeoSearch single index cleanUp expect to remove the refinement from the searchState when boundingBox is provided" name="connectGeoSearch single index cleanUp expect to remove the refinement from the searchState when boundingBox is provided" time="0.001">
+    </testcase>
+    <testcase classname="connectGeoSearch single index cleanUp expect to return the given searchState when boundingBox is omit" name="connectGeoSearch single index cleanUp expect to return the given searchState when boundingBox is omit" time="0">
+    </testcase>
+    <testcase classname="connectGeoSearch single index getMetadata expect to return the meta when boundingBox is provided" name="connectGeoSearch single index getMetadata expect to return the meta when boundingBox is provided" time="0.001">
+    </testcase>
+    <testcase classname="connectGeoSearch single index getMetadata expect to return an empty meta when boundingBox is omit" name="connectGeoSearch single index getMetadata expect to return an empty meta when boundingBox is omit" time="0">
+    </testcase>
+    <testcase classname="connectGeoSearch single index getMetadata expect to clear the boundingBox when value is called" name="connectGeoSearch single index getMetadata expect to clear the boundingBox when value is called" time="0.001">
+    </testcase>
+    <testcase classname="connectGeoSearch multi index getProvidedProps expect to return default provided props" name="connectGeoSearch multi index getProvidedProps expect to return default provided props" time="0.001">
+    </testcase>
+    <testcase classname="connectGeoSearch multi index getProvidedProps hits expect to return hits when we have results" name="connectGeoSearch multi index getProvidedProps hits expect to return hits when we have results" time="0.001">
+    </testcase>
+    <testcase classname="connectGeoSearch multi index getProvidedProps hits expect to return hits with only &quot;_geoPoint&quot; when we have results" name="connectGeoSearch multi index getProvidedProps hits expect to return hits with only &quot;_geoPoint&quot; when we have results" time="0">
+    </testcase>
+    <testcase classname="connectGeoSearch multi index getProvidedProps hits expect to return empty hits when we don&apos;t have results" name="connectGeoSearch multi index getProvidedProps hits expect to return empty hits when we don&apos;t have results" time="0.001">
+    </testcase>
+    <testcase classname="connectGeoSearch multi index getProvidedProps position expect to return the position from the searchState (aroundLatLng)" name="connectGeoSearch multi index getProvidedProps position expect to return the position from the searchState (aroundLatLng)" time="0">
+    </testcase>
+    <testcase classname="connectGeoSearch multi index getProvidedProps position expect to return the position from the searchState (configure.aroungLatLng)" name="connectGeoSearch multi index getProvidedProps position expect to return the position from the searchState (configure.aroungLatLng)" time="0.001">
+    </testcase>
+    <testcase classname="connectGeoSearch multi index getProvidedProps position expect to return undefined from an empty searchState" name="connectGeoSearch multi index getProvidedProps position expect to return undefined from an empty searchState" time="0.001">
+    </testcase>
+    <testcase classname="connectGeoSearch multi index getProvidedProps position expect to return undefined with the default refinement" name="connectGeoSearch multi index getProvidedProps position expect to return undefined with the default refinement" time="0">
+    </testcase>
+    <testcase classname="connectGeoSearch multi index getProvidedProps currentRefinement expect to return the boundingBox from the searchState" name="connectGeoSearch multi index getProvidedProps currentRefinement expect to return the boundingBox from the searchState" time="0.001">
+    </testcase>
+    <testcase classname="connectGeoSearch multi index getProvidedProps currentRefinement expect to return the boundingBox from the searchState with string values" name="connectGeoSearch multi index getProvidedProps currentRefinement expect to return the boundingBox from the searchState with string values" time="0">
+    </testcase>
+    <testcase classname="connectGeoSearch multi index getProvidedProps currentRefinement expect to return the boundingBox from the SearchResults" name="connectGeoSearch multi index getProvidedProps currentRefinement expect to return the boundingBox from the SearchResults" time="0.001">
+    </testcase>
+    <testcase classname="connectGeoSearch multi index getProvidedProps currentRefinement expect to return the default refinement" name="connectGeoSearch multi index getProvidedProps currentRefinement expect to return the default refinement" time="0.001">
+    </testcase>
+    <testcase classname="connectGeoSearch multi index getProvidedProps currentRefinement expect to return an undefined from an empty searchState" name="connectGeoSearch multi index getProvidedProps currentRefinement expect to return an undefined from an empty searchState" time="0">
+    </testcase>
+    <testcase classname="connectGeoSearch multi index getProvidedProps isRefinedWithMap expect to return true when it&apos;s refined with the map (from the searchState)" name="connectGeoSearch multi index getProvidedProps isRefinedWithMap expect to return true when it&apos;s refined with the map (from the searchState)" time="0">
+    </testcase>
+    <testcase classname="connectGeoSearch multi index getProvidedProps isRefinedWithMap expect to return true when it&apos;s refined with the map (from the searchParameters)" name="connectGeoSearch multi index getProvidedProps isRefinedWithMap expect to return true when it&apos;s refined with the map (from the searchParameters)" time="0.001">
+    </testcase>
+    <testcase classname="connectGeoSearch multi index getProvidedProps isRefinedWithMap expect to return false when it&apos;s not refined with the map" name="connectGeoSearch multi index getProvidedProps isRefinedWithMap expect to return false when it&apos;s not refined with the map" time="0">
+    </testcase>
+    <testcase classname="connectGeoSearch multi index getProvidedProps refine expect to set the boundingBox when boundingBox is provided" name="connectGeoSearch multi index getProvidedProps refine expect to set the boundingBox when boundingBox is provided" time="0.001">
+    </testcase>
+    <testcase classname="connectGeoSearch multi index getProvidedProps refine expect to replace the previous value when boundingBox is provided" name="connectGeoSearch multi index getProvidedProps refine expect to replace the previous value when boundingBox is provided" time="0">
+    </testcase>
+    <testcase classname="connectGeoSearch multi index getProvidedProps refine expect to clear the previous value when boundingBox is omit" name="connectGeoSearch multi index getProvidedProps refine expect to clear the previous value when boundingBox is omit" time="0.001">
+    </testcase>
+    <testcase classname="connectGeoSearch multi index getProvidedProps getSearchParameters expect to set the parameter &quot;insideBoundingBox&quot; when boundingBox is provided" name="connectGeoSearch multi index getProvidedProps getSearchParameters expect to set the parameter &quot;insideBoundingBox&quot; when boundingBox is provided" time="0">
+    </testcase>
+    <testcase classname="connectGeoSearch multi index getProvidedProps getSearchParameters expect to return the given searchParameters when boundingBox is omit" name="connectGeoSearch multi index getProvidedProps getSearchParameters expect to return the given searchParameters when boundingBox is omit" time="0.001">
+    </testcase>
+    <testcase classname="connectGeoSearch multi index getProvidedProps cleanUp expect to remove the refinement from the searchState when boundingBox is provided" name="connectGeoSearch multi index getProvidedProps cleanUp expect to remove the refinement from the searchState when boundingBox is provided" time="0">
+    </testcase>
+    <testcase classname="connectGeoSearch multi index getProvidedProps cleanUp expect to return the given searchState when boundingBox is omit" name="connectGeoSearch multi index getProvidedProps cleanUp expect to return the given searchState when boundingBox is omit" time="0.001">
+    </testcase>
+    <testcase classname="connectGeoSearch multi index getProvidedProps getMetadata expect to return the meta when boundingBox is provided" name="connectGeoSearch multi index getProvidedProps getMetadata expect to return the meta when boundingBox is provided" time="0.001">
+    </testcase>
+    <testcase classname="connectGeoSearch multi index getProvidedProps getMetadata expect to return an empty meta when boundingBox is omit" name="connectGeoSearch multi index getProvidedProps getMetadata expect to return an empty meta when boundingBox is omit" time="0">
+    </testcase>
+    <testcase classname="connectGeoSearch multi index getProvidedProps getMetadata expect to clear the boundingBox when value is called" name="connectGeoSearch multi index getProvidedProps getMetadata expect to clear the boundingBox when value is called" time="0.001">
+    </testcase>
+    <testcase classname="connectGeoSearch shouldComponentUpdate expect to always return true" name="connectGeoSearch shouldComponentUpdate expect to always return true" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="utility method for manipulating the search state" errors="0" failures="0" skipped="0" timestamp="2020-04-24T15:31:10" time="0.592" tests="16">
+    <testcase classname="utility method for manipulating the search state when there is a single index refine with no namespace" name="utility method for manipulating the search state when there is a single index refine with no namespace" time="0.001">
+    </testcase>
+    <testcase classname="utility method for manipulating the search state when there is a single index refine with namespace" name="utility method for manipulating the search state when there is a single index refine with namespace" time="0.001">
+    </testcase>
+    <testcase classname="utility method for manipulating the search state when there is a single index getCurrentRefinementValue retrieves the current refinement value" name="utility method for manipulating the search state when there is a single index getCurrentRefinementValue retrieves the current refinement value" time="0.002">
+    </testcase>
+    <testcase classname="utility method for manipulating the search state when there is a single index getCurrentRefinementValue retrieves default value" name="utility method for manipulating the search state when there is a single index getCurrentRefinementValue retrieves default value" time="0.001">
+    </testcase>
+    <testcase classname="utility method for manipulating the search state when there is a single index getCurrentRefinementValue retrieves from objects without prototype" name="utility method for manipulating the search state when there is a single index getCurrentRefinementValue retrieves from objects without prototype" time="0.002">
+    </testcase>
+    <testcase classname="utility method for manipulating the search state when there is a single index clean up values" name="utility method for manipulating the search state when there is a single index clean up values" time="0.001">
+    </testcase>
+    <testcase classname="utility method for manipulating the search state when there is a single index get results" name="utility method for manipulating the search state when there is a single index get results" time="0.001">
+    </testcase>
+    <testcase classname="utility method for manipulating the search state when there are multiple index refine with no namespace" name="utility method for manipulating the search state when there are multiple index refine with no namespace" time="0.001">
+    </testcase>
+    <testcase classname="utility method for manipulating the search state when there are multiple index refine with namespace" name="utility method for manipulating the search state when there are multiple index refine with namespace" time="0.001">
+    </testcase>
+    <testcase classname="utility method for manipulating the search state when there are multiple index getCurrentRefinementValue retrieves the current refinement value" name="utility method for manipulating the search state when there are multiple index getCurrentRefinementValue retrieves the current refinement value" time="0.001">
+    </testcase>
+    <testcase classname="utility method for manipulating the search state when there are multiple index getCurrentRefinementValue retrieves default value" name="utility method for manipulating the search state when there are multiple index getCurrentRefinementValue retrieves default value" time="0.001">
+    </testcase>
+    <testcase classname="utility method for manipulating the search state when there are multiple index getCurrentRefinementValue retrieves from objects without prototype" name="utility method for manipulating the search state when there are multiple index getCurrentRefinementValue retrieves from objects without prototype" time="0.004">
+    </testcase>
+    <testcase classname="utility method for manipulating the search state when there are multiple index clean up values" name="utility method for manipulating the search state when there are multiple index clean up values" time="0.01">
+    </testcase>
+    <testcase classname="utility method for manipulating the search state when there are multiple index get results" name="utility method for manipulating the search state when there are multiple index get results" time="0.001">
+    </testcase>
+    <testcase classname="utility method for manipulating the search state when there are multiple index refine shared widgets should reset indices page to 1 with resetPage" name="utility method for manipulating the search state when there are multiple index refine shared widgets should reset indices page to 1 with resetPage" time="0">
+    </testcase>
+    <testcase classname="utility method for manipulating the search state when there are multiple index refine shared widgets should not reset indices page to 1 without resetPage" name="utility method for manipulating the search state when there are multiple index refine shared widgets should not reset indices page to 1 without resetPage" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="connectRefinementList" errors="0" failures="0" skipped="0" timestamp="2020-04-24T15:31:11" time="0.407" tests="15">
+    <testcase classname="connectRefinementList single index provides the correct props to the component" name="connectRefinementList single index provides the correct props to the component" time="0.003">
+    </testcase>
+    <testcase classname="connectRefinementList single index calling refine updates the widget&apos;s search state" name="connectRefinementList single index calling refine updates the widget&apos;s search state" time="0.001">
+    </testcase>
+    <testcase classname="connectRefinementList single index increases maxValuesPerFacet when it isn&apos;t big enough" name="connectRefinementList single index increases maxValuesPerFacet when it isn&apos;t big enough" time="0.001">
+    </testcase>
+    <testcase classname="connectRefinementList single index correctly applies its state to search parameters" name="connectRefinementList single index correctly applies its state to search parameters" time="0.001">
+    </testcase>
+    <testcase classname="connectRefinementList single index registers its id in metadata" name="connectRefinementList single index registers its id in metadata" time="0.001">
+    </testcase>
+    <testcase classname="connectRefinementList single index registers its filter in metadata" name="connectRefinementList single index registers its filter in metadata" time="0.001">
+    </testcase>
+    <testcase classname="connectRefinementList single index items value function should clear it from the search state" name="connectRefinementList single index items value function should clear it from the search state" time="0">
+    </testcase>
+    <testcase classname="connectRefinementList single index should return the right searchState when clean up" name="connectRefinementList single index should return the right searchState when clean up" time="0.001">
+    </testcase>
+    <testcase classname="connectRefinementList single index computes canRefine based on the length of the transformed items list" name="connectRefinementList single index computes canRefine based on the length of the transformed items list" time="0">
+    </testcase>
+    <testcase classname="connectRefinementList multi index provides the correct props to the component" name="connectRefinementList multi index provides the correct props to the component" time="0">
+    </testcase>
+    <testcase classname="connectRefinementList multi index calling refine updates the widget&apos;s search state" name="connectRefinementList multi index calling refine updates the widget&apos;s search state" time="0.001">
+    </testcase>
+    <testcase classname="connectRefinementList multi index correctly applies its state to search parameters" name="connectRefinementList multi index correctly applies its state to search parameters" time="0.002">
+    </testcase>
+    <testcase classname="connectRefinementList multi index registers its filter in metadata" name="connectRefinementList multi index registers its filter in metadata" time="0">
+    </testcase>
+    <testcase classname="connectRefinementList multi index items value function should clear it from the search state" name="connectRefinementList multi index items value function should clear it from the search state" time="0.001">
+    </testcase>
+    <testcase classname="connectRefinementList multi index should return the right searchState when clean up" name="connectRefinementList multi index should return the right searchState when clean up" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="ClearRefinements" errors="0" failures="0" skipped="0" timestamp="2020-04-24T15:31:11" time="0.352" tests="5">
+    <testcase classname="ClearRefinements renders a clickable button" name="ClearRefinements renders a clickable button" time="0.001">
+    </testcase>
+    <testcase classname="ClearRefinements renders a clickable button with a custom className" name="ClearRefinements renders a clickable button with a custom className" time="0.001">
+    </testcase>
+    <testcase classname="ClearRefinements has a disabled mode" name="ClearRefinements has a disabled mode" time="0.001">
+    </testcase>
+    <testcase classname="ClearRefinements is disabled when there is no filters" name="ClearRefinements is disabled when there is no filters" time="0.012">
+    </testcase>
+    <testcase classname="ClearRefinements is not disabled when there are filters" name="ClearRefinements is not disabled when there are filters" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="findResultsState" errors="0" failures="0" skipped="0" timestamp="2020-04-24T15:31:11" time="0.439" tests="17">
+    <testcase classname="findResultsState throws an error if props are not provided" name="findResultsState throws an error if props are not provided" time="0.001">
+    </testcase>
+    <testcase classname="findResultsState throws an error if props does not have a `searchClient`" name="findResultsState throws an error if props does not have a `searchClient`" time="0.001">
+    </testcase>
+    <testcase classname="findResultsState throws an error if props does not have an `indexName`" name="findResultsState throws an error if props does not have an `indexName`" time="0.001">
+    </testcase>
+    <testcase classname="findResultsState adds expected Clinia agents" name="findResultsState adds expected Clinia agents" time="0.005">
+    </testcase>
+    <testcase classname="findResultsState does not throw if `searchClient` does not have a `addCliniaAgent()` method" name="findResultsState does not throw if `searchClient` does not have a `addCliniaAgent()` method" time="0.004">
+    </testcase>
+    <testcase classname="findResultsState single index results should be state &amp; results" name="findResultsState single index results should be state &amp; results" time="0.003">
+    </testcase>
+    <testcase classname="findResultsState single index searchParameters should be cleaned each time" name="findResultsState single index searchParameters should be cleaned each time" time="0.003">
+    </testcase>
+    <testcase classname="findResultsState single index without search state" name="findResultsState single index without search state" time="0.002">
+    </testcase>
+    <testcase classname="findResultsState single index with search state" name="findResultsState single index with search state" time="0.001">
+    </testcase>
+    <testcase classname="findResultsState multi index results should be instance of SearchResults and SearchParameters" name="findResultsState multi index results should be instance of SearchResults and SearchParameters" time="0.002">
+    </testcase>
+    <testcase classname="findResultsState multi index searchParameters should be cleaned each time" name="findResultsState multi index searchParameters should be cleaned each time" time="0.005">
+    </testcase>
+    <testcase classname="findResultsState multi index without search state - first API" name="findResultsState multi index without search state - first API" time="0.003">
+    </testcase>
+    <testcase classname="findResultsState multi index without search state - second API" name="findResultsState multi index without search state - second API" time="0.002">
+    </testcase>
+    <testcase classname="findResultsState multi index without search state - same index" name="findResultsState multi index without search state - same index" time="0.003">
+    </testcase>
+    <testcase classname="findResultsState multi index with search state - first API" name="findResultsState multi index with search state - first API" time="0.003">
+    </testcase>
+    <testcase classname="findResultsState multi index with search state - second API" name="findResultsState multi index with search state - second API" time="0.002">
+    </testcase>
+    <testcase classname="findResultsState multi index with search state - same index" name="findResultsState multi index with search state - same index" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="InfiniteHits" errors="0" failures="0" skipped="0" timestamp="2020-04-24T15:31:12" time="0.452" tests="7">
+    <testcase classname="InfiniteHits accepts a hitComponent prop" name="InfiniteHits accepts a hitComponent prop" time="0.004">
+    </testcase>
+    <testcase classname="InfiniteHits accepts a custom className" name="InfiniteHits accepts a custom className" time="0.001">
+    </testcase>
+    <testcase classname="InfiniteHits calls refineNext when the load more button is clicked" name="InfiniteHits calls refineNext when the load more button is clicked" time="0.022">
+    </testcase>
+    <testcase classname="InfiniteHits calls refinePrevious when the load previous button is clicked" name="InfiniteHits calls refinePrevious when the load previous button is clicked" time="0.006">
+    </testcase>
+    <testcase classname="InfiniteHits render &quot;Show previous&quot; button depending of `showPrevious` prop" name="InfiniteHits render &quot;Show previous&quot; button depending of `showPrevious` prop" time="0.007">
+    </testcase>
+    <testcase classname="InfiniteHits &quot;Show more&quot; button is disabled when it is the last page" name="InfiniteHits &quot;Show more&quot; button is disabled when it is the last page" time="0.004">
+    </testcase>
+    <testcase classname="InfiniteHits &quot;Show previous&quot; button is disabled when it is the first page" name="InfiniteHits &quot;Show previous&quot; button is disabled when it is the first page" time="0.017">
+    </testcase>
+  </testsuite>
+  <testsuite name="PerPage" errors="0" failures="0" skipped="0" timestamp="2020-04-24T15:31:12" time="0.379" tests="4">
+    <testcase classname="PerPage renders" name="PerPage renders" time="0.002">
+    </testcase>
+    <testcase classname="PerPage renders with a custom className" name="PerPage renders with a custom className" time="0.002">
+    </testcase>
+    <testcase classname="PerPage refines its value on change" name="PerPage refines its value on change" time="0.019">
+    </testcase>
+    <testcase classname="PerPage should use value if no label provided" name="PerPage should use value if no label provided" time="0.005">
+    </testcase>
+  </testsuite>
+  <testsuite name="CurrentRefinements" errors="0" failures="0" skipped="0" timestamp="2020-04-24T15:31:13" time="0.476" tests="7">
+    <testcase classname="CurrentRefinements expect to render a list of current refinements" name="CurrentRefinements expect to render a list of current refinements" time="0.004">
+    </testcase>
+    <testcase classname="CurrentRefinements expect to render a list without refinements" name="CurrentRefinements expect to render a list without refinements" time="0.001">
+    </testcase>
+    <testcase classname="CurrentRefinements expect to render a list with a custom className" name="CurrentRefinements expect to render a list with a custom className" time="0.001">
+    </testcase>
+    <testcase classname="CurrentRefinements expect to refine the &quot;color&quot; onClick" name="CurrentRefinements expect to refine the &quot;color&quot; onClick" time="0.004">
+    </testcase>
+    <testcase classname="CurrentRefinements expect to refine the &quot;category: iPad&quot; onClick" name="CurrentRefinements expect to refine the &quot;category: iPad&quot; onClick" time="0.002">
+    </testcase>
+    <testcase classname="CurrentRefinements - Connected expect to render a list of current refinements" name="CurrentRefinements - Connected expect to render a list of current refinements" time="0.003">
+    </testcase>
+    <testcase classname="CurrentRefinements - Connected expect to render a list of current refinements with custom translations" name="CurrentRefinements - Connected expect to render a list of current refinements with custom translations" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="Highlighter - Highlight" errors="0" failures="0" skipped="0" timestamp="2020-04-24T15:31:13" time="0.35" tests="13">
+    <testcase classname="Highlighter - Highlight renders a highlight" name="Highlighter - Highlight renders a highlight" time="0.001">
+    </testcase>
+    <testcase classname="Highlighter - Highlight renders a nonhighlight" name="Highlighter - Highlight renders a nonhighlight" time="0.001">
+    </testcase>
+    <testcase classname="Highlighter - simple renders a highlighted value" name="Highlighter - simple renders a highlighted value" time="0.002">
+    </testcase>
+    <testcase classname="Highlighter - simple renders a non highlighted value" name="Highlighter - simple renders a non highlighted value" time="0.001">
+    </testcase>
+    <testcase classname="Highlighter - simple renders a highlighted value with a custom tagName" name="Highlighter - simple renders a highlighted value with a custom tagName" time="0.002">
+    </testcase>
+    <testcase classname="Highlighter - simple renders a highlighted value with a custom nonHighlightedTagName" name="Highlighter - simple renders a highlighted value with a custom nonHighlightedTagName" time="0.001">
+    </testcase>
+    <testcase classname="Highlighter - simple renders with a custom className" name="Highlighter - simple renders with a custom className" time="0.001">
+    </testcase>
+    <testcase classname="Highlighter - multi renders a highlighted value" name="Highlighter - multi renders a highlighted value" time="0.002">
+    </testcase>
+    <testcase classname="Highlighter - multi renders a non highlighted value" name="Highlighter - multi renders a non highlighted value" time="0.001">
+    </testcase>
+    <testcase classname="Highlighter - multi renders a highlighted value with a custom tagName" name="Highlighter - multi renders a highlighted value with a custom tagName" time="0.001">
+    </testcase>
+    <testcase classname="Highlighter - multi renders a highlighted value with a custom nonHighlightedTagName" name="Highlighter - multi renders a highlighted value with a custom nonHighlightedTagName" time="0.002">
+    </testcase>
+    <testcase classname="Highlighter - multi renders a highlighted value with a custom separator" name="Highlighter - multi renders a highlighted value with a custom separator" time="0.001">
+    </testcase>
+    <testcase classname="Highlighter - multi renders a custom className" name="Highlighter - multi renders a custom className" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="MapboxLoader" errors="0" failures="0" skipped="0" timestamp="2020-04-24T15:31:14" time="0.377" tests="5">
+    <testcase classname="MapboxLoader expect to call Mapbox API" name="MapboxLoader expect to call Mapbox API" time="0.005">
+    </testcase>
+    <testcase classname="MapboxLoader expect to call Google Maps API with a custom endpoint" name="MapboxLoader expect to call Google Maps API with a custom endpoint" time="0.001">
+    </testcase>
+    <testcase classname="MapboxLoader expect to render nothing when it&apos;s loading" name="MapboxLoader expect to render nothing when it&apos;s loading" time="0.001">
+    </testcase>
+    <testcase classname="MapboxLoader expect to call children with the Mapboxgl object when it&apos;s loaded" name="MapboxLoader expect to call children with the Mapboxgl object when it&apos;s loaded" time="0.002">
+    </testcase>
+    <testcase classname="MapboxLoader expect to not call setState when we unmount before loading is complete" name="MapboxLoader expect to not call setState when we unmount before loading is complete" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="Index" errors="0" failures="0" skipped="0" timestamp="2020-04-24T15:31:14" time="0.342" tests="8">
+    <testcase classname="Index registers itself on mount" name="Index registers itself on mount" time="0.002">
+    </testcase>
+    <testcase classname="Index calls onSearchParameters on mount" name="Index calls onSearchParameters on mount" time="0">
+    </testcase>
+    <testcase classname="Index calls update if indexName props changes" name="Index calls update if indexName props changes" time="0.02">
+    </testcase>
+    <testcase classname="Index unregisters itself on unmount" name="Index unregisters itself on unmount" time="0.001">
+    </testcase>
+    <testcase classname="Index exposes multi index context" name="Index exposes multi index context" time="0.007">
+    </testcase>
+    <testcase classname="Index provides search parameters from instance props" name="Index provides search parameters from instance props" time="0.002">
+    </testcase>
+    <testcase classname="Index provides search parameters from argument props when instance props are not available" name="Index provides search parameters from argument props when instance props are not available" time="0.001">
+    </testcase>
+    <testcase classname="Index wrapped with VizionProvider: sets correct props" name="Index wrapped with VizionProvider: sets correct props" time="0.005">
+    </testcase>
+  </testsuite>
+  <testsuite name="utils" errors="0" failures="0" skipped="0" timestamp="2020-04-24T15:31:14" time="0.251" tests="20">
+    <testcase classname="utils getDisplayName gets the right displayName from classes" name="utils getDisplayName gets the right displayName from classes" time="0.001">
+    </testcase>
+    <testcase classname="utils getDisplayName gets the right displayName from stateless components" name="utils getDisplayName gets the right displayName from stateless components" time="0.001">
+    </testcase>
+    <testcase classname="utils getDisplayName sets a default displayName when not able to find one" name="utils getDisplayName sets a default displayName when not able to find one" time="0">
+    </testcase>
+    <testcase classname="utils defer calling a function asynchronously, should be done as soon as possible." name="utils defer calling a function asynchronously, should be done as soon as possible." time="0.001">
+    </testcase>
+    <testcase classname="utils remove empty key empty key should be removed" name="utils remove empty key empty key should be removed" time="0.001">
+    </testcase>
+    <testcase classname="utils remove empty key does not do anything on empty root" name="utils remove empty key does not do anything on empty root" time="0">
+    </testcase>
+    <testcase classname="utils remove empty key does empty out objects" name="utils remove empty key does empty out objects" time="0.001">
+    </testcase>
+    <testcase classname="utils remove empty key does not empty out arrays" name="utils remove empty key does not empty out arrays" time="0.001">
+    </testcase>
+    <testcase classname="utils addAbsolutePositions should add __positions 1 and 2 on page 0" name="utils addAbsolutePositions should add __positions 1 and 2 on page 0" time="0">
+    </testcase>
+    <testcase classname="utils addAbsolutePositions should add __positions 5 and 6 on page 2" name="utils addAbsolutePositions should add __positions 5 and 6 on page 2" time="0.001">
+    </testcase>
+    <testcase classname="utils addQueryID should passed __queryID to hits" name="utils addQueryID should passed __queryID to hits" time="0">
+    </testcase>
+    <testcase classname="utils getPropertyByPath returns undefined on non-object root" name="utils getPropertyByPath returns undefined on non-object root" time="0">
+    </testcase>
+    <testcase classname="utils getPropertyByPath returns path if exists" name="utils getPropertyByPath returns path if exists" time="0.001">
+    </testcase>
+    <testcase classname="utils getPropertyByPath accepts a pre-split path as array" name="utils getPropertyByPath accepts a pre-split path as array" time="0.001">
+    </testcase>
+    <testcase classname="utils getPropertyByPath does not split a pre-split path as array" name="utils getPropertyByPath does not split a pre-split path as array" time="0">
+    </testcase>
+    <testcase classname="utils getPropertyByPath returns undefined if does not exist" name="utils getPropertyByPath returns undefined if does not exist" time="0.001">
+    </testcase>
+    <testcase classname="utils getPropertyByPath returns indexed path if exists" name="utils getPropertyByPath returns indexed path if exists" time="0.001">
+    </testcase>
+    <testcase classname="utils getPropertyByPath returns undefined if indexed path does not exist" name="utils getPropertyByPath returns undefined if indexed path does not exist" time="0.001">
+    </testcase>
+    <testcase classname="utils find returns the first match based on the comparator" name="utils find returns the first match based on the comparator" time="0">
+    </testcase>
+    <testcase classname="utils find returns undefined in non-found cases" name="utils find returns undefined in non-found cases" time="0.005">
+    </testcase>
+  </testsuite>
+  <testsuite name="GoogleMapsLoader" errors="0" failures="0" skipped="0" timestamp="2020-04-24T15:31:15" time="0.264" tests="6">
+    <testcase classname="GoogleMapsLoader expect to call Google Maps API" name="GoogleMapsLoader expect to call Google Maps API" time="0.002">
+    </testcase>
+    <testcase classname="GoogleMapsLoader expect to call Google Maps API with a custom API Key" name="GoogleMapsLoader expect to call Google Maps API with a custom API Key" time="0.001">
+    </testcase>
+    <testcase classname="GoogleMapsLoader expect to call Google Maps API with a custom endpoint" name="GoogleMapsLoader expect to call Google Maps API with a custom endpoint" time="0.001">
+    </testcase>
+    <testcase classname="GoogleMapsLoader expect to render nothing when it&apos;s loading" name="GoogleMapsLoader expect to render nothing when it&apos;s loading" time="0.001">
+    </testcase>
+    <testcase classname="GoogleMapsLoader expect to call children with the Google object when it&apos;s loaded" name="GoogleMapsLoader expect to call children with the Google object when it&apos;s loaded" time="0.001">
+    </testcase>
+    <testcase classname="GoogleMapsLoader expect to not call setState when we unmount before loading is complete" name="GoogleMapsLoader expect to not call setState when we unmount before loading is complete" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="utils" errors="0" failures="0" skipped="0" timestamp="2020-04-24T15:31:15" time="0.208" tests="10">
+    <testcase classname="utils registerEvents expect to add listeners from events" name="utils registerEvents expect to add listeners from events" time="0.001">
+    </testcase>
+    <testcase classname="utils registerEvents expect to add listeners with event &amp; marker" name="utils registerEvents expect to add listeners with event &amp; marker" time="0.001">
+    </testcase>
+    <testcase classname="utils registerEvents expect to only add listeners listed from events" name="utils registerEvents expect to only add listeners listed from events" time="0.001">
+    </testcase>
+    <testcase classname="utils registerEvents expect to only add listeners listed from props" name="utils registerEvents expect to only add listeners listed from props" time="0.001">
+    </testcase>
+    <testcase classname="utils registerEvents expect to return a function that remove the listeners" name="utils registerEvents expect to return a function that remove the listeners" time="0">
+    </testcase>
+    <testcase classname="utils createListenersPropTypes expect to return an object with listeners propType from event types" name="utils createListenersPropTypes expect to return an object with listeners propType from event types" time="0.001">
+    </testcase>
+    <testcase classname="utils createListenersPropTypes expect to return an empty object from empty event types" name="utils createListenersPropTypes expect to return an empty object from empty event types" time="0">
+    </testcase>
+    <testcase classname="utils createFilterProps expect to return an object without excluded keys" name="utils createFilterProps expect to return an object without excluded keys" time="0">
+    </testcase>
+    <testcase classname="utils createFilterProps expect to return the given props when excluded keys is empty" name="utils createFilterProps expect to return the given props when excluded keys is empty" time="0.001">
+    </testcase>
+    <testcase classname="utils createFilterProps expect to return an empty object when all keys are excluded" name="utils createFilterProps expect to return an empty object when all keys are excluded" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="translatable" errors="0" failures="0" skipped="0" timestamp="2020-04-24T15:31:15" time="0.224" tests="2">
+    <testcase classname="translatable provides a translate prop to the composed component" name="translatable provides a translate prop to the composed component" time="0.006">
+    </testcase>
+    <testcase classname="translatable uses the translations passed as props before the default" name="translatable uses the translations passed as props before the default" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="Highlight" errors="0" failures="0" skipped="0" timestamp="2020-04-24T15:31:15" time="0.212" tests="3">
+    <testcase classname="Highlight parses an highlighted property of hit object" name="Highlight parses an highlighted property of hit object" time="0.003">
+    </testcase>
+    <testcase classname="Highlight renders a hit with a custom tag correctly" name="Highlight renders a hit with a custom tag correctly" time="0.001">
+    </testcase>
+    <testcase classname="Highlight renders a hit with a custom className" name="Highlight renders a hit with a custom className" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="createHTMLMarker" errors="0" failures="0" skipped="0" timestamp="2020-04-24T15:31:16" time="0.287" tests="13">
+    <testcase classname="createHTMLMarker expect to create a marker" name="createHTMLMarker expect to create a marker" time="0.003">
+    </testcase>
+    <testcase classname="createHTMLMarker expect to create a marker with a custom anchor" name="createHTMLMarker expect to create a marker with a custom anchor" time="0.001">
+    </testcase>
+    <testcase classname="createHTMLMarker expect to create a marker with a custom className" name="createHTMLMarker expect to create a marker with a custom className" time="0">
+    </testcase>
+    <testcase classname="createHTMLMarker onAdd expect to append the element to the overlay" name="createHTMLMarker onAdd expect to append the element to the overlay" time="0.001">
+    </testcase>
+    <testcase classname="createHTMLMarker onAdd expect to not append the element to the overlay when panes are not available" name="createHTMLMarker onAdd expect to not append the element to the overlay when panes are not available" time="0">
+    </testcase>
+    <testcase classname="createHTMLMarker draw expect to set the correct position on the element" name="createHTMLMarker draw expect to set the correct position on the element" time="0.002">
+    </testcase>
+    <testcase classname="createHTMLMarker draw expect to set the correct zIndex on the element" name="createHTMLMarker draw expect to set the correct zIndex on the element" time="0.001">
+    </testcase>
+    <testcase classname="createHTMLMarker draw expect to not set the correct position when the projection is not available" name="createHTMLMarker draw expect to not set the correct position when the projection is not available" time="0.001">
+    </testcase>
+    <testcase classname="createHTMLMarker onRemove expect to remove the element" name="createHTMLMarker onRemove expect to remove the element" time="0.002">
+    </testcase>
+    <testcase classname="createHTMLMarker onRemove expect to remove all the listeners" name="createHTMLMarker onRemove expect to remove all the listeners" time="0.001">
+    </testcase>
+    <testcase classname="createHTMLMarker addListener expect to register listener" name="createHTMLMarker addListener expect to register listener" time="0.001">
+    </testcase>
+    <testcase classname="createHTMLMarker addListener expect to return a function to remove the listener" name="createHTMLMarker addListener expect to return a function to remove the listener" time="0.002">
+    </testcase>
+    <testcase classname="createHTMLMarker getPosition expect to return the latLng" name="createHTMLMarker getPosition expect to return the latLng" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="getInsightsAnonymousUserToken" errors="0" failures="0" skipped="0" timestamp="2020-04-24T15:31:16" time="0.282" tests="4">
+    <testcase classname="getInsightsAnonymousUserToken should return undefined when no cookies" name="getInsightsAnonymousUserToken should return undefined when no cookies" time="0.026">
+    </testcase>
+    <testcase classname="getInsightsAnonymousUserToken should return undefined when cookie present but expired" name="getInsightsAnonymousUserToken should return undefined when cookie present but expired" time="0.003">
+    </testcase>
+    <testcase classname="getInsightsAnonymousUserToken should return the anonymous uuid when cookie present and valid" name="getInsightsAnonymousUserToken should return the anonymous uuid when cookie present and valid" time="0.003">
+    </testcase>
+    <testcase classname="getInsightsAnonymousUserToken should return the anonymous uuid when other cookies are invalid" name="getInsightsAnonymousUserToken should return the anonymous uuid when other cookies are invalid" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="utils" errors="0" failures="0" skipped="0" timestamp="2020-04-24T15:31:16" time="0.472" tests="14">
+    <testcase classname="utils createClassNames expect to return classNames" name="utils createClassNames expect to return classNames" time="0.001">
+    </testcase>
+    <testcase classname="utils createClassNames expect to return classNames with custom prefix" name="utils createClassNames expect to return classNames with custom prefix" time="0.001">
+    </testcase>
+    <testcase classname="utils isSpecialClick returns true if a modifier key is pressed" name="utils isSpecialClick returns true if a modifier key is pressed" time="0.005">
+    </testcase>
+    <testcase classname="utils isSpecialClick returns true if it&apos;s a middle click" name="utils isSpecialClick returns true if it&apos;s a middle click" time="0.001">
+    </testcase>
+    <testcase classname="utils isSpecialClick returns false otherwise" name="utils isSpecialClick returns false otherwise" time="0.001">
+    </testcase>
+    <testcase classname="utils capitalize capitalizes a string" name="utils capitalize capitalizes a string" time="0.001">
+    </testcase>
+    <testcase classname="utils capitalize works with empty strings" name="utils capitalize works with empty strings" time="0">
+    </testcase>
+    <testcase classname="utils range with end" name="utils range with end" time="0.001">
+    </testcase>
+    <testcase classname="utils range with start and end" name="utils range with start and end" time="0.001">
+    </testcase>
+    <testcase classname="utils range with end and step" name="utils range with end and step" time="0">
+    </testcase>
+    <testcase classname="utils range rounds decimal array lengths" name="utils range rounds decimal array lengths" time="0.001">
+    </testcase>
+    <testcase classname="utils find returns the first match based on the comparator" name="utils find returns the first match based on the comparator" time="0.001">
+    </testcase>
+    <testcase classname="utils find returns undefined in non-found cases" name="utils find returns undefined in non-found cases" time="0.007">
+    </testcase>
+    <testcase classname="utils extractInputEventsFromProps should return all events except the internal ones" name="utils extractInputEventsFromProps should return all events except the internal ones" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="createWidgetsManager" errors="0" failures="0" skipped="0" timestamp="2020-04-24T15:31:17" time="0.418" tests="4">
+    <testcase classname="createWidgetsManager registerWidget adds the widget to the widgets list" name="createWidgetsManager registerWidget adds the widget to the widgets list" time="0.001">
+    </testcase>
+    <testcase classname="createWidgetsManager registerWidget returns an unregister method" name="createWidgetsManager registerWidget returns an unregister method" time="0">
+    </testcase>
+    <testcase classname="createWidgetsManager registerWidget schedules an update" name="createWidgetsManager registerWidget schedules an update" time="0.001">
+    </testcase>
+    <testcase classname="createWidgetsManager update schedules an update" name="createWidgetsManager update schedules an update" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="Vizion" errors="0" failures="0" skipped="0" timestamp="2020-04-24T15:31:17" time="0.361" tests="5">
+    <testcase classname="Vizion validates its props" name="Vizion validates its props" time="0.067">
+    </testcase>
+    <testcase classname="Vizion correctly instantiates the vizionManager" name="Vizion correctly instantiates the vizionManager" time="0.014">
+    </testcase>
+    <testcase classname="Vizion updates Clinia client when new one is given in props" name="Vizion updates Clinia client when new one is given in props" time="0.005">
+    </testcase>
+    <testcase classname="Vizion createHrefForState passes through to createURL when it is defined" name="Vizion createHrefForState passes through to createURL when it is defined" time="0.002">
+    </testcase>
+    <testcase classname="Vizion createHrefForState returns # otherwise" name="Vizion createHrefForState returns # otherwise" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="createStore" errors="0" failures="0" skipped="0" timestamp="2020-04-24T15:31:17" time="0.229" tests="4">
+    <testcase classname="createStore getState retrieves the current state of the store" name="createStore getState retrieves the current state of the store" time="0.001">
+    </testcase>
+    <testcase classname="createStore setState sets a new state" name="createStore setState sets a new state" time="0">
+    </testcase>
+    <testcase classname="createStore subscribe subscribes to new states" name="createStore subscribe subscribes to new states" time="0">
+    </testcase>
+    <testcase classname="createStore subscribe returns a method to unsubscribe" name="createStore subscribe returns a method to unsubscribe" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="connectInfiniteHits" errors="0" failures="0" skipped="0" timestamp="2020-04-24T15:31:18" time="0.445" tests="19">
+    <testcase classname="connectInfiniteHits single index provides the current hits to the component" name="connectInfiniteHits single index provides the current hits to the component" time="0.002">
+    </testcase>
+    <testcase classname="connectInfiniteHits single index accumulate hits internally" name="connectInfiniteHits single index accumulate hits internally" time="0.002">
+    </testcase>
+    <testcase classname="connectInfiniteHits single index prepend hits internally" name="connectInfiniteHits single index prepend hits internally" time="0.003">
+    </testcase>
+    <testcase classname="connectInfiniteHits single index accumulate hits internally while changing perPage configuration" name="connectInfiniteHits single index accumulate hits internally while changing perPage configuration" time="0.004">
+    </testcase>
+    <testcase classname="connectInfiniteHits single index should not reset while accumulating results" name="connectInfiniteHits single index should not reset while accumulating results" time="0.004">
+    </testcase>
+    <testcase classname="connectInfiniteHits single index Indicates the last page after several pages" name="connectInfiniteHits single index Indicates the last page after several pages" time="0.001">
+    </testcase>
+    <testcase classname="connectInfiniteHits single index calls refine with next page when calling refineNext" name="connectInfiniteHits single index calls refine with next page when calling refineNext" time="0.001">
+    </testcase>
+    <testcase classname="connectInfiniteHits single index calls refine with previous page when calling refinePrevious" name="connectInfiniteHits single index calls refine with previous page when calling refinePrevious" time="0.001">
+    </testcase>
+    <testcase classname="connectInfiniteHits single index adds 1 to page when calling refine" name="connectInfiniteHits single index adds 1 to page when calling refine" time="0">
+    </testcase>
+    <testcase classname="connectInfiniteHits single index set page to the corresponding index" name="connectInfiniteHits single index set page to the corresponding index" time="0.002">
+    </testcase>
+    <testcase classname="connectInfiniteHits single index automatically converts String state to Number" name="connectInfiniteHits single index automatically converts String state to Number" time="0">
+    </testcase>
+    <testcase classname="connectInfiniteHits single index expect to always return an array of hits" name="connectInfiniteHits single index expect to always return an array of hits" time="0.001">
+    </testcase>
+    <testcase classname="connectInfiniteHits multi index provides the current hits to the component" name="connectInfiniteHits multi index provides the current hits to the component" time="0.001">
+    </testcase>
+    <testcase classname="connectInfiniteHits multi index accumulate hits internally" name="connectInfiniteHits multi index accumulate hits internally" time="0.001">
+    </testcase>
+    <testcase classname="connectInfiniteHits multi index prepend hits internally" name="connectInfiniteHits multi index prepend hits internally" time="0.001">
+    </testcase>
+    <testcase classname="connectInfiniteHits multi index accumulate hits internally while changing perPage configuration" name="connectInfiniteHits multi index accumulate hits internally while changing perPage configuration" time="0.002">
+    </testcase>
+    <testcase classname="connectInfiniteHits multi index should not accumulate hits internally while changing query" name="connectInfiniteHits multi index should not accumulate hits internally while changing query" time="0.001">
+    </testcase>
+    <testcase classname="connectInfiniteHits multi index should not reset while accumulating results" name="connectInfiniteHits multi index should not reset while accumulating results" time="0.075">
+    </testcase>
+    <testcase classname="connectInfiniteHits multi index Indicates the last page after several pages" name="connectInfiniteHits multi index Indicates the last page after several pages" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="Hits" errors="0" failures="0" skipped="0" timestamp="2020-04-24T15:31:18" time="0.244" tests="2">
+    <testcase classname="Hits accepts a hitComponent prop" name="Hits accepts a hitComponent prop" time="0.002">
+    </testcase>
+    <testcase classname="Hits accepts a custom className" name="Hits accepts a custom className" time="0.004">
+    </testcase>
+  </testsuite>
+  <testsuite name="GoogleMapsLoader" errors="0" failures="0" skipped="0" timestamp="2020-04-24T15:31:18" time="0.219" tests="1">
+    <testcase classname="GoogleMapsLoader expect to require the file in a Node environment" name="GoogleMapsLoader expect to require the file in a Node environment" time="0.005">
+    </testcase>
+  </testsuite>
+  <testsuite name="MapboxLoader" errors="0" failures="0" skipped="0" timestamp="2020-04-24T15:31:19" time="0.186" tests="1">
+    <testcase classname="MapboxLoader expect to require the file in a Node environment" name="MapboxLoader expect to require the file in a Node environment" time="0.004">
+    </testcase>
+  </testsuite>
+  <testsuite name="connectPerPage" errors="0" failures="0" skipped="0" timestamp="2020-04-24T15:31:19" time="0.306" tests="10">
+    <testcase classname="connectPerPage single index provides the correct props to the component" name="connectPerPage single index provides the correct props to the component" time="0.002">
+    </testcase>
+    <testcase classname="connectPerPage single index calling refine updates the widget&apos;s search state" name="connectPerPage single index calling refine updates the widget&apos;s search state" time="0.001">
+    </testcase>
+    <testcase classname="connectPerPage single index refines the perPage parameter" name="connectPerPage single index refines the perPage parameter" time="0.002">
+    </testcase>
+    <testcase classname="connectPerPage single index registers its id in metadata" name="connectPerPage single index registers its id in metadata" time="0">
+    </testcase>
+    <testcase classname="connectPerPage single index should return the right searchState when clean up" name="connectPerPage single index should return the right searchState when clean up" time="0.001">
+    </testcase>
+    <testcase classname="connectPerPage multi index provides the correct props to the component" name="connectPerPage multi index provides the correct props to the component" time="0.001">
+    </testcase>
+    <testcase classname="connectPerPage multi index calling refine updates the widget&apos;s search state" name="connectPerPage multi index calling refine updates the widget&apos;s search state" time="0.001">
+    </testcase>
+    <testcase classname="connectPerPage multi index correctly applies its state to search parameters" name="connectPerPage multi index correctly applies its state to search parameters" time="0.001">
+    </testcase>
+    <testcase classname="connectPerPage multi index registers its id in metadata" name="connectPerPage multi index registers its id in metadata" time="0.001">
+    </testcase>
+    <testcase classname="connectPerPage multi index should return the right searchState when clean up" name="connectPerPage multi index should return the right searchState when clean up" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="connectCurrentRefinements" errors="0" failures="0" skipped="0" timestamp="2020-04-24T15:31:19" time="0.202" tests="6">
+    <testcase classname="connectCurrentRefinements provides the correct props to the component" name="connectCurrentRefinements provides the correct props to the component" time="0.002">
+    </testcase>
+    <testcase classname="connectCurrentRefinements provides the query if clearsQuery props is true" name="connectCurrentRefinements provides the query if clearsQuery props is true" time="0.001">
+    </testcase>
+    <testcase classname="connectCurrentRefinements dont provide the query if clearsQuery props is true but the current refinement is an empty string" name="connectCurrentRefinements dont provide the query if clearsQuery props is true but the current refinement is an empty string" time="0">
+    </testcase>
+    <testcase classname="connectCurrentRefinements refine applies the selected filters clear method on searchState" name="connectCurrentRefinements refine applies the selected filters clear method on searchState" time="0.001">
+    </testcase>
+    <testcase classname="connectCurrentRefinements deduplicates entries with transformItems" name="connectCurrentRefinements deduplicates entries with transformItems" time="0.001">
+    </testcase>
+    <testcase classname="connectCurrentRefinements computes canRefine based on the length of the transformed items list" name="connectCurrentRefinements computes canRefine based on the length of the transformed items list" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="connectPagination" errors="0" failures="0" skipped="0" timestamp="2020-04-24T15:31:19" time="0.262" tests="10">
+    <testcase classname="connectPagination single index provides the correct props to the component" name="connectPagination single index provides the correct props to the component" time="0.001">
+    </testcase>
+    <testcase classname="connectPagination single index doesn&apos;t render when no results are available" name="connectPagination single index doesn&apos;t render when no results are available" time="0">
+    </testcase>
+    <testcase classname="connectPagination single index calling refine updates the widget&apos;s search state" name="connectPagination single index calling refine updates the widget&apos;s search state" time="0.001">
+    </testcase>
+    <testcase classname="connectPagination single index refines the page parameter" name="connectPagination single index refines the page parameter" time="0.001">
+    </testcase>
+    <testcase classname="connectPagination single index registers its id in metadata" name="connectPagination single index registers its id in metadata" time="0">
+    </testcase>
+    <testcase classname="connectPagination single index should return the right searchState when clean up" name="connectPagination single index should return the right searchState when clean up" time="0.005">
+    </testcase>
+    <testcase classname="connectPagination multi index provides the correct props to the component" name="connectPagination multi index provides the correct props to the component" time="0.001">
+    </testcase>
+    <testcase classname="connectPagination multi index calling refine updates the widget&apos;s search state" name="connectPagination multi index calling refine updates the widget&apos;s search state" time="0.001">
+    </testcase>
+    <testcase classname="connectPagination multi index refines the page parameter" name="connectPagination multi index refines the page parameter" time="0">
+    </testcase>
+    <testcase classname="connectPagination multi index should return the right searchState when clean up" name="connectPagination multi index should return the right searchState when clean up" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="connectAutoComplete" errors="0" failures="0" skipped="0" timestamp="2020-04-24T15:31:20" time="0.208" tests="9">
+    <testcase classname="connectAutoComplete single index provides current hits to the component" name="connectAutoComplete single index provides current hits to the component" time="0.001">
+    </testcase>
+    <testcase classname="connectAutoComplete single index provides current hits to the component with queryID &amp; position" name="connectAutoComplete single index provides current hits to the component with queryID &amp; position" time="0.001">
+    </testcase>
+    <testcase classname="connectAutoComplete single index refines the query parameter" name="connectAutoComplete single index refines the query parameter" time="0">
+    </testcase>
+    <testcase classname="connectAutoComplete single index calling refine updates the widget&apos;s search state" name="connectAutoComplete single index calling refine updates the widget&apos;s search state" time="0.001">
+    </testcase>
+    <testcase classname="connectAutoComplete single index should return the right searchState when clean up" name="connectAutoComplete single index should return the right searchState when clean up" time="0">
+    </testcase>
+    <testcase classname="connectAutoComplete multi index provides current hits to the component" name="connectAutoComplete multi index provides current hits to the component" time="0.001">
+    </testcase>
+    <testcase classname="connectAutoComplete multi index refines the query parameter" name="connectAutoComplete multi index refines the query parameter" time="0.001">
+    </testcase>
+    <testcase classname="connectAutoComplete multi index calling refine updates the widget&apos;s search state" name="connectAutoComplete multi index calling refine updates the widget&apos;s search state" time="0">
+    </testcase>
+    <testcase classname="connectAutoComplete multi index should return the right searchState when clean up" name="connectAutoComplete multi index should return the right searchState when clean up" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="parseCliniaHit()" errors="0" failures="0" skipped="0" timestamp="2020-04-24T15:31:20" time="0.332" tests="9">
+    <testcase classname="parseCliniaHit() it does not break when there is a missing property" name="parseCliniaHit() it does not break when there is a missing property" time="0.002">
+    </testcase>
+    <testcase classname="parseCliniaHit() creates a single element when there is no tag" name="parseCliniaHit() creates a single element when there is no tag" time="0.001">
+    </testcase>
+    <testcase classname="parseCliniaHit() creates a single element when there is only a tag" name="parseCliniaHit() creates a single element when there is only a tag" time="0.001">
+    </testcase>
+    <testcase classname="parseCliniaHit() fetches and parses a deep property" name="parseCliniaHit() fetches and parses a deep property" time="0.001">
+    </testcase>
+    <testcase classname="parseCliniaHit() parses the string and returns the part that are highlighted - 1 big highlight" name="parseCliniaHit() parses the string and returns the part that are highlighted - 1 big highlight" time="0.001">
+    </testcase>
+    <testcase classname="parseCliniaHit() supports the array format, parses it and returns the part that is highlighted" name="parseCliniaHit() supports the array format, parses it and returns the part that is highlighted" time="0">
+    </testcase>
+    <testcase classname="parseCliniaHit() parses the string and returns the part that are highlighted - same pre and post tag" name="parseCliniaHit() parses the string and returns the part that are highlighted - same pre and post tag" time="0.001">
+    </testcase>
+    <testcase classname="parseCliniaHit() throws when hit is `null`" name="parseCliniaHit() throws when hit is `null`" time="0.006">
+    </testcase>
+    <testcase classname="parseCliniaHit() throws when hit is `undefined`" name="parseCliniaHit() throws when hit is `undefined`" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="connectSearchBox" errors="0" failures="0" skipped="0" timestamp="2020-04-24T15:31:20" time="0.294" tests="10">
+    <testcase classname="connectSearchBox single index provides the correct props to the component" name="connectSearchBox single index provides the correct props to the component" time="0.001">
+    </testcase>
+    <testcase classname="connectSearchBox single index calling refine updates the widget&apos;s search state" name="connectSearchBox single index calling refine updates the widget&apos;s search state" time="0.001">
+    </testcase>
+    <testcase classname="connectSearchBox single index supports defaultRefinement" name="connectSearchBox single index supports defaultRefinement" time="0">
+    </testcase>
+    <testcase classname="connectSearchBox single index refines the query parameter" name="connectSearchBox single index refines the query parameter" time="0.001">
+    </testcase>
+    <testcase classname="connectSearchBox single index should return the right searchState when clean up" name="connectSearchBox single index should return the right searchState when clean up" time="0.001">
+    </testcase>
+    <testcase classname="connectSearchBox multi index provides the correct props to the component" name="connectSearchBox multi index provides the correct props to the component" time="0">
+    </testcase>
+    <testcase classname="connectSearchBox multi index calling refine updates the widget&apos;s search state" name="connectSearchBox multi index calling refine updates the widget&apos;s search state" time="0">
+    </testcase>
+    <testcase classname="connectSearchBox multi index supports defaultRefinement" name="connectSearchBox multi index supports defaultRefinement" time="0.001">
+    </testcase>
+    <testcase classname="connectSearchBox multi index refines the query parameter" name="connectSearchBox multi index refines the query parameter" time="0">
+    </testcase>
+    <testcase classname="connectSearchBox multi index should return the right searchState when clean up" name="connectSearchBox multi index should return the right searchState when clean up" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="createVizionManager with multi index" errors="0" failures="0" skipped="0" timestamp="2020-04-24T15:31:20" time="0.34" tests="5">
+    <testcase classname="createVizionManager with multi index updates the store and searches" name="createVizionManager with multi index updates the store and searches" time="0.016">
+    </testcase>
+    <testcase classname="createVizionManager with multi index searches with duplicate Index &amp; SortBy" name="createVizionManager with multi index searches with duplicate Index &amp; SortBy" time="0.013">
+    </testcase>
+    <testcase classname="createVizionManager with multi index searches with N queries for N Index widgets" name="createVizionManager with multi index searches with N queries for N Index widgets" time="0.007">
+    </testcase>
+    <testcase classname="createVizionManager with multi index searches with same index but different params" name="createVizionManager with multi index searches with same index but different params" time="0.008">
+    </testcase>
+    <testcase classname="createVizionManager with multi index switching from mono to multi index" name="createVizionManager with multi index switching from mono to multi index" time="0.03">
+    </testcase>
+  </testsuite>
+  <testsuite name="connectHits" errors="0" failures="0" skipped="0" timestamp="2020-04-24T15:31:21" time="0.339" tests="10">
+    <testcase classname="connectHits single index provides the current hits to the component" name="connectHits single index provides the current hits to the component" time="0.001">
+    </testcase>
+    <testcase classname="connectHits single index adds positions to the hits provided to the component" name="connectHits single index adds positions to the hits provided to the component" time="0.001">
+    </testcase>
+    <testcase classname="connectHits single index adds queryID to the hits provided to the component" name="connectHits single index adds queryID to the hits provided to the component" time="0.001">
+    </testcase>
+    <testcase classname="connectHits single index doesn&apos;t render when no hits are available" name="connectHits single index doesn&apos;t render when no hits are available" time="0">
+    </testcase>
+    <testcase classname="connectHits single index should return the searchParameters unchanged" name="connectHits single index should return the searchParameters unchanged" time="0.001">
+    </testcase>
+    <testcase classname="connectHits multi index provides the current hits to the component" name="connectHits multi index provides the current hits to the component" time="0">
+    </testcase>
+    <testcase classname="connectHits multi index adds positions to the hits provided to the component" name="connectHits multi index adds positions to the hits provided to the component" time="0">
+    </testcase>
+    <testcase classname="connectHits multi index adds queryID to the hits provided to the component" name="connectHits multi index adds queryID to the hits provided to the component" time="0.001">
+    </testcase>
+    <testcase classname="connectHits multi index doesn&apos;t render when no hits are available" name="connectHits multi index doesn&apos;t render when no hits are available" time="0.004">
+    </testcase>
+    <testcase classname="connectHits multi index should return the searchParameters unchanged" name="connectHits multi index should return the searchParameters unchanged" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="connectConfigure" errors="0" failures="0" skipped="0" timestamp="2020-04-24T15:31:21" time="0.211" tests="6">
+    <testcase classname="connectConfigure single index propagates the props to the SearchParameters without children &amp; contextValue" name="connectConfigure single index propagates the props to the SearchParameters without children &amp; contextValue" time="0.002">
+    </testcase>
+    <testcase classname="connectConfigure single index calling transitionState should add configure parameters to the search state" name="connectConfigure single index calling transitionState should add configure parameters to the search state" time="0.001">
+    </testcase>
+    <testcase classname="connectConfigure single index calling cleanUp should remove configure parameters from the search state" name="connectConfigure single index calling cleanUp should remove configure parameters from the search state" time="0">
+    </testcase>
+    <testcase classname="connectConfigure multi index it propagates the props to the SearchParameters without children" name="connectConfigure multi index it propagates the props to the SearchParameters without children" time="0.001">
+    </testcase>
+    <testcase classname="connectConfigure multi index calling transitionState should add configure parameters to the search state" name="connectConfigure multi index calling transitionState should add configure parameters to the search state" time="0.001">
+    </testcase>
+    <testcase classname="connectConfigure multi index calling cleanUp should remove configure parameters from the search state" name="connectConfigure multi index calling cleanUp should remove configure parameters from the search state" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="createVizionManager with errors" errors="0" failures="0" skipped="0" timestamp="2020-04-24T15:31:21" time="0.219" tests="3">
+    <testcase classname="createVizionManager with errors on search updates the store on widget lifecycle" name="createVizionManager with errors on search updates the store on widget lifecycle" time="0.003">
+    </testcase>
+    <testcase classname="createVizionManager with errors on search updates the store on external updates" name="createVizionManager with errors on search updates the store on external updates" time="0.006">
+    </testcase>
+    <testcase classname="createVizionManager with errors on search reset the error after a successful search" name="createVizionManager with errors on search reset the error after a successful search" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="createVizionManager with results" errors="0" failures="0" skipped="0" timestamp="2020-04-24T15:31:22" time="0.198" tests="2">
+    <testcase classname="createVizionManager with results on search updates the store on widget lifecycle" name="createVizionManager with results on search updates the store on widget lifecycle" time="0.002">
+    </testcase>
+    <testcase classname="createVizionManager with results on search updates the store on external updates" name="createVizionManager with results on search updates the store on external updates" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="connectHitInsights" errors="0" failures="0" skipped="0" timestamp="2020-04-24T15:31:22" time="0.218" tests="6">
+    <testcase classname="connectHitInsights should expose an `insights` property" name="connectHitInsights should expose an `insights` property" time="0.001">
+    </testcase>
+    <testcase classname="connectHitInsights exposed `insights` should be a function" name="connectHitInsights exposed `insights` should be a function" time="0">
+    </testcase>
+    <testcase classname="connectHitInsights when called with `clickedRecordIDsAfterSearch` should forward call to insightsClient with the correct payload" name="connectHitInsights when called with `clickedRecordIDsAfterSearch` should forward call to insightsClient with the correct payload" time="0.001">
+    </testcase>
+    <testcase classname="connectHitInsights when called with `convertedObjectIDsAfterSearch` should forward call to insightsClient with the correct payload" name="connectHitInsights when called with `convertedObjectIDsAfterSearch` should forward call to insightsClient with the correct payload" time="0.001">
+    </testcase>
+    <testcase classname="connectHitInsights when called with an unsupported method should reject the call" name="connectHitInsights when called with an unsupported method should reject the call" time="0.001">
+    </testcase>
+    <testcase classname="connectHitInsights when queryID is undefined should throw an error message inviting to add clickAnalytics: true" name="connectHitInsights when queryID is undefined should throw an error message inviting to add clickAnalytics: true" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="connectStateResults" errors="0" failures="0" skipped="0" timestamp="2020-04-24T15:31:22" time="0.178" tests="2">
+    <testcase classname="connectStateResults single index provides the correct props to the component" name="connectStateResults single index provides the correct props to the component" time="0.001">
+    </testcase>
+    <testcase classname="connectStateResults multi index provides the correct props to the component" name="connectStateResults multi index provides the correct props to the component" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="connectStats" errors="0" failures="0" skipped="0" timestamp="2020-04-24T15:31:22" time="0.241" tests="2">
+    <testcase classname="connectStats single index provides the correct props to the component" name="connectStats single index provides the correct props to the component" time="0.001">
+    </testcase>
+    <testcase classname="connectStats multi index provides the correct props to the component" name="connectStats multi index provides the correct props to the component" time="0.001">
     </testcase>
   </testsuite>
 </testsuites>

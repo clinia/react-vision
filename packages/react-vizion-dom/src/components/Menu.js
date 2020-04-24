@@ -1,12 +1,13 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translatable } from '@clinia/react-vizion-core';
 import { createClassNames } from '../core/utils';
 import List from './List';
+import Link from './Link';
 
-const cx = createClassNames('refinementlist');
+const cx = createClassNames('menu');
 
-class RefinementList extends PureComponent {
+class Menu extends Component {
   static propTypes = {
     translate: PropTypes.func.isRequired,
     refine: PropTypes.func.isRequired,
@@ -14,7 +15,7 @@ class RefinementList extends PureComponent {
     items: PropTypes.arrayOf(
       PropTypes.shape({
         label: PropTypes.string.isRequired,
-        value: PropTypes.arrayOf(PropTypes.string).isRequired,
+        value: PropTypes.string.isRequired,
         count: PropTypes.number.isRequired,
         isRefined: PropTypes.bool.isRequired,
       })
@@ -31,25 +32,23 @@ class RefinementList extends PureComponent {
     className: '',
   };
 
-  selectItem = item => {
-    this.props.refine(item.value);
+  renderItem = item => {
+    const { createURL } = this.props;
+    const label = item.label;
+    return (
+      <Link
+        className={cx('link')}
+        onClick={() => this.selectItem(item)}
+        href={createURL(item.value)}
+      >
+        <span className={cx('label')}>{label}</span>{' '}
+        <span className={cx('count')}>{item.count}</span>
+      </Link>
+    );
   };
 
-  renderItem = item => {
-    const label = item.label;
-
-    return (
-      <label className={cx('label')}>
-        <input
-          className={cx('checkbox')}
-          type="checkbox"
-          checked={item.isRefined}
-          onChange={() => this.selectItem(item)}
-        />
-        <span className={cx('labelText')}>{label}</span>{' '}
-        <span className={cx('count')}>{item.count.toLocaleString()}</span>
-      </label>
-    );
+  selectItem = item => {
+    this.props.refine(item.value);
   };
 
   render() {
@@ -84,4 +83,4 @@ export default translatable({
   noResults: 'No results',
   submit: null,
   reset: null,
-})(RefinementList);
+})(Menu);

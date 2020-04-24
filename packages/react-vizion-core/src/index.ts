@@ -26,6 +26,7 @@ export { default as connectHits } from './connectors/connectHits';
 export {
   default as connectInfiniteHits,
 } from './connectors/connectInfiniteHits';
+export { default as connectMenu } from './connectors/connectMenu';
 export { default as connectPagination } from './connectors/connectPagination';
 export { default as connectPerPage } from './connectors/connectPerPage';
 export {
@@ -36,6 +37,9 @@ export {
   default as connectStateResults,
 } from './connectors/connectStateResults';
 export { default as connectStats } from './connectors/connectStats';
+export {
+  default as connectToggleRefinement,
+} from './connectors/connectToggleRefinement';
 
 // Types
 export * from './types';
