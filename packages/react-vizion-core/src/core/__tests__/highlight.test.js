@@ -120,7 +120,7 @@ describe('parseCliniaHit()', () => {
   it('throws when hit is `null`', () => {
     expect(
       parseCliniaHit.bind(null, {
-        property: 'unknownattribute',
+        property: 'unknownProperty',
         hit: null,
         highlightProperty: '_highlightResult',
       })
@@ -130,7 +130,7 @@ describe('parseCliniaHit()', () => {
   it('throws when hit is `undefined`', () => {
     expect(
       parseCliniaHit.bind(null, {
-        property: 'unknownAttribute',
+        property: 'unknownProperty',
         hit: undefined,
         highlightProperty: '_highlightResult',
       })

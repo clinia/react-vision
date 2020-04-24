@@ -324,61 +324,62 @@ stories
     </WrapWithHits>
   ));
 
-// stories.add('with Panel', () => {
-//   class Example extends Component {
-//     static propTypes = {
-//       google: PropTypes.object.isRequired,
-//     };
+stories.add('with Panel', () => {
+  class Example extends Component {
+    static propTypes = {
+      mapboxgl: PropTypes.object.isRequired,
+    };
 
-//     InfoWindow = new this.props.google.maps.InfoWindow();
+    Popup = new this.props.mapboxgl.Popup();
 
-//     onClickMarker = ({ hit, marker }) => {
-//       if (this.InfoWindow.getMap()) {
-//         this.InfoWindow.close();
-//       }
+    onClickMarker = ({ hit, marker }) => {
+      if (this.InfoWindow.getMap()) {
+        this.InfoWindow.close();
+      }
 
-//       this.InfoWindow.setContent(hit.name);
+      this.InfoWindow.setContent(hit.name);
 
-//       this.InfoWindow.open(marker.getMap(), marker);
-//     };
+      this.InfoWindow.open(marker.getMap(), marker);
+    };
 
-//     renderGeoHit = hit => (
-//       <Marker
-//         key={hit.id}
-//         hit={hit}
-//         anchor={{ x: 0, y: 5 }}
-//         onClick={({ marker }) => {
-//           this.onClickMarker({
-//             hit,
-//             marker,
-//           });
-//         }}
-//       />
-//     );
+    renderGeoHit = hit => {
+      return (
+        <Marker
+          key={hit.id}
+          hit={hit}
+          onClick={({ map }) => {
+            action('clicked');
+            this.Popup.setLngLat([hit._geoPoint.lon, hit._geoPoint.lat])
+              .setHTML('<h1> HELLLO POPUP</h1>')
+              .addTo(map);
+          }}
+        />
+      );
+    };
 
-//     render() {
-//       const { google } = this.props;
+    render() {
+      const { mapboxgl } = this.props;
 
-//       return (
-//         <WrapWithHits indexName="health_facility" linkedStoryGroup="GeoSearch">
-//           <Configure perPage={20} />
+      return (
+        <WrapWithHits indexName="meta" linkedStoryGroup="Mapbox">
+          <Configure perPage={20} />
 
-//           <Container>
-//             <GeoSearch google={google}>
-//               {({ hits }) => <Fragment>{hits.map(this.renderGeoHit)}</Fragment>}
-//             </GeoSearch>
-//           </Container>
-//         </WrapWithHits>
-//       );
-//     }
-//   }
+          <Container>
+            <GeoSearch mapboxgl={mapboxgl}>
+              {({ hits }) => <Fragment>{hits.map(this.renderGeoHit)}</Fragment>}
+            </GeoSearch>
+          </Container>
+        </WrapWithHits>
+      );
+    }
+  }
 
-//   return (
-//     <GoogleMapsLoader apiKey={apiKey} endpoint={endpoint}>
-//       {google => <Example google={google} />}
-//     </GoogleMapsLoader>
-//   );
-// });
+  return (
+    <MapboxLoader accessToken={accessToken}>
+      {mapboxgl => <Example mapboxgl={mapboxgl} />}
+    </MapboxLoader>
+  );
+});
 
 stories.add('with hits communication (custom)', () => {
   const CustomHits = connectHits(({ hits, selectedRecord, onRecordOver }) => (

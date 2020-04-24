@@ -1257,10 +1257,10 @@
   dependencies:
     "@clinia/requester-common" "2.0.0-beta.2"
 
-"@clinia/search-helper@2.0.0-beta.2":
-  version "2.0.0-beta.2"
-  resolved "https://registry.yarnpkg.com/@clinia/search-helper/-/search-helper-2.0.0-beta.2.tgz#bdb75348ed8ea75dba0d08091e7710a9432076e7"
-  integrity sha512-k/WfTG2MZA8qYi+EEb3oAU/BJcj5KdoPL4c5ij9/gEl3HlDHLVNwvdtnOAo+/LrTcUYswEKuwAl8H0TbK90ciw==
+"@clinia/search-helper@2.0.0-beta.4":
+  version "2.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/@clinia/search-helper/-/search-helper-2.0.0-beta.4.tgz#3129741a691f0766f53a9bee7d650f9bc9d6259f"
+  integrity sha512-U4/ddhE5R8pwcj2jxoBluUuMs9sB8vAXRWkfoCAg/tI7kc49Bwpyay7vzJ0smVNPG0TIvr3uamA9ByGwKmzbzw==
   dependencies:
     events "^1.1.1"
 

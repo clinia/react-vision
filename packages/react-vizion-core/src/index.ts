@@ -23,11 +23,14 @@ export { default as connectGeoSearch } from './connectors/connectGeoSearch';
 export { default as connectHighlight } from './connectors/connectHighlight';
 export { default as connectHitInsights } from './connectors/connectHitInsights';
 export { default as connectHits } from './connectors/connectHits';
-export { default as connectPerPage } from './connectors/connectPerPage';
 export {
   default as connectInfiniteHits,
 } from './connectors/connectInfiniteHits';
 export { default as connectPagination } from './connectors/connectPagination';
+export { default as connectPerPage } from './connectors/connectPerPage';
+export {
+  default as connectRefinementList,
+} from './connectors/connectRefinementList';
 export { default as connectSearchBox } from './connectors/connectSearchBox';
 export {
   default as connectStateResults,

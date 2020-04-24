@@ -6,7 +6,7 @@ export const HIGHLIGHT_TAGS = {
 };
 
 /**
- * Parses an highlighted attribute into an array of objects with the string value, and
+ * Parses an highlighted property into an array of objects with the string value, and
  * a boolean that indicated if this part is highlighted.
  *
  * @param {string} preTag - string used to identify the start of an highlighted value
@@ -48,12 +48,12 @@ function parseHighlightedProperty({ preTag, postTag, highlightedValue = '' }) {
 }
 
 /**
- * Find an highlighted attribute given an `attribute` and an `highlightProperty`, parses it,
+ * Find an highlighted property given an `property` and an `highlightProperty`, parses it,
  * and provided an array of objects with the string value and a boolean if this
  * value is highlighted.
  *
  * In order to use this feature, highlight must be activated in the configuration of
- * the index. The `preTag` and `postTag` attributes are respectively highlightPreTag and
+ * the index. The `preTag` and `postTag` properties are respectively highlightPreTag and
  * highlightPostTag in Clinia configuration.
  *
  * @param {string} preTag - string used to identify the start of an highlighted value

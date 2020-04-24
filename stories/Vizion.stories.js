@@ -12,7 +12,7 @@ const searchClient = clinia(
 
 stories
   .add('default', () => (
-    <Vizion searchClient={searchClient} indexName="health_facility">
+    <Vizion searchClient={searchClient} indexName="meta">
       <AutoComplete />
       <Hits />
     </Vizion>
@@ -29,7 +29,7 @@ stories
           return {};
         },
       }}
-      indexName="health_facility"
+      indexName="meta"
     >
       <AutoComplete />
       <Hits />

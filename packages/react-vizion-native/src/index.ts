@@ -21,6 +21,7 @@ export { default as connectHits } from '@clinia/react-vizion-core';
 export { default as connectPerPage } from '@clinia/react-vizion-core';
 export { default as connectInfiniteHits } from '@clinia/react-vizion-core';
 export { default as connectPagination } from '@clinia/react-vizion-core';
+export { default as connectRefinementList } from '@clinia/react-vizion-core';
 export { default as connectSearchBox } from '@clinia/react-vizion-core';
 export { default as connectStateResults } from '@clinia/react-vizion-core';
 export { default as connectStats } from '@clinia/react-vizion-core';

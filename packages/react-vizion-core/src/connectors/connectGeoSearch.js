@@ -14,7 +14,7 @@ import {
  * @name connectGeoSearch
  * @kind connector
  * @requirements Note that the GeoSearch connector uses the geosearch capabilities of Clinia
- * Your hits **must** have a `_geoPoint` attribute in order to be passed to the rendering function.
+ * Your hits **must** have a `_geoPoint` property in order to be passed to the rendering function.
  * @propType {{ northEast: { lat: number, lng: number }, southWest: {lat: number, lng:number } }} [defaultRefinement] - Default search state of the widget containing the bounds for the map
  * @providedPropType {function({ northEast: { lat: number, lng: number }, southWest: {lat: number, lng:number } })} refine - a function to toggle the refinement
  * @providedPropType {function} createURL - a function to generate a URl for the corresponding search state
@@ -25,7 +25,7 @@ import {
  */
 
 // To control the map with an external widget the other widget
-// **must** write the value in the attribute `aroundLatLng`
+// **must** write the value in the property `aroundLatLng`
 const getBoundingBoxId = () => 'boundingBox';
 const getAroundLatLngId = () => 'aroundLatLng';
 const getConfigureAroundLatLngId = () => 'configure.aroundLatLng';

@@ -1,23 +1,15 @@
 import PropTypes from 'prop-types';
 
-export const registerEvents = (events, props, instance) => {
+export const registerEvents = (events, props, element) => {
   const eventsAvailable = Object.keys(events);
   const keys = Object.keys(props).filter(
     key => eventsAvailable.indexOf(key) !== -1
   );
   keys.forEach(name =>
-    instance.addEventListener(events[name], event => {
-      props[name]({ event, marker: instance });
+    element.addEventListener(events[name], event => {
+      props[name]({ event, element });
     })
   );
-
-  return () => {
-    keys.forEach(name =>
-      instance.removeEventListener(events[name], event => {
-        props[name]({ event, marker: instance });
-      })
-    );
-  };
 };
 
 export const createListenersPropTypes = eventTypes =>
