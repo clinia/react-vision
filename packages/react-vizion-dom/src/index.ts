@@ -22,8 +22,10 @@ export { connectInfiniteHits } from '@clinia/react-vizion-core';
 export { connectPagination } from '@clinia/react-vizion-core';
 export { connectRefinementList } from '@clinia/react-vizion-core';
 export { connectSearchBox } from '@clinia/react-vizion-core';
+export { connectSortBy } from '@clinia/react-vizion-core';
 export { connectStateResults } from '@clinia/react-vizion-core';
 export { connectStats } from '@clinia/react-vizion-core';
+export { connectToggleRefinement } from '@clinia/react-vizion-core';
 
 // DOM
 export { default as ClearRefinements } from './widgets/ClearRefinements';
@@ -38,6 +40,7 @@ export { default as Panel } from './widgets/Panel';
 export { default as PerPage } from './widgets/PerPage';
 export { default as RefinementList } from './widgets/RefinementList';
 export { default as SearchBox } from './widgets/SearchBox';
+export { default as SortBy } from './widgets/SortBy';
 export { default as Stats } from './widgets/Stats';
 export { default as ToggleRefinement } from './widgets/ToggleRefinement';
 

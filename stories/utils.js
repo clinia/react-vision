@@ -45,8 +45,20 @@ export const WrapWithHits = ({
   onSearchStateChange,
 }) => {
   const searchClient = useMemo(() => {
-    return clinia(appId, apiKey);
-  }, [apiKey, appId]);
+    return clinia('hrm', '', {
+      hosts: [
+        {
+          url: 'localhost:6500',
+          protocol: 'http',
+        },
+      ],
+      headers: {
+        'x-partner': 'wunsch-inc',
+        'content-type': 'application/json',
+      },
+      authMode: 1,
+    });
+  }, []);
 
   const sourceCodeUrl = `https://github.com/clinia/react-vizion/tree/develop/stories/${linkedStoryGroup}.stories.js`;
   const playgroundLink = hasPlayground ? (
@@ -135,9 +147,9 @@ WrapWithHits.propTypes = {
 };
 
 WrapWithHits.defaultProps = {
-  appId: 'demo-pharmacies',
+  appId: 'hrm',
   apiKey: 'KcLxBhVFP8ooPgQODlAxWqfNg657fTz9',
-  indexName: 'health_facility',
+  indexName: 'meta',
   initialSearchState: {},
   onSearchStateChange: () => {},
 };

@@ -33,6 +33,7 @@ export {
   default as connectRefinementList,
 } from './connectors/connectRefinementList';
 export { default as connectSearchBox } from './connectors/connectSearchBox';
+export { default as connectSortBy } from './connectors/connectSortBy';
 export {
   default as connectStateResults,
 } from './connectors/connectStateResults';

@@ -69,7 +69,9 @@ class Mapbox extends Component {
               boundingBox.northEast.lat
             )
           ),
-          boundingBoxPadding
+          {
+            padding: boundingBoxPadding ? boundingBoxPadding + 40 : 40,
+          }
         );
       });
     } else {

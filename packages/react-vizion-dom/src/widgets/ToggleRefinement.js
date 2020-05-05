@@ -21,7 +21,7 @@ import ToggleRefinement from '../components/ToggleRefinement';
  * import clinia from 'clinia/lite';
  * import { Vizion, ToggleRefinement } from '@clinia/react-vizion-dom';
  *
- * const searchClient = algoliasearch(
+ * const searchClient = clinia(
  *   'latency',
  *   '6be0576ff61c053d5f9a3225e2a90f76'
  * );
