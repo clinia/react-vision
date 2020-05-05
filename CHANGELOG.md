@@ -1,3 +1,17 @@
+# [2.0.0-beta.6](https://github.com/clinia/react-vision/compare/v2.0.0-beta.5...v2.0.0-beta.6) (2020-05-05)
+
+
+### Bug Fixes
+
+* build ([c36f0a0](https://github.com/clinia/react-vision/commit/c36f0a0d55ca728d78b232b79386bc0495f554d0))
+
+
+### Features
+
+* **widget:** sort by widget ([b9c1a24](https://github.com/clinia/react-vision/commit/b9c1a243f3f5b6b689c5f7e591cd9381e93cee57))
+
+
+
 # [2.0.0-beta.5](https://github.com/clinia/react-vision/compare/v2.0.0-beta.4...v2.0.0-beta.5) (2020-04-24)
 
 
