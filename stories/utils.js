@@ -45,20 +45,8 @@ export const WrapWithHits = ({
   onSearchStateChange,
 }) => {
   const searchClient = useMemo(() => {
-    return clinia('hrm', '', {
-      hosts: [
-        {
-          url: 'localhost:6500',
-          protocol: 'http',
-        },
-      ],
-      headers: {
-        'x-partner': 'wunsch-inc',
-        'content-type': 'application/json',
-      },
-      authMode: 1,
-    });
-  }, []);
+    return clinia(appId, apiKey);
+  }, [apiKey, appId]);
 
   const sourceCodeUrl = `https://github.com/clinia/react-vizion/tree/develop/stories/${linkedStoryGroup}.stories.js`;
   const playgroundLink = hasPlayground ? (
