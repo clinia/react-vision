@@ -157,5 +157,8 @@
       "maxSize": "10.34 kB"
     }
   ],
-  "dependencies": {}
+  "dependencies": {
+    "@clinia/react-vizion-dom": "2.0.0-beta.6",
+    "@clinia/react-vizion-dom-gmaps": "2.0.0-beta.6"
+  }
 }
