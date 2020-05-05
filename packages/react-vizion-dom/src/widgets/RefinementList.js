@@ -29,8 +29,6 @@ import RefinementList from '../components/RefinementList';
  * @themeKey cvi-refinementlist-showMore--disabled - the disabled button used to display more categories
  * @translationkey showMore - The label of the show more button. Accepts one parameters, a boolean that is true if the values are expanded
  * @translationkey noResults - The label of the no results text when no search for facet values results are found.
- * @requirements The property passed to the `property` prop must be facetable"
- * on the Algolia dashboard or configured as `attributesForFaceting` via a set settings call to the Algolia API.
  *
  * @example
  * import React from 'react';

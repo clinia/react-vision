@@ -22,6 +22,7 @@ export { connectMenu } from '@clinia/react-vizion-core';
 export { connectPagination } from '@clinia/react-vizion-core';
 export { connectRefinementList } from '@clinia/react-vizion-core';
 export { connectSearchBox } from '@clinia/react-vizion-core';
+export { connectSortBy } from '@clinia/react-vizion-core';
 export { connectStateResults } from '@clinia/react-vizion-core';
 export { connectStats } from '@clinia/react-vizion-core';
 export { connectToggleRefinement } from '@clinia/react-vizion-core';

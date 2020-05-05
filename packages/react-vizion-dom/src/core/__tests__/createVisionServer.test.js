@@ -23,7 +23,6 @@ describe('findResultsState', () => {
           index: indexName,
         })),
       }),
-    initPlaces: jest.fn(),
   });
 
   const createWidget = ({ getSearchParameters = () => {} } = {}) =>

@@ -1229,15 +1229,6 @@
   dependencies:
     "@clinia/logger-common" "2.0.0-beta.2"
 
-"@clinia/react-vizion-dom-maps@2.0.0-beta.2":
-  version "2.0.0-beta.2"
-  resolved "https://registry.yarnpkg.com/@clinia/react-vizion-dom-maps/-/react-vizion-dom-maps-2.0.0-beta.2.tgz#395f3eafc1c3b7f479d1109fe3b5333edc42289c"
-  integrity sha512-J5vamPapypMDciK7g/Jmnz1fontpLk5WQT1S/b7f61JHI91enBc5mz7TfBusiZyh0rLQKtUu9fOKBR8fIGSQSQ==
-  dependencies:
-    "@babel/runtime" "^7.1.2"
-    prop-types "^15.5.10"
-    scriptjs "^2.5.8"
-
 "@clinia/requester-browser-xhr@2.0.0-beta.2":
   version "2.0.0-beta.2"
   resolved "https://registry.yarnpkg.com/@clinia/requester-browser-xhr/-/requester-browser-xhr-2.0.0-beta.2.tgz#c5d94db19eb7c4efb57dbcf0329a8c03c97eeacd"
