@@ -4,6 +4,8 @@ import { Store } from '../core/createStore';
 export type VizionContext = {
   onInternalStateUpdate: (...args: any[]) => any;
   createHrefForState: (...args: any[]) => string;
+  onSearchForQuerySuggestions: (...args: any[]) => any;
+  onSearchForLocations: (...args: any[]) => any;
   onSearchStateChange: (...args: any[]) => any;
   onSearchParameters: (...args: any[]) => any;
   store: Store;
@@ -17,6 +19,8 @@ export const {
 } = createContext<VizionContext>({
   onInternalStateUpdate: () => undefined,
   createHrefForState: () => '#',
+  onSearchForQuerySuggestions: () => undefined,
+  onSearchForLocations: () => undefined,
   onSearchStateChange: () => undefined,
   onSearchParameters: () => undefined,
   store: {} as Store,

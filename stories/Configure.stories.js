@@ -21,7 +21,10 @@ class ConfigureExample extends React.Component {
   render() {
     return (
       <WrapWithHits linkedStoryGroup="Configure">
-        <Configure perPage={this.state.perPage} />
+        <Configure
+          perPage={this.state.perPage}
+          facetFilters={['type:emergency']}
+        />
         <button onClick={this.onClick}>Toggle HitsPerPage</button>
       </WrapWithHits>
     );

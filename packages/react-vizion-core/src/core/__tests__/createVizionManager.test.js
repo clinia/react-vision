@@ -33,7 +33,6 @@ const createSearchClient = () => ({
       ],
     })
   ),
-  initPlaces: jest.fn(),
 });
 
 describe('createVizionManager', () => {
@@ -49,6 +48,8 @@ describe('createVizionManager', () => {
       metadata: [],
       results: null,
       searching: false,
+      searchingForQuerySuggestions: false,
+      searchingForLocations: false,
       widgets: {},
     });
 
@@ -196,6 +197,7 @@ describe('client hydratation', () => {
     const searchClient = {
       _useCache: true,
       cache: {},
+      initIndex: () => ({}),
     };
 
     // Skip this test with Clinia API Client >= v2

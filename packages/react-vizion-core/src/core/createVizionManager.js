@@ -90,6 +90,9 @@ export default function createVizionManager({
     .on('result', handleSearchSuccess({ indexId: indexName }))
     .on('error', handleSearchError);
 
+  let querySuggestionsIndex;
+  let geocodingClient;
+
   let skip = false;
   let stalledSearchTimer = null;
   let initialSearchParameters = helper.state;
@@ -105,6 +108,8 @@ export default function createVizionManager({
     error: null,
     searching: false,
     isSearchStalled: true,
+    searchingForQuerySuggestions: false,
+    searchingForLocations: false,
   });
 
   function skipSearch() {
@@ -493,6 +498,90 @@ export default function createVizionManager({
     search();
   }
 
+  function onSearchForQuerySuggestions({ query, ...params }) {
+    // Initialize the index if not existing
+    if (!querySuggestionsIndex) {
+      querySuggestionsIndex = searchClient.initIndex('query_suggestions');
+    }
+
+    store.setState({
+      ...store.getState(),
+      searchingForQuerySuggestions: true,
+    });
+
+    querySuggestionsIndex
+      .search(query, {
+        ...params,
+      })
+      .then(res => {
+        store.setState({
+          ...store.getState(),
+          searchingForQuerySuggestions: false,
+          resultsQuerySuggestions: res,
+        });
+      })
+      .catch(error => {
+        store.setState({
+          ...store.getState(),
+          searchingForQuerySuggestions: false,
+          error,
+        });
+
+        setTimeout(() => {
+          throw error;
+        });
+      });
+  }
+
+  function onSearchForLocations({ query, ...params }) {
+    if (!geocodingClient) {
+      const geocoding = () => {
+        return {
+          search: (geocodingQuery, requestOptions) => {
+            return searchClient.transporter.read({
+              method: 'POST',
+              path: 'geocoding/v1/autocomplete',
+              data: {
+                query: geocodingQuery,
+                ...requestOptions,
+              },
+              cacheable: true,
+            });
+          },
+        };
+      };
+      geocodingClient = geocoding();
+    }
+
+    store.setState({
+      ...store.getState(),
+      searchingForLocations: true,
+    });
+
+    geocodingClient
+      .search(query, {
+        ...params,
+      })
+      .then(res => {
+        store.setState({
+          ...store.getState(),
+          searchingForLocations: false,
+          resultsLocations: res,
+        });
+      })
+      .catch(error => {
+        store.setState({
+          ...store.getState(),
+          searchingForLocations: false,
+          error,
+        });
+
+        setTimeout(() => {
+          throw error;
+        });
+      });
+  }
+
   function updateIndex(newIndex) {
     initialSearchParameters = initialSearchParameters.setIndex(newIndex);
     // No need to trigger a new search here as the widgets will also update and trigger it if needed.
@@ -513,6 +602,8 @@ export default function createVizionManager({
     widgetsManager,
     getWidgetsIds,
     getSearchParameters,
+    onSearchForQuerySuggestions,
+    onSearchForLocations,
     onExternalStateUpdate,
     transitionState,
     updateClient,

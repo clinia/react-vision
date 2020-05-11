@@ -19,6 +19,7 @@ export { default as connectConfigure } from './connectors/connectConfigure';
 export {
   default as connectCurrentRefinements,
 } from './connectors/connectCurrentRefinements';
+export { default as connectGeocoder } from './connectors/connectGeocoder';
 export { default as connectGeoSearch } from './connectors/connectGeoSearch';
 export { default as connectHighlight } from './connectors/connectHighlight';
 export { default as connectHitInsights } from './connectors/connectHitInsights';
@@ -32,6 +33,9 @@ export { default as connectPerPage } from './connectors/connectPerPage';
 export {
   default as connectRefinementList,
 } from './connectors/connectRefinementList';
+export {
+  default as connectQuerySuggestions,
+} from './connectors/connectQuerySuggestions';
 export { default as connectSearchBox } from './connectors/connectSearchBox';
 export { default as connectSortBy } from './connectors/connectSortBy';
 export {

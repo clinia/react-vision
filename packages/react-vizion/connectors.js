@@ -9,6 +9,7 @@ export { connectInfiniteHits } from '@clinia/react-vizion-core';
 export { connectMenu } from '@clinia/react-vizion-core';
 export { connectPagination } from '@clinia/react-vizion-core';
 export { connectPerPage } from '@clinia/react-vizion-core';
+export { connectQuerySuggestions } from '@clinia/react-vizion-core';
 export { connectRefinementList } from '@clinia/react-vizion-core';
 export { connectSearchBox } from '@clinia/react-vizion-core';
 export { connectSortBy } from '@clinia/react-vizion-core';

@@ -2,7 +2,12 @@ import React from 'react';
 import orderBy from 'lodash.orderby';
 import { storiesOf } from '@storybook/react';
 import { boolean, number, array } from '@storybook/addon-knobs';
-import { Panel, RefinementList, SearchBox } from '@clinia/react-vizion-dom';
+import {
+  Panel,
+  RefinementList,
+  SearchBox,
+  Configure,
+} from '@clinia/react-vizion-dom';
 import { WrapWithHits } from './utils';
 
 const stories = storiesOf('RefinementList', module);
@@ -10,6 +15,9 @@ const stories = storiesOf('RefinementList', module);
 stories
   .add('default', () => (
     <WrapWithHits linkedStoryGroup="RefinementList" hasPlayground={true}>
+      <Configure
+        facetFilters={[['type:emergency', ['type:clinic', 'source:mediamp']]]}
+      />
       <RefinementList property="type" />
     </WrapWithHits>
   ))

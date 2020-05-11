@@ -24,6 +24,8 @@ type VizionManager = {
     derivedParameters: SearchParameters;
   };
   onExternalStateUpdate: (...args: any[]) => any;
+  onSearchForQuerySuggestions: (...args: any[]) => any;
+  onSearchForLocations: (...args: any[]) => any;
   transitionState: any;
   updateClient: any;
   updateIndex: any;
@@ -178,6 +180,8 @@ export default class Vizion extends Component<Props, State> {
       createHrefForState: this.createHrefForState.bind(this),
       onSearchStateChange: this.onSearchStateChange.bind(this),
       onSearchParameters: this.onSearchParameters.bind(this),
+      onSearchForQuerySuggestions: this.onSearchForQuerySuggestions.bind(this),
+      onSearchForLocations: this.onSearchForLocations.bind(this),
     };
 
     this.state = {
@@ -253,6 +257,14 @@ export default class Vizion extends Component<Props, State> {
         searchState
       );
     }
+  }
+
+  onSearchForQuerySuggestions(searchState) {
+    this.state.vizionManager.onSearchForQuerySuggestions(searchState);
+  }
+
+  onSearchForLocations(searchState) {
+    this.state.vizionManager.onSearchForLocations(searchState);
   }
 
   getKnownKeys() {

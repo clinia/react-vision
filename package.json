@@ -130,7 +130,7 @@
   "bundlesize": [
     {
       "path": "packages/react-vizion/dist/umd/Core.min.js",
-      "maxSize": "3 kB"
+      "maxSize": "3.05 kB"
     },
     {
       "path": "packages/react-vizion/dist/umd/Connectors.min.js",
@@ -150,15 +150,13 @@
     },
     {
       "path": "packages/react-vizion-dom-gmaps/dist/umd/ReactVizionDOMGMaps.min.js",
-      "maxSize": "10.21 kB"
+      "maxSize": "10.34 kB"
     },
     {
       "path": "packages/react-vizion-dom-mapbox/dist/umd/ReactVizionDOMMapbox.min.js",
-      "maxSize": "10.34 kB"
+      "maxSize": "10.41 kB"
     }
   ],
   "dependencies": {
-    "@clinia/react-vizion-dom": "2.0.0-beta.6",
-    "@clinia/react-vizion-dom-gmaps": "2.0.0-beta.6"
   }
 }

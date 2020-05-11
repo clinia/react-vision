@@ -15,6 +15,14 @@ export type ConnectorDescription = {
    */
   refine?: (...args: any[]) => any;
   /**
+   * a function to search for query suggestions
+   */
+  searchForQuerySuggestions?: (...args: any[]) => any;
+  /**
+   * a function to search for locations
+   */
+  searchForLocations?: (...args: any[]) => any;
+  /**
    * function transforming the local state to a SearchParameters
    */
   getSearchParameters?: (...args: any[]) => any;
@@ -215,7 +223,11 @@ export function createConnectorWithoutContext(
         const {
           widgets,
           results,
+          resultsQuerySuggestions,
+          resultsLocations,
           searching,
+          searchingForQuerySuggestions,
+          searchingForLocations,
           isSearchStalled,
           metadata,
           error,
@@ -223,7 +235,11 @@ export function createConnectorWithoutContext(
 
         const searchResults = {
           results,
+          resultsQuerySuggestions,
+          resultsLocations,
           searching,
+          searchingForQuerySuggestions,
+          searchingForLocations,
           isSearchStalled,
           error,
         };
@@ -287,6 +303,30 @@ export function createConnectorWithoutContext(
         );
       };
 
+      searchForQuerySuggestions = (...args) => {
+        // searchForQuerySuggestions will always be defined here because the prop is only given conditionally
+        this.props.contextValue.onSearchForQuerySuggestions(
+          connectorDesc.searchForQuerySuggestions!.call(
+            this,
+            this.props,
+            this.props.contextValue.store.getState().widgets,
+            ...args
+          )
+        );
+      };
+
+      searchForLocations = (...args) => {
+        // searchForLocations will always be defined here because the props is only given conditionally
+        this.props.contextValue.onSearchForLocations(
+          connectorDesc.searchForLocations!.call(
+            this,
+            this.props,
+            this.props.contextValue.store.getState().widgets,
+            ...args
+          )
+        );
+      };
+
       createURL = (...args) =>
         this.props.contextValue.createHrefForState(
           // refine will always be defined here because the prop is only given conditionally
@@ -311,7 +351,25 @@ export function createConnectorWithoutContext(
             ? { refine: this.refine, createURL: this.createURL }
             : {};
 
-        return <Composed {...props} {...providedProps} {...refineProps} />;
+        const searchForQuerySuggestionsProps =
+          typeof connectorDesc.searchForQuerySuggestions === 'function'
+            ? { searchForQuerySuggestions: this.searchForQuerySuggestions }
+            : {};
+
+        const searchForLocationsProps =
+          typeof connectorDesc.searchForLocations === 'function'
+            ? { searchForLocations: this.searchForLocations }
+            : {};
+
+        return (
+          <Composed
+            {...props}
+            {...providedProps}
+            {...refineProps}
+            {...searchForQuerySuggestionsProps}
+            {...searchForLocationsProps}
+          />
+        );
       }
     }
 

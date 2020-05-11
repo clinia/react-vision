@@ -62,7 +62,6 @@ class MapboxLoader extends Component {
       injectScript(endpoints, () => {
         if (!this.isUnmounting) {
           window.mapboxgl.accessToken = accessToken;
-          // console.log(window.mapboxgl);
           this.setState(() => ({
             mapboxgl: window.mapboxgl,
           }));
