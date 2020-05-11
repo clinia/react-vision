@@ -56,7 +56,7 @@ const getResults = searchResults => {
  * @name connectGeocoder
  * @kind connector
  * @propType {string} [defaultRefinement] - Provide a default value for the aroundLatLng
- * @providedPropType {function} refine - a function to change the current aroundLatLng or location
+ * @providedPropType {function} refine - a function to change the current aroundLatLng
  * @providedPropType {function} searchForLocations - a function to search for locations
  * @providedPropType {string} currentRefinement - the current query used
  * @providedPropType {array} hits - the locations
