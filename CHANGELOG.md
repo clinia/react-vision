@@ -1,3 +1,17 @@
+# [2.0.0-beta.7](https://github.com/clinia/react-vision/compare/v2.0.0-beta.6...v2.0.0-beta.7) (2020-05-11)
+
+
+### Bug Fixes
+
+* build size ([0c17f12](https://github.com/clinia/react-vision/commit/0c17f122583b8902c84e9c005e95ab070d3a317b))
+
+
+### Features
+
+* connectGeocoder and connectQuerySuggestions connectors ([54e8ff1](https://github.com/clinia/react-vision/commit/54e8ff13c742f3f19ac87bba8c3b947321f9666b))
+
+
+
 # [2.0.0-beta.6](https://github.com/clinia/react-vision/compare/v2.0.0-beta.5...v2.0.0-beta.6) (2020-05-05)
 
 
