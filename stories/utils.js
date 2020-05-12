@@ -37,7 +37,7 @@ export const WrapWithHits = ({
   hasPlayground = false,
   linkedStoryGroup,
   // pagination = true,
-  appId,
+  engineId,
   apiKey,
   indexName,
   hitsElement,
@@ -45,8 +45,8 @@ export const WrapWithHits = ({
   onSearchStateChange,
 }) => {
   const searchClient = useMemo(() => {
-    return clinia(appId, apiKey);
-  }, [apiKey, appId]);
+    return clinia(engineId, apiKey);
+  }, [apiKey, engineId]);
 
   const sourceCodeUrl = `https://github.com/clinia/react-vizion/tree/develop/stories/${linkedStoryGroup}.stories.js`;
   const playgroundLink = hasPlayground ? (
@@ -120,7 +120,7 @@ export const WrapWithHits = ({
 };
 
 WrapWithHits.propTypes = {
-  appId: PropTypes.string,
+  engineId: PropTypes.string,
   apiKey: PropTypes.string,
   indexName: PropTypes.string,
   children: PropTypes.node,
@@ -135,8 +135,8 @@ WrapWithHits.propTypes = {
 };
 
 WrapWithHits.defaultProps = {
-  appId: 'hrm',
-  apiKey: 'KcLxBhVFP8ooPgQODlAxWqfNg657fTz9',
+  engineId: 'hrm',
+  apiKey: 'tXAErHnHthRpEPUfj8xNqiKZc8DE3jnN',
   indexName: 'meta',
   initialSearchState: {},
   onSearchStateChange: () => {},

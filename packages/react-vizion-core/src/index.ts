@@ -36,6 +36,7 @@ export {
 export {
   default as connectQuerySuggestions,
 } from './connectors/connectQuerySuggestions';
+export { default as connectSearchBar } from './connectors/connectSearchBar';
 export { default as connectSearchBox } from './connectors/connectSearchBox';
 export { default as connectSortBy } from './connectors/connectSortBy';
 export {

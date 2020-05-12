@@ -43,7 +43,7 @@ describe('connectGeoSearch', () => {
       });
 
       describe('hits', () => {
-        it('expect to return hits when we hare results', () => {
+        it('expect to return hits when we have results', () => {
           const hits = [
             { id: '1', _geoPoint: {} },
             { id: '2', _geoPoint: {} },
