@@ -1,3 +1,12 @@
+# [2.1.0](https://github.com/clinia/react-vision/compare/v2.0.0-beta.7...v2.1.0) (2020-05-12)
+
+
+### Features
+
+* **connectors:** add a search bar connector ([cee0c30](https://github.com/clinia/react-vision/commit/cee0c301eb0cc76a0dfdca193c8e668aeeaaf341))
+
+
+
 # [2.0.0-beta.7](https://github.com/clinia/react-vision/compare/v2.0.0-beta.6...v2.0.0-beta.7) (2020-05-11)
 
 
