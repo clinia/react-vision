@@ -38,9 +38,9 @@ describe('connectGeoSearch', () => {
         );
 
         const expectation = {
-          queryCurrentRefinement: '',
+          currentQueryRefinement: '',
           querySuggestionHits: [],
-          currentPositionRefinement: null,
+          currentLocationRefinement: null,
           locationHits: [],
         };
 
@@ -182,14 +182,17 @@ describe('connectGeoSearch', () => {
         });
       });
 
-      describe('currentPositionRefinement', () => {
-        it('expect to return the position from the searchState (aroundLatLng)', () => {
+      describe('currentLocationRefinement', () => {
+        it('expect to return the location position from the searchState (aroundLatLng)', () => {
           const props = { contextValue };
           const searchResults = createSingleIndexSearchResults();
           const searchState = {
-            aroundLatLng: {
-              lat: 47,
-              lng: 74,
+            location: {
+              name: 'Montreal',
+              position: {
+                lat: 45.5017,
+                lng: 73.5673,
+              },
             },
           };
 
@@ -199,13 +202,16 @@ describe('connectGeoSearch', () => {
             searchResults
           );
 
-          expect(actual.currentPositionRefinement).toEqual({
-            lat: 47,
-            lng: 74,
+          expect(actual.currentLocationRefinement).toEqual({
+            name: 'Montreal',
+            position: {
+              lat: 45.5017,
+              lng: 73.5673,
+            },
           });
         });
 
-        it('expect to return the position from the SearchResults', () => {
+        it('expect to return the location position from the SearchResults', () => {
           const props = { contextValue };
           const searchState = {};
           const searchResults = createSingleIndexSearchResults([], {
@@ -218,9 +224,12 @@ describe('connectGeoSearch', () => {
             searchResults
           );
 
-          expect(actual.currentPositionRefinement).toEqual({
-            lat: 47,
-            lng: 74,
+          expect(actual.currentLocationRefinement).toEqual({
+            name: '',
+            position: {
+              lat: 47,
+              lng: 74,
+            },
           });
         });
 
@@ -235,7 +244,7 @@ describe('connectGeoSearch', () => {
             searchResults
           );
 
-          expect(actual.currentPositionRefinement).toBe(null);
+          expect(actual.currentLocationRefinement).toBe(null);
         });
       });
 
@@ -306,13 +315,16 @@ describe('connectGeoSearch', () => {
         });
       });
 
-      it('expect to set aroundLatLng when aroundLatLng is provided', () => {
+      it('expect to set aroundLatLng when location is provided', () => {
         const props = { contextValue };
         const searchState = {};
         const nextRefinement = {
-          aroundLatLng: {
-            lat: 47,
-            lng: 74,
+          location: {
+            name: 'Montreal',
+            position: {
+              lat: 47,
+              lng: 74,
+            },
           },
         };
 
@@ -320,6 +332,13 @@ describe('connectGeoSearch', () => {
 
         expect(actual).toEqual({
           page: 1,
+          location: {
+            name: 'Montreal',
+            position: {
+              lat: 47,
+              lng: 74,
+            },
+          },
           aroundLatLng: {
             lat: 47,
             lng: 74,
@@ -327,18 +346,28 @@ describe('connectGeoSearch', () => {
         });
       });
 
-      it('expect to replace the previous value when aroundLatLng is provided', () => {
+      it('expect to replace the previous value when location is provided', () => {
         const props = { contextValue };
         const searchState = {
+          location: {
+            name: 'Quebec',
+            position: {
+              lat: 10,
+              lng: 20,
+            },
+          },
           aroundLatLng: {
             lat: 10,
             lng: 20,
           },
         };
         const nextRefinement = {
-          aroundLatLng: {
-            lat: 47,
-            lng: 74,
+          location: {
+            name: 'Montreal',
+            position: {
+              lat: 47,
+              lng: 74,
+            },
           },
         };
 
@@ -346,6 +375,13 @@ describe('connectGeoSearch', () => {
 
         expect(actual).toEqual({
           page: 1,
+          location: {
+            name: 'Montreal',
+            position: {
+              lat: 47,
+              lng: 74,
+            },
+          },
           aroundLatLng: {
             lat: 47,
             lng: 74,
@@ -353,12 +389,19 @@ describe('connectGeoSearch', () => {
         });
       });
 
-      it('expect to clear the previous value when aroundLatLng is omit', () => {
+      it('expect to clear the previous value when location is omit', () => {
         const props = { contextValue };
         const searchState = {
+          location: {
+            name: 'Quebec',
+            position: {
+              lat: 10,
+              lng: 20,
+            },
+          },
           aroundLatLng: {
-            lat: 47,
-            lng: 74,
+            lat: 10,
+            lng: 20,
           },
         };
 
@@ -387,14 +430,17 @@ describe('connectGeoSearch', () => {
         });
       });
 
-      it('expect to set the query and aroundLatLng when both are provided', () => {
+      it('expect to set the query and location when both are provided', () => {
         const props = { contextValue };
         const searchState = {};
         const nextRefinement = {
           query: 'test',
-          aroundLatLng: {
-            lat: 47,
-            lng: 74,
+          location: {
+            name: 'Montreal',
+            position: {
+              lat: 47,
+              lng: 74,
+            },
           },
         };
 
@@ -403,6 +449,13 @@ describe('connectGeoSearch', () => {
         expect(actual).toEqual({
           page: 1,
           query: 'test',
+          location: {
+            name: 'Montreal',
+            position: {
+              lat: 47,
+              lng: 74,
+            },
+          },
           aroundLatLng: {
             lat: 47,
             lng: 74,
@@ -410,10 +463,17 @@ describe('connectGeoSearch', () => {
         });
       });
 
-      it('expect to replace the preivous values when both query and aroundLatLng provided', () => {
+      it('expect to replace the previous values when both query and location provided', () => {
         const props = { contextValue };
         const searchState = {
           query: 'initial',
+          location: {
+            name: 'Quebec',
+            position: {
+              lat: 10,
+              lng: 20,
+            },
+          },
           aroundLatLng: {
             lat: 10,
             lng: 20,
@@ -421,9 +481,12 @@ describe('connectGeoSearch', () => {
         };
         const nextRefinement = {
           query: 'test',
-          aroundLatLng: {
-            lat: 47,
-            lng: 74,
+          location: {
+            name: 'Montreal',
+            position: {
+              lat: 47,
+              lng: 74,
+            },
           },
         };
 
@@ -432,6 +495,13 @@ describe('connectGeoSearch', () => {
         expect(actual).toEqual({
           page: 1,
           query: 'test',
+          location: {
+            name: 'Montreal',
+            position: {
+              lat: 47,
+              lng: 74,
+            },
+          },
           aroundLatLng: {
             lat: 47,
             lng: 74,
@@ -439,13 +509,16 @@ describe('connectGeoSearch', () => {
         });
       });
 
-      it('expect to clear the previous values when query and aroundLatLng are omit', () => {
+      it('expect to clear the previous values when query and location are omit', () => {
         const props = { contextValue };
         const searchState = {
           query: 'initial',
-          aroundLatLng: {
-            lat: 47,
-            lng: 74,
+          location: {
+            name: 'Montreal',
+            position: {
+              lat: 47,
+              lng: 74,
+            },
           },
         };
 

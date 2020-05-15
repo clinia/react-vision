@@ -17,17 +17,24 @@ class WrappedSearchBar extends Component {
 
   state = {
     query: null,
-    aroundLatLng: null,
+    location: null,
   };
 
-  componentDidUpdate(props) {
-    // Week comparison, just to get an idea
-    if (
-      props.locationHits.length > 0 &&
-      this.props.locationHits.length !== props.locationHits.length
-    ) {
-      this.setState({ aroundLatLng: props.locationHits[0].geometry.location });
+  static getDerivedStateFromProps(nextProps, prevState) {
+    let state = {
+      ...prevState,
+    };
+    if (nextProps.locationHits.length > 0) {
+      state = {
+        ...state,
+        location: {
+          ...state.location,
+          position: nextProps.locationHits[0].geometry.location,
+        },
+      };
     }
+
+    return state;
   }
 
   onQueryChange = e => {
@@ -36,7 +43,11 @@ class WrappedSearchBar extends Component {
   };
 
   onLocationChange = e => {
-    this.setState({ location: e.target.value });
+    this.setState({
+      location: {
+        name: e.target.value,
+      },
+    });
     this.props.searchForLocations(e.target.value);
   };
 

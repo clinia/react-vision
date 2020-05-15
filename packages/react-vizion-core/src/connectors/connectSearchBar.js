@@ -9,10 +9,11 @@ import {
 } from '../core/indexUtils';
 
 const getQueryId = () => 'query';
+const getLocationId = () => 'location';
 const getAroundLatLngId = () => 'aroundLatLng';
 // const getConfigureAroundLatLngId = () => 'configure.aroundLatLng';
 
-const currentPositionRefinementToString = currentRefinement =>
+const currentAroundLatLngRefinementToString = currentRefinement =>
   [currentRefinement.lat, currentRefinement.lng].join();
 
 const latLngRegExp = /^(-?\d+(?:\.\d+)?),\s*(-?\d+(?:\.\d+)?)$/;
@@ -26,12 +27,11 @@ const stringToPosition = value => {
 };
 
 const getCurrentQueryRefinement = (props, searchState, context) => {
-  const queryId = getQueryId(props);
   const refinement = getCurrentRefinementValue(
     props,
     searchState,
     context,
-    queryId,
+    getQueryId(),
     ''
   );
 
@@ -41,12 +41,33 @@ const getCurrentQueryRefinement = (props, searchState, context) => {
   return '';
 };
 
-const getCurrentPositionRefinement = (props, searchState, context) => {
+const getCurrentAroundLatLngRefinement = (props, searchState, context) => {
   const refinement = getCurrentRefinementValue(
     props,
     searchState,
     context,
     getAroundLatLngId(),
+    ''
+  );
+
+  if (!objectHasKeys(refinement)) {
+    return;
+  }
+
+  if (refinement) {
+    // eslint-disable-next-line consistent-return
+    return refinement;
+  }
+  // eslint-disable-next-line consistent-return
+  return '';
+};
+
+const getCurrentLocationRefinement = (props, searchState, context) => {
+  const refinement = getCurrentRefinementValue(
+    props,
+    searchState,
+    context,
+    getLocationId(),
     {}
   );
 
@@ -63,19 +84,21 @@ const getCurrentPositionRefinement = (props, searchState, context) => {
 };
 
 const refineQuery = (props, searchState, nextRefinement, context) => {
-  const id = getQueryId();
-  const nextValue = { [id]: nextRefinement };
   const resetPage = true;
+  const nextValue = {
+    [getQueryId()]: nextRefinement,
+  };
   return refineValue(searchState, nextValue, context, resetPage);
 };
 
-const refinePosition = (props, searchState, nextValue, context) => {
+const refineLocation = (props, searchState, nextRefinement, context) => {
   const resetPage = true;
-  const nextRefinement = {
-    [getAroundLatLngId()]: nextValue,
+  const nextValue = {
+    [getLocationId()]: nextRefinement,
+    [getAroundLatLngId()]: nextRefinement && nextRefinement.position,
   };
 
-  return refineValue(searchState, nextRefinement, context, resetPage);
+  return refineValue(searchState, nextValue, context, resetPage);
 };
 
 const cleanUp = (props, searchState, context) => {
@@ -105,12 +128,13 @@ const getLocationsResults = searchResults => {
  * @name connectSearchBar
  * @kind connector
  * @propType {string} [defaultQueryRefinement] - Provide a default value for the query
- * @propType {object} [defaultPositionRefinement] - Provide a default value for the position
+ * @propType {object} [defaultLocationRefinement] - Provide a default value for the location
  * @providedPropType {function} refine - a function to change the current query or/and position
  * @providedPropType {function} searchForQuerySuggestions - a function to search for query suggestions
  * @providedPropType {function} searchForLocations - a function to search for locations
- * @providedPropType {string} queryCurrentRefinement - the current query used
+ * @providedPropType {string} currentQueryRefinement - the current query used
  * @providedPropType {array} querySuggestionHits - the current query suggestions
+ * @providedPropType {string} currentLocationRefinement - the current location used
  * @providedPropType {array} locationHits - the current locations
  */
 export default createConnector({
@@ -118,7 +142,6 @@ export default createConnector({
 
   propTypes: {
     querySuggestionsProps: PropTypes.shape({
-      defaultQueryRefinement: PropTypes.string,
       queryType: PropTypes.string,
       perPage: PropTypes.number,
       highlightPreTag: PropTypes.string,
@@ -157,7 +180,7 @@ export default createConnector({
     const results = getResults(searchResults, context);
 
     const resultsQuerySuggestions = getQuerySuggestionsResults(searchResults);
-    const queryCurrentRefinement = getCurrentQueryRefinement(
+    const currentQueryRefinement = getCurrentQueryRefinement(
       props,
       searchState,
       context
@@ -173,23 +196,29 @@ export default createConnector({
     // be sync.
 
     const resultsLocations = getLocationsResults(searchResults);
-    const currentPositionRefinementFromSearchState = getCurrentPositionRefinement(
+    const currentLocationRefinementFromSearchState = getCurrentLocationRefinement(
       props,
       searchState,
       context
     );
 
-    const currentPositionFromSearchParameters =
+    const currentLocationFromSearchParameters =
       (results &&
         results._state &&
         results._state.aroundLatLng &&
         stringToPosition(results._state.aroundLatLng)) ||
       undefined;
 
-    const currentPositionRefinement =
-      currentPositionRefinementFromSearchState ||
-      currentPositionFromSearchParameters ||
-      null;
+    let currentLocationRefinement = null;
+
+    if (currentLocationRefinementFromSearchState) {
+      currentLocationRefinement = currentLocationRefinementFromSearchState;
+    } else if (currentLocationFromSearchParameters) {
+      currentLocationRefinement = {
+        name: '',
+        position: currentLocationFromSearchParameters,
+      };
+    }
 
     let querySuggestionHits = [];
     if (resultsQuerySuggestions) {
@@ -202,9 +231,9 @@ export default createConnector({
     }
 
     const providedProps = {
-      queryCurrentRefinement,
+      currentQueryRefinement,
       querySuggestionHits,
-      currentPositionRefinement,
+      currentLocationRefinement,
       locationHits,
     };
 
@@ -218,7 +247,7 @@ export default createConnector({
         multiIndexContext: props.indexContextValue,
       });
 
-      state = refinePosition(props, state, undefined, {
+      state = refineLocation(props, state, undefined, {
         cvi: props.contextValue,
         multiIndexContext: props.indexContextValue,
       });
@@ -226,14 +255,14 @@ export default createConnector({
       return state;
     }
 
-    const { query, aroundLatLng } = nextRefinement;
+    const { query, location } = nextRefinement;
 
     let state = refineQuery(props, searchState, query || undefined, {
       cvi: props.contextValue,
       multiIndexContext: props.indexContextValue,
     });
 
-    state = refinePosition(props, state, aroundLatLng || undefined, {
+    state = refineLocation(props, state, location || undefined, {
       cvi: props.contextValue,
       multiIndexContext: props.indexContextValue,
     });
@@ -260,7 +289,7 @@ export default createConnector({
       context
     );
 
-    const positionRefinement = getCurrentPositionRefinement(
+    const aroundLatLngRefinement = getCurrentAroundLatLngRefinement(
       props,
       searchState,
       context
@@ -270,12 +299,12 @@ export default createConnector({
       searchParameters = searchParameters.setQuery(queryRefinement);
     }
 
-    if (positionRefinement) {
+    if (aroundLatLngRefinement) {
       searchParameters = searchParameters
         .setQueryParameter('insideBoundingBox')
         .setQueryParameter(
           'aroundLatLng',
-          currentPositionRefinementToString(positionRefinement)
+          currentAroundLatLngRefinementToString(aroundLatLngRefinement)
         );
     }
 
