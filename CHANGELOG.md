@@ -1,3 +1,12 @@
+## [2.1.1](https://github.com/clinia/react-vision/compare/v2.1.0...v2.1.1) (2020-05-15)
+
+
+### Bug Fixes
+
+* **connectors:** improved connectSearchBar to handle a location object inside the search state ([55244ba](https://github.com/clinia/react-vision/commit/55244ba9c3670f567ed31749766f15f30e6246c5))
+
+
+
 # [2.1.0](https://github.com/clinia/react-vision/compare/v2.0.0-beta.7...v2.1.0) (2020-05-12)
 
 
