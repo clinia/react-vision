@@ -91,5 +91,5 @@ React Vizion is an open-sourced software licensed under the [MIT license](LICENS
 [license-url]: LICENSE
 [downloads-image]: https://img.shields.io/npm/dm/@clinia/react-vizion.svg?style=flat-square
 [downloads-url]: http://npm-stat.com/charts.html?package=@clinia/react-vizion
-[version-svg]: https://img.shields.io/npm/v/react-vizion.svg?style=flat-square
-[package-url]: https://yarnpkg.com/en/package/react-vizion
+[version-svg]: https://img.shields.io/npm/v/@clinia/react-vizion.svg?style=flat-square
+[package-url]: https://yarnpkg.com/en/package/@clinia/react-vizion
