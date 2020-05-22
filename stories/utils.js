@@ -136,7 +136,7 @@ WrapWithHits.propTypes = {
 
 WrapWithHits.defaultProps = {
   engineId: 'hrm',
-  apiKey: 'tXAErHnHthRpEPUfj8xNqiKZc8DE3jnN',
+  apiKey: '',
   indexName: 'meta',
   initialSearchState: {},
   onSearchStateChange: () => {},
