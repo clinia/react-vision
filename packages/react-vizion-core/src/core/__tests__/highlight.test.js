@@ -11,6 +11,19 @@ describe('parseCliniaHit()', () => {
     expect(out).toEqual([]);
   });
 
+  it('it fallback to property value when there is a missing _hihglight property', () => {
+    const value = 'foo bar baz';
+    const property = 'attr';
+    const out = parseCliniaHit({
+      property,
+      hit: {
+        attr: value,
+      },
+      highlightProperty: '_highlight',
+    });
+    expect(out).toEqual([{ isHighlighted: false, value }]);
+  });
+
   it('creates a single element when there is no tag', () => {
     const value = 'foo bar baz';
     const property = 'attr';

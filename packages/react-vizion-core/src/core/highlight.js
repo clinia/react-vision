@@ -85,6 +85,14 @@ export function parseCliniaHit({
     );
   }
 
+  if (Object.keys(highlightObject).length === 0) {
+    return parseHighlightedProperty({
+      preTag,
+      postTag,
+      highlightedValue: hit[property],
+    });
+  }
+
   return parseHighlightedProperty({
     preTag,
     postTag,
