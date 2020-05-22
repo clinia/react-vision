@@ -1,3 +1,13 @@
+## [2.1.2](https://github.com/clinia/react-vision/compare/v2.1.1...v2.1.2) (2020-05-22)
+
+
+### Bug Fixes
+
+* clear creds ([bc6d670](https://github.com/clinia/react-vision/commit/bc6d670d043c46d067493a00d866002e1d616ccf))
+* **hihglight:** fallback on property value when highlight object is missing ([628928a](https://github.com/clinia/react-vision/commit/628928aed54f368d08ab4ed11347ed6e5d50347a))
+
+
+
 ## [2.1.1](https://github.com/clinia/react-vision/compare/v2.1.0...v2.1.1) (2020-05-15)
 
 
