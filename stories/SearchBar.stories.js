@@ -16,8 +16,8 @@ class WrappedSearchBar extends Component {
   };
 
   state = {
-    query: null,
-    location: null,
+    query: this.props.currentQueryRefinement || '',
+    location: this.props.currentLocationRefinement || { name: '' },
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -60,11 +60,13 @@ class WrappedSearchBar extends Component {
 
   render() {
     const { querySuggestionHits, locationHits } = this.props;
+    const { query, location } = this.state;
     return (
       <>
         <form onSubmit={this.handleSubmit} style={{ float: 'left' }}>
           <div>
             <input
+              value={query}
               onChange={this.onQueryChange}
               placeholder="Search for resources"
             />
@@ -75,7 +77,11 @@ class WrappedSearchBar extends Component {
             </ul>
           </div>
           <div>
-            <input onChange={this.onLocationChange} placeholder="Postal code" />
+            <input
+              value={location.name}
+              onChange={this.onLocationChange}
+              placeholder="Postal code"
+            />
             <ul>
               {locationHits.map(hit => (
                 <li key={hit.formattedAddress}>{hit.formattedAddress}</li>
@@ -90,12 +96,43 @@ class WrappedSearchBar extends Component {
 }
 const SearchBar = connectSearchBar(WrappedSearchBar);
 
-stories.add('default', () => (
-  <WrapWithHits
-    searchBox={false}
-    hasPlayground={true}
-    linkedStoryGroup="SearchBar"
-  >
-    <SearchBar />
-  </WrapWithHits>
-));
+stories
+  .add('default', () => (
+    <WrapWithHits
+      searchBox={false}
+      hasPlayground={true}
+      linkedStoryGroup="SearchBar"
+    >
+      <SearchBar />
+    </WrapWithHits>
+  ))
+  .add('defaultRefinement', () => (
+    <WrapWithHits
+      searchBox={false}
+      hasPlayground={true}
+      linkedStoryGroup="SearchBar"
+    >
+      <SearchBar
+        querySuggestionsProps={{
+          defaultRefinement: 'hospital',
+          queryType: 'prefix_last',
+          perPage: 5,
+          highlightPreTag: `<cvi-highlight-0000000000>`,
+          highlightPostTag: `</cvi-highlight-0000000000>`,
+          facetFilters: [],
+        }}
+        geocoderProps={{
+          defaultRefinement: {
+            name: 'Montreal',
+            position: {
+              lat: 45.5017,
+              lng: -73.561668,
+            },
+          },
+          types: [],
+          country: ['CA'],
+          perPage: 5,
+        }}
+      />
+    </WrapWithHits>
+  ));
