@@ -1,3 +1,12 @@
+## [2.1.3](https://github.com/clinia/react-vision/compare/v2.1.2...v2.1.3) (2020-05-28)
+
+
+### Bug Fixes
+
+* **connectors:** connectSearchBar now accepts defaultRefinement ([#36](https://github.com/clinia/react-vision/issues/36)) ([fb9f90a](https://github.com/clinia/react-vision/commit/fb9f90addd6eb079f88df59ab3f8af58f52c4a34))
+
+
+
 ## [2.1.2](https://github.com/clinia/react-vision/compare/v2.1.1...v2.1.2) (2020-05-22)
 
 

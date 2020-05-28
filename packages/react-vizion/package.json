@@ -1,6 +1,6 @@
 {
   "name": "@clinia/react-vizion",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "description": "",
   "main": "index.js",
   "module": "es/index.js",
@@ -36,8 +36,8 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.6.3",
-    "@clinia/react-vizion-core": "^2.1.2",
-    "@clinia/react-vizion-dom": "^2.1.2",
-    "@clinia/react-vizion-native": "^2.1.2"
+    "@clinia/react-vizion-core": "^2.1.3",
+    "@clinia/react-vizion-dom": "^2.1.3",
+    "@clinia/react-vizion-native": "^2.1.3"
   }
 }
