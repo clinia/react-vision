@@ -249,6 +249,41 @@ describe('connectGeoSearch', () => {
       });
 
       describe('currentQueryRefinement', () => {});
+
+      describe('querySuggestionsProps defaultRefinment', () => {
+        it('supports defaultRefinement', () => {
+          const actual = connector.getProvidedProps(
+            {
+              querySuggestionsProps: { defaultRefinement: 'yaw' },
+              contextValue,
+            },
+            {},
+            {}
+          );
+
+          expect(actual.currentQueryRefinement).toEqual('yaw');
+        });
+      });
+
+      describe('geocoderProps defaultRefinment', () => {
+        it('supports defaultRefinement', () => {
+          const actual = connector.getProvidedProps(
+            {
+              geocoderProps: {
+                defaultRefinement: { name: '', position: { lat: 10, lng: 20 } },
+              },
+              contextValue,
+            },
+            {},
+            {}
+          );
+
+          expect(actual.currentLocationRefinement).toEqual({
+            name: '',
+            position: { lat: 10, lng: 20 },
+          });
+        });
+      });
     });
 
     describe('refine', () => {

@@ -142,6 +142,7 @@ export default createConnector({
 
   propTypes: {
     querySuggestionsProps: PropTypes.shape({
+      defaultRefinement: PropTypes.string,
       queryType: PropTypes.string,
       perPage: PropTypes.number,
       highlightPreTag: PropTypes.string,
@@ -149,6 +150,10 @@ export default createConnector({
       facetFilters: PropTypes.array,
     }),
     geocoderProps: PropTypes.shape({
+      defaultRefinement: PropTypes.shape({
+        lat: PropTypes.number,
+        lng: PropTypes.number,
+      }),
       types: PropTypes.arrayOf(PropTypes.string),
       country: PropTypes.arrayOf(PropTypes.string),
       locale: PropTypes.string,
@@ -181,7 +186,7 @@ export default createConnector({
 
     const resultsQuerySuggestions = getQuerySuggestionsResults(searchResults);
     const currentQueryRefinement = getCurrentQueryRefinement(
-      props,
+      props.querySuggestionsProps || props,
       searchState,
       context
     );
@@ -197,7 +202,7 @@ export default createConnector({
 
     const resultsLocations = getLocationsResults(searchResults);
     const currentLocationRefinementFromSearchState = getCurrentLocationRefinement(
-      props,
+      props.geocoderProps || props,
       searchState,
       context
     );
@@ -284,16 +289,26 @@ export default createConnector({
     };
 
     const queryRefinement = getCurrentQueryRefinement(
+      props.querySuggestionsProps || props,
+      searchState,
+      context
+    );
+
+    let aroundLatLngRefinement = getCurrentAroundLatLngRefinement(
       props,
       searchState,
       context
     );
 
-    const aroundLatLngRefinement = getCurrentAroundLatLngRefinement(
-      props,
+    const locationRefinement = getCurrentLocationRefinement(
+      props.geocoderProps || props,
       searchState,
       context
     );
+
+    aroundLatLngRefinement =
+      aroundLatLngRefinement ||
+      (locationRefinement && locationRefinement.position);
 
     if (queryRefinement) {
       searchParameters = searchParameters.setQuery(queryRefinement);
