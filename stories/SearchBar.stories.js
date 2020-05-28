@@ -8,6 +8,8 @@ const stories = storiesOf('SearchBar', module);
 
 class WrappedSearchBar extends Component {
   static propTypes = {
+    currentQueryRefinement: PropTypes.string,
+    currentLocationRefinement: PropTypes.object,
     querySuggestionHits: PropTypes.arrayOf(PropTypes.object),
     locationHits: PropTypes.arrayOf(PropTypes.object),
     searchForQuerySuggestions: PropTypes.func,
