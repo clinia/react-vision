@@ -102,6 +102,10 @@ const WrappedQuerySuggestionHits = ({ querySuggestionHits }) => {
     </ul>
   );
 };
+WrappedQuerySuggestionHits.propTypes = {
+  querySuggestionHits: PropTypes.array,
+};
+
 const QuerySuggestionHits = connectSearchBar(WrappedQuerySuggestionHits);
 
 stories
