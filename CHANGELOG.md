@@ -1,3 +1,13 @@
+## [2.1.4](https://github.com/clinia/react-vision/compare/v2.1.3...v2.1.4) (2020-06-30)
+
+
+### Bug Fixes
+
+* lint issues ([e1fbb9f](https://github.com/clinia/react-vision/commit/e1fbb9f89378b972afc1e5dc84ee5685d8ccd0ed))
+* **connectors:** searchForLocation not merging geocoderProps when called ([c9dcb95](https://github.com/clinia/react-vision/commit/c9dcb95f32cae6420d7f8fe45e9b326d0943a4f5))
+
+
+
 ## [2.1.3](https://github.com/clinia/react-vision/compare/v2.1.2...v2.1.3) (2020-05-28)
 
 
