@@ -350,12 +350,12 @@ export default createConnector({
       query: nextRefinment,
     };
 
-    if (props.locationProps) {
+    if (props.geocoderProps) {
       params = {
         ...params,
-        types: props.locationProps.types,
-        country: props.country,
-        size: props.perPage,
+        types: props.geocoderProps.types,
+        country: props.geocoderProps.country,
+        size: props.geocoderProps.perPage,
       };
     }
 

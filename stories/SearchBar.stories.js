@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import * as PropTypes from 'prop-types';
 import { storiesOf } from '@storybook/react';
-import { connectSearchBar } from '@clinia/react-vizion-dom';
+import { connectSearchBar, Hits } from '@clinia/react-vizion-dom';
 import { WrapWithHits } from './utils';
 
 const stories = storiesOf('SearchBar', module);
@@ -61,7 +61,7 @@ class WrappedSearchBar extends Component {
   };
 
   render() {
-    const { querySuggestionHits, locationHits } = this.props;
+    const { locationHits } = this.props;
     const { query, location } = this.state;
     return (
       <>
@@ -72,11 +72,6 @@ class WrappedSearchBar extends Component {
               onChange={this.onQueryChange}
               placeholder="Search for resources"
             />
-            <ul>
-              {querySuggestionHits.map(hit => (
-                <li key={hit.id}>{hit.query}</li>
-              ))}
-            </ul>
           </div>
           <div>
             <input
@@ -97,6 +92,17 @@ class WrappedSearchBar extends Component {
   }
 }
 const SearchBar = connectSearchBar(WrappedSearchBar);
+
+const WrappedQuerySuggestionHits = ({ querySuggestionHits }) => {
+  return (
+    <ul>
+      {querySuggestionHits.map(hit => (
+        <li key={hit.id}>{hit.query}</li>
+      ))}
+    </ul>
+  );
+};
+const QuerySuggestionHits = connectSearchBar(WrappedQuerySuggestionHits);
 
 stories
   .add('default', () => (
@@ -136,5 +142,11 @@ stories
           perPage: 5,
         }}
       />
+      <br />
+      <br />
+      <QuerySuggestionHits />
+      <br />
+      <br />
+      <Hits hitComponent={({ hit }) => <div>{hit.name}</div>} />
     </WrapWithHits>
   ));
