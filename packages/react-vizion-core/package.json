@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.1.2",
-    "@clinia/search-helper": "2.0.0-beta.4",
+    "@clinia/search-helper": "2.0.0",
     "prop-types": "^15.5.10",
     "react-fast-compare": "^3.0.0"
   },
