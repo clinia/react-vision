@@ -1,6 +1,6 @@
 {
   "name": "@clinia/react-vizion-dom-gmaps",
-  "version": "2.1.4",
+  "version": "2.1.5",
   "description": "",
   "main": "dist/cjs/index.js",
   "module": "dist/es/index.js",

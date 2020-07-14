@@ -1,3 +1,12 @@
+## [2.1.5](https://github.com/clinia/react-vision/compare/v2.1.4...v2.1.5) (2020-07-14)
+
+
+### Bug Fixes
+
+* add queryId to connectGeoSearchHits and exhaustiveTotal to connectStats ([9775489](https://github.com/clinia/react-vision/commit/97754895aadcffa5bad732c4c4bdebf8539412af))
+
+
+
 ## [2.1.4](https://github.com/clinia/react-vision/compare/v2.1.3...v2.1.4) (2020-06-30)
 
 
