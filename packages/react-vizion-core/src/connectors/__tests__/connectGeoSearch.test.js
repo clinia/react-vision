@@ -96,6 +96,43 @@ describe('connectGeoSearch', () => {
           expect(actual.hits).toEqual(expectation);
         });
 
+        it('adds queryID to the hits provided to the component', () => {
+          const hits = [
+            { id: '1', _geoPoint: {} },
+            { id: '2', _geoPoint: {} },
+            { id: '3', _geoPoint: {} },
+            { id: '4', _geoPoint: {} },
+          ];
+
+          const props = { contextValue };
+          const searchState = {};
+          const searchResults = {
+            results: new SearchResults(new SearchParameters(), [
+              {
+                meta: {
+                  queryID: 'theQueryID',
+                },
+                hits,
+              },
+            ]),
+          };
+
+          const actual = connector.getProvidedProps(
+            props,
+            searchState,
+            searchResults
+          );
+
+          const expectation = [
+            { id: '1', _geoPoint: {}, __queryID: 'theQueryID' },
+            { id: '2', _geoPoint: {}, __queryID: 'theQueryID' },
+            { id: '3', _geoPoint: {}, __queryID: 'theQueryID' },
+            { id: '4', _geoPoint: {}, __queryID: 'theQueryID' },
+          ];
+
+          expect(actual.hits).toEqual(expectation);
+        });
+
         it("expect to return empty hits when we don't have results", () => {
           const props = { contextValue };
           const searchState = {};

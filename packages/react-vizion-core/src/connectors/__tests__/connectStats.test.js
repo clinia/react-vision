@@ -12,9 +12,9 @@ describe('connectStats', () => {
       expect(props).toBe(null);
 
       props = connect.getProvidedProps({ contextValue }, null, {
-        results: { total: 666, took: 1, hits: [] },
+        results: { total: 666, exhaustiveTotal: true, took: 1, hits: [] },
       });
-      expect(props).toEqual({ total: 666, took: 1 });
+      expect(props).toEqual({ total: 666, exhaustiveTotal: true, took: 1 });
     });
   });
 
@@ -34,10 +34,10 @@ describe('connectStats', () => {
         { contextValue, indexContextValue },
         null,
         {
-          results: { second: { total: 666, took: 1 } },
+          results: { second: { total: 666, exhaustiveTotal: true, took: 1 } },
         }
       );
-      expect(props).toEqual({ total: 666, took: 1 });
+      expect(props).toEqual({ total: 666, exhaustiveTotal: true, took: 1 });
     });
   });
 });

@@ -1,4 +1,4 @@
-import { objectHasKeys } from '../core/utils';
+import { objectHasKeys, addQueryID } from '../core/utils';
 import createConnector from '../core/createConnector';
 import {
   getResults,
@@ -176,7 +176,12 @@ export default createConnector({
       currentPositionFromSearchState || currentPositionFromSearchParameters;
 
     return {
-      hits: !results ? [] : results.hits.filter(_ => Boolean(_._geoPoint)),
+      hits: !results
+        ? []
+        : addQueryID(
+            results.hits.filter(_ => Boolean(_._geoPoint)),
+            results.queryID
+          ),
       isRefinedWithMap: Boolean(currentRefinement),
       currentRefinement,
       position,

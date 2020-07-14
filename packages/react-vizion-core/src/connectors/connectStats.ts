@@ -7,6 +7,7 @@ import { getResults } from '../core/indexUtils';
  * @name connectStats
  * @kind connector
  * @providedPropType {number} total - number of hits returned by Clinia.
+ * @providedPropType {boolean} exhaustiveTotal - true if the number if hits is exhaustive
  * @providedPropType {number} took - the time in ms took by Clinia to search for results.
  */
 export default createConnector({
@@ -23,6 +24,7 @@ export default createConnector({
     }
     return {
       total: results.total,
+      exhaustiveTotal: results.exhaustiveTotal,
       took: results.took,
     };
   },
