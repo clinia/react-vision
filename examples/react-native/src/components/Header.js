@@ -13,6 +13,7 @@ class Header extends React.Component {
           highlightPreTag="<strong>"
           highlightPostTag="</strong>"
           size={5}
+          facetFilters={[['locale:iv', `locale:en`]]}
         />
         <LocationBox country={['CA']} size={5} />
       </View>

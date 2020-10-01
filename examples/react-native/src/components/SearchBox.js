@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { TextInput, StyleSheet } from 'react-native';
-import { connectAutoComplete } from '@clinia/react-vizion-core';
+import { connectQuerySuggestions } from '@clinia/react-vizion-core';
 import { withNavigation } from 'react-navigation';
 
 import { setQuery, setSearchBoxFocused } from '../redux/actions';
@@ -12,6 +12,8 @@ const styles = StyleSheet.create({
   input: {
     ...Input.input,
     flexGrow: 1,
+    width: 325,
+    marginTop: 8,
     marginLeft: Margin.normal,
     marginRight: Margin.normal,
   },
@@ -23,9 +25,20 @@ const mapStateToProps = state => ({
 
 class SearchBox extends React.Component {
   input;
+  listeners = [];
+
+  state = {
+    value: '',
+  };
+
+  componentDidUpdate(prevProps) {
+    if (this.props.currentRefinement !== prevProps.currentRefinement) {
+      this.setState({ value: this.props.currentRefinement });
+    }
+  }
 
   componentDidMount() {
-    this.subs = [
+    this.listeners = [
       this.props.navigation.addListener('willBlur', () => {
         const { refine } = this.props;
         refine();
@@ -38,39 +51,40 @@ class SearchBox extends React.Component {
   }
 
   componentWillUnmount() {
-    this.subbs.forEach(x => x.remove());
+    this.listeners.forEach(x => x.remove());
   }
 
   onTextChange = text => {
-    const { searchForSuggestions } = this.props;
-    searchForSuggestions(text);
-    this.props.setQuery(text);
+    this.setState({ value: text });
+    this.props.searchForQuerySuggestions(text);
   };
 
-  onPress = () => {
-    const { query } = this.props;
-
-    this.props.refine(query);
-    this.input.blur();
+  onPress = ({ nativeEvent: { text } }) => {
+    this.props.refine(text);
 
     this.toggleSearch(false);
   };
 
-  toggleSearch = isFocused => this.props.setSearchBoxFocused(isFocused);
+  toggleSearch = isFocused => {
+    this.props.setSearchBoxFocused(isFocused);
+  };
 
   render() {
-    const { query } = this.props;
     return (
       <TextInput
-        value={query}
+        value={this.state.value}
         style={styles.input}
         placeholder="Search a clinic, a speciality..."
         placeholderColor={Color.placeholder}
         autoCorrect={false}
         returnKeyType="search"
         onChangeText={this.onTextChange}
-        onFocus={() => this.toggleSearch(true)}
-        onBlur={() => this.toggleSearch(false)}
+        onFocus={() => {
+          this.toggleSearch(true);
+        }}
+        onBlur={() => {
+          this.toggleSearch(false);
+        }}
         onSubmitEditing={this.onPress}
         ref={ref => {
           this.input = ref;
@@ -86,5 +100,5 @@ export default compose(
     { setQuery, setSearchBoxFocused }
   ),
   withNavigation,
-  connectAutoComplete
+  connectQuerySuggestions
 )(SearchBox);

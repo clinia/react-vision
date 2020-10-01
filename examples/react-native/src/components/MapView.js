@@ -1,7 +1,7 @@
 import MapView from 'react-native-maps';
 import React from 'react';
 import { connectGeoSearch } from '@clinia/react-vizion-core';
-import { withNavigation } from 'react-navigation';
+import { withNavigation } from '@react-navigation/compat';
 import { compose } from 'redux';
 
 import { deltaRegionToBoundsRegion } from '../helpers/utils';

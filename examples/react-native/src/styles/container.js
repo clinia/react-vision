@@ -13,7 +13,7 @@ export default StyleSheet.create({
   },
   content: {
     flex: 1,
-    height: '100%',
+    height: 100,
     width: '100%',
   },
   hit: {

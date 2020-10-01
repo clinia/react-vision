@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import * as Permissions from 'expo-permissions';
 import * as Location from 'expo-location';
-import { connectLocation } from '@clinia/react-vizion-core';
+import { connectGeocoder } from '@clinia/react-vizion-core';
 import { withNavigation } from 'react-navigation';
 
 import { Input, Color, Margin } from '../styles';
@@ -148,7 +148,6 @@ class LocationBox extends React.Component {
           onChangeText={this.onTextChange}
           onFocus={this.onFocus}
           onBlur={() => this.toggleSearch(false)}
-          onSubmitEditing={this.onPress}
           ref={ref => {
             this.input = ref;
           }}
@@ -179,5 +178,5 @@ export default compose(
     { setLocationBoxFocused, setLocation }
   ),
   withNavigation,
-  connectLocation
+  connectGeocoder
 )(LocationBox);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
-import { Index } from 'react-vizion-native';
+import { Index } from '@clinia/react-vizion-native';
 
 import Content from '../components/Content';
 import Hits from '../components/Hits';
@@ -32,7 +32,7 @@ class HealthFacilities extends React.Component {
   static navigationOptions = {
     headerTitle: <Header />,
     headerStyle: {
-      height: 80,
+      height: 108,
     },
   };
 
@@ -48,16 +48,18 @@ class HealthFacilities extends React.Component {
     >
       {this.tag(hit.type)}
       <Text style={styles.title}>{hit.name}</Text>
-      <Text style={styles.text}>
-        {`${hit.address.streetAddress} ${hit.address.place}, ${hit.address.regionCode}`}
-      </Text>
+      {hit.address && (
+        <Text style={styles.text}>
+          {`${hit.address.streetAddress} ${hit.address.place}, ${hit.address.regionCode}`}
+        </Text>
+      )}
     </View>
   );
 
   render() {
     return (
       <Content>
-        <Index indexName="health_facility">
+        <Index indexName="meta">
           <Hits hit={this.hit} />
         </Index>
       </Content>

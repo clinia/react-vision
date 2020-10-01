@@ -3,37 +3,23 @@ import { Image, Text } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createStackNavigator } from 'react-navigation-stack';
-import cliniasearch from 'cliniasearch/lite';
-import { Vizion } from 'react-vizion-native';
+import clinia from 'clinia';
+import { Vizion } from '@clinia/react-vizion-native';
 import { Provider } from 'react-redux';
 
 import store from './src/redux/store';
 import HealthFacilities from './src/pages/HealthFacilities';
-import Map from './src/pages/Map';
 import { Color } from './src/styles';
 
-const searchClient = cliniasearch(
-  'demo-pharamcies',
-  'KcLxBhVFP8ooPgQODlAxWqfNg657fTz9'
-);
-
-// const ProfessionalsNavigation = createStackNavigator({
-//   Professionals,
-// });
+const searchClient = clinia('<your-engine-id>', '<your-api-key>');
 
 const HealthFacilitiesNavigation = createStackNavigator({
   HealthFacilities,
 });
 
-const MapNavigation = createStackNavigator({
-  Map,
-});
-
 const TabNavigator = createBottomTabNavigator(
   {
     HealthFacilities: HealthFacilitiesNavigation,
-    // Professionals: ProfessionalsNavigation,
-    Map: MapNavigation,
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
@@ -83,7 +69,7 @@ const AppContainer = createAppContainer(TabNavigator);
 
 export default function App() {
   return (
-    <Vizion searchClient={searchClient} indexName="health_facility">
+    <Vizion searchClient={searchClient} indexName="meta">
       <Provider store={store}>
         <AppContainer />
       </Provider>

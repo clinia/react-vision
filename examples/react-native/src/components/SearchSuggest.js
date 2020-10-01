@@ -2,7 +2,7 @@ import * as React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { Keyboard } from 'react-native';
-import { connectAutoComplete } from '@clinia/react-vizion-core';
+import { connectQuerySuggestions } from '@clinia/react-vizion-core';
 
 import Suggestions from './Suggestions';
 import { setSearchBoxFocused, setQuery } from '../redux/actions';
@@ -19,8 +19,8 @@ class SearchSuggest extends React.Component {
   };
 
   render() {
-    const { suggestions } = this.props;
-    const results = suggestions.map(x => ({ text: x.suggestion, option: x }));
+    const { hits } = this.props;
+    const results = hits.map(x => ({ text: x.query, option: x }));
     return <Suggestions results={results} onPress={this.onOptionSelected} />;
   }
 }
@@ -30,5 +30,5 @@ export default compose(
     null,
     { setSearchBoxFocused, setQuery }
   ),
-  connectAutoComplete
+  connectQuerySuggestions
 )(SearchSuggest);
