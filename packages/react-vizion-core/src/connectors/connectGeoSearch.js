@@ -1,4 +1,5 @@
 import { objectHasKeys, addQueryID } from '../core/utils';
+import isEqual from 'react-fast-compare';
 import createConnector from '../core/createConnector';
 import {
   getResults,
@@ -134,6 +135,9 @@ export default createConnector({
 
     const results = getResults(searchResults, context);
 
+    this._allResults = this._allResults || [];
+    this._prevState = this._prevState || {};
+
     // We read it from both because the SearchParameters & the searchState are not always
     // in sync. When we set the refinement the searchState is used but when we clear the refinement
     // the SearchParameters is used. In the first case when we render, the results are not there
@@ -175,13 +179,42 @@ export default createConnector({
     const position =
       currentPositionFromSearchState || currentPositionFromSearchParameters;
 
+    // Hits
+
+    if (!results) {
+      return {
+        hits: this._allResults,
+        isRefinedWithMap: Boolean(currentRefinement),
+        currentRefinement,
+        position,
+      };
+    }
+
+    const { hits, page, _state: { page: p, ...currentState } = {} } = results;
+
+    const hitsWithQueryID = !results
+      ? []
+      : addQueryID(hits.filter(_ => Boolean(_._geoPoint)), results.queryID);
+
+    if (
+      this._firstReceivedPage === undefined ||
+      !isEqual(currentState, this._prevState)
+    ) {
+      this._allResults = [...hitsWithQueryID];
+      this._firstReceivedPage = page;
+      this._lastReceivedPage = page;
+    } else if (this._lastReceivedPage < page) {
+      this._allResults = [...this._allResults, ...hitsWithQueryID];
+      this._lastReceivedPage = page;
+    } else if (this._firstReceivedPage > page) {
+      this._allResults = [...hitsWithQueryID, ...this._allResults];
+      this._firstReceivedPage = page;
+    }
+
+    this._prevState = currentState;
+
     return {
-      hits: !results
-        ? []
-        : addQueryID(
-            results.hits.filter(_ => Boolean(_._geoPoint)),
-            results.queryID
-          ),
+      hits: this._allResults,
       isRefinedWithMap: Boolean(currentRefinement),
       currentRefinement,
       position,

@@ -22,11 +22,13 @@ describe('connectGeoSearch', () => {
 
     describe('getProvidedProps', () => {
       it('expect to return default provided props', () => {
+        const instance = {};
         const props = { contextValue };
         const searchState = {};
         const searchResults = empty;
 
-        const actual = connector.getProvidedProps(
+        const actual = connector.getProvidedProps.call(
+          instance,
           props,
           searchState,
           searchResults
@@ -104,6 +106,7 @@ describe('connectGeoSearch', () => {
             { id: '4', _geoPoint: {} },
           ];
 
+          const instance = {};
           const props = { contextValue };
           const searchState = {};
           const searchResults = {
@@ -117,7 +120,8 @@ describe('connectGeoSearch', () => {
             ]),
           };
 
-          const actual = connector.getProvidedProps(
+          const actual = connector.getProvidedProps.call(
+            instance,
             props,
             searchState,
             searchResults
@@ -134,11 +138,13 @@ describe('connectGeoSearch', () => {
         });
 
         it("expect to return empty hits when we don't have results", () => {
+          const instance = {};
           const props = { contextValue };
           const searchState = {};
           const searchResults = empty;
 
-          const actual = connector.getProvidedProps(
+          const actual = connector.getProvidedProps.call(
+            instance,
             props,
             searchState,
             searchResults
@@ -732,11 +738,13 @@ describe('connectGeoSearch', () => {
     describe('getProvidedProps', () => {
       it('expect to return default provided props', () => {
         const searchState = createMultiIndexSearchState();
+        const instance = {};
         const props = { contextValue, indexContextValue };
 
         const searchResults = empty;
 
-        const actual = connector.getProvidedProps(
+        const actual = connector.getProvidedProps.call(
+          instance,
           props,
           searchState,
           searchResults
@@ -805,11 +813,13 @@ describe('connectGeoSearch', () => {
         });
 
         it("expect to return empty hits when we don't have results", () => {
+          const instance = {};
           const props = { contextValue, indexContextValue };
           const searchState = createMultiIndexSearchState();
           const searchResults = empty;
 
-          const actual = connector.getProvidedProps(
+          const actual = connector.getProvidedProps.call(
+            instance,
             props,
             searchState,
             searchResults

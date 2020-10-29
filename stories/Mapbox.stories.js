@@ -2,7 +2,12 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { Configure, connectHits } from '@clinia/react-vizion-dom';
+import {
+  Configure,
+  connectHits,
+  connectSearchBar,
+  InfiniteHits,
+} from '@clinia/react-vizion-dom';
 import {
   MapboxLoader,
   GeoSearch,
@@ -26,6 +31,108 @@ const accessToken =
   'pk.eyJ1IjoiZmVsaXhsZWNoYXQiLCJhIjoiY2p3Y2dicDAwMHY4bzQxcW55MGJ1dXczZyJ9.TRlV2LckuT0z49Eu1TSjRw';
 const initialZoom = 6;
 const initialPosition = { lat: 45.410246, lng: -73.986345 };
+
+class WrappedSearchBar extends Component {
+  static propTypes = {
+    currentQueryRefinement: PropTypes.string,
+    currentLocationRefinement: PropTypes.object,
+    querySuggestionHits: PropTypes.arrayOf(PropTypes.object),
+    locationHits: PropTypes.arrayOf(PropTypes.object),
+    searchForQuerySuggestions: PropTypes.func,
+    searchForLocations: PropTypes.func,
+    refine: PropTypes.func,
+  };
+
+  state = {
+    query: this.props.currentQueryRefinement || '',
+    location: this.props.currentLocationRefinement || { name: '' },
+  };
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    let state = {
+      ...prevState,
+    };
+    if (nextProps.locationHits.length > 0) {
+      state = {
+        ...state,
+        location: {
+          ...state.location,
+          position: nextProps.locationHits[0].geometry.location,
+        },
+      };
+    }
+
+    return state;
+  }
+
+  onQueryChange = e => {
+    this.setState({ query: e.target.value });
+    this.props.searchForQuerySuggestions(e.target.value);
+  };
+
+  onLocationChange = e => {
+    this.setState({
+      location: {
+        name: e.target.value,
+      },
+    });
+    this.props.searchForLocations(e.target.value);
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    this.props.refine(this.state);
+  };
+
+  render() {
+    const { locationHits } = this.props;
+    const { query, location } = this.state;
+    return (
+      <>
+        <form onSubmit={this.handleSubmit} style={{ float: 'left' }}>
+          <div>
+            <input
+              value={query}
+              onChange={this.onQueryChange}
+              placeholder="Search for resources"
+            />
+          </div>
+          <div>
+            <input
+              value={location.name}
+              onChange={this.onLocationChange}
+              placeholder="Postal code"
+            />
+            <ul>
+              {locationHits.map(hit => (
+                <li key={hit.formattedAddress}>{hit.formattedAddress}</li>
+              ))}
+            </ul>
+          </div>
+          <button type="submit">Submit</button>
+        </form>
+      </>
+    );
+  }
+}
+const SearchBar = connectSearchBar(WrappedSearchBar);
+
+const WrappedQuerySuggestionHits = ({ querySuggestionHits }) => {
+  return (
+    <ul>
+      {querySuggestionHits.map(hit => (
+        <li key={hit.id}>{hit.query}</li>
+      ))}
+    </ul>
+  );
+};
+WrappedQuerySuggestionHits.propTypes = {
+  querySuggestionHits: PropTypes.array,
+};
+
+const QuerySuggestionHits = connectSearchBar(WrappedQuerySuggestionHits);
 
 stories
   .add('default', () => (
@@ -102,6 +209,46 @@ stories
       </Container>
     </WrapWithHits>
   ));
+
+stories.add('with geocoder', () => (
+  <WrapWithHits searchBox={false} indexName="meta" linkedStoryGroup="Mapbox">
+    <Configure perPage={5} />
+    <SearchBar
+      geocoderProps={{
+        types: [],
+        country: ['CA'],
+        perPage: 5,
+      }}
+    />
+    <br />
+    <br />
+    <QuerySuggestionHits />
+    <br />
+    <br />
+
+    <Container>
+      <MapboxLoader accessToken={accessToken}>
+        {mapboxgl => (
+          <GeoSearch
+            mapboxgl={mapboxgl}
+            initialZoom={initialZoom}
+            initialPosition={initialPosition}
+            enableRefineOnMapMove={false}
+          >
+            {({ hits }) => (
+              <>
+                {hits.map(hit => (
+                  <Marker key={hit.id} hit={hit} />
+                ))}
+              </>
+            )}
+          </GeoSearch>
+        )}
+      </MapboxLoader>
+    </Container>
+    <InfiniteHits />
+  </WrapWithHits>
+));
 
 stories
   .add('with zoom & center', () => (

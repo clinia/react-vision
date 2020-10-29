@@ -17,6 +17,7 @@ class Mapbox extends Component {
     shouldUpdate: PropTypes.func.isRequired,
     boundingBox: BoundingBoxPropType,
     boundingBoxPadding: PropTypes.number,
+    position: LatLngPropType,
     children: PropTypes.node,
   };
 
