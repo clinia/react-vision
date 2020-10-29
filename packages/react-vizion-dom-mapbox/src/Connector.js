@@ -51,7 +51,6 @@ export class Connector extends Component {
     );
 
     const sliceNextState = {
-      positionChanged,
       previousPosition: position,
       previousCurrentRefinement: currentRefinement,
     };
@@ -70,6 +69,7 @@ export class Connector extends Component {
   state = {
     isRefineOnMapMove: this.props.enableRefineOnMapMove,
     hasMapMoveSinceLastRefine: false,
+    positionChanged: false,
     previousPosition: this.props.position,
     previousCurrentRefinement: this.props.currentRefinement,
   };
