@@ -1,3 +1,13 @@
+## [2.1.6](https://github.com/clinia/react-vision/compare/v2.1.5...v2.1.6) (2020-10-29)
+
+
+### Bug Fixes
+
+* build size ([a874962](https://github.com/clinia/react-vision/commit/a8749627af3fd3e8e39a4b7e6519c38fe0ed1581))
+* geosearch pagination & auto fit bounds on position change ([485dd79](https://github.com/clinia/react-vision/commit/485dd790ecbb9e2c1ad5c16e7b1dcfe3c34932e9))
+
+
+
 ## [2.1.5](https://github.com/clinia/react-vision/compare/v2.1.4...v2.1.5) (2020-07-14)
 
 
