@@ -1,3 +1,12 @@
+## [2.1.7](https://github.com/clinia/react-vision/compare/v2.1.6...v2.1.7) (2020-10-29)
+
+
+### Bug Fixes
+
+* **mapbox:** positionChanged always set to false ([f16bce5](https://github.com/clinia/react-vision/commit/f16bce56f880cfb14783de6bef0f97ed30fe9a82))
+
+
+
 ## [2.1.6](https://github.com/clinia/react-vision/compare/v2.1.5...v2.1.6) (2020-10-29)
 
 
