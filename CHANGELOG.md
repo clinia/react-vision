@@ -1,3 +1,13 @@
+# [2.2.0](https://github.com/clinia/react-vision/compare/v2.1.7...v2.2.0) (2020-11-13)
+
+
+### Features
+
+* add fitBoundsOptions for mapbox wigets ([a8c0162](https://github.com/clinia/react-vision/commit/a8c01629ebf3ed8ff7bc345bc5e8a9d94446b167))
+* provide additional query suggestions props in connectSearchbar ([bc52217](https://github.com/clinia/react-vision/commit/bc52217530fe3c3e54dccf46140774939549de73))
+
+
+
 ## [2.1.7](https://github.com/clinia/react-vision/compare/v2.1.6...v2.1.7) (2020-10-29)
 
 
