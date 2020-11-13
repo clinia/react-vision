@@ -1,3 +1,12 @@
+## [2.2.1](https://github.com/clinia/react-vision/compare/v2.2.0...v2.2.1) (2020-11-13)
+
+
+### Features
+
+* mapbox widget support for multiple _geoPoint ([0b9c065](https://github.com/clinia/react-vision/commit/0b9c0657ed5ff56bfcfcbbfa2444f472f4ef6dae))
+
+
+
 # [2.2.0](https://github.com/clinia/react-vision/compare/v2.1.7...v2.2.0) (2020-11-13)
 
 
