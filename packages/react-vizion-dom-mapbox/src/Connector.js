@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 import { connectGeoSearch } from '@clinia/react-vizion-dom';
 import { LatLngPropType, BoundingBoxPropType } from './propTypes';
 
+function isEqualQuery(a, b) {
+  return a === b;
+}
+
 function isEqualPosition(a, b) {
   if (a === b) {
     return true;
@@ -38,27 +42,34 @@ export class Connector extends Component {
     children: PropTypes.func.isRequired,
     position: LatLngPropType,
     currentRefinement: BoundingBoxPropType,
+    query: PropTypes.string.isRequired,
   };
 
   static getDerivedStateFromProps(props, state) {
-    const { position, currentRefinement } = props;
-    const { previousPosition, previousCurrentRefinement } = state;
+    const { position, currentRefinement, query } = props;
+    const {
+      previousPosition,
+      previousCurrentRefinement,
+      previousQuery,
+    } = state;
 
     const positionChanged = !isEqualPosition(previousPosition, position);
     const currentRefinementChanged = !isEqualCurrentRefinement(
       previousCurrentRefinement,
       currentRefinement
     );
+    const queryChanged = !isEqualQuery(previousQuery, query);
 
     const sliceNextState = {
       previousPosition: position,
+      refineBounds: positionChanged || currentRefinementChanged || queryChanged,
+      previousQuery: query,
       previousCurrentRefinement: currentRefinement,
     };
 
     if (positionChanged || currentRefinementChanged) {
       return {
         ...sliceNextState,
-        positionChanged: positionChanged || currentRefinementChanged,
         hasMapMoveSinceLastRefine: false,
       };
     }
@@ -70,6 +81,7 @@ export class Connector extends Component {
     isRefineOnMapMove: this.props.enableRefineOnMapMove,
     hasMapMoveSinceLastRefine: false,
     positionChanged: false,
+    refineBounds: false,
     previousPosition: this.props.position,
     previousCurrentRefinement: this.props.currentRefinement,
   };
@@ -104,7 +116,7 @@ export class Connector extends Component {
     const {
       isRefineOnMapMove,
       hasMapMoveSinceLastRefine,
-      positionChanged,
+      refineBounds,
     } = this.state;
 
     return children({
@@ -116,7 +128,7 @@ export class Connector extends Component {
       hasMapMoveSinceLastRefine,
       position,
       currentRefinement,
-      positionChanged,
+      refineBounds,
       refine,
     });
   }

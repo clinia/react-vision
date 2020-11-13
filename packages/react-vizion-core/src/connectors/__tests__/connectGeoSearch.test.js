@@ -39,6 +39,7 @@ describe('connectGeoSearch', () => {
           position: undefined,
           currentRefinement: undefined,
           isRefinedWithMap: false,
+          query: '',
         };
 
         expect(actual).toEqual(expectation);
@@ -755,6 +756,7 @@ describe('connectGeoSearch', () => {
           position: undefined,
           currentRefinement: undefined,
           isRefinedWithMap: false,
+          query: '',
         };
 
         expect(actual).toEqual(expectation);

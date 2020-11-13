@@ -1,5 +1,5 @@
 {
-  "version": "2.2.1",
+  "version": "2.2.0",
   "private": true,
   "license": "MIT",
   "workspaces": [
@@ -150,11 +150,11 @@
     },
     {
       "path": "packages/react-vizion-dom-gmaps/dist/umd/ReactVizionDOMGMaps.min.js",
-      "maxSize": "11.05 kB"
+      "maxSize": "11.07 kB"
     },
     {
       "path": "packages/react-vizion-dom-mapbox/dist/umd/ReactVizionDOMMapbox.min.js",
-      "maxSize": "11.15 kB"
+      "maxSize": "11.20 kB"
     }
   ],
   "dependencies": {}

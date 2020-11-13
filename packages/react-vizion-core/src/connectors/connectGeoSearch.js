@@ -23,6 +23,7 @@ import {
  * @providedPropType {boolean} isRefinedWithMap - true if the current refinement is set with the maps bounds
  * @providedPropType {{ northEast: { lat: number, lng: number }, southWest: { lat: number, lng: number } }} [currentRefinement] - the refinement currently applied
  * @providedPropType {{ lat: number, lng: number }} [position] - the position of the search
+ * @providedPropType {string} query - the current query refinement
  */
 
 // To control the map with an external widget the other widget
@@ -62,6 +63,21 @@ const stringToPosition = value => {
     lat: parseFloat(pattern[1]),
     lng: parseFloat(pattern[2]),
   };
+};
+
+const getCurrentQueryRefinement = (props, searchState, context) => {
+  const currentRefinement = getCurrentRefinementValue(
+    props,
+    searchState,
+    context,
+    'query',
+    ''
+  );
+
+  if (currentRefinement) {
+    return currentRefinement;
+  }
+  return '';
 };
 
 const getCurrentRefinement = (props, searchState, context) => {
@@ -133,6 +149,7 @@ export default createConnector({
       multiIndexContext: props.indexContextValue,
     };
 
+    const query = getCurrentQueryRefinement(props, searchState, context);
     const results = getResults(searchResults, context);
 
     this._allResults = this._allResults || [];
@@ -187,6 +204,7 @@ export default createConnector({
         isRefinedWithMap: Boolean(currentRefinement),
         currentRefinement,
         position,
+        query,
       };
     }
 
@@ -218,6 +236,7 @@ export default createConnector({
       isRefinedWithMap: Boolean(currentRefinement),
       currentRefinement,
       position,
+      query,
     };
   },
 

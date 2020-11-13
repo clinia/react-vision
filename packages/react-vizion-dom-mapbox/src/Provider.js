@@ -17,7 +17,7 @@ class Provider extends Component {
     setMapMoveSinceLastRefine: PropTypes.func.isRequired,
     children: PropTypes.func.isRequired,
     position: LatLngPropType,
-    positionChanged: PropTypes.bool,
+    refineBounds: PropTypes.bool.isRequired,
     currentRefinement: BoundingBoxPropType,
   };
 
@@ -125,7 +125,7 @@ class Provider extends Component {
   };
 
   render() {
-    const { hits, currentRefinement, children, positionChanged } = this.props;
+    const { hits, currentRefinement, children, refineBounds } = this.props;
 
     // We use this value for differentiate the padding to apply during
     // fitBounds. When we don't have a currenRefinement (boundingBox)
@@ -134,7 +134,8 @@ class Provider extends Component {
     // to `0` otherwise the map will decrease the zoom on each refine.
     const boundingBoxPadding = !currentRefinement ? undefined : 0;
     const boundingBox =
-      (!currentRefinement && Boolean(hits.length)) || positionChanged
+      (!currentRefinement && Boolean(hits.length)) ||
+      (refineBounds && Boolean(hits.length))
         ? this.createBoundingBoxFromRecords(hits)
         : currentRefinement;
 
