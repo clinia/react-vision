@@ -250,6 +250,99 @@ describe('connectGeoSearch', () => {
 
       describe('currentQueryRefinement', () => {});
 
+      describe('querySuggestionsProps', () => {
+        it('supports passing additional props', () => {
+          const actual = connector.searchForQuerySuggestions(
+            {
+              querySuggestionsProps: {
+                defaultRefinement: 'yaw',
+                userId: 'test',
+              },
+              contextValue,
+            },
+            {},
+            'query'
+          );
+
+          expect(actual).toEqual({
+            query: 'query',
+            userId: 'test',
+            queryType: 'prefix_last',
+            perPage: 5,
+            highlightPreTag: `<cvi-highlight-0000000000>`,
+            highlightPostTag: `</cvi-highlight-0000000000>`,
+            facetFilters: [],
+          });
+        });
+
+        it('supports passing some of the props', () => {
+          const actual = connector.searchForQuerySuggestions(
+            {
+              querySuggestionsProps: {
+                queryType: 'prefix_all',
+              },
+              contextValue,
+            },
+            {},
+            'query'
+          );
+
+          expect(actual).toEqual({
+            query: 'query',
+            queryType: 'prefix_all',
+            perPage: 5,
+            highlightPreTag: `<cvi-highlight-0000000000>`,
+            highlightPostTag: `</cvi-highlight-0000000000>`,
+            facetFilters: [],
+          });
+        });
+
+        it('supports passing all of the default props', () => {
+          const actual = connector.searchForQuerySuggestions(
+            {
+              querySuggestionsProps: {
+                queryType: 'prefix_all',
+                perPage: 2,
+                highlightPreTag: `<test>`,
+                highlightPostTag: `</test>`,
+                facetFilters: ['lang:iv'],
+              },
+              contextValue,
+            },
+            {},
+            'query'
+          );
+
+          expect(actual).toEqual({
+            query: 'query',
+            queryType: 'prefix_all',
+            perPage: 2,
+            highlightPreTag: `<test>`,
+            highlightPostTag: `</test>`,
+            facetFilters: ['lang:iv'],
+          });
+        });
+
+        it('supports passing none of the props', () => {
+          const actual = connector.searchForQuerySuggestions(
+            {
+              contextValue,
+            },
+            {},
+            'query'
+          );
+
+          expect(actual).toEqual({
+            query: 'query',
+            queryType: 'prefix_last',
+            perPage: 5,
+            highlightPreTag: `<cvi-highlight-0000000000>`,
+            highlightPostTag: `</cvi-highlight-0000000000>`,
+            facetFilters: [],
+          });
+        });
+      });
+
       describe('querySuggestionsProps defaultRefinment', () => {
         it('supports defaultRefinement', () => {
           const actual = connector.getProvidedProps(

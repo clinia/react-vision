@@ -122,6 +122,20 @@ const getLocationsResults = searchResults => {
   return null;
 };
 
+const defaultQuerySuggestionsProps = {
+  queryType: 'prefix_last',
+  perPage: 5,
+  highlightPreTag: `<cvi-highlight-0000000000>`,
+  highlightPostTag: `</cvi-highlight-0000000000>`,
+  facetFilters: [],
+};
+
+const defaultGeocoderProps = {
+  types: [],
+  country: [],
+  perPage: 5,
+};
+
 /**
  * connectSearchBar connector provides the logic to build a widget that will
  * let the user search for a query and location inside the same component
@@ -162,18 +176,8 @@ export default createConnector({
   },
 
   defaultProps: {
-    querySuggestionsProps: {
-      queryType: 'prefix_last',
-      perPage: 5,
-      highlightPreTag: `<cvi-highlight-0000000000>`,
-      highlightPostTag: `</cvi-highlight-0000000000>`,
-      facetFilters: [],
-    },
-    geocoderProps: {
-      types: [],
-      country: [],
-      perPage: 5,
-    },
+    querySuggestionsProps: defaultQuerySuggestionsProps,
+    geocoderProps: defaultGeocoderProps,
   },
 
   getProvidedProps(props, searchState, searchResults, _meta) {
@@ -327,22 +331,23 @@ export default createConnector({
   },
 
   searchForQuerySuggestions(props, searchState, nextRefinement) {
-    let params = {
-      query: nextRefinement,
-    };
-
-    if (props.querySuggestionsProps) {
-      params = {
-        ...params,
-        queryType: props.querySuggestionsProps.queryType,
-        perPage: props.querySuggestionsProps.perPage,
-        highlightPreTag: props.querySuggestionsProps.highlightPreTag,
-        highlightPostTag: props.querySuggestionsProps.highlightPostTag,
-        facetFilters: props.querySuggestionsProps.facetFilters,
+    if (!props.querySuggestionsProps) {
+      return {
+        ...defaultQuerySuggestionsProps,
+        query: nextRefinement,
       };
     }
 
-    return params;
+    const {
+      defaultRefinement,
+      ...querySuggestionsProps
+    } = props.querySuggestionsProps;
+
+    return {
+      ...defaultQuerySuggestionsProps,
+      ...querySuggestionsProps,
+      query: nextRefinement,
+    };
   },
 
   searchForLocations(props, _searchState, nextRefinment) {
