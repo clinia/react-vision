@@ -234,7 +234,7 @@ stories.add('with geocoder', () => (
             initialZoom={initialZoom}
             initialPosition={initialPosition}
             enableRefineOnMapMove={false}
-            fitBoundsOptions={{ duration: 400, animate: false }}
+            fitBoundsOptions={{ duration: 3000, animate: true }}
           >
             {({ hits }) => (
               <>

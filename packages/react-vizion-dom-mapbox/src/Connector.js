@@ -58,7 +58,7 @@ export class Connector extends Component {
     if (positionChanged || currentRefinementChanged) {
       return {
         ...sliceNextState,
-        positionChanged,
+        positionChanged: positionChanged || currentRefinementChanged,
         hasMapMoveSinceLastRefine: false,
       };
     }

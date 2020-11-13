@@ -71,7 +71,12 @@ class Provider extends Component {
 
   createBoundingBoxFromRecords(hits) {
     const locations = hits.reduce((acc, hit) => {
-      if (isValidCoordinates) {
+      if (Array.isArray(hit._geoPoint)) {
+        const geoPoints = hit._geoPoint.filter(geoPoint =>
+          isValidCoordinates(geoPoint.lat, geoPoint.lon)
+        );
+        acc = [...acc, ...geoPoints];
+      } else if (isValidCoordinates(hit._geoPoint.lat, hit._geoPoint.lon)) {
         acc.push(hit._geoPoint);
       }
 
