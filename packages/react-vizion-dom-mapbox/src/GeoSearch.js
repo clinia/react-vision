@@ -29,6 +29,7 @@ export default class GeoSearch extends Component {
     enableRefine: PropTypes.bool,
     enableRefineOnMapMove: PropTypes.bool,
     defaultRefinement: BoundingBoxPropType,
+    fitBoundsOptions: PropTypes.object,
   };
 
   static defaultProps = {
@@ -37,6 +38,7 @@ export default class GeoSearch extends Component {
     enableRefine: true,
     enableRefineOnMapMove: true,
     defaultRefinement: null,
+    fitBoundsOptions: {},
   };
 
   renderChildrenWithBoundFunction = ({ hits, position, ...rest }) => {
@@ -48,6 +50,7 @@ export default class GeoSearch extends Component {
       enableRefine,
       enableRefineOnMapMove,
       defaultRefinement,
+      fitBoundsOptions,
       ...mapOptions
     } = this.props;
 
@@ -73,6 +76,7 @@ export default class GeoSearch extends Component {
             initialZoom={initialZoom}
             initialPosition={position || initialPosition}
             mapOptions={mapOptions}
+            fitBoundsOptions={fitBoundsOptions}
             boundingBox={boundingBox}
             boundingBoxPadding={boundingBoxPadding}
             onChange={onChange}

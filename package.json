@@ -154,7 +154,7 @@
     },
     {
       "path": "packages/react-vizion-dom-mapbox/dist/umd/ReactVizionDOMMapbox.min.js",
-      "maxSize": "11.00 kB"
+      "maxSize": "11.04 kB"
     }
   ],
   "dependencies": {}

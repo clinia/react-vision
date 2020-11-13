@@ -12,6 +12,7 @@ class Mapbox extends Component {
     initialZoom: PropTypes.number.isRequired,
     initialPosition: LatLngPropType.isRequired,
     mapOptions: PropTypes.object.isRequired,
+    fitBoundsOptions: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     onIdle: PropTypes.func.isRequired,
     shouldUpdate: PropTypes.func.isRequired,
@@ -51,6 +52,7 @@ class Mapbox extends Component {
       boundingBox,
       boundingBoxPadding,
       shouldUpdate,
+      fitBoundsOptions,
     } = this.props;
 
     if (!shouldUpdate()) {
@@ -71,6 +73,7 @@ class Mapbox extends Component {
             )
           ),
           {
+            ...fitBoundsOptions,
             padding: boundingBoxPadding ? boundingBoxPadding + 40 : 40,
           }
         );
