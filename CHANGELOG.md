@@ -1,3 +1,12 @@
+## [2.2.2](https://github.com/clinia/react-vision/compare/v2.2.1...v2.2.2) (2020-11-13)
+
+
+### Bug Fixes
+
+* mapbox refine bounds on query changed ([bb7a093](https://github.com/clinia/react-vision/commit/bb7a093374e311b40daed0c81d7896d112e57e42))
+
+
+
 ## [2.2.1](https://github.com/clinia/react-vision/compare/v2.2.0...v2.2.1) (2020-11-13)
 
 
