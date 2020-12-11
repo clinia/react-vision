@@ -24,7 +24,7 @@
 
 # Features
 
-- **[Widgets](./doc/widgets/README.md)** that offer bare UI components to be customized be the partners.
+- **[Widgets](./doc/widgets/README.md)** that offer bare UI components to be customized by the partners.
 - **[Connectors](./doc/connectors/README.md)** that allows the partners to link their own components with the Clinia's search logic.
 - Compatible with **React** and **React-Native**
 - Available **[Storybook](https://storybook.js.org)** to experiment with the components
@@ -77,7 +77,7 @@ expo start
 
 # Contributing
 
-We welcome all contributors, from casual to regular. You are only one command away to start the developer environment, [read our CONTRIBUTING guide](CONTRIBUTING.md).
+We welcome all contributors, from casual to regular. You are only one command away from starting the developer environment, [read our CONTRIBUTING guide](CONTRIBUTING.md).
 
 # 📄 License
 
