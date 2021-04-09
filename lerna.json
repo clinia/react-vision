@@ -4,7 +4,7 @@
     "packages/*",
     "examples/@(default)"
   ],
-  "version": "2.2.2",
+  "version": "2.2.3",
   "npmClient": "yarn",
   "useWorkspaces": true
 }

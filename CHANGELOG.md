@@ -1,3 +1,13 @@
+## [2.2.3](https://github.com/clinia/react-vizion/compare/v2.2.2...v2.2.3) (2021-04-09)
+
+
+### Bug Fixes
+
+* small typos [PROD-713] ([#46](https://github.com/clinia/react-vizion/issues/46)) ([d67c322](https://github.com/clinia/react-vizion/commit/d67c3223de3d5b55a71e9376364d069c58c83a5c))
+* wrong casing for queryId ([8f8c068](https://github.com/clinia/react-vizion/commit/8f8c06891956ae80e01742f86859d5310a0e3c12))
+
+
+
 ## [2.2.2](https://github.com/clinia/react-vision/compare/v2.2.1...v2.2.2) (2020-11-13)
 
 
