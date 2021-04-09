@@ -1,4 +1,4 @@
-import { objectHasKeys, addQueryID } from '../core/utils';
+import { objectHasKeys, addQueryId } from '../core/utils';
 import isEqual from 'react-fast-compare';
 import createConnector from '../core/createConnector';
 import {
@@ -210,22 +210,22 @@ export default createConnector({
 
     const { hits, page, _state: { page: p, ...currentState } = {} } = results;
 
-    const hitsWithQueryID = !results
+    const hitsWithQueryId = !results
       ? []
-      : addQueryID(hits.filter(_ => Boolean(_._geoPoint)), results.queryID);
+      : addQueryId(hits.filter(_ => Boolean(_._geoPoint)), results.queryId);
 
     if (
       this._firstReceivedPage === undefined ||
       !isEqual(currentState, this._prevState)
     ) {
-      this._allResults = [...hitsWithQueryID];
+      this._allResults = [...hitsWithQueryId];
       this._firstReceivedPage = page;
       this._lastReceivedPage = page;
     } else if (this._lastReceivedPage < page) {
-      this._allResults = [...this._allResults, ...hitsWithQueryID];
+      this._allResults = [...this._allResults, ...hitsWithQueryId];
       this._lastReceivedPage = page;
     } else if (this._firstReceivedPage > page) {
-      this._allResults = [...hitsWithQueryID, ...this._allResults];
+      this._allResults = [...hitsWithQueryId, ...this._allResults];
       this._firstReceivedPage = page;
     }
 

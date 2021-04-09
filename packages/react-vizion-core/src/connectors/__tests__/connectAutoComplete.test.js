@@ -46,14 +46,14 @@ describe('connectAutoComplete', () => {
       });
     });
 
-    it('provides current hits to the component with queryID & position', () => {
+    it('provides current hits to the component with queryId & position', () => {
       const hits = [{}];
-      const hitsWithExtraInfo = [{ __queryID: 'zombo.com', __position: 1 }];
+      const hitsWithExtraInfo = [{ __queryId: 'zombo.com', __position: 1 }];
       let props = connect.getProvidedProps(
         { contextValue },
         {},
         {
-          results: { hits, page: 0, perPage: 20, queryID: 'zombo.com' },
+          results: { hits, page: 0, perPage: 20, queryId: 'zombo.com' },
         }
       );
       expect(props).toEqual({
@@ -65,7 +65,7 @@ describe('connectAutoComplete', () => {
         { contextValue },
         { query: 'query' },
         {
-          results: { hits, page: 0, perPage: 20, queryID: 'zombo.com' },
+          results: { hits, page: 0, perPage: 20, queryId: 'zombo.com' },
         }
       );
       expect(props).toEqual({
@@ -77,7 +77,7 @@ describe('connectAutoComplete', () => {
         { defaultRefinement: 'query', contextValue },
         {},
         {
-          results: { hits, page: 0, perPage: 20, queryID: 'zombo.com' },
+          results: { hits, page: 0, perPage: 20, queryId: 'zombo.com' },
         }
       );
       expect(props).toEqual({
@@ -128,10 +128,10 @@ describe('connectAutoComplete', () => {
       const firstHits = [{}];
       const secondHits = [{}];
       const firstHitsWithExtraInfo = [
-        { __queryID: 'zombo.com', __position: 1 },
+        { __queryId: 'zombo.com', __position: 1 },
       ];
       const secondHitsWithExtraInfo = [
-        { __queryID: 'html5zombo.com', __position: 1 },
+        { __queryId: 'html5zombo.com', __position: 1 },
       ];
       let props = connect.getProvidedProps(
         { contextValue, indexContextValue },
@@ -142,13 +142,13 @@ describe('connectAutoComplete', () => {
               hits: firstHits,
               page: 0,
               perPage: 20,
-              queryID: 'zombo.com',
+              queryId: 'zombo.com',
             },
             second: {
               hits: secondHits,
               page: 0,
               perPage: 20,
-              queryID: 'html5zombo.com',
+              queryId: 'html5zombo.com',
             },
           },
         }
@@ -177,13 +177,13 @@ describe('connectAutoComplete', () => {
               hits: firstHits,
               page: 0,
               perPage: 20,
-              queryID: 'zombo.com',
+              queryId: 'zombo.com',
             },
             second: {
               hits: secondHits,
               page: 0,
               perPage: 20,
-              queryID: 'html5zombo.com',
+              queryId: 'html5zombo.com',
             },
           },
         }
@@ -205,13 +205,13 @@ describe('connectAutoComplete', () => {
               hits: firstHits,
               page: 0,
               perPage: 20,
-              queryID: 'zombo.com',
+              queryId: 'zombo.com',
             },
             second: {
               hits: secondHits,
               page: 0,
               perPage: 20,
-              queryID: 'html5zombo.com',
+              queryId: 'html5zombo.com',
             },
           },
         }

@@ -147,12 +147,12 @@ describe('utils', () => {
     });
   });
 
-  describe('addQueryID', () => {
+  describe('addQueryId', () => {
     const hits = [{ id: '1' }, { id: '2' }];
-    it('should passed __queryID to hits', () => {
-      expect(utils.addQueryID(hits, 'theQueryID')).toEqual([
-        { id: '1', __queryID: 'theQueryID' },
-        { id: '2', __queryID: 'theQueryID' },
+    it('should passed __queryId to hits', () => {
+      expect(utils.addQueryId(hits, 'theQueryId')).toEqual([
+        { id: '1', __queryId: 'theQueryId' },
+        { id: '2', __queryId: 'theQueryId' },
       ]);
     });
   });

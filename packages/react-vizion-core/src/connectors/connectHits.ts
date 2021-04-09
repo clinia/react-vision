@@ -1,6 +1,6 @@
 import createConnector from '../core/createConnector';
 import { getResults } from '../core/indexUtils';
-import { addAbsolutePositions, addQueryID } from '../core/utils';
+import { addAbsolutePositions, addQueryId } from '../core/utils';
 
 /**
  * connectHits connector provides the logic to create connected
@@ -62,13 +62,13 @@ export default createConnector({
       results.perPage,
       results.page
     );
-    const hitsWithPositionsAndQueryID = addQueryID(
+    const hitsWithPositionsAndQueryId = addQueryId(
       hitsWithPositions,
-      results.queryID
+      results.queryId
     );
 
     return {
-      hits: hitsWithPositionsAndQueryID,
+      hits: hitsWithPositionsAndQueryId,
     };
   },
 

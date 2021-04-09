@@ -6,7 +6,7 @@ import {
   refineValue,
   getResults,
 } from '../core/indexUtils';
-import { addAbsolutePositions, addQueryID } from '../core/utils';
+import { addAbsolutePositions, addQueryId } from '../core/utils';
 
 function getId() {
   return 'page';
@@ -71,23 +71,23 @@ export default createConnector({
     } = results;
 
     const hitsWithPositions = addAbsolutePositions(hits, perPage, page);
-    const hitsWithPositionsAndQueryID = addQueryID(
+    const hitsWithPositionsAndQueryId = addQueryId(
       hitsWithPositions,
-      results.queryID
+      results.queryId
     );
 
     if (
       this._firstReceivedPage === undefined ||
       !isEqual(currentState, this._prevState)
     ) {
-      this._allResults = [...hitsWithPositionsAndQueryID];
+      this._allResults = [...hitsWithPositionsAndQueryId];
       this._firstReceivedPage = page;
       this._lastReceivedPage = page;
     } else if (this._lastReceivedPage < page) {
-      this._allResults = [...this._allResults, ...hitsWithPositionsAndQueryID];
+      this._allResults = [...this._allResults, ...hitsWithPositionsAndQueryId];
       this._lastReceivedPage = page;
     } else if (this._firstReceivedPage > page) {
-      this._allResults = [...hitsWithPositionsAndQueryID, ...this._allResults];
+      this._allResults = [...hitsWithPositionsAndQueryId, ...this._allResults];
       this._firstReceivedPage = page;
     }
 

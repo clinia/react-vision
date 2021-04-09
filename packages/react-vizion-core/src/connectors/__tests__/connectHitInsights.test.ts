@@ -19,7 +19,7 @@ function setup() {
   const hit = {
     id: 'id_42',
     __position: 42,
-    __queryID: 'theQueryID',
+    __queryId: 'theQueryId',
   };
   const searchResults = { results: { theIndex: { index: 'theIndex' } } };
   const props = connect(insightsClient).getProvidedProps(
@@ -59,7 +59,7 @@ describe('connectHitInsights', () => {
         eventName: 'Add to cart',
         recordIDs: ['id_42'],
         positions: [42],
-        queryID: 'theQueryID',
+        queryId: 'theQueryId',
         index: 'theIndex',
       });
     });
@@ -83,7 +83,7 @@ describe('connectHitInsights', () => {
       expect(payload).toEqual({
         eventName: 'Add to cart',
         recordIDs: ['id_42'],
-        queryID: 'theQueryID',
+        queryId: 'theQueryId',
         index: 'theIndex',
       });
     });
@@ -103,7 +103,7 @@ describe('connectHitInsights', () => {
     });
   });
 
-  describe('when queryID is undefined', () => {
+  describe('when queryId is undefined', () => {
     it('should throw an error message inviting to add clickAnalytics: true', () => {
       const insightsClient = jest.fn();
 
@@ -117,7 +117,7 @@ describe('connectHitInsights', () => {
       const hit = {
         id: 'id_42',
         __position: 42,
-        // no queryID
+        // no queryId
       };
 
       const searchResults = { results: { theIndex: { index: 'theIndex' } } };
@@ -132,7 +132,7 @@ describe('connectHitInsights', () => {
           eventName: 'Add to wishlist',
         });
       }).toThrowErrorMatchingInlineSnapshot(
-        `"Could not infer \`queryID\`. Ensure \`clickAnalytics: true\` was added with the Configure widget."`
+        `"Could not infer \`queryId\`. Ensure \`clickAnalytics: true\` was added with the Configure widget."`
       );
     });
   });

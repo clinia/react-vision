@@ -4,7 +4,7 @@ import {
   refineValue,
   getCurrentRefinementValue,
 } from '../core/indexUtils';
-import { addQueryID, addAbsolutePositions } from '../core/utils';
+import { addQueryId, addAbsolutePositions } from '../core/utils';
 
 const getId = () => 'query';
 
@@ -31,7 +31,7 @@ function getHits(searchResults) {
       Array.isArray(searchResults.results.hits)
     ) {
       return addAbsolutePositions(
-        addQueryID(searchResults.results.hits, searchResults.results.queryID),
+        addQueryId(searchResults.results.hits, searchResults.results.queryId),
         searchResults.results.perPage,
         searchResults.results.page
       );
@@ -42,9 +42,9 @@ function getHits(searchResults) {
           {
             index,
             hits: addAbsolutePositions(
-              addQueryID(
+              addQueryId(
                 searchResults.results[index].hits,
-                searchResults.results[index].queryID
+                searchResults.results[index].queryId
               ),
               searchResults.results[index].perPage,
               searchResults.results[index].page

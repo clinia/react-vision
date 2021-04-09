@@ -58,13 +58,13 @@ export function addAbsolutePositions(hits, perPage, page) {
   }));
 }
 
-export function addQueryID(hits, queryID) {
-  if (!queryID) {
+export function addQueryId(hits, queryId) {
+  if (!queryId) {
     return hits;
   }
   return hits.map(hit => ({
     ...hit,
-    __queryID: queryID,
+    __queryId: queryId,
   }));
 }
 

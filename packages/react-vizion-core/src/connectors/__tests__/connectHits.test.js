@@ -29,13 +29,13 @@ describe('connectHits', () => {
       });
     });
 
-    it('adds queryID to the hits provided to the component', () => {
+    it('adds queryId to the hits provided to the component', () => {
       const hits = [{}];
       const props = connect.getProvidedProps({ contextValue }, null, {
-        results: { hits, perPage: 2, page: 2, queryID: 'theQueryID' },
+        results: { hits, perPage: 2, page: 2, queryId: 'theQueryId' },
       });
       expect(props).toEqual({
-        hits: [expect.objectContaining({ __queryID: 'theQueryID' })],
+        hits: [expect.objectContaining({ __queryId: 'theQueryId' })],
       });
     });
 
@@ -88,19 +88,19 @@ describe('connectHits', () => {
       });
     });
 
-    it('adds queryID to the hits provided to the component', () => {
+    it('adds queryId to the hits provided to the component', () => {
       const hits = [{}];
       const props = connect.getProvidedProps(
         { contextValue, indexContextValue },
         null,
         {
           results: {
-            second: { hits, perPage: 2, page: 2, queryID: 'theQueryID' },
+            second: { hits, perPage: 2, page: 2, queryId: 'theQueryId' },
           },
         }
       );
       expect(props).toEqual({
-        hits: [expect.objectContaining({ __queryID: 'theQueryID' })],
+        hits: [expect.objectContaining({ __queryId: 'theQueryId' })],
       });
     });
 

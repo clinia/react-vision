@@ -99,7 +99,7 @@ describe('connectGeoSearch', () => {
           expect(actual.hits).toEqual(expectation);
         });
 
-        it('adds queryID to the hits provided to the component', () => {
+        it('adds queryId to the hits provided to the component', () => {
           const hits = [
             { id: '1', _geoPoint: {} },
             { id: '2', _geoPoint: {} },
@@ -114,7 +114,7 @@ describe('connectGeoSearch', () => {
             results: new SearchResults(new SearchParameters(), [
               {
                 meta: {
-                  queryID: 'theQueryID',
+                  queryId: 'theQueryId',
                 },
                 hits,
               },
@@ -129,10 +129,10 @@ describe('connectGeoSearch', () => {
           );
 
           const expectation = [
-            { id: '1', _geoPoint: {}, __queryID: 'theQueryID' },
-            { id: '2', _geoPoint: {}, __queryID: 'theQueryID' },
-            { id: '3', _geoPoint: {}, __queryID: 'theQueryID' },
-            { id: '4', _geoPoint: {}, __queryID: 'theQueryID' },
+            { id: '1', _geoPoint: {}, __queryId: 'theQueryId' },
+            { id: '2', _geoPoint: {}, __queryId: 'theQueryId' },
+            { id: '3', _geoPoint: {}, __queryId: 'theQueryId' },
+            { id: '4', _geoPoint: {}, __queryId: 'theQueryId' },
           ];
 
           expect(actual.hits).toEqual(expectation);

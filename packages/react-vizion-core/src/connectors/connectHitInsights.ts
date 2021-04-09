@@ -2,7 +2,7 @@ import createConnector from '../core/createConnector';
 import { getResults } from '../core/indexUtils';
 
 type Results = { index: string };
-type Hit = { id: string; __position: number; __queryID: string };
+type Hit = { id: string; __position: number; __queryId: string };
 
 type InsightsClient = (
   method: InsightsClientMethod,
@@ -15,7 +15,7 @@ type InsightsClientMethod =
 
 type InsightsClientPayload = {
   index: string;
-  queryID: string;
+  queryId: string;
   eventName: string;
   recordIDs: string[];
   positions?: number[];
@@ -31,23 +31,23 @@ function inferPayload({
   currentHit: Hit;
 }): Omit<InsightsClientPayload, 'eventName'> {
   const { index } = results;
-  const queryID = currentHit.__queryID;
+  const queryId = currentHit.__queryId;
   const recordIDs = [currentHit.id];
 
-  if (!queryID) {
+  if (!queryId) {
     throw new Error(
-      `Could not infer \`queryID\`. Ensure \`clickAnalytics: true\` was added with the Configure widget.`
+      `Could not infer \`queryId\`. Ensure \`clickAnalytics: true\` was added with the Configure widget.`
     );
   }
 
   switch (method) {
     case 'clickedRecordIDsAfterSearch': {
       const positions = [currentHit.__position];
-      return { index, queryID, recordIDs, positions };
+      return { index, queryId, recordIDs, positions };
     }
 
     case 'convertedRecordIDsAfterSearch':
-      return { index, queryID, recordIDs };
+      return { index, queryId, recordIDs };
 
     default:
       throw new Error(
